@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>日程管理</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <div class="box">
+      <div class="box__header">
+        <span class="box__header-title">日程</span>
+        <a href="#" class="box__header-add">+</a>
+      </div>
+
+      <div class="box__tabs">
+        <div class="active box__tabs-item filter-all">
+          <a href="#">全部</a>
+        </div>
+        <div class="box__tabs-item filter-finished">
+          <a href="#">已发生日程</a>
+        </div>
+        <div class="box__tabs-item filter-unfinished">
+          <a href="" class="fil-s_uf">未发生日程</a>
+        </div>
+      </div>
+
+      <div class="box__body">
+        <ul></ul>
+      </div>
+    </div>
+
+    <div class="box-add">
+      <div class="box-add__header">
+        <a href="#" id="back"><</a>
+        <span class="box-add__title">编辑日程</span>
+        <a href="#" class="add-trip">确定</a>
+      </div>
+
+      <div class="box-add__body">
+        <form>
+          <textarea name="" id="new-schedule" cols="30" rows="10"></textarea>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

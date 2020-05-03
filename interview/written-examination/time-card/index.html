@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Time Card</title>
+    <style>
+      *,
+      *:before,
+      *:after {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .container {
+        margin: 0 auto;
+        max-width: 1000px;
+        display: flex;
+        flex-direction: row;
+      }
+
+      .left {
+        flex: 0 1 auto;
+        max-width: 200px;
+        margin-right: 1rem;
+      }
+
+      .left form {
+        text-align: center;
+      }
+
+      .right {
+        flex: 1 1 auto;
+      }
+
+      .months {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1rem;
+      }
+
+      .month {
+        width: 50%;
+        text-align: center;
+        padding: 0.2rem;
+        text-decoration: none;
+        line-height: 1.7;
+      }
+
+      .weeks {
+        display: flex;
+        justify-content: space-around;
+      }
+
+      .days {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .days .day {
+        display: flex;
+        width: 14.28%;
+        text-align: center;
+        min-height: 5rem;
+        padding: 0.25rem;
+        background-color: #f7f7f7;
+        border: 2px solid white;
+        font-size: 14px;
+        position: relative;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .days .day .time {
+        font-size: 1rem;
+      }
+
+      .days .day .description {
+        position: absolute;
+        right: 0.25rem;
+        bottom: 0.25rem;
+        color: #ddd;
+      }
+
+      .active {
+        background-color: dodgerblue;
+        color: #fff;
+      }
+
+      .title {
+        margin: 1rem auto 2rem auto;
+        text-align: center;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .left {
+          margin-bottom: 2rem;
+          max-width: 100% !important;
+          display: flex;
+          justify-content: center;
+          flex-direction: column;
+        }
+
+        .month {
+          width: 25%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h2 class="title">Time Card (responsive)</h2>
+
+    <div class="container" style="margin-top: 2rem;">
+      <div class="left">
+        <form>
+          <select class="select-year">
+            <option>Select Year</option>
+          </select>
+        </form>
+        <div class="months"></div>
+      </div>
+
+      <div class="right">
+        <div class="weeks"></div>
+        <div class="days"></div>
+      </div>
+    </div>
+
+    <script>
+      const MONTHS = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec"
+      ];
+      const WEEKS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+      let selectYear = document.querySelector(".select-year");
+      let monthsDiv = document.querySelector(".months");
+      let weeksDiv = document.querySelector(".weeks");
+      let daysInMonthDiv = document.querySelector(".days");
+
+      // get the siblings of element
+      // return array
+      function siblings(elm) {
+        let a = [];
+        let p = elm.parentNode.children;
+        for (let i = 0, pl = p.length; i < pl; i++) {
+          if (p[i] !== elm) {
+            a.push(p[i]);
+          }
+        }
+        return a;
+      }
+
+      // add select year options
+      // init from 2010 to 2020
+      function addSelectYearDom() {
+        for (let i = 2010; i <= 2020; i++) {
+          let option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          selectYear.appendChild(option);
+        }
+      }
+
+      // year with four digital, eg. 1998
+      // month from 1 to 12
+      function getCountMonth(year, month) {
+        let current = new Date(year, month, 0);
+        return current.getDate();
+      }
+
+      // year with four digital, eg. 1998
+      // month from 1 to 12
+      function fixWeekDisplay(year, month) {
+        let d = new Date(year, month - 1, 1);
+        return d.getDay();
+      }
+
+      // add weeks in dom
+      // from sunday to saturday
+      function addWeek() {
+        weeksDiv.innerHTML = "";
+        for (let i = 0; i < 7; i++) {
+          let week = document.createElement("span");
+          week.textContent = WEEKS[i];
+          weeksDiv.appendChild(week);
+        }
+      }
+
+      // check whether a given date is today
+      // return boolean
+      function isToday(day) {
+        let today = new Date();
+        let todayStr =
+          today.getFullYear() + "-" + today.getMonth() + "-" + today.getDate();
+        let dayStr =
+          day.getFullYear() + "-" + day.getMonth() + "-" + day.getDate();
+        return todayStr === dayStr;
+      }
+
+      // check whether a given date is a working day
+      // return boolean
+      function isWorkDay(day) {
+        return !(day.getDay() === 0 || day.getDay() === 6);
+      }
+
+      // add the 12 month of year
+      function addMonths() {
+        monthsDiv.innerHTML = "";
+        for (let i = 0; i < 12; i++) {
+          let month = document.createElement("a");
+          month.href = "javascript:;";
+          month.className = "month";
+          month.dataset.month = i + 1;
+          month.textContent = MONTHS[i];
+          monthsDiv.appendChild(month);
+        }
+      }
+
+      // add day div under daysInMonthDiv
+      // year, full digital, eg 2015
+      // month, from 1 to 12
+      function addDays(year, month) {
+        daysInMonthDiv.innerHTML = "";
+        let daysInMonthCount = getCountMonth(year, month);
+        let fixWeek = fixWeekDisplay(year, month);
+        if (fixWeek > 0) {
+          for (let i = 0; i < fixWeek; i++) {
+            let day = document.createElement("div");
+            day.className = "day";
+            day.textContent = "";
+            daysInMonthDiv.appendChild(day);
+          }
+        }
+        for (let i = 1; i <= daysInMonthCount; i++) {
+          let day = document.createElement("div");
+          day.className = "day";
+
+          let time = document.createElement("span");
+          time.className = "time";
+          time.textContent = `${year}-${month}-${i}`;
+          if (isToday(new Date(year, month - 1, i))) {
+            day.style.backgroundColor = "orange";
+            day.style.color = "#fff";
+          }
+          day.appendChild(time);
+
+          let description = document.createElement("span");
+          description.className = "description";
+
+          if (isWorkDay(new Date(year, month - 1, i))) {
+            description.textContent = "work";
+          } else {
+            description.textContent = "rest";
+          }
+          day.appendChild(description);
+          daysInMonthDiv.appendChild(day);
+        }
+      }
+
+      //
+      // year four digital, eg. 2018
+      function addEventListenerOfMonths(year) {
+        monthsDiv.addEventListener("click", function(e) {
+          e.preventDefault();
+          let target = e.target;
+          if (target.tagName.toLowerCase() !== "a") {
+            return;
+          }
+          let sib = siblings(target);
+
+          for (let i = 0; i < sib.length; i++) {
+            sib[i].classList.remove("active");
+          }
+          target.classList.add("active");
+          addDays(year, target.dataset.month);
+        });
+      }
+
+      // Init function
+      function init() {
+        addSelectYearDom();
+        addWeek();
+        addMonths();
+        let currentTime = new Date();
+        addEventListenerOfMonths(currentTime.getFullYear());
+        addDays(currentTime.getFullYear(), currentTime.getMonth() + 1);
+        monthsDiv.children[currentTime.getMonth()].classList.add("active");
+
+        // add listener for select year
+        // also add listener for months under of selected year
+        selectYear.addEventListener("change", function(e) {
+          let year = e.target.value;
+          let months = monthsDiv.children;
+          for (let i = 0; i < months.length; i++) {
+            months[i].classList.remove("active");
+          }
+          months[0].classList.add("active");
+          addDays(year, 1);
+          addEventListenerOfMonths(year);
+        });
+      }
+
+      init();
+    </script>
+  </body>
+</html>

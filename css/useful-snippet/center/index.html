@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>center</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit; // 1
+      }
+
+      body {
+        margin: 1rem;
+      }
+
+      .box {
+        margin: 5rem;
+        display: block;
+        width: 15rem;
+        height: 15rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: relative;
+      }
+      .box-inner {
+        width: 2rem;
+        height: 2rem;
+        background-color: rgba(255, 0, 0, 0.75);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+
+      .box-flex {
+        margin: 5rem;
+        width: 15rem;
+        height: 15rem;
+        background-color: rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+      }
+      .box-flex-inner {
+        width: 2rem;
+        height: 2rem;
+        margin: 1rem;
+        background-color: rgba(255, 0, 0, 0.75);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="box-inner"></div>
+    </div>
+
+    <div class="box-flex">
+      <div class="box-flex-inner"></div>
+      <div class="box-flex-inner"></div>
+      <div class="box-flex-inner"></div>
+    </div>
+  </body>
+</html>

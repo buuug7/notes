@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>clearfix</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 3rem;
+      }
+      .wrap {
+        border: 1px solid #eee;
+      }
+      .wrap:after,
+      .wrap:before {
+        content: "";
+        display: block;
+      }
+      .wrap:after {
+        clear: both;
+      }
+      .inner {
+        width: 5rem;
+        height: 5rem;
+        background-color: hsla(0, 100%, 50%, 0.5);
+        float: right;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="inner"></div>
+    </div>
+  </body>
+</html>

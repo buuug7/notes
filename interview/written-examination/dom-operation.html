@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>DOM manipulation</title>
+  </head>
+  <body>
+    <ul>
+      <li>1 Lorem ipsum.</li>
+      <li>2 Libero, ullam.</li>
+      <li>3 Laborum, quaerat.</li>
+      <li>4 Quis, sed?</li>
+    </ul>
+
+    <script>
+      // DOM查找
+      let ul = document.querySelector("ul");
+      let firstChild = document.querySelector("ul li:first-child");
+
+      // DOM创建 Element
+      // element = document.createElement(tagName[, options]);
+      let newLi = document.createElement("li");
+      newLi.textContent = "5 ipsum amet.";
+
+      // DOM 创建 textNode
+      let textNode = document.createTextNode("pu guohong");
+      document.body.appendChild(textNode);
+
+      // DOM 添加
+      // element.appendChild(aChild);
+      ul.appendChild(newLi);
+
+      // DOM 替换
+      // 返回的是被移除的DOM
+      // replacedNode = parentNode.replaceChild(newChild, oldChild);
+      let r = ul.replaceChild(newLi, firstChild);
+      console.log(r);
+
+      // DOM 移除
+      // 移除第二个li
+      // oldChild = node.removeChild(child);
+      // or node.removeChild(child);
+      ul.removeChild(ul.children[1]);
+
+      // 插入
+      // insertedNode = parentNode.insertBefore(newNode, referenceNode);
+      ul.insertBefore(newLi, ul.lastElementChild);
+
+      // dupNode = node.cloneNode([deep]);
+      // deep=true|false
+      let cloneUl = ul.cloneNode(true);
+      document.body.appendChild(cloneUl);
+    </script>
+  </body>
+</html>

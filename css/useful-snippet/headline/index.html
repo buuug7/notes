@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit; // 1
+      }
+
+      body {
+        margin: 1rem;
+      }
+      /* headline v1 */
+      .headline-v1 {
+        margin: 1rem 0;
+        border-bottom: 1px solid #e4e5e6;
+      }
+      .headline-v1__title {
+        display: inline-block;
+        margin: 0 0 -2px 0;
+        padding-bottom: 5px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        border-bottom: 3px solid #000;
+      }
+      .headline-v1__title--orange {
+        border-bottom: 3px solid orange;
+      }
+      /* headline -v2 */
+      .headline-v2 {
+        margin: 1rem 0;
+        text-align: center;
+        display: block;
+      }
+      .headline-v2__title {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+      }
+      .headline-v2__desc {
+        font-size: 1rem;
+        font-weight: normal;
+        display: block;
+      }
+      .headline-v2__title--orange {
+        color: orange;
+      }
+      .headline-v3 {
+        display: block;
+        margin: 1rem 0;
+        padding: 0 1rem;
+        border-left: 3px solid #000;
+        background: transparent;
+      }
+      .headline-v3__title {
+        font-size: 1.5rem;
+        color: #000;
+      }
+      .headline-v3--border-orange {
+        border-color: orange;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>headline v1</h2>
+
+    <div class="headline-v1">
+      <div class="headline-v1__title">Lorem ipsum dolor</div>
+    </div>
+
+    <div class="headline-v1">
+      <div class="headline-v1__title headline-v1__title--orange">
+        Ipsum dolor sit
+      </div>
+    </div>
+
+    <h2>headline v2</h2>
+    <div class="headline-v2">
+      <div class="headline-v2__title">
+        Lorem ipsum dolor sit
+      </div>
+      <div class="headline-v2__desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
+        architecto debitis dicta doloremque esse fuga id, itaque iusto pariatur,
+        quibusdam sapiente suscipit. Alias, atque error fugit harum in non
+        quidem.
+      </div>
+    </div>
+
+    <div class="headline-v2">
+      <div class="headline-v2__title headline-v2__title--orange">
+        Lorem ipsum dolor sit
+      </div>
+      <div class="headline-v2__desc">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci
+        architecto debitis dicta doloremque esse fuga id, itaque iusto pariatur,
+        quibusdam sapiente suscipit. Alias, atque error fugit harum in non
+        quidem.
+      </div>
+    </div>
+
+    <h2>headline v3</h2>
+    <div class="headline-v3">
+      <div class="headline-v3__title">
+        Lorem ipsum dolor sit amet
+      </div>
+    </div>
+
+    <div class="headline-v3 headline-v3--border-orange">
+      <div class="headline-v3__title">
+        Lorem ipsum dolor sit amet
+      </div>
+    </div>
+  </body>
+</html>

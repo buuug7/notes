@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Tags</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit; // 1
+      }
+
+      body {
+        margin: 1rem;
+      }
+
+      .tag-v1 {
+        list-style: none;
+        padding-left: 0;
+      }
+      .tag-v1__item {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+      }
+      .tag-v1__item > a {
+        text-decoration: none;
+        border: 1px solid #eee;
+        padding: 0.25rem 0.75rem;
+        color: #000;
+        font-size: 1rem;
+        transition: all 0.5s ease-in-out;
+      }
+      .tag-v1__item a:hover {
+        border-color: #ccc;
+        text-decoration: none;
+      }
+      .tag-v1__item--rounded > a {
+        border-radius: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>tag v1</h2>
+    <ul class="tag-v1">
+      <li class="tag-v1__item"><a href="#" style="color:#777">Lorem </a></li>
+      <li class="tag-v1__item"><a href="#">Cumque</a></li>
+      <li class="tag-v1__item"><a href="#">Odit</a></li>
+      <li class="tag-v1__item tag-v1__item--rounded">
+        <a href="#">Incidunt</a>
+      </li>
+      <li class="tag-v1__item tag-v1__item--rounded">
+        <a href="#">Consequuntur</a>
+      </li>
+    </ul>
+  </body>
+</html>

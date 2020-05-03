@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Breadcrumbs</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:after,
+      *:before {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 3rem;
+      }
+
+      .breadcrumbs {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow: hidden;
+        list-style: none;
+        padding: 0.5rem 0.75rem;
+        margin: 0 0 1rem 0;
+        // border:1px solid rgba(0,0,0,0.1);
+        background-color: rgba(0, 0, 0, 0.2);
+      }
+      .breadcrumb-item > a {
+        text-decoration: none;
+        color: #000;
+      }
+      .breadcrumb-item > a:hover {
+        text-decoration: underline;
+      }
+      .breadcrumb-item + .breadcrumb-item:before {
+        content: "/";
+        padding: 0 0.5rem;
+        display: inline-block;
+      }
+      .breadcrumb-item.active {
+        color: rgba(0, 0, 0, 0.5);
+      }
+
+      .breadcrumbs--center {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .breadcrumbs--right {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="breadcrumbs ">
+      <li class="breadcrumb-item"><a href="">Lorem</a></li>
+      <li class="breadcrumb-item"><a href="">dolore</a></li>
+      <li class="breadcrumb-item"><a href="">Cupiditate</a></li>
+      <li class="breadcrumb-item active">Nisi</li>
+    </ul>
+
+    <ul class="breadcrumbs breadcrumbs--center">
+      <li class="breadcrumb-item"><a href="">Lorem</a></li>
+      <li class="breadcrumb-item"><a href="">dolore</a></li>
+      <li class="breadcrumb-item"><a href="">Cupiditate</a></li>
+      <li class="breadcrumb-item active">Nisi</li>
+    </ul>
+
+    <ul class="breadcrumbs breadcrumbs--right">
+      <li class="breadcrumb-item"><a href="">Lorem</a></li>
+      <li class="breadcrumb-item"><a href="">dolore</a></li>
+      <li class="breadcrumb-item"><a href="">Cupiditate</a></li>
+      <li class="breadcrumb-item active">Nisi</li>
+    </ul>
+  </body>
+</html>

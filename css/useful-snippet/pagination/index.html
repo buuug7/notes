@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>pagination</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 3rem;
+      }
+
+      .pagination {
+        display: flex;
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .pagination__link {
+        position: relative;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        margin-left: -1px;
+        display: block;
+        text-decoration: none;
+        line-height: 1.2;
+      }
+      .pagination__link:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      .pagination__item:first-child .pagination__link {
+        border-bottom-left-radius: 0.25rem;
+        border-top-left-radius: 0.25rem;
+        margin-left: 0;
+      }
+      .pagination__item:last-child .pagination__link {
+        border-bottom-right-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+      }
+
+      .pagination__item.active .pagination__link {
+        z-index: 1;
+        color: #fff;
+        background-color: rgba(0, 0, 255, 0.7);
+        border-color: rgba(0, 0, 255, 0.7);
+      }
+
+      .pagination__item.disabled .pagination__link {
+        color: rgba(0, 0, 0, 0.5);
+        pointer-events: none;
+      }
+
+      /* modifier */
+      .pagination--center {
+        flex-direction: row;
+        justify-content: center;
+      }
+      .pagination--right {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="pagination">
+      <li class="pagination__item disabled">
+        <a href="#" class="pagination__link">previous</a>
+      </li>
+      <li class="pagination__item active">
+        <a href="#" class="pagination__link">1</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">2</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">3</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">next</a>
+      </li>
+    </ul>
+
+    <ul class="pagination pagination--center">
+      <li class="pagination__item disabled">
+        <a href="#" class="pagination__link">previous</a>
+      </li>
+      <li class="pagination__item active">
+        <a href="#" class="pagination__link">1</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">2</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">3</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">next</a>
+      </li>
+    </ul>
+
+    <ul class="pagination pagination--right">
+      <li class="pagination__item disabled">
+        <a href="#" class="pagination__link">previous</a>
+      </li>
+      <li class="pagination__item active">
+        <a href="#" class="pagination__link">1</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">2</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">3</a>
+      </li>
+      <li class="pagination__item">
+        <a href="#" class="pagination__link">next</a>
+      </li>
+    </ul>
+  </body>
+</html>

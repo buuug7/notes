@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit; // 1
+      }
+
+      body {
+        margin: 1rem;
+      }
+
+      .card {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        margin: 4rem;
+        background-color: #fff;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.3rem;
+      }
+      .card-header {
+        background: rgba(0, 0, 0, 0.05);
+        padding: 0.75rem 1.25rem;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+      }
+      .card-body {
+        padding: 1rem;
+      }
+
+      .card-row {
+        flex-direction: row;
+      }
+      .card-bg-light {
+        background-color: #f8f9fa !important;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Card</h2>
+
+    <div class="card" style="width:30rem">
+      <div class="card-header">
+        Lorem ipsum dolor sit
+      </div>
+      <div class="card-body">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+          accusantium architecto at dolores illum maiores nam nobis repudiandae
+          suscipit veniam? Beatae blanditiis dicta error impedit nam porro quod
+          sint, ullam?
+        </p>
+      </div>
+    </div>
+
+    <div class="card card-bg-light" style="width:30rem">
+      <div class="card-header">
+        Lorem ipsum dolor sit
+      </div>
+      <div class="card-body">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+          accusantium architecto at dolores illum maiores nam nobis repudiandae
+          suscipit veniam? Beatae blanditiis dicta error impedit nam porro quod
+          sint, ullam?
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title></title>
+  </head>
+
+  <style>
+    .tabs {
+    }
+
+    .tabs__nav {
+      width: 100%;
+      list-style: none;
+      padding-left: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+    }
+
+    .tabs__nav-item {
+      display: block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .tabs__nav-item.active {
+      color: red;
+    }
+
+    .tabs__body > div {
+      display: none;
+    }
+  </style>
+
+  <body>
+    <div class="tabs">
+      <div class="tabs__nav">
+        <a class="tabs__nav-item active" href="#item1">item1</a>
+        <a class="tabs__nav-item" href="#item2">item2</a>
+        <a class="tabs__nav-item" href="#item3">item3</a>
+        <a class="tabs__nav-item" href="#item4">item4</a>
+      </div>
+
+      <div class="tabs__body">
+        <div id="item1">item1</div>
+        <div id="item2">item2</div>
+        <div id="item3">item3</div>
+        <div id="item4">item4</div>
+      </div>
+    </div>
+
+    <script>
+      (function() {
+        var navs = document.querySelectorAll(".tabs__nav-item");
+        navs.forEach(function(nav) {
+          nav.addEventListener("click", function(e) {
+            e.preventDefault();
+            var allNavs = document.querySelectorAll(".tabs__nav-item");
+            allNavs.forEach(function(nav) {
+              nav.classList.remove("active");
+            });
+            this.classList.add("active");
+            var id = this.getAttribute("href");
+            var target = document.querySelector(id);
+            var siblings = [];
+            var childrenEle = target.parentNode.children;
+            for (var i = 0; i < childrenEle.length; i++) {
+              if (childrenEle[i] !== target) {
+                siblings.push(childrenEle[i]);
+              }
+            }
+            for (var i = 0; i < siblings.length; i++) {
+              siblings[i].style.display = "none";
+            }
+            target.style.display = "block";
+          });
+        });
+
+        function init() {
+          document.querySelector(".tabs__body").children[0].style.display =
+            "block";
+        }
+
+        init();
+      })();
+    </script>
+  </body>
+</html>

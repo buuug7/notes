@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Timeline</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      * ， *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 2rem;
+      }
+      .timeline {
+        position: relative;
+        margin: 0 0 2rem 0;
+        list-style: none;
+        padding: 0;
+      }
+
+      .timeline:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 2rem;
+        width: 0.4rem;
+        background-color: #ddd;
+      }
+
+      .timeline > li {
+        position: relative;
+        margin: 0 1rem 1rem 0;
+      }
+
+      .timeline > li:before,
+      .timeline > li:after {
+        display: table;
+        content: "";
+      }
+      .timeline > li:after {
+        clear: both;
+      }
+      .timeline__date span {
+        display: inline-block;
+        padding: 0.15rem 0.25rem;
+        border-radius: 0.25rem;
+        background-color: rgba(255, 255, 255, 1);
+        color: #000;
+      }
+      .timeline__label {
+        width: 2rem;
+        height: 2rem;
+        line-height: 2rem;
+        position: absolute;
+        top: 0;
+        left: 1.2rem;
+        background-color: rgba(0, 0, 0, 0.4);
+        color: #fff;
+        text-align: center;
+        border-radius: 50%;
+      }
+      .timeline__item {
+        margin-left: 4rem;
+        margin-right: 1rem;
+        position: relative;
+        border-radius: 0.25rem;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      .timeline__item-time {
+        position: absolute;
+        right: 0.8rem;
+        top: 0.8rem;
+        color: #999;
+        font-size: 0.9rem;
+      }
+      .timeline__item-header {
+        padding: 0.8rem;
+        border-bottom: 1px solid #f4f4f4;
+        line-height: 1rem;
+      }
+      .timeline__item-body {
+        padding: 0.8rem;
+      }
+      .timeline__item-footer {
+        padding: 0.8rem;
+      }
+    </style>
+  </head>
+  <body style="background-color: #f7f7f7">
+    <h2>Timeline</h2>
+
+    <ul class="timeline">
+      <li class="timeline__date">
+        <span>2017年12月30日</span>
+      </li>
+      <li>
+        <span class="timeline__label">F</span>
+        <div class="timeline__item">
+          <div class="timeline__item-time">12:09</div>
+          <div class="timeline__item-header">
+            Lorem ipsum dolor sit amet, consectetur adipisicing.
+          </div>
+          <div class="timeline__item-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
+            deserunt dolor ea ipsa nisi quas reprehenderit velit voluptatum?
+            Alias amet debitis dolor doloribus fuga laudantium minima reiciendis
+            veniam veritatis voluptatibus.
+          </div>
+          <div class="timeline__item-footer">
+            <button>faker?</button>
+            <button>view more</button>
+          </div>
+        </div>
+      </li>
+
+      <li class="timeline__date">
+        <span>2016年06月22日</span>
+      </li>
+      <li>
+        <span class="timeline__label">C</span>
+
+        <div class="timeline__item">
+          <div class="timeline__item-time">15:22</div>
+          <div class="timeline__item-header">
+            <a href="#">Buuug7</a> send you an email
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline__label">TI</span>
+        <div class="timeline__item">
+          <div class="timeline__item-time">00:09</div>
+          <div class="timeline__item-header">
+            Post new article in Google+
+          </div>
+          <div class="timeline__item-body">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur
+            deserunt dolor ea ipsa nisi quas reprehenderit velit voluptatum?
+            Alias amet debitis dolor doloribus fuga laudantium minima reiciendis
+            veniam veritatis voluptatibus.
+          </div>
+          <div class="timeline__item-footer">
+            <button>view more</button>
+          </div>
+        </div>
+      </li>
+      <li>
+        <span class="timeline__label" style="background-color: rgba(0,0,0,0.1);"
+          >&copy;</span
+        >
+      </li>
+    </ul>
+  </body>
+</html>

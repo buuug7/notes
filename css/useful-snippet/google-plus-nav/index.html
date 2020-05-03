@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>google plus nav</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.css"
+    />
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        background-color: #f1f1f1;
+      }
+
+      .nav {
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        background-color: rgba(255, 255, 255, 1);
+        box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+        font-size: 21px;
+        align-items: center;
+        justify-content: flex-start;
+        width: 100%;
+        padding: 12px 24px 12px 24px;
+      }
+
+      @media (max-width: 600px) {
+        .nav {
+          padding: 12px 12px;
+        }
+      }
+
+      .nav a {
+        color: #676767;
+      }
+
+      .nav__brand {
+        display: flex;
+        flex-direction: row-reverse;
+        margin: auto 12px auto 24px;
+      }
+
+      .nav__brand-description {
+        border-left: 1px solid rgba(0, 0, 0, 0.12);
+        padding-left: 12px;
+        margin-left: 12px;
+      }
+
+      @media (max-width: 600px) {
+        .nav__brand-description {
+          display: none;
+        }
+      }
+
+      .nav__brand--logo a {
+        text-decoration: none;
+      }
+
+      .nav__hidden {
+        flex-grow: 1;
+      }
+
+      .nav__search {
+        height: 42px;
+        line-height: 30px;
+        background-color: rgba(0, 0, 0, 0.1);
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        flex-grow: 1;
+        margin: auto 12px;
+        max-width: 500px;
+      }
+
+      @media (max-width: 600px) {
+        .nav__search {
+          display: none;
+        }
+      }
+
+      .nav__search i.fa-search {
+        padding-left: 10px;
+        padding-right: 10px;
+        font-weight: normal;
+        font-size: 18px;
+      }
+
+      .nav__search input {
+        background-color: transparent;
+        outline: none;
+        border: none;
+        width: 100%;
+      }
+
+      .nav__links {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .nav__links-item + .nav__links-item {
+        padding-left: 12px;
+      }
+
+      .nav__links-item.search {
+        display: none;
+      }
+
+      @media (max-width: 600px) {
+        .nav__links-item.search {
+          display: block;
+        }
+      }
+
+      .nav__links-item > a {
+        display: block;
+        line-height: 1;
+      }
+
+      .nav__links-item > a > img {
+        width: 30px;
+        height: 30px;
+        display: block;
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav__toggle">
+        <a href="#"><i class="fa fa-bars"></i></a>
+      </div>
+      <div class="nav__brand">
+        <div class="nav__brand-description">Home</div>
+        <div class="nav__brand--logo">
+          <a href="#">google+</a>
+        </div>
+      </div>
+      <div class="nav__search">
+        <i class="fa fa-search"></i>
+        <input type="text" placeholder="search google +" />
+      </div>
+      <div class="nav__hidden"></div>
+      <div class="nav__links">
+        <div class="nav__links-item search">
+          <a href="#"><i class="fa fa-search"></i></a>
+        </div>
+        <div class="nav__links-item">
+          <a href="#"><i class="fa fa-bell"></i></a>
+        </div>
+        <div class="nav__links-item">
+          <a href="#"><img src="thumb_33_200x200_0_0_auto.jpg" alt=""/></a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

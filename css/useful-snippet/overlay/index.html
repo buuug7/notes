@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit; // 1
+      }
+
+      body {
+        margin: 1rem;
+      }
+
+      .block {
+        margin: 100px 50px;
+        background: url('le-dou-ke-ji.png') no-repeat 5% 99%;
+        color: #fff;
+        padding: 50px;
+        font-size: 20px;
+        position: relative;
+        z-index: 1;
+      }
+      .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: dodgerblue;
+        opacity: 0.9;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="block">
+      <div class="overlay"></div>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti
+        dolorem dolorum eligendi, et exercitationem facilis hic incidunt ipsa
+        magni maxime molestiae nisi officiis porro reiciendis similique, sit
+        tempore vel voluptas.
+      </p>
+    </div>
+  </body>
+</html>

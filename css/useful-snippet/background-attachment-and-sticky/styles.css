@@ -1,0 +1,101 @@
+.attachment-bg {
+  background-size: cover;
+  background: url("bg0.jpg") no-repeat center center fixed;
+}
+
+.wrap {
+  max-width: 992px;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  justify-content: center;
+  background: url("bg2.jpg") no-repeat 50% 60%;
+  background-size: cover;
+  width: 100%;
+  height: 15rem;
+  z-index: 1;
+  position: relative;
+  color: #fff;
+  padding: 2rem;
+  margin-top: 4rem;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-top: 0;
+  }
+}
+
+.header:before {
+  content: " ";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.nav {
+  position: sticky;
+  top: 0;
+  background-color: #111;
+}
+
+.nav > ul {
+  font-size: 0;
+  padding-left: 0;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.nav > ul li {
+  position: relative;
+}
+.nav > ul > li:hover {
+  background-color: red;
+}
+
+.nav > ul li a {
+  color: #fff;
+  font-size: 1rem;
+  text-decoration: none;
+  display: inline-block;
+  width: 100%;
+  padding: 0.7rem 1.2rem;
+  text-align: center;
+}
+
+.article {
+  padding: 2rem 4rem;
+  line-height: 2rem;
+}
+
+@media (max-width: 768px) {
+  .article {
+    padding: 2rem 1rem;
+  }
+}
+
+.footer {
+  text-align: center;
+  padding: 2rem;
+  background: #eee;
+  margin-bottom: 50px;
+}
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #999;
+}
+.footer p a {
+  color: #666;
+}

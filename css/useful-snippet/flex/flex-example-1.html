@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>test flexbox</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-around;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .container .item {
+        background: tomato;
+        color: #fff;
+        width: 200px;
+        height: 150px;
+        padding: 5px;
+        margin-top: 15px;
+      }
+      .navigator {
+        list-style: none;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+        background: tomato;
+        margin: 0;
+        padding: 0;
+      }
+      .navigator a {
+        text-decoration: none;
+        padding: 1em;
+        color: #fff;
+        display: block;
+      }
+      @media (max-width: 800px) {
+        .navigator {
+          justify-content: space-around;
+        }
+      }
+      @media (max-width: 600px) {
+        .navigator {
+          flex-flow: column wrap;
+          text-align: center;
+        }
+        .navigator a {
+          border-top: 1px solid rgba(255, 255, 255, 0.3);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        .navigator li:last-of-type a {
+          border-bottom: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <ul class="navigator">
+      <li class="item"><a href="">Lorem</a></li>
+      <li class="item"><a href="">Minima</a></li>
+      <li class="item"><a href="">Eligendi</a></li>
+      <li class="item"><a href="">Alias</a></li>
+      <li class="item"><a href="">Quaerat</a></li>
+    </ul>
+
+    <ul class="container">
+      <li class="item">Lorem ipsum dolor.</li>
+      <li class="item">Aliquid, officiis, tempora?</li>
+      <li class="item">Impedit quaerat, odit!</li>
+      <li class="item">Architecto, dolorem, inventore.</li>
+      <li class="item">Voluptatibus, facilis, aspernatur.</li>
+      <li class="item">Nam, culpa, rem?</li>
+    </ul>
+  </body>
+</html>

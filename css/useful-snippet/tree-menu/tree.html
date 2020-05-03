@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>tree menu</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/font-awesome@4.7.0/css/font-awesome.css"
+    />
+    <link rel="stylesheet" href="tree.css" />
+    <script src="https://unpkg.com/jquery@3.2.1/dist/jquery.js"></script>
+    <script src="tree.js"></script>
+    <style>
+      .pull-right {
+        float: right;
+      }
+
+      .treeview-menu {
+      }
+
+      .sidebar {
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>tree menu</h2>
+    <div class="sidebar">
+      <ul class="sidebar-menu" data-widget="tree" id="sidebarMenu">
+        <li class="treeview">
+          <a href="#">
+            <span>Multilevel</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#">Level One</a></li>
+            <li class="treeview">
+              <a href="#"
+                >Level One
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="#">Level Two</a></li>
+                <li class="treeview">
+                  <a href="#"
+                    >Level Two
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="#">Level Three</a></li>
+                    <li><a href="#">Level Three</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#">Level One</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      $(document).ready(function() {
+        // Or use javascript to init tree
+        // $('#sidebarMenu').tree({});
+      });
+    </script>
+  </body>
+</html>

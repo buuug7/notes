@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <style>
+      .a-upload {
+        padding: 4px 10px;
+        height: 20px;
+        line-height: 20px;
+        position: relative;
+        cursor: pointer;
+        color: #888;
+        background: #fafafa;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        overflow: hidden;
+        display: inline-block;
+        *display: inline;
+        *zoom: 1;
+      }
+
+      .a-upload input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer;
+      }
+
+      .a-upload:hover {
+        color: #444;
+        background: #eee;
+        border-color: #ccc;
+        text-decoration: none;
+      }
+
+      .file {
+        position: relative;
+        display: inline-block;
+        background: #d0eeff;
+        border: 1px solid #99d3f5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1e88c7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+      }
+      .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+      }
+      .file:hover {
+        background: #aadffd;
+        border-color: #78c3f3;
+        color: #004974;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <a href="javascript:;" class="a-upload">
+      <input type="file" name="" id="file1" />点击这里上传文件
+    </a>
+
+    <a href="javascript:;" class="file"
+      >选择文件
+      <input type="file" name="" id="file2" />
+    </a>
+  </body>
+</html>

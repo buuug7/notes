@@ -1,0 +1,10 @@
+*.png
+*.jpg
+*.gif
+*.svg
+*.map
+.gitignore
+.DS_Store
+*.php
+*.sql
+*.txt

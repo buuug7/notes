@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Animation</title>
+    <style>
+      @keyframes bouncing {
+        0% {
+          bottom: 0;
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+        }
+        100% {
+          bottom: 50px;
+          box-shadow: 0 50px 5px rgba(0, 0, 0, 0.1);
+        }
+      }
+      .box {
+        animation: bouncing 0.8s ease 0s infinite alternate-reverse both;
+        padding: 10px 20px;
+        border: 1px solid #333;
+        position: relative;
+        margin-top: 15rem;
+        font-size: 5rem;
+        width: 75%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Animation</h2>
+
+    <div class="box">box</div>
+  </body>
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jquery|javascript禁止浏览器前进后退</title>
+    <script src="https://unpkg.com/jquery"></script>
+  </head>
+  <body>
+    <script>
+      window.history.pushState(null, null, document.URL);
+      window.addEventListener("popstate", function(e) {
+        window.history.pushState(null, null, document.URL);
+      });
+    </script>
+  </body>
+</html>

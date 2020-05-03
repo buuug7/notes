@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Overlay 3</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 2rem;
+      }
+
+      .container {
+        background: url('bg.jpg') no-repeat 50% 50%;
+        background-size: cover;
+        padding: 5rem;
+        position: relative;
+        color: #fff;
+        font-size: 1.5rem;
+      }
+
+      .container:before,
+      .container:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        content: '';
+      }
+
+      .container:after {
+        background: rgba(0, 0, 0, 0.5);
+      }
+      .inner-text {
+        position: relative;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="inner-text">
+        <h2>Lorem ipsum dolor sit amet.</h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias
+          consequuntur debitis eligendi eum fuga inventore maxime nemo nulla
+          praesentium vitae. Blanditiis error fuga nam repellat repellendus
+          veniam. Ab, explicabo, odio.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

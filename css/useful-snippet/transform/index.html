@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Transform</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 5rem;
+      }
+      @keyframes mixed {
+        0% {
+          transform: translate(0, 0) rotate(0deg) scale(0) skew(0deg);
+        }
+        25% {
+          transform: translate(17rem, 0) rotate(90deg) scale(1.5) skew(20deg);
+        }
+        50% {
+          transform: translate3d(17rem, 17rem) rotate(180deg) scale(2)
+            skew(40deg);
+        }
+        75% {
+          transform: translate(0, 17rem) rotate(270deg) scale(2.5) skew(80deg);
+        }
+        100% {
+          transform: translate(0, 0) rotate(360deg) scale(1) skew(160deg);
+        }
+      }
+      .outbox {
+        border: 1px solid #ddd;
+        width: 20rem;
+        height: 20rem;
+        position: relative;
+      }
+      .box {
+        width: 3rem;
+        height: 3rem;
+        background-color: rgba(255, 0, 0, 0.7);
+        animation: mixed 10s linear 0s infinite normal both;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="outbox">
+      <div class="box">twice</div>
+    </div>
+  </body>
+</html>

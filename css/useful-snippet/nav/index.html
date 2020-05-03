@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>nav</title>
+
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+
+      body {
+        margin: 2rem;
+      }
+
+      .nav {
+        display: flex;
+        list-style: none;
+        background-color: #fff;
+        height: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        width: 100%;
+        font-size: 1.25rem;
+
+        margin: 1rem 0;
+        padding: 1rem 0.5rem;
+      }
+
+      .nav-item a {
+        text-decoration: none;
+        padding: 0.3rem 0.5rem;
+        display: inline-block;
+        color: #333;
+      }
+
+      .nav-item.active a {
+        background-color: rgba(0, 0, 255, 0.7);
+        color: #fff;
+        border-radius: 0.25rem;
+      }
+
+      .nav-item.disabled a {
+        color: #999;
+        pointer-events: none;
+      }
+
+      .nav--center {
+        flex-direction: row;
+        justify-content: center;
+      }
+
+      .nav--right {
+        flex-direction: row;
+        justify-content: flex-end;
+      }
+
+      @media (max-width: 600px) and (orientation: portrait) {
+        .nav {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body style="background-color: #f7f7f7;">
+    <ul class="nav">
+      <li class="nav-item active"><a href="#">Lorem</a></li>
+      <li class="nav-item"><a href="#">Ex</a></li>
+      <li class="nav-item"><a href="#">Esse</a></li>
+      <li class="nav-item disabled">
+        <a href="http://www.baidu.com" target="_blank">Doloremque</a>
+      </li>
+    </ul>
+
+    <h4>center</h4>
+    <ul class="nav nav--center">
+      <li class="nav-item active"><a href="#">Lorem</a></li>
+      <li class="nav-item"><a href="#">Ex</a></li>
+      <li class="nav-item"><a href="#">Esse</a></li>
+      <li class="nav-item disabled">
+        <a href="http://www.baidu.com" target="_blank">Doloremque</a>
+      </li>
+    </ul>
+
+    <h4>right</h4>
+    <ul class="nav nav--right">
+      <li class="nav-item active"><a href="#">Lorem</a></li>
+      <li class="nav-item"><a href="#">Ex</a></li>
+      <li class="nav-item"><a href="#">Esse</a></li>
+      <li class="nav-item disabled">
+        <a href="http://www.baidu.com" target="_blank">Doloremque</a>
+      </li>
+    </ul>
+
+    <h4>with transparent background color</h4>
+    <ul class="nav nav--center" style="background-color: transparent">
+      <li class="nav-item active"><a href="#">Lorem</a></li>
+      <li class="nav-item"><a href="#">Ex</a></li>
+      <li class="nav-item"><a href="#">Esse</a></li>
+      <li class="nav-item disabled">
+        <a href="http://www.baidu.com" target="_blank">Doloremque</a>
+      </li>
+    </ul>
+  </body>
+</html>

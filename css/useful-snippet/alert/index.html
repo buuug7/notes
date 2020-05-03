@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Alert</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: inherit; // 1
+      }
+
+      body {
+        margin: 1rem;
+      }
+      .alert {
+        padding: 0.75rem 1.25rem;
+        margin-bottom: 1rem;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+      }
+      .alert-danger {
+        background: rgba(255, 0, 0, 0.12);
+        border-color: rgba(255, 0, 0, 0.12);
+      }
+      .alert-warning {
+        background: rgba(255, 255, 0, 0.1);
+        border-color: rgba(255, 255, 0, 0.15);
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Alert</h2>
+
+    <div class="alert alert-danger">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias
+      architecto culpa deserunt est fugit harum inventore ipsam ipsum iste
+      itaque magni minima, nobis possimus quos rerum sed tenetur veniam.
+    </div>
+    <div class="alert alert-warning">
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. A alias
+      architecto culpa deserunt est fugit harum inventore ipsam ipsum iste
+      itaque magni minima, nobis possimus quos rerum sed tenetur veniam.
+    </div>
+  </body>
+</html>

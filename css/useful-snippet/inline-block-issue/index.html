@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>inline block issue</title>
+    <style>
+      ul li {
+        display: inline-block;
+        background-color: rgba(255, 0, 0, 0.8);
+      }
+      ul:after {
+        content: "";
+      }
+    </style>
+  </head>
+  <body>
+    <!--TODO::如何去掉inline-block之间的空隙 -->
+    <!--写在一行-->
+    <!--设置父元素的font-size为0-->
+
+    <ul>
+      <li><a href="">Lorem ipsum dolor sit.</a></li>
+      <li><a href="">Delectus ipsum rerum similique?</a></li>
+      <li><a href="">Atque dolorum perspiciatis quae.</a></li>
+      <li><a href="">Deleniti provident sed similique?</a></li>
+    </ul>
+  </body>
+</html>

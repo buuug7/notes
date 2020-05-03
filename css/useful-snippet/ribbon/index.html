@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ribbon</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 5rem;
+      }
+      .box {
+        width: 15rem;
+        height: 20rem;
+        overflow: hidden;
+        padding: 2rem;
+        position: relative;
+        color: #fff;
+        font-size: 1.2rem;
+        background-color: rgba(0, 191, 255, 0.7);
+      }
+      .ribbon {
+        position: absolute;
+        display: inline-block;
+        background-color: rgba(255, 0, 255, 0.7);
+        padding: 0.15rem 2rem;
+        color: #fff;
+        left: -1.8rem;
+        top: 0.8rem;
+        transform: rotate(-45deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <span class="ribbon">+50%</span>
+      <h4>Lorem ipsum dolor sit.</h4>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt nam
+        officiis quam vel velit veritatis.
+      </p>
+    </div>
+  </body>
+</html>
