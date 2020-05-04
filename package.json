@@ -1,7 +1,7 @@
 {
   "name": "study-notes",
   "version": "1.0.0",
-  "description": "自己收集的一些非常有用的web开发的相关技巧知识,以备自己以后查看,也可方便别人学习查看,都是web开发当中频繁用到的,并且有详细的例子,陆续更新当中...",
+  "description": "自己收集的一些非常有用的web开发的相关技巧知识, 以备自己以后查看, 也可方便别人学习查看, 都是web开发当中频繁用到的, 并且有详细的例子, 陆续更新当中...",
   "main": "index.js",
   "scripts": {
     "pretty-quick": "pretty-quick",
@@ -27,12 +27,12 @@
   },
   "homepage": "https://github.com/buuug7/study-notes#readme",
   "devDependencies": {
-    "@babel/core": "^7.6.4",
-    "@babel/preset-env": "^7.6.3",
-    "babel-jest": "^24.9.0",
-    "husky": "^3.0.1",
-    "jest": "^24.9.0",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1"
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "babel-jest": "^25.5.1",
+    "husky": "^4.2.5",
+    "jest": "^25.5.4",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
   }
 }
