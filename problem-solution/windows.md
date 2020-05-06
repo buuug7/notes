@@ -1,8 +1,21 @@
 # windows related
 
-## w安装Win10出现我们无法创建新的分区，也找不到现有的
+## hyper-v 跟虚拟机互访
 
-提前进PE分好区,把安装包里面的这4个文件(boot文件夹,sources文件夹,bootmgr, bootmgr.efi)复制到c盘（提前用工具分好区），重启电脑，拔下u盘自动安装
+1. 设置虚拟虚拟交换管理器为 default switch 为默认连接，即**内部连接**
+2. 新建的虚拟机选择 default switch
+3. 在主机中访问虚拟机服务
+   - 进虚拟机查看该虚拟机分配的 IP
+   - 如果是 ubuntu,查看 IP 命令为`ifconfig -a`
+   - 使用该 IP 就可以访问虚拟机上的服务
+4. 在虚拟机中访问主机服务
+   - 在 windows 中 控制面板->网络和 Internet 链接->网络连接
+   - 查看**vEthernet(Default Switch)** 中详细信息
+   - 列表中 IPv4 即位主机 IP,使用该 IP 就可以在虚拟机中访问主机服务
+
+## w 安装 Win10 出现我们无法创建新的分区，也找不到现有的
+
+提前进 PE 分好区,把安装包里面的这 4 个文件(boot 文件夹,sources 文件夹,bootmgr, bootmgr.efi)复制到 c 盘（提前用工具分好区），重启电脑，拔下 u 盘自动安装
 
 ## 查看 windows 版本
 

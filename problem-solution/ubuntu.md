@@ -1,5 +1,11 @@
 ## ubuntu related
 
+#### ubuntu 查看 IP
+
+```
+ifconfig -a
+```
+
 #### proftpd
 
 ```
