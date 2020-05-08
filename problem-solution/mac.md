@@ -1,4 +1,34 @@
 
+## mac brew 更换源
+
+更换
+
+```
+# 步骤一
+cd "$(brew --repo)"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git
+ 
+# 步骤二
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git
+ 
+#步骤三
+brew update
+```
+
+复原
+
+```
+cd "$(brew --repo)"
+git remote set-url origin https://github.com/Homebrew/brew.git
+ 
+cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+git remote set-url origin https://github.com/Homebrew/homebrew-core
+ 
+brew update
+```
+
+
 
 ## mac 通过 ssh 上传/下载文件
 

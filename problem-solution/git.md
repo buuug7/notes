@@ -1,5 +1,14 @@
 ## git related
 
+
+#### git 拉去远程分支
+
+```
+git fetch origin dev
+git checkout -b dev origin/dev
+
+```
+
 #### 单个仓库使用不同的用户
 
 一个例子，设置本仓库下的`.git/config`文件中加入 user 设定
