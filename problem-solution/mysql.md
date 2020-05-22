@@ -68,7 +68,7 @@ sudo apt-get remove package-name
 dpkg -l | grep mysql | grep ii
 ```
 
-### 在 ubuntu 删除 msyql
+### 在 ubuntu 删除 mysql
 
 ```
 apt-get remove -y --purge mysql-server mysql-client mysql-common

@@ -26,9 +26,9 @@ interface Point {
 
 ## readonly vs const
 
-最简单判断该用 readonly 还是 const 的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用 readonly。
+最简单判断该用 readonly 还是 const 的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若作为属性则使用 readonly。
 
-## 函数类型
+## 函数类型 Function Types
 
 ```typescript
 interface SearchFunc {
@@ -36,7 +36,7 @@ interface SearchFunc {
 }
 
 let mySearch: SearchFunc;
-mySearch = function(source: string, subString: string) {
+mySearch = function (source: string, subString: string) {
   return source.search(subString) > -1;
 };
 ```
