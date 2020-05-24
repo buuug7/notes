@@ -1,5 +1,6 @@
 ## npm related
 
+
 #### npm发部带scope的包
 先在 package.json 中 name 中指定 '@scopeName/packageName', 然后在发布的时候需要指定 --access public 选项 `npm publish --access public`
 

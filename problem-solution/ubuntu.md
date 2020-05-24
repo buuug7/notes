@@ -1,5 +1,24 @@
 ## ubuntu related
 
+#### 安装 git lfs
+
+```bash
+curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
+sudo apt-get install git-lfs
+git lfs install
+```
+
+
+#### 上传下载文件
+
+```bash
+# 从远程主机copy文件到本地
+scp -r username@1.2.3.4:/home/username/myFile.txt .
+
+# 从本地copy文件到原创主机
+scp -r myFile.txt username@1.2.3.4:/home/username/
+```
+
 #### ubuntu 查看 IP
 
 ```

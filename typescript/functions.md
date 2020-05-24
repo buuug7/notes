@@ -1,4 +1,4 @@
-# 函数
+# Functions 函数
 
 ## 书写完成函数类型
 
@@ -11,7 +11,7 @@ let myAdd: (x: number, y: number) => number = function(
 };
 ```
 
-## 可选参数和默认参数
+## 可选参数和默认参数 Optional and Default Parameters
 
 可选参数必须跟在必须参数后面, 可选参数使用`?`来标记
 
@@ -37,7 +37,7 @@ buildName('buuug7', undefined); // buuug7 smith
 buildName('buuug7', 'twice'); // buuug7 twice
 ```
 
-## 剩余参数
+## 剩余参数 Rest Parameters
 
 ```typescript
 function buildName(firstName: string, ...restName: string[]) {
@@ -47,11 +47,11 @@ function buildName(firstName: string, ...restName: string[]) {
 buildName('Alex', 'Twice', 'Job'); // Alex Twice Job
 ```
 
-## this 跟箭头函数
+## this 跟箭头函数 this and arrow function
 
 箭头函数保存函数创建时的 this 值，而不是调用时的值。
 
-## 重载
+## 重载 Overloads
 
 ```typescript
 function printName(x: string): string;
