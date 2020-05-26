@@ -1329,7 +1329,7 @@ transition:1s;
 
 A transition's duration is the only CSS property needed to create a transition. it can either be set in seconds `2s` or millisenconds `100ms`
 
-```
+```css
 a{
 background:lightgrey;
 color:grey;
