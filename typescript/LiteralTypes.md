@@ -29,5 +29,8 @@ function createElement(tagName: 'img'): HTMLImageElement;
 ## 数字字面量类型
 
 ```typescript
-function 
+interface MyConfig {
+    size: 4 | 8 | 16;
+    name: string;
+} 
 ```
