@@ -1,8 +1,6 @@
-# 泛型
+# Generics 泛型
 
-一个泛型的例子
-
-## 泛型函数
+## hello world of Generics
 
 ```typescript
 function identify<T>(arg: T): T {

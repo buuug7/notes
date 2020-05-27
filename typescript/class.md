@@ -1,4 +1,4 @@
-# 类
+# Classes 类
 
 ## 例子
 
@@ -46,6 +46,20 @@ class child extends Person {
 - 默认为 public,任何地方都可以访问类成员
 - private，不能在申明它的类的外部使用
 - protected，在派生类中可以使用
+
+
+## ECMAScript Private Fields
+
+```typescript
+class Animal {
+  #name: string;
+  constructor(theName: string) {
+    this.#name = theName;
+  }
+}
+
+new Animal("cat").#name; // Property '#name' is not accessible outside class 'Animal' because it has a private identifier.
+```
 
 ## readonly 修饰符
 
@@ -107,6 +121,9 @@ class Person {
 class Person {
   static code = 100;
 }
+
+// 访问静态属性
+Person.code; // 100
 ```
 
 ## 抽象类
