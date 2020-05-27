@@ -1,5 +1,9 @@
 # windows related
 
+## win10 Hyper-v 安装 虚拟机 出现 `the unsigned image’s hash is not allowed`
+
+解决方法是把VM的安全选项里的安全启动给关掉
+
 ## hyper-v 跟虚拟机互访
 
 1. 设置虚拟虚拟交换管理器为 default switch 为默认连接，即**内部连接**
