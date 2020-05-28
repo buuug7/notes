@@ -8,7 +8,6 @@ sudo apt-get install git-lfs
 git lfs install
 ```
 
-
 #### 上传下载文件
 
 ```bash
@@ -27,7 +26,7 @@ ifconfig -a
 
 #### proftpd
 
-```
+```bash
 sudo apt-get update
 sudo apt-get dist-upgrade
 
@@ -73,7 +72,7 @@ ftpstats
 
 #### 常用卸载命令
 
-```
+```bash
 apt-get autoremove ：
 删除为了满足其他软件包的依赖而安装的，系统会自动卸载这些不再需要的软件包
 

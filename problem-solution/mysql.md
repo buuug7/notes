@@ -1,5 +1,16 @@
 ## mysql related
 
+### ubuntu20.04 允许 mysql 远程连接
+
+```bash
+# /etc/mysql/mysql.conf.d/mysqld.conf
+# comment bind_address=127.0.0.1
+# or set bind_address=0.0.0.0
+
+grant all privileges on *.* to root@"%" identified by "root" with grant option;
+flush privileges;
+```
+
 ### 设置 mysql 密码策略跟最小长度
 
 ```
@@ -54,7 +65,7 @@ FLUSH PRIVILEGES ;
 
 ### Removing MySQL with APT
 
-```shell
+```bash
 # To uninstall the MySQL server and the related components that have been installed using the MySQL APT repository, first, remove the MySQL server using the following command:
 sudo apt-get remove mysql-server
 
@@ -111,28 +122,6 @@ source d:/datafilename.sql
 
 mysql.ini 文件里头有一个参数叫做 lc-messages
 你把它的值 设成 lc-messages=en_US， 然后重启 mysql 服务，mysql 错误提示就可以显示英文了。
-
-### 允许 ubuntu 下 mysql 远程连接
-
-```
-- 第一步
-找到 bind-address = 127.0.0.1
-改为 bind-address = 0.0.0.0
-允许任意 ip 登录或者改成你自定义的
-sudo vim /etc/mysql/my.cnf
-sudo service mysql restart
-
-- 第二步
-授权用户能进行远程登录
-进入 mysql 命令行
-mysql -uroot -p
-grant all privileges on _._ to root@"%" identified by "root" with grant option;
-flush privileges;
-
-上面的*.*代表任意数据库名
-"%"代表任意的 IP 地址
-"root"代表你 root 用户的密码,可以设置为其他的
-```
 
 ### mysql 语句顺序
 
