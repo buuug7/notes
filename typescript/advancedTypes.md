@@ -134,3 +134,128 @@ function f(sn: string | null): string {
 ```typescript
 let name = someVar!.length;
 ```
+
+## Type Aliases 类型别名
+
+类型别名创建一个类型的别名, 跟接口类似, 但是类型别名可以是基本类型,联合类型,元组类型等. 类型别名不会创建一个新的类型, 只是创建了一个指向那个类型的新名字.
+
+```typescript
+type Cat = Animal & { purrs: true };
+```
+
+类型别名跟接口类似,但是也有细微的差别, 多数情况下尽可能去使用接口, 如果你用接口无法描述一个类型(对象形状), 你可以使用联合或者元组类型,然后在使用类型别名.
+
+## String Literal Types 字符串字面量类型
+
+字符串字面量类型允许你精确的指定一个字符必须要具有的值.
+
+```typescript
+type Easing = 'ease-in' | 'ease-out' | 'ease-in-out';
+```
+
+## Numeric Literal Types 数字字面量类型
+
+```typescript
+function rollDice(): 1 | 2 | 3 | 4 | 5 | 6 {
+  return Math.floor(Math.random() * 5) as 1 | 2 | 3 | 4 | 5 | 6;
+}
+```
+
+## Enum Member Types 枚举成员类型
+
+当所有枚举成员是字面量初始化的,那么枚举成员具有类型.
+
+## Discriminated Unions 可辨识联合类型
+
+可以通过合并单例类型, 联合类型, 类型守卫和类型别名来撞见一个叫做**可辨识**联合的高级模式.其要具备 3 个要素:
+
+- 具有普通的单例类型属性 - 可辨识的特征
+- 一个类型别名包含了那些类型的联合 - 联合
+- 此属性上的类型守卫
+
+```typescript
+interface Square {
+  kind: 'square';
+  size: number;
+}
+
+interface Rectangle {
+  kind: 'rectangle';
+  width: number;
+  height: number;
+}
+
+interface Circle {
+  kind: 'circle';
+  radius: number;
+}
+```
+
+首先我们声明了要联合的接口, 每个接口都有`kind` 属性但有不同的字符串字面量类型, kind 属性被称作**可辨识**的特装或标签.其他的属性则特定于各个接口. 下面将其联合到一起:
+
+```typescript
+type Shape = Square | Rectangle | Circle;
+```
+
+现在我们使用可辨识联合:
+
+```typescript
+function area(s: Shape) {
+  switch (s.kind) {
+    case 'square':
+      return s.size * s.size;
+    case 'rectangle':
+      return s.height * s.width;
+    case 'circle':
+      return Math.PI * s.radius ** 2;
+  }
+}
+```
+
+如果没有涵盖所有可辨识联合的情形时, 想让编译器通知我们错误, 有两种方式可以实现:
+
+- 启用 `--strictNullChecks`并指定一个返回值
+- 使用`never`类型,编译器用它来进行完整性检测
+
+## Polymorphic this types 多态 this 类型
+
+多态 this 类型表示的是某个包含类或接口的子类型,被称作 F-bounded 多态性,这会让流式接口调用风格很容易实现
+
+```typescript
+class BasicCalculator {
+  public constructor(protected value: number = 0) {}
+
+  public currentValue(): number {
+    return this.value;
+  }
+
+  public add(operand: number): this {
+    this.value += operand;
+    return this;
+  }
+
+  public multiply(operand: number): this {
+    this.value *= operand;
+    return this;
+  }
+}
+
+let v = new BasicCalculator(2).multiply(5).add(1).currentValue();
+```
+
+由于这个类使用了 this 类型, 你可以继承它, 新的类可以直接使用之前的方法,而不用做任何改变
+
+```typescript
+class ScientificCalculator extends BasicCalculator {
+  public constructor(value = 0) {
+    super(value);
+  }
+
+  public sin() {
+    this.value = Math.sin(this.value);
+    return this;
+  }
+}
+
+let v2 = new ScientificCalculator(2).multiply(5).sin().add(1).currentValue();
+```
