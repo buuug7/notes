@@ -259,3 +259,81 @@ class ScientificCalculator extends BasicCalculator {
 
 let v2 = new ScientificCalculator(2).multiply(5).sin().add(1).currentValue();
 ```
+
+## Index Types 索引类型
+
+使用索引类型, 编译器就能够检查使用了动态属性名的代码. javascript 常用模式中从对象中选取属性的子集是这样的
+
+```typescript
+function pluck(o, names) {
+  return names.map((n) => o[n]);
+}
+```
+
+使用 Typescript, 通过索引类型查询和索引访问操作符:
+
+```typescript
+function pluck<T, K extends keyof T>(o: T, names: K[]): T[K][] {
+  return names.map((n) => o[n]);
+}
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+let person: Person = {
+  name: 'Jarid',
+  age: 35,
+};
+
+let strings: string[] = pluck(person, ['name']); // ok, string[]
+```
+
+其中`keyof`为索引类型查询操作符, `T[K]`为索引访问操作符
+
+## Mapping Types 映射类型
+
+例如将已知类型的每个属性转变为可选或者只读属性,都可以通过 Typescript 提供的映射类型来完成, Typescript 提供了从旧类型中创建新类型的一种方式**映射类型**
+
+```typescript
+type Readonly<T> = {
+  readonly [P in keyof T]: T[P];
+};
+
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+
+// 转换
+type PersonPartial = Partial<Person>;
+type ReadonlyPerson = Readonly<Person>;
+```
+
+这个语法描述的是类型而非成员,如果要添加额外的成员, 则可以使用交叉类型:
+
+```typescript
+type PartialWithNewMember<T> = {
+  [P in keyof T]?: T[P];
+} & { newMember: boolean };
+```
+
+更通用的版本
+
+```typescript
+type Nullable<T> = {
+  [P in keyof T]: T[P] | null;
+};
+
+type Partial<T> = {
+  [P in keyof T]?: T[P];
+};
+```
+
+## Conditional Types 有条件类型
+
+```typescript
+T extend U ? X : Y
+```
+
+上面的类型意思是，若 T 能够赋值给 U，那么类型是 X，否则为 Y
