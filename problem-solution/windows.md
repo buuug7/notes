@@ -1,8 +1,12 @@
 # windows related
 
+## windows10 wsl2 --参考的对象类型不支持尝试的操作
+
+wsl2 在使用 vpn 后会起不来，解决方案就是 cmd 下管理员权限执行 netsh winsock reset
+
 ## win10 Hyper-v 安装 虚拟机 出现 `the unsigned image’s hash is not allowed`
 
-解决方法是把VM的安全选项里的安全启动给关掉
+解决方法是把 VM 的安全选项里的安全启动给关掉
 
 ## hyper-v 跟虚拟机互访
 
