@@ -401,3 +401,44 @@ create table if not exists user
 insert into user(username, age, created_at)
 values ('alex', 22, now());
 ```
+
+### mysql json
+
+```mysql
+insert into user(name, email, password, createdAt, updatedAt, dd)
+
+values ('buuug7', 'youpp@126.com', '123456', now(), now(), '{
+  "github": "puguohong@gmail.com",
+  "facebook": "twice@qq.com"
+}');
+
+insert into user(name, email, password, createdAt, updatedAt, dd)
+values ('buuug7', 'youpp@126.com', '123456', now(), now(), '[1,2,3]');
+
+select *
+from user;
+
+update user
+set dd = json_replace(dd, '$.github', 'pgh@gmail.com')
+where id = 1;
+
+
+select *
+from user
+where dd -> '$.github' = 'pgh@gmail.com'
+   or dd -> '$.facebook' = 'twice@qq.com';
+
+
+select *
+from user
+where json_extract(dd, '$.facebook') = 'twice@qq.com';
+
+select json_type('{
+  "a": 1,
+  "b": 2
+}');
+
+select json_array('abc', 1, 'dd');
+
+select json_object('name', 'buuug7', 'age', 22);
+```
