@@ -1,41 +1,35 @@
 ## mysql related
 
-### ubuntu20.04 允许 mysql 远程连接
+### ubuntu18.04 + 安装 mysql 5.7 +
+
+> <https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04>
+
 
 ```bash
-# /etc/mysql/mysql.conf.d/mysqld.conf
-# comment bind_address=127.0.0.1
-# or set bind_address=0.0.0.0
+## install
+apt install mysql-server
 
-grant all privileges on *.* to root@"%" identified by "root" with grant option;
-flush privileges;
-```
-
-### 设置 mysql 密码策略跟最小长度
-
-```
-set global validate_password_policy = 0;
-set global validate_password_length = 4;
-```
-
-### ubuntu 安装 mysql 5.7+
-
-```
-## 1
-## 安装
-sudo apt update
-sudo apt install mysql-server
-
-## 2
-## 启动mysql
+## 启动
 sudo service mysql start
 
-## 3
 ## 根据提示配置安全 Run the security script
 sudo mysql_secure_installation
 ```
 
-> <https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04>
+### ubuntu20.04 允许 mysql 远程连接
+
+```bash
+# /etc/mysql/mysql.conf.d/mysqld.cnf
+# comment bind_address=127.0.0.1
+# or set bind_address=0.0.0.0
+
+# 如果表中的root用户的host不是 %, 先更新 host = '%'
+update mysql.user set host = '%' where user = 'root';
+
+grant all privileges ON *.* TO root@"%";
+flush privileges;
+```
+
 
 ### 完整登陆 mysql 命令
 
@@ -62,6 +56,23 @@ SELECT user, authentication_string, plugin, host FROM mysql.user;
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 FLUSH PRIVILEGES ;
 ```
+
+### 设置 MYSQL 密码策略
+
+```bash
+# 查看 mysql 当前密码策略级别
+SHOW VARIABLES LIKE 'validate_password.%';
+
+# 去掉用户名跟密码联合检查
+SET GLOBAL validate_password.check_user_name = 'OFF';
+
+# 设置密码策略 LOW|0, MEDIUM|1, STRONG|2
+SET GLOBAL validate_password.policy = 'LOW';
+
+# 设置密码最小长度
+SET GLOBAL validate_password.length = 4;
+```
+
 
 ### Removing MySQL with APT
 
@@ -458,78 +469,6 @@ json_doc 是 JSON 字符串
 path 是要插入数据或更新值的元素的路径。
 val 是新的值.
 
-12 月
-5 篇
-10 月
-1 篇
-9 月
-3 篇
-8 月
-11 篇
-7 月
-15 篇
-6 月
-6 篇
-5 月
-8 篇
-4 月
-13 篇
-3 月
-30 篇
-1 月
-1 篇
-2018
-12 月
-1 篇
-11 月
-6 篇
-10 月
-4 篇
-5 月
-1 篇
-2017
-9 月
-2 篇
-4 月
-1 篇
-3 月
-6 篇
-2 月
-1 篇
-1 月
-3 篇
-2016
-12 月
-8 篇
-11 月
-5 篇
-
-目录
-语法
-The Difference
-Example 1 – Insert a Value
-JSON_SET()
-kefu@csdn.netQQ 客服
-
-客服论坛 400-660-0108
-
-工作时间 8:30-22:00
-
-关于我们招聘广告服务 网站地图
-
-京 ICP 备 19004658 号 经营性网站备案信息
-
-公安备案号 11010502030143
-
-京网文〔2020〕1039-165 号
-
-©1999-2020 北京创新乐知网络技术有限公司 网络 110 报警服务
-
-北京互联网违法和不良信息举报中心
-
-中国互联网举报中心家长监护
-
-版权与免责声明版权申诉
 
 MYSQL JSON 的操作函数 -- JSON_SET (), JSON_INSERT(), and JSON_REPLACE()
 
