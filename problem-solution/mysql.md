@@ -50,6 +50,12 @@ GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION; -- Gives all th
 SELECT user, authentication_string, plugin, host FROM mysql.user;
 ```
 
+### 单独修改密码
+
+```bash
+ALTER USER "root"@"localhost" IDENTIFIED BY "newPassword";
+```
+
 ### 修改 root 用户认证密码 plugin
 
 ```mysql
