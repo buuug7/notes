@@ -60,3 +60,31 @@ The below image shows the main components of a web browser:
 7. Data Persistence/Storage: This is a persistence layer. Browsers support storage mechanisms such as localStorage, IndexedDB, WebSQL and FileSystem. It is a small database created on the local drive of the computer where the browser is installed. It manages user data such as cache, cookies, bookmarks and preferences.
 
 > 数据持久/储存: 这是一个持久层. 浏览器支持存储机制, 例如 localStorage, IndexDB, WebSQL 和文件系统. 在浏览器安装的地方会创建一个小的数据库. 用来管理用户的数据, 例如缓存, cookies, 书签和个人偏好等.
+
+#### Rendering engine
+
+The networking layer will start sending the contents of the requested documents to the rendering engine in chunks of 8KBs.
+
+网络层将请求的文档内容以8KBs大小分块然后发送给渲染引擎
+
+![rendering engine](./render-engin-process.png)
+
+The rendering engine parses the chunks of HTML document and convert the elements to DOM nodes in a tree called the “content tree” or the “DOM tree”. It also parses both the external CSS files as well in style elements.
+
+渲染引擎解析分块的HTML文档内容然后将元素转换为被称为**内容树**或者**DOM树**的DOM节点. 同样也会解析外部的CSS文件和在style标签内的样式元素.
+
+While the DOM tree is being constructed, the browser constructs another tree, the render tree. This tree is of visual elements in the order in which they will be displayed. It is the visual representation of the document. The purpose of this tree is to enable painting the contents in their correct order. Firefox calls the elements in the render tree “frames”. WebKit uses the term renderer or render object.
+
+当DOM树构造完毕后, 浏览器会构建另外的树, 渲染树. 这棵树是用来显示有序可视元素的树. 它是文档的可视化呈现. 构造这棵树的目的是能够使内容正确有序的绘制. Firefox将渲染树中的元素称为**frames**, Webkit使用术语 **renderer** 或者 **render object**.
+
+After the construction of the render tree, it goes through a “layout process” of the render tree. When the renderer is created and added to the tree, it does not have a position and size. The process of calculating these values is called layout or reflow. This means giving each node the exact coordinates where it should appear on the screen. The position of the root renderer is 0,0 and its dimensions are the viewport–the visible part of the browser window. All renderers have a “layout” or “reflow” method, each renderer invokes the layout method of its children that need layout.
+
+在渲染树构造后, 会经历渲染树的**布局过程**. 当renderer被创建并添加到树中时, 它是没有位置和大小的. 计算这些值的过程被称为布局或者回流. 这就意味着在屏幕上为每一个节点赋予精确的坐标. renderer的根的位置为0,0, 它的大小是整个浏览器的视口部分. 所有的renderer都有一个 **layout** 和 **reflow** 方法,  当需要布局的时候, 每一个renderer会调用子renderer的**layout**方法.
+
+The next stage is painting. In the painting stage, the render tree is traversed and the renderer’s “paint()” method is called to display content on the screen. Painting uses the UI backend layer.
+
+下一个阶段是绘制. 在绘制阶段, 会遍历渲染树和调用renderer的**paint()**方法把内容绘制在屏幕上. 绘制使用UI Backend层的组件.
+
+The rendering engine always tries to display the contents on the screen as soon as possible for better user experience. It does not wait for the HTML parsing to complete before starting to build and layout the render tree. It parses and displays the content it has received from the network, while rest of the contents stills keeps coming from the network.
+
+为了更好的用户体验, 渲染树会尝试尽可能早的把内容展现在屏幕上. 它不会等到HTML页面完全解析之后在开始构建和布局渲染树. 它会解析和展示从网络接收到的内容, 并且保持持续接受来自网络层的内容.
