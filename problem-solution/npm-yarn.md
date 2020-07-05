@@ -22,7 +22,7 @@ n lts
 
 #### npm 跟 yarn 命令比较
 
-其中 pakageName 代表包的名称
+其中 packageName 代表包的名称
 
 - `npm install == yarn / yarn install`
 - `npm install packageName --save == yarn add packageName`
@@ -45,7 +45,7 @@ npm config set registry https://registry.npmjs.org/
 
 ```
 //安装包并保存到package.json文件中的devDependencies属性中
-npm install pakageName --save-dev
+npm install packageName --save-dev
 or
 npm install packageName -D
 

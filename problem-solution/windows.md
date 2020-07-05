@@ -45,7 +45,7 @@ ver
 - Win+空格 切换多个输入法
 - Win+I 打开 windows 设置
 - Win+数字键 打开任务栏上第 N 个程序
-- Ctrl+Shif+N 快速创建文件夹
+- Ctrl+Shift+N 快速创建文件夹
 - Ctrl+鼠标拖动 快速创建副本
 - Ctrl+N 快速创建同级界面
 - Shift+Delete 永久删除
