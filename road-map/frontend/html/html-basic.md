@@ -6,8 +6,6 @@ HTML stands for HyperText Markup Language:
 - Markup means the code you write is annotated with keywords
 - Language means it can be read by both human and a computer
 
-
-
 ## attributes
 
 attributes act like extra information tied to an HTML element. they are written within an HTML tag. they are not displayed by the browser either.
@@ -27,7 +25,7 @@ if you write something in your code without disrupting how the browser will disp
 
 they only have an opening tag
 
-子关闭元素只有开始标签。
+自关闭元素只有开始标签。
 
 ```html
 <br />
@@ -35,19 +33,33 @@ they only have an opening tag
 <img src="https://google.com/avatar.jpg" alt="avatar" />
 ```
 
-## two main types of HTML elements
+## two main types of HTML elements 两种不同类型的HTML元素
 
 Block elements are meant to structure the main parts of your page. Inline elements are meant to differentiate part of a text,to give it a particular function or meaning. inline elements usually comprise a single or few words.
 
-+ Block elements: ul ol div article section blockquote
-+ Inline elements: a em strong q abbr input br img
+块级元素用来组织页面的结构，内联元素旨在区分文本的一部分，以赋予特定的功能和含义。内联元素通常包含一个或几个单词。
+
+- Block elements: ul ol div article section blockquote
+- Inline elements: a em strong q abbr input br img
+
+All block-level elements have an opening and closing tags.
+
+所有的块级元素有开始和关闭标签。
+
+As a result, self-enclosing elements are inline elements, simply because their syntax don’t allow them to contain any other HTML element.
+
+
+子关闭元素是内联元素， 因为它们的语法不允许它们包含其他任何 HTML 元素。
+
 
 ## other types of HTML elements
 
 there are several exceptions to the block/inline elements, but the ones you will most often encounter are:
 
-- list items : li
-- table,table rows,table cells for : table,tr,td
+对块级元素和内联元素来说有许多例外的情况，但是你通常遇到的有下面两种情况：
+
+- list items : li 列表用`<li>`
+- table,table rows,table cells for : table,tr,td 表格使用表格特有的标签
 
 ### HTML Hierarchy : it is a big family tree
 
@@ -216,7 +228,7 @@ Images are the first non-extual content to have appeared on the web,most images 
 </p>
 ```
 
-## HTML Tables : For multi-dimensional data  
+## HTML Tables : For multi-dimensional data
 
 HTML tables are meant for tabular data only,which is any type of content that can be semantically arranged in rows and columns.
 
@@ -371,7 +383,7 @@ text inputs can display a placeholder text.
 
 #### labels
 
-because form elements on their own are not very descriptive,they are usually preceded by a text label.  
+because form elements on their own are not very descriptive,they are usually preceded by a text label.
 
 因为表单元素自身没有描述性，通常在他们前面加上用 label 包裹的描述文本。
 
@@ -440,28 +452,24 @@ if your add the `mutiple` attribute, your can provide the ability to select mult
 
 #### a complete sign up form
 
-```
+```html
 <form action="/signup" method="POST">
   <p>
     <label for="">Title</label>
-    <label>
-      <input type="radio" name="title" value="mr">Mr
-    </label>
-    <label>
-      <input type="radio" name="title" value="miss">Miss
-    </label>
+    <label> <input type="radio" name="title" value="mr" />Mr </label>
+    <label> <input type="radio" name="title" value="miss" />Miss </label>
   </p>
   <p>
     <label>Name</label>
-    <input type="text" name="name">
+    <input type="text" name="name" />
   </p>
   <p>
     <label>Email</label>
-    <input type="email" name="email">
+    <input type="email" name="email" />
   </p>
   <p>
     <label>Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password" />
   </p>
   <p>
     <label>country</label>
@@ -472,7 +480,8 @@ if your add the `mutiple` attribute, your can provide the ability to select mult
   </p>
   <p>
     <label>
-      <input type="checkbox" name="terms">i agree to the <a href="/terms">terms and conditions</a>
+      <input type="checkbox" name="terms" />i agree to the
+      <a href="/terms">terms and conditions</a>
     </label>
   </p>
   <p>
