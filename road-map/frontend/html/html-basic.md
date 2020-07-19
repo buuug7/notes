@@ -1,5 +1,7 @@
 # html basic
 
+> 参考 [marksheet](https://marksheet.io/html-basics.html)
+
 HTML stands for HyperText Markup Language:
 
 - HyperText means that is uses the HTTP part of the internet
@@ -33,7 +35,7 @@ they only have an opening tag
 <img src="https://google.com/avatar.jpg" alt="avatar" />
 ```
 
-## two main types of HTML elements 两种不同类型的HTML元素
+## two main types of HTML elements 两种不同类型的 HTML 元素
 
 Block elements are meant to structure the main parts of your page. Inline elements are meant to differentiate part of a text,to give it a particular function or meaning. inline elements usually comprise a single or few words.
 
@@ -48,9 +50,7 @@ All block-level elements have an opening and closing tags.
 
 As a result, self-enclosing elements are inline elements, simply because their syntax don’t allow them to contain any other HTML element.
 
-
 子关闭元素是内联元素， 因为它们的语法不允许它们包含其他任何 HTML 元素。
-
 
 ## other types of HTML elements
 
@@ -63,7 +63,9 @@ there are several exceptions to the block/inline elements, but the ones you will
 
 ### HTML Hierarchy : it is a big family tree
 
-An HTML documents is like a big family tree, with parents, siblings, children, ancestors, and descendants. It comes from the ability to nest HTML elements within one another.
+An HTML documents is like a big family tree, with parents, siblings, children, ancestors and descendants. It comes from the ability to nest HTML elements within one another.
+
+一个 HTML 文档就像一个很大的家族树，有父元素，兄弟元素，子元素，有祖先和后代。它源自于将 HTML 元素互相嵌套的能力。
 
 - Nesting 嵌套，元素之间可以嵌套
 - Order 次序，外层内层嵌套顺序不能颠倒
@@ -74,9 +76,13 @@ An HTML documents is like a big family tree, with parents, siblings, children, a
 
 The purpose of HTML tags is to deliver meaning to a document. Don't be concerned about how your web page looks like. Focus on the significance of each tag you'll use.
 
+HTML 标签的目的是向文档传递含义，不用担心您网页的外观如何，关注你使用的每个标签是非常重要的。
+
 ## Structure elements: organizing your page
 
 structure elements allow you to organize the main parts of your page,they usually contain other HTML elements.
+
+结构元素允许你组织网页的主要部分，它们通常包含其他 HTML 元素。
 
 - `<header>` as the first element of the page,that can include the logo and the tag line.
 - `<nav>` as a list of links that go to the different pages of the website.
@@ -86,7 +92,9 @@ structure elements allow you to organize the main parts of your page,they usuall
 
 ## Text elements: defining your content
 
-inside these structure elements,you usually find text delements meant to define the purpose of your content
+inside these structure elements,you usually find text delements meant to define the purpose of your content.
+
+在结构元素内部，通常会找到用于定义内容的文本元素。
 
 - `<p>` for paragraphs
 - `<ul>` for (unordered) lists
@@ -98,15 +106,17 @@ inside these structure elements,you usually find text delements meant to define 
 
 inline elements allow to distinguish parts of your text.
 
+行内元素允许区分文本的一部分。
+
 - `<strong>` for important words
 - `<em>` for emphasized words
 - `<a>` for links
 - `<small>` for less important words
 - `<abbr>` for abbreviations like W3C
 
-## generic elements
+## generic elements 通用元素
 
-尽管这些 HTML 元素没有实际的意义,但是有很多布局都是使用 div+span 来布局的
+尽管这些 HTML 元素没有实际的意义,但是有很多布局都是使用 `div + span` 来布局的
 
 - `<div>` for block-level elements
 - `<span>` for inline elements
@@ -142,8 +152,10 @@ inline elements allow to distinguish parts of your text.
 
 when whitespace does not matter
 
-- line-breaks (换行符),换行和空行都会被浏览器忽略
-- tabulations (tab 制表符)，同样也被浏览器忽略
+当空格无关紧要时
+
+- line-breaks (换行符),换行和空行都会被浏览器忽略，多个连续换行效果跟一个换行一致
+- tabulations (tab 制表符)，同样也被浏览器忽略，多个制表符的效果等同于一个空格
 - tree format 建议书写 HTML 的时候用树形的格式，以便于阅读
 
 Tabulations, empty lines, successive spaces, and line-breaks, are dismissed by the computer, and are all converted into a single space.
@@ -156,7 +168,7 @@ some boilerplate
 
 - Doctype
 - the `<html>` element,all your HTML document must be wrapped inside an `<html>` element
-- the `<head>` element,give additional for an HTML element
+- the `<head>` element,give additional for an HTML element, the HTML meta data
 - the `<body>` element,everything inside the `<body>` will be displayed in the browser window
 
 ## a complete valid HTML document
@@ -218,8 +230,8 @@ Links are essential in HTML, as the web was initially designed to be an informat
 
 Images are the first non-extual content to have appeared on the web,most images formats you can find on your computer can also be displayed in your browser.
 
-- syntax,images use the `<img>` element,which is a self-closing element,the -src- attribute defines the location of the image
-- dimensions(尺寸),every image has 2 dimensions:width and height,although it is possible in HTML,it's recommended to use css
+- syntax, images use the `<img>` element,which is a self-closing element,the `src` attribute defines the location of the image
+- dimensions(尺寸), every image has 2 dimensions: width and height, although it is possible in HTML, it's recommended to use css
 - block or inline? the answer is inline element because of the `<img>` element being a self-closing element,it can not contain any other HTML element
 
 ```html
