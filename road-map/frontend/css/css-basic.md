@@ -83,6 +83,8 @@ the 3rd method of using a separate CSS file is preferred.
 
 because we want to separate the content from its presentation(CSS). it makes **maintenance** easier as well : the same CSS file can be used for a whole website. it provides **flexiblity**: focus on the content on one side , the styling on the other.
 
+---
+
 ## CSS syntax
 
 `who{ what: how; }`
@@ -102,7 +104,7 @@ CSS have a 3-part process:
 - the property defines what characteristic to alter
 - the value defines how to alter that characteristic
 
-## quick example
+### quick example
 
 ```html
 <blockquote>sometings is ready.</blockquote>
@@ -115,7 +117,7 @@ blockquote{
 }
 ```
 
-## comments
+### comments
 
 ```css
 /* this is a css comment */
@@ -124,12 +126,14 @@ div {
 }
 ```
 
-## CSS selectors
+---
+
+### CSS selectors
 
 CSS selectors define which elements we want out styling to be applied to.  
 CSS 选择器用来定义我们的样式到具体的的元素
 
-## generic tag selectors
+### generic tag selectors
 
 generic HTML tag selector is something like below:
 
@@ -148,7 +152,7 @@ li {
 }
 ```
 
-## classes
+### classes
 
 Of all HTML attributes,the class attribute is the most important for CSS. It allows us to define a group of HTML elements that we can target specifically.
 
@@ -162,7 +166,7 @@ Of all HTML attributes,the class attribute is the most important for CSS. It all
 }
 ```
 
-## IDs
+### IDs
 
 you can also use the `id` attribute in your HTML, and target it with a hash `#` in your CSS
 
@@ -176,7 +180,7 @@ you can also use the `id` attribute in your HTML, and target it with a hash `#` 
 }
 ```
 
-## combining selectors
+### combining selectors
 
 see some examples in below:
 
@@ -195,7 +199,7 @@ em.date{
 }
 ```
 
-## hierarchy selectors
+### hierarchy selectors
 
 a **space** in a selector defines a ancestor/descendant relationship.
 
@@ -207,7 +211,7 @@ header a {
 
 this can be read from right to left as: "select all **a** elements that are within a **header** element". this will prevent all other links to remain unaffected.
 
-## Pseudo-class selectors
+### Pseudo-class selectors
 
 HTML elments can have different **states**,the most common case is when you hover over a link. it's possible in CSS to apply a different style when such an event occurs.  
 HTML 元素具有不同的状态, 最常见的情况是你把鼠标悬置在超链接上的时候. 当此事件发生的时候应用不同的 CSS 样式.
@@ -221,19 +225,24 @@ a:hover {
 }
 ```
 
-### CSS inheritance (CSS 继承)
+---
 
-#### value propagation 值的传递
+## CSS inheritance (CSS 继承)
+
+### value propagation 值的传递
 
 The **color** value can be inherited from an ancestor.
 
-#### inherited properties
+### inherited properties
 
 only a few CSS properties can be inherited from ancestors.they are mainly text properties:
 
 - text color
 - font(family,size,style,weight)
 - line-height
+
+---
+
 
 ### CSS Priority CSS 优先级
 
