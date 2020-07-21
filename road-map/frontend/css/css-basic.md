@@ -1,15 +1,16 @@
-## CSS basic
+# CSS basic
 
-painting with code  
-while HTML is about defining the content of a webpage,CSS is about styling a webpage.it
-means setting colors,fonts,dimensions,margins,positions,of a webpage's elements.  
-CSS brings a webpage to life ,by applying a coat of paint on its static content.
+> 参考 [marksheet](https://marksheet.io/why-css-exists.html)
 
-### why CSS exists
+Painting with code, while HTML is about defining the content of a webpage, CSS is about styling a webpage. It means setting colors, fonts, dimensions, margins, positions of a webpage's elements. CSS brings a webpage to life, by applying a coat of paint on its static content.
 
-for separating content and styling
+使用代码绘画, HTML 定义了页面内容, CSS 用来装饰页面. 它用来设置页面元素的颜色, 字体, 尺寸, 间距, 位置等. 在静态内容上应用一层油漆, CSS 使网页焕然一新.
 
-#### why avoid tables
+## why CSS exists
+
+For separating content and styling.
+
+## why avoid tables
 
 - HTML 表格是累赘的,需要很多的样板代码
 - 语义错误,`<table>`是用来展现多维数据的
@@ -17,31 +18,34 @@ for separating content and styling
 - 容易引起语法错误
 - 可读性很差
 
-#### what CSS is
+## what CSS is
 
-CSS stands for Cascading Style Sheets(层叠式样式表).its purpose is to style markup languages(like HTML or XML).  
-Therefore,CSS is worthless on its own,unless associated with an HTML document.
+CSS stands for Cascading Style Sheets(层叠式样式表). Its purpose is to style markup languages(like HTML or XML).  
+Therefore,CSS is worthless on its own, unless associated with an HTML document.
 (因此,CSS 自身并没有什么用处,除非与 HTML 文档关联.)  
 CSS brings an HTML documents to life.
 
-#### how CSS works
+## how CSS works
 
-how CSS works is by selecting an HTML element(like a paragraph),choosing a property to alter (like the color),and applying
-a certain value(like red).
+how CSS works is by selecting an HTML element(like a paragraph), choosing a property to alter (like the color),and applying a certain value(like red).
 
+通过选择HTML元素, 修改HTML元素的属性值来工作的.
+
+```css
+p {
+  color: red;
+}
 ```
-p{color:red;}
-```
 
-#### where do i write CSS?
+## where do i write CSS?
 
-- CSS as an attribute,you can write CSS directly on an HTML elements,by using the sytle attribute.
+#### CSS as an attribute,you can write CSS directly on an HTML elements,by using the sytle attribute.
 
 ```html
 <p style="color:red;">this text is important.</p>
 ```
 
-- CSS in the `<head>`,use `<style>` tag in the `<head>` of your HTML document.
+#### CSS in the `<head>`,use `<style>` tag in the `<head>` of your HTML document.
 
 ```html
 <html>
@@ -59,8 +63,7 @@ p{color:red;}
 </html>
 ```
 
-- CSS in a separate file, you can write your CSS in a separate file with a `.css` extension,and then link it to your HTML by using
-  the `<link>` HTML tag.
+#### CSS in a separate file, you can write your CSS in a separate file with a `.css` extension, and then link it to your HTML by using the `<link>` HTML tag.
 
 ```html
 <html>
@@ -76,125 +79,137 @@ p{color:red;}
 
 the 3rd method of using a separate CSS file is preferred.
 
-#### why not style directly in the HTML?
+## why not style directly in the HTML?
 
-because we want to separate the content from its presentation(CSS).  
-it makes maintenance easier as well : the same CSS file can be used for a whole website.  
-it provides flexiblity:focus on the content on one side , the styling on the other.
+because we want to separate the content from its presentation(CSS). it makes **maintenance** easier as well : the same CSS file can be used for a whole website. it provides **flexiblity**: focus on the content on one side , the styling on the other.
 
-### CSS syntax
+## CSS syntax
 
-who{what:how}  
+`who{ what: how; }`
+
 the purpose of CSS is to define the layout and styling of your HTML elements.
 
-```
+```css
 /* css rule */
-selector{property:value;}
+selector {
+  property: value;
+}
 ```
 
 CSS have a 3-part process:
 
-- the selector defines who is targeted,which HTML element(s)
+- the selector defines who is targeted, which HTML element(s)
 - the property defines what characteristic to alter
 - the value defines how to alter that characteristic
 
-#### quick example
+## quick example
 
-```
-blockquote{
-background:lightgreen;
-color:darkgreen;
-}
+```html
 <blockquote>sometings is ready.</blockquote>
 ```
 
-#### comments
-
-```
-/* this is a css comment */
+```css
 blockquote{
-background:lightgreen;
-color:darkgreen;
+  background:lightgreen;
+  color:darkgreen;
 }
 ```
 
-### CSS selectors
+## comments
+
+```css
+/* this is a css comment */
+div {
+  background: lightgreen;
+}
+```
+
+## CSS selectors
 
 CSS selectors define which elements we want out styling to be applied to.  
 CSS 选择器用来定义我们的样式到具体的的元素
 
-#### generic tag selectors
+## generic tag selectors
 
 generic HTML tag selector is something like below:
 
-```
-a{/* Links */}
-p{/* Paragraphs */}
-ul{/* Unordered lists */}
-li{/* List items */}
+```css
+a {
+  /* Links */
+}
+p {
+  /* Paragraphs */
+}
+ul {
+  /* Unordered lists */
+}
+li {
+  /* List items */
+}
 ```
 
-#### classes
+## classes
 
 Of all HTML attributes,the class attribute is the most important for CSS.it allows us to define a group of HTML elements that we can target specifically.
 
-```
+```css
 .data{
-color:red;
+  color:red;
 }
 <p class="data">something like ...</p>
 ```
 
-#### IDs
+## IDs
 
 you can also use the `id` attribute in your HTML,and target it with a hash `#` in your CSS
 
-```
+```css
 #tagline{
-color:red;
+  color:red;
 }
 <p id="tagline">this is a text.</p>
 ```
 
-#### combining selectors
+## combining selectors
 
 see some examples in below:
 
-```
+```css
 .date{
-color:red;
+  color:red;
 }
+
 em.date{
-color:blue;
+  color:blue;
 }
 <p class="date">i am paragraph.</p>
 <p>i also a <em class="date">paragraph</em>.</p>
 ```
 
-#### hierarchy selectors
+## hierarchy selectors
 
 a **space** in a selector defines a ancestor/descendant relationship.
 
-```
-header a{
-color:red;
+```css
+header a {
+  color: red;
 }
 ```
 
 this can be read from right to left as:"select all **a** elements that are within a **header** element". this will prevent all other links
 to remain unaffected.
 
-#### Pseudo-class selectors
+## Pseudo-class selectors
 
 HTML elments can have different **states**,the most common case is when you hover over a link. it's possible in CSS to apply a different style when such an event occurs.  
 HTML 元素具有不同的状态,最常见的情况是你把鼠标悬置在超链接上的时候. 当此事件发生的时候应用不同的 CSS 样式是可能的.
 
-```
-a{
-color:blue;
+```css
+a {
+  color: blue;
 }
-a:hover{
-color:red;
+a:hover {
+  color: red;
 }
 ```
 
@@ -220,9 +235,13 @@ An HTML elemnt can be targeted by **multiple css rules** .
 
 if similar selectors are in your CSS,the last one defined will take priority.
 
-```
-p{color:red;}
-p{color:blue;}
+```css
+p {
+  color: red;
+}
+p {
+  color: blue;
+}
 /* paragraphs will be blue */
 ```
 
@@ -250,12 +269,12 @@ Colors are widely used in CSS,whether for text color,background color,gradients,
 defined by color names,CSS provides 145 colors names,from the most basic (black,white,orange...) to the more specific(lawngreen,orchid...)  
 because the color names are hard to remember,and because you probably want very specific colors,color names are not often used .
 
-```
-body{
-background:white;
+```css
+body {
+  background: white;
 }
-a{
-color:red;
+a {
+  color: red;
 }
 ```
 
@@ -264,22 +283,31 @@ color:red;
 defined by rgb,computer monitors,TVs,mobile phones,all use the RGB color model to display colors,each color is defined by a combination of Red,Green,and Blue. There are
 256 possible values for Red,Green and Blue,from 0 to 255,so there are 256*256*256=16,777,216(1600 万颜色) possible colors available.
 
-```
+```css
 /* the black color */
-body{color:rgb(0,0,0)}
+body {
+  color: rgb(0, 0, 0);
+}
 
 /* the white color */
-body{color:rgb(255,255,255)}
+body {
+  color: rgb(255, 255, 255);
+}
 
 /* the red color */
-body{color:rgb(255,0,0)}
+body {
+  color: rgb(255, 0, 0);
+}
 
 /* the green color */
-body{color:rgb(0,255,0)}
+body {
+  color: rgb(0, 255, 0);
+}
 
 /* the blue color */
-body{color:rgb(0,0,255)}
-
+body {
+  color: rgb(0, 0, 255);
+}
 ```
 
 #### rgba
@@ -287,8 +315,10 @@ body{color:rgb(0,0,255)}
 The **rgba** color unit is **rgb** to which we add an alpha value(ranging from 0-1,in decimal values),which defines how transparent the color is.  
 RGBA 颜色的定义是在 RGB 的基础上添加了一个额外的透明通道,该值为小数从 0 到 1,定义该颜色的透明度
 
-```
-body{color:rgba(0,0,0,0.5)}
+```css
+body {
+  color: rgba(0, 0, 0, 0.5);
+}
 ```
 
 #### hsl and hsla
@@ -300,7 +330,7 @@ HSL 是另外一种颜色的定义方式,把它看做一个颜色的轮子.通�
 - the **Saturation**(饱和度) percentage,ranging from 0% to 100% ,define how much of that color you want.
 - the **Lightness** percentage,rangring from 0% to 100%,defines how bright you want that color to be.
 
-```
+```css
 // the red color
 hsl(0,100%,50%);
 hsl(360,100%,50%);
@@ -313,8 +343,10 @@ hsl(240,100%,50%);
 someone thinks the **HSL** is to be human-readable, where **RGB** is more computer-readable.  
 **HSLA** is the same as **HSL** ,with the added value of being able to define an alpha value:
 
-```
-body{color:hsla(240,100%,50%,0.5);}
+```css
+body {
+  color: hsla(240, 100%, 50%, 0.5);
+}
 ```
 
 #### hexadecimal 十六进制
@@ -349,11 +381,15 @@ The most used units are:
 
 because computer screens use pixels to display the content,it is the most common size unit in CSS.
 
-```
+```css
 // define the width of the elements
-body{width:200px;}
+body {
+  width: 200px;
+}
 // set the text size
-body{font-size:20px;}
+body {
+  font-size: 20px;
+}
 ```
 
 pixels in CSS are straightforward because they define absolute values:they are not affected by other inherited CSS properties.  
@@ -363,11 +399,15 @@ They are also widely used for **positioning** and **spacing** purposes.
 
 percentages are relative units:they rely upon the element's parent and/or ancestor.
 
-```
+```css
 // set block-level elements
-p{width:50%;}
+p {
+  width: 50%;
+}
 // set other CSS properties,like text size
-strong{font-size:150%;}
+strong {
+  font-size: 150%;
+}
 ```
 
 #### Em
@@ -380,11 +420,19 @@ strong{font-size:150%;}
 
 The `rem` unit is similar to `em`,but instead of depending upon the parent's value,it relies upon the root element's value,which is the `<html>` element.
 
-```
-html{font-size:15px;}
-body{font-size:1rem;}       /* = 15px*/
-h1{font-size:2rem;}           /* = 30px */
-h2{font-size:1.5rem;}        /* = 22.5px */
+```css
+html {
+  font-size: 15px;
+}
+body {
+  font-size: 1rem;
+} /* = 15px*/
+h1 {
+  font-size: 2rem;
+} /* = 30px */
+h2 {
+  font-size: 1.5rem;
+} /* = 22.5px */
 ```
 
 #### which one to use?
@@ -427,8 +475,10 @@ have 5 generic families:
   because the `font-famiily` property is inherited by all HTML children elements,you can apply a font for the whole HTML document by applying
   it on the ancestor fo all HTML elements:the `<body>` element.
 
-```
-body{font-familly:sans-serif;}
+```css
+body {
+  font-familly: sans-serif;
+}
 ```
 
 #### web-safe fonts
@@ -460,25 +510,31 @@ For bold and italic text
 
 used to set the font size among other things.
 
-```
-h2{font-size:18px;}
+```css
+h2 {
+  font-size: 18px;
+}
 ```
 
 #### font-style
 
 this property can make your text italic.
 
-```
+```css
 /* default value is normal */
-h2{font-style:italic;}
+h2 {
+  font-style: italic;
+}
 ```
 
 #### font-weight
 
 this property can make your text bold.
 
-```
-h2{font-weight:bold;}
+```css
+h2 {
+  font-weight: bold;
+}
 ```
 
 default value is `font-weight:normal`,depending on the `font-family` used,there is a range of font weights available,fromt **100** to **900**.  
@@ -488,8 +544,10 @@ very few fonts provide all 9 weights.your will mostly find 400(normal) and 700(b
 
 this property turn your text into small caps:
 
-```
-h2{font-variant:small-caps;}
+```css
+h2 {
+  font-variant: small-caps;
+}
 ```
 
 会让你的文本变成小型的大写字母,默认值是`font-variant:normal;`  
@@ -515,10 +573,10 @@ the recommened method is unitless-numbers.
 - for body text,a line height of 1.5 times the size of the text is recommended.
 - for heading, a line height of 1.2 is recommended.
 
-```
-body{
-font-size:16px;
-line-height:1.5;
+```css
+body {
+  font-size: 16px;
+  line-height: 1.5;
 }
 ```
 
@@ -528,12 +586,14 @@ above the computed height will thus be **16\*1.5=24px**
 
 because the `line-height` property is inheritanced by the child elements,it will remain consistent no matter what `font-size` is subsequently applied.
 
-```
-body{
-font-size:16px;
-line-height:1.5;
+```css
+body {
+  font-size: 16px;
+  line-height: 1.5;
 }
-blockquote{font-size:18px}
+blockquote {
+  font-size: 18px;
+}
 ```
 
 The `blockquote` element will have a line height of `27px`.
@@ -584,8 +644,10 @@ the `text-align` property must be applied on a block-level element and defines h
 
 the `text-decoration` property is used to add a line on your text.default value is `none`.
 
-```
-.deleted{text-decoration:line-through;}
+```css
+.deleted {
+  text-decoration: line-through;
+}
 ```
 
 possible values:
@@ -598,8 +660,10 @@ possible values:
 
 the `text-indent` property allows to add space before the first letter of the first line of a block-level element.default value is `0`.
 
-```
-blockquote{text-indent:30px;}
+```css
+blockquote {
+  text-indent: 30px;
+}
 ```
 
 #### text-shadow
@@ -627,16 +691,20 @@ HTML 元素的背景指的是出现在文本后面的内容.
 
 default value: `transparent` inherited by children elements:no.
 
-```
-body{background:#ffffff;}
+```css
+body {
+  background: #ffffff;
+}
 ```
 
 #### background-image
 
 applying a background image only requires to specify its URL:
 
-```
-body{background-iamge:url(path/to/image.png)}
+```css
+body {
+  background-iamge: url(path/to/image.png);
+}
 ```
 
 the behavior of the image(how it repeats itself,where it is positioned,how it is sized) is defined by other background properties.
@@ -665,24 +733,34 @@ by default,a background image will repeat itself indefinitely(无限期).you can
 - percentages,relative to the HTML element's dimensions
 - keywords like `center`,'left','bottom'...
 
-```
-body{background-position:right bottom;}
+```css
+body {
+  background-position: right bottom;
+}
 ```
 
 you can mix different coordinate units:
 
-```
-body{background-position:center 20px;}
+```css
+body {
+  background-position: center 20px;
+}
 ```
 
 #### background-repeat
 
 by default,a background image will repeat itself indefinitely.you can choose to make it repeat only horizontally,only vertically,or not at all.
 
-```
-body{background-repeat:repeat-x;} /* only horizontally */
-body{background-repeat:repeat-y;} /* only vertically */
-body{background-repeat:no-repeat;} /* the background image will only appear once */
+```css
+body {
+  background-repeat: repeat-x;
+} /* only horizontally */
+body {
+  background-repeat: repeat-y;
+} /* only vertically */
+body {
+  background-repeat: no-repeat;
+} /* the background image will only appear once */
 ```
 
 ### CSS display
@@ -708,11 +786,11 @@ This will turn any element into a **block** element.
 This technique is often used on **links** in order to increase their clickable zone,which can be easily evaluated by setting a background color.  
 为了增加可点击的区域,设置背景色,这项技术通常用于超链接标签
 
-```
-.menu a{
-background:red;
-color:white;
-display:blcok;
+```css
+.menu a {
+  background: red;
+  color: white;
+  display: blcok;
 }
 ```
 
@@ -721,14 +799,28 @@ display:blcok;
 This turns any element into **inline** elements, as if they were just simple text.  
 it is often used to create `horizontal navigations`,where list items are semantically but not visually useful.
 
-```
-<ul class="menu">
-  <li><a href="#">Home</a></li>
-  <li><a href="#">Features</a></li>
-  <li><a href="#">About</a></li>
-</ul>
-.menu li{
-display:inline;
+```css
+<ul
+  class="menu"
+  > <li
+  > <a
+  href="#"
+  > Home</a
+  > </li
+  > <li
+  > <a
+  href="#"
+  > Features</a
+  > </li
+  > <li
+  > <a
+  href="#"
+  > About</a
+  > </li
+  > </ul
+  > .menu
+  li {
+  display: inline;
 }
 ```
 
@@ -748,9 +840,9 @@ Applying `display:none;` to an HTML element removes it from your webpages.as if 
 The CSS property `visibility` is slightly similar to `dispaly`.Applying `visibility:hidden;`hidden an element from your page,but only turns it invisible:
 it still takes up the space it was supposed to.
 
-```
-.vis{
-visibility:hidden;
+```css
+.vis {
+  visibility: hidden;
 }
 ```
 
@@ -759,8 +851,10 @@ visibility:hidden;
 Setting fixed dimensions to your rectangles  
 The dimensions(or height and width)of an element are dynamic,as they fluctuate in order to fit the content.
 
-```
-blockquote{width:600px;}
+```css
+blockquote {
+  width: 600px;
+}
 ```
 
 The blockquote will not take up the whole width available,but will remain 600px wide in any situation:
@@ -799,28 +893,32 @@ A CSS border has 3 properties:
 - `border-left`
 - `border-right`
 
-```
-blockquote{
-border-color:blue;
-border-style:solid;
-border-width:1px;
+```css
+blockquote {
+  border-color: blue;
+  border-style: solid;
+  border-width: 1px;
 }
 /* The shorthand property border allows to define all 3 properties at once*/
-blockquote{border:1px solid blue;}
+blockquote {
+  border: 1px solid blue;
+}
 ```
 
 #### Single border
 
 If you want to set a border on only one of the four sides,you need to include the border's position in the CSS property.
 
-```
-blockquote{
-border-bottom-color:blue;
-border-bottom-style:solid;
-border-bottom-width:1px;
+```css
+blockquote {
+  border-bottom-color: blue;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
 }
 /* as for the border property,each side has its shorthand version */
-blockquote{border-bottom:1px solid blue;}
+blockquote {
+  border-bottom: 1px solid blue;
+}
 ```
 
 ### CSS padding
@@ -828,10 +926,14 @@ blockquote{border-bottom:1px solid blue;}
 To give space to your inner content  
 The **padding** is the space between an element's border and its content.
 
-```
-blockquote{padding:20px;}
+```css
+blockquote {
+  padding: 20px;
+}
 /* as for borders,the padding can be set individually for any of the 4 sides. */
-blockquote{padding-top:20px;}
+blockquote {
+  padding-top: 20px;
+}
 ```
 
 ### CSS margin
@@ -840,17 +942,30 @@ To push away your neighbours
 If padding adds space inside an element(between its border and its content),margins adds space outside between and element and other elements.  
 如果说内边距是在一个元素的内部的边框跟它的内容之间添加空间的话,外边距就是在元素与元素之间添加空间
 
-```
-p{margin:40px;}
+```css
+p {
+  margin: 40px;
+}
 ```
 
 #### merging vertical margins
 
-```
-<h1 class="title">main title</h1>
-<h2 class="subtitle">I am subtitle</h2>
-.title{margin-bottom:30px;}
-.subtitle{margin-top:15px;}
+```css
+<h1
+  class="title"
+  > main
+  title</h1
+  > <h2
+  class="subtitle"
+  > I
+  am
+  subtitle</h2
+  > .title {
+  margin-bottom: 30px;
+}
+.subtitle {
+  margin-top: 15px;
+}
 ```
 
 above example,the margin between the two elements will be `30px`,and not `45px`.That is because margins that "touch" each other will **merge** with each other.  
@@ -1053,17 +1168,22 @@ All of these selectors can have pseudo-classes attached to them. A pseudo-class:
 A psedo-class cant't exist on its own. it must be attached to a selector. The pseudo-class will only define a particular state of that selecor.  
 The syntax looks like this:
 
-```
-.selecotr:pseudo-class{}
+```css
+.selecotr:pseudo-class {
+}
 ```
 
 #### :hover
 
 For example,a common pseudo-class used is `:hover`,which will apply a CSS style when the targeted element is **hover**.
 
-```
-a{color:blue;}
-a:hover{color:red;}
+```css
+a {
+  color: blue;
+}
+a:hover {
+  color: red;
+}
 ```
 
 The first line defines how all `<a>` elements should look like(blue).  
@@ -1073,21 +1193,27 @@ The second line defines how `<a>` should look like when **hovered**(blue).
 
 This pseudo-class targets links that have been visited.by default ,links are blue and turn purple when you are visited them.Google results work like that.
 
-```
-a{color:dogerblue;}
-a:visited{color:rebeccapurple;}
+```css
+a {
+  color: dogerblue;
+}
+a:visited {
+  color: rebeccapurple;
+}
 ```
 
 #### :focus
 
 This pseudo-class happens when an HTML element is **in focus**.This is particularly useful for HTML `inputs`.
 
-```
-.form-input{border:2px solid grey;}
-.form-input:focus{
-background:lightyellow;
-border-color:blue;
-outline:none;
+```css
+.form-input {
+  border: 2px solid grey;
+}
+.form-input:focus {
+  background: lightyellow;
+  border-color: blue;
+  outline: none;
 }
 ```
 
@@ -1110,26 +1236,36 @@ li:last-child{background:lightsalmon;}
 
 This pseudo-class is a more global version of `:first-child` and `:last-child`.with `:nth:child`,your can calculate which child element you want to target.
 
-```
+```css
 /* target the second element */
-li:nth-child(2){background:violet;}
+li:nth-child(2) {
+  background: violet;
+}
 
 /* odd and even  */
-li:nth-child(odd){backgrond:gold;}
-li:nth-child(even){backgrond:green;}
+li:nth-child(odd) {
+  backgrond: gold;
+}
+li:nth-child(even) {
+  backgrond: green;
+}
 ```
 
 The n iterator  
 The most powerful aspect of `:nth-child` is how it can target elements based upon caculations by using the `n` keyword.  
 The `n` value increments from **zero 0** to the **number** of child elements present.
 
-```
+```css
 /* every third element */
-li:nth-child(3n){background:red;}
+li:nth-child(3n) {
+  background: red;
+}
 
 n+1
 /* what if you want to target the 1st item and every third item  */
-li:nth-child(3n+1){background:red;}
+li:nth-child(3n+1) {
+  background: red;
+}
 ```
 
 #### Other pseudo-classes
@@ -1154,9 +1290,9 @@ The syntax for linear gradients is quite complex,but the basic idea is to define
 - where these colors must appear along the axis(at the start,middle,end,etc)
 - in which direction the gradient must go
 
-```
-div{
-background-image:linear-gradient(red,blue);
+```css
+div {
+  background-image: linear-gradient(red, blue);
 }
 ```
 
@@ -1175,9 +1311,9 @@ if to top to bottom direction doesn't suit you ,you can alter it by either:
 * defining a spacific angel in degree like `45deg`
   the direction must be set before the colors:
 
-```
-div{
-background-image:linear-gradient(to  bottom right,yellow,purple)
+```css
+div {
+  background-image: linear-gradient(to bottom right, yellow, purple);
 }
 ```
 
@@ -1196,9 +1332,9 @@ you can insert as manay colors as you want. they will be equlaly distributed alo
 - **3 colors**:0%,50% and 100%
 - **4 colors**:0%,33%,67% and 100%
 
-```
-div{
-background-image:linear-gradient(blue,green,red);
+```css
+div {
+  background-image: linear-gradient(blue, green, red);
 }
 ```
 
@@ -1206,9 +1342,9 @@ background-image:linear-gradient(blue,green,red);
 
 if you don't want colors to equally distributed ,you can set specific color stop positions,using either percentages `%` or pixels `px`
 
-```
-div{
-background-image:linear-gradient(orange,grey 10%,yellow 50%);
+```css
+div {
+  background-image: linear-gradient(orange, grey 10%, yellow 50%);
 }
 ```
 
@@ -1226,10 +1362,10 @@ but instead of specifying a direction you need to spcify:
 - a starting point:which will be the center of the circle/ellipse
 - an end point : where the edge of the circle/ellipse wiil be
 
-```
-div{
-background-image: radial-gradient(red,yellow);
-width: 200px;
+```css
+div {
+  background-image: radial-gradient(red, yellow);
+  width: 200px;
 }
 ```
 
@@ -1243,9 +1379,9 @@ by default :
 
 the **start position** works like `background positions`,you set it with the `at` keyword.
 
-```
-div{
-background-image:radial-gradient(at top right,black,red);
+```css
+div {
+  background-image: radial-gradient(at top right, black, red);
 }
 ```
 
@@ -1259,13 +1395,13 @@ by default ,the shape wiil end at the `farthest corner`,you can either choose:
 - `farthest-corner`
   The different is both hard to grasp and to visualize,so i won't go into detail. Mozilla has a [good description of the different values](https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient#Values)
 
-```
-div{
-background-image:radial-gradient(closest-corner at 20px 20px,green,blue);
-width:300px;
+```css
+div {
+  background-image: radial-gradient(closest-corner at 20px 20px, green, blue);
+  width: 300px;
 }
-div:hover{
-background-image:radial-gradient(farthest-side at 20px 20px,green,blue);
+div:hover {
+  background-image: radial-gradient(farthest-side at 20px 20px, green, blue);
 }
 ```
 
@@ -1273,24 +1409,38 @@ background-image:radial-gradient(farthest-side at 20px 20px,green,blue);
 
 instead of setting both start and end position,you can just set **specific dimensions**
 
-```
-div{
-background-image:radial-gradient(20px 10px at 75% 50%,red,blue);
-width:300px;
+```css
+div {
+  background-image: radial-gradient(20px 10px at 75% 50%, red, blue);
+  width: 300px;
 }
 ```
 
 CSS gradients are powerful,considering how endless the options are.  
 you can write some buttons with CSS gradient.
 
-```
-.button-grey  { background-image: linear-gradient(#f2f2f2, #f2f2f2);}
-.button-yellow{ background-image: linear-gradient(#fce374, #fcdf5b);}
-.button-orange{ background-image: linear-gradient(#f58a38, #f57c20);}
-.button-red   { background-image: linear-gradient(#ed6d64, #ed574c);}
-.button-purple{ background-image: linear-gradient(#847bba, #7568ba);}
-.button-blue  { background-image: linear-gradient(#42b0e3, #2ba9e3);}
-.button-green { background-image: linear-gradient(#97cc76, #8bcc62);}
+```css
+.button-grey {
+  background-image: linear-gradient(#f2f2f2, #f2f2f2);
+}
+.button-yellow {
+  background-image: linear-gradient(#fce374, #fcdf5b);
+}
+.button-orange {
+  background-image: linear-gradient(#f58a38, #f57c20);
+}
+.button-red {
+  background-image: linear-gradient(#ed6d64, #ed574c);
+}
+.button-purple {
+  background-image: linear-gradient(#847bba, #7568ba);
+}
+.button-blue {
+  background-image: linear-gradient(#42b0e3, #2ba9e3);
+}
+.button-green {
+  background-image: linear-gradient(#97cc76, #8bcc62);
+}
 ```
 
 ### CSS transitions
@@ -1310,18 +1460,17 @@ you can define:
 
 Transitions are often used on hover states.
 
-```
-<a href="#" class="with-transition">i am with transitioned</a>
-a{
-background:lightgrey;
-color:grey;
+```css
+<a href="#" class="with-transition" > i am with transitioned</a > a {
+  background: lightgrey;
+  color: grey;
 }
-a:hover{
-background:yellow;
-color:red;
+a:hover {
+  background: yellow;
+  color: red;
 }
-a.with-transiton{
-transition:1s;
+a.with-transiton {
+  transition: 1s;
 }
 ```
 
@@ -1330,19 +1479,19 @@ transition:1s;
 A transition's duration is the only CSS property needed to create a transition. it can either be set in seconds `2s` or millisenconds `100ms`
 
 ```css
-a{
-background:lightgrey;
-color:grey;
+a {
+  background: lightgrey;
+  color: grey;
 }
-a:hover{
-background:yellow;
-color:red;
+a:hover {
+  background: yellow;
+  color: red;
 }
-a.with-fast-transiton{
-transition:0.5s;
+a.with-fast-transiton {
+  transition: 0.5s;
 }
-a.with-slow-transiton{
-transition:2s;
+a.with-slow-transiton {
+  transition: 2s;
 }
 ```
 
@@ -1351,21 +1500,21 @@ transition:2s;
 only 1/3 of CSS properties can be animated.Mozillia has a [complete list](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)  
 by default,the `transition-property` property has a value of `all`,which simply means it will animate all possible properties.you can decide to only animate 1 or several properties.
 
-```
-a{
-background:lightgrey;
-color:grey;
+```css
+a {
+  background: lightgrey;
+  color: grey;
 }
-a:hover{
-background:yellow;
-color:red;
+a:hover {
+  background: yellow;
+  color: red;
 }
-a.with-background-transiton{
-transition-property:background;
-transition:0.5s;
+a.with-background-transiton {
+  transition-property: background;
+  transition: 0.5s;
 }
-a.with-all-transiton{
-transition:2s;
+a.with-all-transiton {
+  transition: 2s;
 }
 ```
 
@@ -1380,15 +1529,15 @@ The timing function determines how each property's value is calculated during th
 - `ease in out` like ease,but with more pronounced acceleration/decelaration curves(曲线)
   if you want to visualize how other timing functions work,check out this [Easing Functions Cheat Sheet](http://easings.net/)
 
-```
-div{
-left:0;
-position:relative;
-transition:1s;
-transition-timing-function:ease;
+```css
+div {
+  left: 0;
+  position: relative;
+  transition: 1s;
+  transition-timing-function: ease;
 }
-div:hover{
-left:200px;
+div:hover {
+  left: 200px;
 }
 ```
 
@@ -1396,22 +1545,36 @@ left:200px;
 
 A delay will define how long the transitions has to wait before actually starting.like `transition-duration` you can either use seconds `s` or milliseconds `ms`.
 
-```
-<div>
-  <p>hover the grey area</p>
-  <a href="">without any delay</a>
-  <a href="" class="with-delay">with a second delay</a>
-</div>
-a{
-background:blue;
-color:white;
-transition:all 1s;
+```css
+<div
+  > <p
+  > hover
+  the
+  grey
+  area</p
+  > <a
+  href=""
+  > without
+  any
+  delay</a
+  > <a
+  href=""
+  class="with-delay"
+  > with
+  a
+  second
+  delay</a
+  > </div
+  > a {
+  background: blue;
+  color: white;
+  transition: all 1s;
 }
-div:hover a{
-background:red;
+div:hover a {
+  background: red;
 }
-a.with-delay{
-transition-delay:1s;
+a.with-delay {
+  transition-delay: 1s;
 }
 ```
 
@@ -1443,13 +1606,20 @@ like the `transition` property,`animation` is a shorthand property for several o
 
 To animate a loading button,you could write a bouncing animation:
 
-```
-@keyframes bouncing{
-0%{bottom:0;box-shadow:0 0 5px rgba(0,0,0,0.5);}
-100%{bottom:50px;box-shadow:0 50px 50 px rgba(0,0,0,0.1);}
+```css
+@keyframes bouncing {
+  0% {
+    bottom: 0;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  }
+  100% {
+    bottom: 50px;
+    box-shadow: 0 50px 50 px rgba(0, 0, 0, 0.1);
+  }
 }
-.loading-buttom{
-animation:bouncing 0.5s cubic-bezier(0.1,0.25,0.1,1) 0s infinite alternate both;
+.loading-buttom {
+  animation: bouncing 0.5s cubic-bezier(0.1, 0.25, 0.1, 1) 0s infinite alternate
+    both;
 }
 ```
 
@@ -1473,16 +1643,31 @@ They are defined using **percentages**.
   Each keyframes is **CSS rule**,meaning that you can write CSS properties just like usuall.  
   To define an animation,just write the keyword `@keyframes` followed by it **name**.
 
-```
-@keyframes around{
-0%{left:0;top:0;}
-25%{left:240px;top:0;}
-50%{left:240px;top:140px;}
-75%{left:0;top:140px;}
-100%{left:0;top:0;}
+```css
+@keyframes around {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  25% {
+    left: 240px;
+    top: 0;
+  }
+  50% {
+    left: 240px;
+    top: 140px;
+  }
+  75% {
+    left: 0;
+    top: 140px;
+  }
+  100% {
+    left: 0;
+    top: 0;
+  }
 }
-p{
-animation:around 4s linear infinite;
+p {
+  animation: around 4s linear infinite;
 }
 ```
 
@@ -1493,20 +1678,22 @@ The animation name is used at least twice
 - when writing the animation using `@keyframes`
 - when using the animation usting the `animation-name` property (or with the animation shorthand)
 
-```
-@keyframes whatever{
-/* ... */
+```css
+@keyframes whatever {
+  /* ... */
 }
-.selector{animation-name:whatever;}
+.selector {
+  animation-name: whatever;
+}
 ```
 
 #### animation-duration
 
 `animation-duration` can be set in seconds `1s` or milliseconds `200ms`
 
-```
-.selector{
-animation-duration:0.5s;
+```css
+.selector {
+  animation-duration: 0.5s;
 }
 ```
 
@@ -1516,9 +1703,9 @@ it default to `0s`,which means no animation at alll.
 
 just like `transition timing-functions`,animation timing functions can use keywords like `linear`,`ease-out`,or be defined using custom `cubic bezier` functions.
 
-```
-.selector{
-animation-timing-function:ease-in-out;
+```css
+.selector {
+  animation-timing-function: ease-in-out;
 }
 ```
 
@@ -1529,10 +1716,18 @@ it default to `ease`
 just like `transiton delays` ,animation delays can be set in seonds `1s` or milliseconds `200ms`. it defaults to `0s` which means no delay at all,it's useful when triggering
 multiple animations in sequence.
 
-```
-.a,.b,.c{animation:bouncing 1s;}
-.b{animation-delay:0.25s}
-.c{animation-delay:0.5s}
+```css
+.a,
+.b,
+.c {
+  animation: bouncing 1s;
+}
+.b {
+  animation-delay: 0.25s;
+}
+.c {
+  animation-delay: 0.5s;
+}
 ```
 
 #### animation-iteration-count
@@ -1773,7 +1968,7 @@ here,the default text size is `14px`,but to accomdate for larger viewports,the t
 
 you can require **2 conditions** for a media query to be activated.
 
-```
+```csscss
 body{font-size:18px;}
 @media (min-width:1000px;) and (orientation:landscape){
   body{font-size:20px;}
@@ -1844,15 +2039,17 @@ What role does CSS play here? well ,higher resolution screens wiil rend text ver
 The problem is with **images** on Retina displays for example.it's a long topic,so read this [CSS Techniques for Retina](https://www.sitepoint.com/css-techniques-for-retina-displays/)  
 A Use case would be to provide a default background image for every device,and apply **high resolution background images** on Retina displays.
 
-```
+```css
 /* 40x40 logo */
-.logo{
-  background-image:url(marksheet-logo.png);
-  background-size:40px 40px;
+.logo {
+  background-image: url(marksheet-logo.png);
+  background-size: 40px 40px;
 }
-@media(min-resolution:300dpi){
-   /* 80x80 logo resized to 40x40 */
-  .logo{background-image:url(marksheet-log@2x.png);}
+@media (min-resolution: 300dpi) {
+  /* 80x80 logo resized to 40x40 */
+  .logo {
+    background-image: url(marksheet-log@2x.png);
+  }
 }
 ```
 
