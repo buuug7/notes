@@ -150,29 +150,40 @@ li {
 
 ## classes
 
-Of all HTML attributes,the class attribute is the most important for CSS.it allows us to define a group of HTML elements that we can target specifically.
+Of all HTML attributes,the class attribute is the most important for CSS. It allows us to define a group of HTML elements that we can target specifically.
+
+```html
+<p class="data">something like ...</p>
+```
 
 ```css
 .data{
   color:red;
 }
-<p class="data">something like ...</p>
 ```
 
 ## IDs
 
-you can also use the `id` attribute in your HTML,and target it with a hash `#` in your CSS
+you can also use the `id` attribute in your HTML, and target it with a hash `#` in your CSS
+
+```html
+<p id="tagline">this is a text.</p>
+```
 
 ```css
 #tagline{
   color:red;
 }
-<p id="tagline">this is a text.</p>
 ```
 
 ## combining selectors
 
 see some examples in below:
+
+```html
+<p class="date">i am paragraph.</p>
+<p>i also a <em class="date">paragraph</em>.</p>
+```
 
 ```css
 .date{
@@ -182,8 +193,6 @@ see some examples in below:
 em.date{
   color:blue;
 }
-<p class="date">i am paragraph.</p>
-<p>i also a <em class="date">paragraph</em>.</p>
 ```
 
 ## hierarchy selectors
@@ -196,13 +205,12 @@ header a {
 }
 ```
 
-this can be read from right to left as:"select all **a** elements that are within a **header** element". this will prevent all other links
-to remain unaffected.
+this can be read from right to left as: "select all **a** elements that are within a **header** element". this will prevent all other links to remain unaffected.
 
 ## Pseudo-class selectors
 
 HTML elments can have different **states**,the most common case is when you hover over a link. it's possible in CSS to apply a different style when such an event occurs.  
-HTML 元素具有不同的状态,最常见的情况是你把鼠标悬置在超链接上的时候. 当此事件发生的时候应用不同的 CSS 样式是可能的.
+HTML 元素具有不同的状态, 最常见的情况是你把鼠标悬置在超链接上的时候. 当此事件发生的时候应用不同的 CSS 样式.
 
 ```css
 a {
