@@ -29,7 +29,7 @@ CSS brings an HTML documents to life.
 
 how CSS works is by selecting an HTML element(like a paragraph), choosing a property to alter (like the color),and applying a certain value(like red).
 
-通过选择HTML元素, 修改HTML元素的属性值来工作的.
+通过选择 HTML 元素, 修改 HTML 元素的属性值来工作的.
 
 ```css
 p {
@@ -111,9 +111,9 @@ CSS have a 3-part process:
 ```
 
 ```css
-blockquote{
-  background:lightgreen;
-  color:darkgreen;
+blockquote {
+  background: lightgreen;
+  color: darkgreen;
 }
 ```
 
@@ -161,8 +161,8 @@ Of all HTML attributes,the class attribute is the most important for CSS. It all
 ```
 
 ```css
-.data{
-  color:red;
+.data {
+  color: red;
 }
 ```
 
@@ -175,8 +175,8 @@ you can also use the `id` attribute in your HTML, and target it with a hash `#` 
 ```
 
 ```css
-#tagline{
-  color:red;
+#tagline {
+  color: red;
 }
 ```
 
@@ -190,12 +190,12 @@ see some examples in below:
 ```
 
 ```css
-.date{
-  color:red;
+.date {
+  color: red;
 }
 
-em.date{
-  color:blue;
+em.date {
+  color: blue;
 }
 ```
 
@@ -227,9 +227,9 @@ a:hover {
 
 ---
 
-## CSS inheritance (CSS 继承)
+## CSS inheritance 继承
 
-### value propagation 值的传递
+### value propagation 值传递
 
 The **color** value can be inherited from an ancestor.
 
@@ -243,14 +243,13 @@ only a few CSS properties can be inherited from ancestors.they are mainly text p
 
 ---
 
-
-### CSS Priority CSS 优先级
+## CSS Priority 优先级
 
 An HTML elemnt can be targeted by **multiple css rules** .
 
-#### order of CSS rules
+### order of CSS rules
 
-if similar selectors are in your CSS,the last one defined will take priority.
+if similar selectors are in your CSS, the last one defined will take priority.
 
 ```css
 p {
@@ -262,7 +261,7 @@ p {
 /* paragraphs will be blue */
 ```
 
-#### the 100 measure
+### the 100 measure
 
 the selector with the highest "score" will win
 
@@ -270,35 +269,36 @@ the selector with the highest "score" will win
 - `.class` selectors are worth 10
 - `tag` selectors are worth 1
 
-#### how to avoid conflicts
+### how to avoid conflicts
 
 - only use class
 - avoid applying multiple classes on a single HTML element
 - don't use inline-styles
 
-### CSS color units
+---
 
-different ways to define colors  
-Colors are widely used in CSS,whether for text color,background color,gradients,shadows,borders...There are several ways to define colors in CSS.
+## CSS color units
 
-#### color names
+Different ways to define colors
 
-defined by color names,CSS provides 145 colors names,from the most basic (black,white,orange...) to the more specific(lawngreen,orchid...)  
-because the color names are hard to remember,and because you probably want very specific colors,color names are not often used .
+Colors are widely used in CSS, whether for text color, background color, gradients, shadows, borders...There are several ways to define colors in CSS.
+
+### color names
+
+Defined by color names, CSS provides 145 colors names, from the most basic (black,white,orange...) to the more specific(lawngreen,orchid...).
+
+Because the color names are hard to remember, and because you probably want very specific colors, color names are not often used.
 
 ```css
 body {
   background: white;
-}
-a {
   color: red;
 }
 ```
 
-#### rgb
+### rgb
 
-defined by rgb,computer monitors,TVs,mobile phones,all use the RGB color model to display colors,each color is defined by a combination of Red,Green,and Blue. There are
-256 possible values for Red,Green and Blue,from 0 to 255,so there are 256*256*256=16,777,216(1600 万颜色) possible colors available.
+Defined by rgb, computer monitors, TVs,mobile phones, all use the RGB color model to display colors, each color is defined by a combination of Red,Green,and Blue. There are 256 possible values for Red, Green and Blue, from 0 to 255, so there are `256 * 256 * 256 = 16,777,216` (通常所说的 1600 万)) possible colors available.
 
 ```css
 /* the black color */
@@ -327,7 +327,7 @@ body {
 }
 ```
 
-#### rgba
+### rgba
 
 The **rgba** color unit is **rgb** to which we add an alpha value(ranging from 0-1,in decimal values),which defines how transparent the color is.  
 RGBA 颜色的定义是在 RGB 的基础上添加了一个额外的透明通道,该值为小数从 0 到 1,定义该颜色的透明度
@@ -344,20 +344,31 @@ HSL is another way to define a color,think of it is a color wheel.
 HSL 是另外一种颜色的定义方式,把它看做一个颜色的轮子.通过 H,S,L 三个颜色通道的变化以及它们之间的叠加来得到各种各样的颜色.
 
 - the **Hue**(色调) a value ranging from 0 to 360,defines which color you want.
-- the **Saturation**(饱和度) percentage,ranging from 0% to 100% ,define how much of that color you want.
-- the **Lightness** percentage,rangring from 0% to 100%,defines how bright you want that color to be.
+- the **Saturation**(饱和度) percentage,ranging from 0% to 100%, define how much of that color you want.
+- the **Lightness** percentage, rangring from 0% to 100%, defines how bright you want that color to be.
 
 ```css
-// the red color
-hsl(0,100%,50%);
-hsl(360,100%,50%);
-// the green color
-hsl(120,100%,50%);
-// the blue color
-hsl(240,100%,50%);
+/* the red color */
+a {
+  hsl(0, 100%, 50%);
+}
+a{
+  hsl(360, 100%, 50%);
+}
+
+/* the green color */
+a{
+  hsl(120, 100%, 50%);
+}
+
+/* the blue color */
+a{
+  hsl(240, 100%, 50%);
+}
 ```
 
-someone thinks the **HSL** is to be human-readable, where **RGB** is more computer-readable.  
+someone thinks the **HSL** is to be human-readable, where **RGB** is more computer-readable.
+
 **HSLA** is the same as **HSL** ,with the added value of being able to define an alpha value:
 
 ```css
@@ -366,21 +377,24 @@ body {
 }
 ```
 
-#### hexadecimal 十六进制
+### hexadecimal 十六进制
 
-colors in CSS can also be defined with hexadecimal values,like `#ffffff`.  
-in hexadecimal ,we have 16 symbols to form numbers.0-9,A-F. just like RGB,a hexadecimal color value is a combination of Red,Green,and Blue,each of them being represent as a hexadecimal
-value,like `DB` for Red,`4E` for green,and `44` for Blue. hexadecimal values are easier to copy and pase.
+Colors in CSS can also be defined with hexadecimal values,like `#ffffff`.
 
-#### which one to pick?
+In hexadecimal, we have 16 symbols to form numbers 0-9, A-F. just like RGB, a hexadecimal color value is a combination of Red, Green, and Blue, each of them being represent as a hexadecimal value, like `DB` for Red, `4E` for green, and `44` for Blue. hexadecimal values are easier to copy and paste.
 
-- if you don't intend to use any transparent color,stick to hexadecimal values, as they are easier to copy/paste and don't take much space in your code.
-- if you want some transparency , convert your color from hex to rgba,and use the `rgba` color unit.
-- if your want to play around with your color directly in the browser,try `hsl`.
+### which one to pick?
 
-### CSS Size units
+- if you don't intend to use any transparent color, stick to hexadecimal values, as they are easier to copy/paste and don't take much space in your code.
+- if you want some transparency, convert your color from hex to rgba, and use the `rgba` color unit.
+- if your want to play around with your color directly in the browser, try `hsl`.
 
-sizing for content and space  
+---
+
+## CSS Size units
+
+Sizing for content and space.
+
 there many CSS properties that require size units:
 
 - **font-size** defines the size of the text
@@ -394,48 +408,49 @@ The most used units are:
 - `%` for percentage
 - `em` for sizing relative to the parent's `font-size` value
 
-#### pixels
+### pixels
 
-because computer screens use pixels to display the content,it is the most common size unit in CSS.
+because computer screens use pixels to display the content, it is the most common size unit in CSS.
 
 ```css
-// define the width of the elements
+/* define the width of the elements */
 body {
   width: 200px;
 }
-// set the text size
+/* set the text size */
 body {
   font-size: 20px;
 }
 ```
 
-pixels in CSS are straightforward because they define absolute values:they are not affected by other inherited CSS properties.  
+Pixels in CSS are straightforward because they define absolute values:they are not affected by other inherited CSS properties.
+
 They are also widely used for **positioning** and **spacing** purposes.
 
-#### percentage
+### percentage
 
-percentages are relative units:they rely upon the element's parent and/or ancestor.
+Percentages are relative units: they rely upon the element's parent and/or ancestor.
 
 ```css
-// set block-level elements
+/* set block-level elements */
 p {
   width: 50%;
 }
-// set other CSS properties,like text size
+/* set other CSS properties,like text size */
 strong {
   font-size: 150%;
 }
 ```
 
-#### Em
+### Em
 
-`em` is the relative unit:it depends upon the value of the element's `font-size`.  
-例如父元素字体大小为 20px,而子元素的字体大小定义为`font-size:0.5em`,则子元素的字体大小为 10px,该单位通常用来定义具有伸缩响应的网页,当你改变
-网页`body`的字体大小的时候,其他的比如`h1`,`h2`...,`p`等元素字体的大小会跟着变化,这样更能保证你的网页的**视觉平衡**.
+`em` is the relative unit: it depends upon the value of the element's `font-size`.
 
-#### Rem
+例如父元素字体大小为 20px, 而子元素的字体大小定义为`font-size:0.5em`, 则子元素的字体大小为 10px, 该单位通常用来定义具有伸缩响应的网页, 当你改变网页`body`的字体大小的时候, 其他的比如`h1`,`h2`...,`p`等元素字体的大小会跟着变化, 这样更能保证你的网页的**视觉平衡**.
 
-The `rem` unit is similar to `em`,but instead of depending upon the parent's value,it relies upon the root element's value,which is the `<html>` element.
+### Rem
+
+The `rem` unit is similar to `em`, but instead of depending upon the parent's value, it relies upon the root element's value, which is the `<html>` element.
 
 ```css
 html {
@@ -452,16 +467,19 @@ h2 {
 } /* = 22.5px */
 ```
 
-#### which one to use?
+### which one to use?
 
-recommend **pixels** to use : as they're absolute values,they aren't affected by the element's context.
+recommend **pixels** to use : as they're absolute values, they aren't affected by the element's context.
 
-### CSS Reset
+---
 
-Removing default browser styling  
+## CSS Reset
+
+Removing default browser styling
+
 Every webpage use at least one CSS: the **User agent Stylesheet**.
 
-#### the user agent stylesheet
+### the user agent stylesheet
 
 this CSS file is included in the browser and is called.
 
@@ -470,10 +488,16 @@ this CSS file is included in the browser and is called.
 
 尽管每一种浏览器都有自己的用户代理 CSS 默认样式,但是它们都是类似的
 
-#### applying a CSS reset
+### applying a CSS reset
 
-浏览器默认的样式会干扰我们想应用的样式,这就是为什么要设计**CSS 样式重置**为所有浏览器提供一致的表现方式.  
-你可以使用最流行的 HTML5 Reset,将其放置于你的`<head>`之中即可,这里推荐的是[normalize.css](https://github.com/necolas/normalize.css)
+浏览器默认的样式会干扰我们想应用的样式,这就是为什么要设计**CSS 样式重置**为所有浏览器提供一致的表现方式.
+
+你可以使用最流行的 HTML5 Reset, 将其放置于你的`<head>`之中即可, 这里推荐:
+
+- [normalize.css](https://github.com/necolas/normalize.css)
+- [HTML5 reset.css](https://github.com/murtaugh/HTML5-Reset)
+
+---
 
 ### CSS font-familly
 
@@ -628,8 +652,10 @@ it groups with this particular order:
 - `font-family`
   you can thus define 6 properties through a single one:
 
-```
-body{font:italic small-caps bold 16px/1.5 Arial,sans-serif;}
+```css
+body {
+  font: italic small-caps bold 16px/1.5 Arial, sans-serif;
+}
 ```
 
 they have to be written in this particular order and there must be a slash `/` between the `font-size` and the `line-height`. the `font-size` and `font-family` are
@@ -998,14 +1024,22 @@ A circle shorthand method
 
 #### setting 4 values
 
-```
-blockquote{padding:20px;}
+```css
+blockquote {
+  padding: 20px;
+}
 /* it equal as below */
-blockquote{padding:20px 20px;}
+blockquote {
+  padding: 20px 20px;
+}
 /* it equal as below */
-blockquote{padding:20px,20px,20px,20px;}
+blockquote {
+  padding: 20px, 20px, 20px, 20px;
+}
 /* it equal as below */
-blockquote{padding:20px,20px,20px;}
+blockquote {
+  padding: 20px, 20px, 20px;
+}
 ```
 
 The order is `top`,`right`,`bottom` and `left`.  
@@ -1056,17 +1090,13 @@ In HTML,the content is king.all `block` elements are fluid,they will naturally a
 HTML elements are displayed in the order in which they are written in the code.First in the code -> first in the browser.  
 Each block appears in the order in which they appear in the HTML code, from top to bottom.
 
-```
+```html
 <p>First</p>
 <p>Second</p>
 <p>Thrid</p>
 <p>Fourth</p>
 
-/* The result */
-First
-Second
-Third
-Fourth
+/* The result */ First Second Third Fourth
 ```
 
 #### Stacking
@@ -1078,7 +1108,7 @@ The stack order depends on how elements are nested:child elements appear on top 
 - Each nested element appears on top of its parent.
 - The deeper in the hierarchy,the higher in the stack.
 
-```
+```html
 <div>
   This parent is behind
   <p>This nested child appears<strong>on top</strong> of its parent</p>
