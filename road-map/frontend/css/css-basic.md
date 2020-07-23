@@ -513,8 +513,8 @@ have 5 generic families:
 - monospace
 - cursive
 - fantasy
-  because the `font-famiily` property is inherited by all HTML children elements,you can apply a font for the whole HTML document by applying
-  it on the ancestor fo all HTML elements:the `<body>` element.
+
+because the `font-famiily` property is inherited by all HTML children elements,you can apply a font for the whole HTML document by applying it on the ancestor fo all HTML elements:the `<body>` element.
 
 ```css
 body {
@@ -524,9 +524,8 @@ body {
 
 #### web-safe fonts
 
-通常你设置的字体如果在用户的机子上不可用,浏览器会使用默认的字体来代替,所以你应该考虑你所采用的字体应该具有通用性,以便你的网页的字体在
-任何计算机上都看起来一样  
-有 9 种 web 安全字体你可以参考:
+通常你设置的字体如果在用户的机子上不可用, 浏览器会使用默认的字体来代替, 所以你应该考虑你所采用的字体应该具有通用性, 以便你的网页的字体在
+任何计算机上都看起来一样, 有 9 种 web 安全字体你可以参考:
 
 - Arial
 - Arial Black
@@ -540,14 +539,15 @@ body {
 
 #### applying a list of fonts
 
-尽管使用单一的 web 安全字体是安全的,但是最佳实践是给`font-family`赋予多个字体,因为当赋予的第一个字体不可用的话,浏览器会采用第二个...依次类推,如
-果你提供的所有字体都不可用的话,最后才使用浏览器默认的字体,这样给浏览器更多的选择以至于使你的网页更加强壮.
+尽管使用单一的 web 安全字体是安全的, 但是最佳实践是给 `font-family` 赋予多个字体, 因为当赋予的第一个字体不可用的话, 浏览器会采用第二个...依次类推, 如果你提供的所有字体都不可用的话, 最后才使用浏览器默认的字体, 这样给浏览器更多的选择以至于使你的网页更加强壮.
 
-### CSS font properties
+---
+
+## CSS font properties
 
 For bold and italic text
 
-#### font-size
+### font-size
 
 used to set the font size among other things.
 
@@ -557,31 +557,30 @@ h2 {
 }
 ```
 
-#### font-style
+### font-style
 
 this property can make your text italic.
 
 ```css
 /* default value is normal */
 h2 {
-  font-style: italic;
+  font-style: italic; /* normal, italic */
 }
 ```
 
-#### font-weight
+### font-weight
 
 this property can make your text bold.
 
 ```css
 h2 {
-  font-weight: bold;
+  font-weight: bold; /* normal, bold */
 }
 ```
 
-default value is `font-weight:normal`,depending on the `font-family` used,there is a range of font weights available,fromt **100** to **900**.  
-very few fonts provide all 9 weights.your will mostly find 400(normal) and 700(bold),and sometimes 300(light) and 500(medium).
+Default value is `font-weight: normal;`, depending on the `font-family` used, there is a range of font weights available, fromt **100** to **900**. very few fonts provide all 9 weights. your will mostly find 400(normal) and 700(bold), and sometimes 300(light) and 500(medium).
 
-#### font-variant
+### font-variant
 
 this property turn your text into small caps:
 
@@ -591,25 +590,25 @@ h2 {
 }
 ```
 
-会让你的文本变成小型的大写字母,默认值是`font-variant:normal;`  
-this is not a widely used property.
+会让你的文本变成小型的大写字母, 默认值是`font-variant:normal;`, 这个属性不常用。
 
-### CSS line-height
+---
 
-for readibility concerns,the `line-height` is **the height of each line**.  
-the `line-height` property uses the following units:
+## CSS line-height
+
+For readibility concerns, the `line-height` is **the height of each line**. the `line-height` property uses the following units:
 
 - `px`
 - `em`
 - `%`
 - unitless-umbers,like `1.5`
-  The unitless values basically act like percentages,so `150%` is equal to `1.5` .the latter is just more compact and readable.
 
-#### why line-height is important
+The unitless values basically act like percentages, so `150%` is equal to `1.5`. the latter is just more compact and readable.
 
-the purpose of the `line-height` is to define a readable line spacing for your text.because readibility is dependent upon the size of the text,
-it is recommended to use a dynamic value that is relative to the size of the text.use `px` is not recommended because it defines a static value.
-the recommened method is unitless-numbers.
+### why line-height is important
+
+The purpose of the `line-height` is to define a readable line spacing for your text. because readability is dependent upon the size of the text, it is recommended to use a dynamic value that is relative to the size of the text. use `px` is not recommended because it defines a static value.
+the recommended method is unitless numbers.
 
 - for body text,a line height of 1.5 times the size of the text is recommended.
 - for heading, a line height of 1.2 is recommended.
@@ -625,7 +624,7 @@ above the computed height will thus be **16\*1.5=24px**
 
 #### line-height inheritance
 
-because the `line-height` property is inheritanced by the child elements,it will remain consistent no matter what `font-size` is subsequently applied.
+because the `line-height` property is inherited by the child elements, it will remain consistent no matter what `font-size` is subsequently applied.
 
 ```css
 body {
@@ -639,10 +638,11 @@ blockquote {
 
 The `blockquote` element will have a line height of `27px`.
 
+---
+
 ### CSS font shorhand
 
-a shortcut for several font properties  
-it groups with this particular order:
+a shortcut for several font properties, it groups with this particular order:
 
 - `font-style`
 - `font-variant`
@@ -650,7 +650,8 @@ it groups with this particular order:
 - `font-size`
 - `line-height`
 - `font-family`
-  you can thus define 6 properties through a single one:
+
+you can thus define 6 properties through a single one:
 
 ```css
 body {
@@ -658,34 +659,34 @@ body {
 }
 ```
 
-they have to be written in this particular order and there must be a slash `/` between the `font-size` and the `line-height`. the `font-size` and `font-family` are
-mandatory(强制性的),others is optional.  
-Other shorhand properties exist,like `background` , `border` and `margin`.
+they have to be written in this particular order and there must be a slash `/` between the `font-size` and the `line-height`. the `font-size` and `font-family` are mandatory(强制性的), others is optional. Other shorthand properties exist, like `background`, `border` and `margin`.
 
-### CSS text properties
+---
 
-Other text alterations  
-Alongside(根据) the several `font-*` properties,CSS provides many `text-*` properties.
+## CSS text properties
 
-#### text-align
+Other text alterations, Alongside(根据) the several `font-*` properties, CSS provides many `text-*` properties.
+
+### text-align
 
 the `text-align` property must be applied on a block-level element and defines how its text and children inline elements are horizontally aligned.  
-该属性必须应用到块级元素,它定义了内部的文本和行内元素水平对齐的方式.  
-最常用的值有:
+该属性必须应用到块级元素, 它定义了内部的文本和行内元素水平对齐的方式. 最常用的值有:
 
 - left
 - right
 - center
 - justify
-  the `text-align` default value is `start`,basically,`start` can either be `left` or `right` ,depending on the direction set on the HTML document.  
-  **direction** is a CSS propery that can either `ltr`(left to right) or `rtl`(right to left):
 
-* if `ltr` is chosen,`start` equals to `left`
-* if 'rtl' is chosen,`start` equals to `right`
+the `text-align` default value is `start`, basically, `start` can either be `left` or `right`, depending on the direction set on the HTML document.
 
-#### text-decoration
+**direction** is a CSS property that can either `ltr`(left to right) or `rtl`(right to left):
 
-the `text-decoration` property is used to add a line on your text.default value is `none`.
+- if `ltr` is chosen, `start` equals to `left`
+- if 'rtl' is chosen, `start` equals to `right`
+
+### text-decoration
+
+the `text-decoration` property is used to add a line on your text, default value is `none`.
 
 ```css
 .deleted {
@@ -695,13 +696,14 @@ the `text-decoration` property is used to add a line on your text.default value 
 
 possible values:
 
+- none
 - overline (上划线)
 - underline (下划线)
 - line-through (删除线)
 
-##### text-indent
+### text-indent
 
-the `text-indent` property allows to add space before the first letter of the first line of a block-level element.default value is `0`.
+the `text-indent` property allows to add space before the first letter of the first line of a block-level element default value is `0`.
 
 ```css
 blockquote {
@@ -709,7 +711,7 @@ blockquote {
 }
 ```
 
-#### text-shadow
+### text-shadow
 
 define:
 
@@ -718,21 +720,31 @@ define:
 - the `blur` 模糊的距离
 - the `color` 颜色
 
-### CSS box model
+Only the `x` and `y` values are required. The `blur` defaults to `0`, while the `color` defaults to the color of the text.
 
-how rectangles are made 矩形是如何制造的?  
-在 HTML 中所有元素都是矩形,矩形的尺寸会根据具体元素的内容动态调整,你可以认为这些矩形是流体类的东西,根据内容来调整自己的形状.  
-块级元素会占尽它所在的行的所有宽度,例如段落,
+```css
+h1 {
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0, 2);
+}
+```
+
+---
+
+## CSS box model
+
+how rectangles are made 矩形是如何制造的?
+
+在 HTML 中所有元素都是矩形, 矩形的尺寸会根据具体元素的内容动态调整, 你可以认为这些矩形是流体类的东西, 根据内容来调整自己的形状. 块级元素会占尽它所在的行的所有宽度, 例如段落, 它的宽度默认是浏览器的宽度，高度适应它自己内容的高度。
 
 ### CSS background
 
-how your rectangle is filled  
+how your rectangle is filled 你的矩形是如何填充的
 the background of an HTML element is what appears behind the text.  
 HTML 元素的背景指的是出现在文本后面的内容.
 
-#### background-color
+### background-color
 
-default value: `transparent` inherited by children elements:no.
+default value: `transparent` inherited by children elements: no.
 
 ```css
 body {
@@ -740,41 +752,48 @@ body {
 }
 ```
 
-#### background-image
+### background-image
 
 applying a background image only requires to specify its URL:
 
 ```css
 body {
-  background-iamge: url(path/to/image.png);
+  background-image: url(path/to/image.png);
 }
 ```
 
-the behavior of the image(how it repeats itself,where it is positioned,how it is sized) is defined by other background properties.
-the `background-image` only defines which image to use.
+the behavior of the image(how it repeats itself, where it is positioned, how it is sized) is defined by other background properties. the `background-image` only defines which image to use.
 
-#### the difference between HTML images `<img>` and CSS background images
+### the difference between HTML images `<img>` and CSS background images
 
-the HTML `<img>` element is for images that are part of the content,while CSS background images are purely decorative.  
-the logo of a company ,the thumbnail of a gallery ,the picture of a product ... These are all considered **content** and should use the HTML `<img>` element.  
-a beautiful landscape,a cart icon...These can be considered as **decorative**,as they support the content but are not part of it.if they were to disappear,
-the webpage would still make sense(有道理的).
-因为有多重的的选择,在内容和样式之间的界限很模糊,一些视觉技术很容易通过 CSS 的`background`来实现,所以如果你使用的图片是你页面的本质,主要内容的话,就用`<img>`.
+the HTML `<img>` element is for images that are part of the content, while CSS background images are purely decorative.
 
-##### gradients
+the logo of a company, the thumbnail of a gallery, the picture of a product ... These are all considered **content** and should use the HTML `<img>` element.
 
-CSS also allow to define **color gradients** as background images,in 2 different shapes:
+a beautiful landscape, a cart icon...These can be considered as **decorative**, as they support the content but are not part of it. if they were to disappear, the webpage would still make sense.
 
-- `linear-gradient` for gradients in a single direction,in a rectangular shape
-- `radial-gradient` for gradients in all directions,in a circular shape
+因为有多重的的选择, 在内容和样式之间的界限很模糊, 一些视觉技术很容易通过 CSS 的`background`来实现, 所以如果你使用的图片是你页面的主要内容, 那么就用应该使用 `<img>`.
 
-#### background-position
+### gradients
 
-by default,a background image will repeat itself indefinitely(无限期).you can specify where its **original position** ,by choosing a horizontal `x` value,and a vertical `y` value.
+CSS also allow to define **color gradients** as background images, in 2 different shapes:
+
+- `linear-gradient` for gradients in a single direction, in a rectangular shape
+- `radial-gradient` for gradients in all directions, in a circular shape
+
+```css
+body {
+  background-image: linear-gradient(white, grey);
+}
+```
+
+### background-position
+
+by default, a background image will repeat itself indefinitely. you can specify where its **original position**, by choosing a horizontal `x` value, and a vertical `y` value.
 
 - pixel values `px`
-- percentages,relative to the HTML element's dimensions
-- keywords like `center`,'left','bottom'...
+- percentages, relative to the HTML element's dimensions
+- keywords like `center`, `left`, `bottom`...
 
 ```css
 body {
@@ -790,98 +809,91 @@ body {
 }
 ```
 
-#### background-repeat
+### background-repeat
 
-by default,a background image will repeat itself indefinitely.you can choose to make it repeat only horizontally,only vertically,or not at all.
+by default, a background image will repeat itself indefinitely. you can choose to make it repeat only horizontally,only vertically, or not at all.
 
 ```css
 body {
   background-repeat: repeat-x;
-} /* only horizontally */
+}
 body {
   background-repeat: repeat-y;
-} /* only vertically */
+}
 body {
   background-repeat: no-repeat;
-} /* the background image will only appear once */
+}
 ```
 
-### CSS display
+---
 
-Changing the type of an HTML element  
-we've seen how there are mainly 2 types of HTML elements:block-level elements and inline ones.the `display` property allows to change the type of HTML element.
+## CSS display
 
-#### why not use an HTML inline element,like `<span>` then?
+Changing the type of an HTML element
 
-because you choose an HTML element for its meaning ,not its rendering.  
-因为你选择 HTML 元素主要是为了语义,而不是为了渲染样式的目的去选择特定的 HTML 元素,渲染交给 CSS 来做.
-Each `display` options have specific rendering behaviors:
+we've seen how there are mainly 2 types of HTML elements: block-level elements and inline ones. the `display` property allows to change the type of HTML element.
+
+### why not use an HTML inline element, like `<span>` then?
+
+because you choose an HTML element for its meaning, not its rendering.  
+因为你选择 HTML 元素主要是为了语义, 而不是为了渲染样式的目的去选择特定的 HTML 元素, 渲染交给 CSS 来做. Each `display` options have specific rendering behaviors:
 
 - `block` will take up the whole width available
 - `inline` will act as plain text
-- `inline-block`, as its name suggests,a compound(复合) of block and inline behavior
-- `list-item` is similar to `block` as it takes up the whole width available,but shows an additional bullet point
-- `table`,`table-row` and `table-cell` all have very specific,albeit(尽管) unexpected,behavior that allow more interesting layouts
+- `inline-block` as its name suggests, a compound(复合) of block and inline behavior
+- `list-item` is similar to `block` as it takes up the whole width available, but shows an additional bullet point
+- `table`,`table-row` and `table-cell` all have very specific, albeit(尽管) unexpected, behavior that allow more interesting layouts
 
-#### display:block
+### display:block
 
-This will turn any element into a **block** element.  
-This technique is often used on **links** in order to increase their clickable zone,which can be easily evaluated by setting a background color.  
-为了增加可点击的区域,设置背景色,这项技术通常用于超链接标签
+This will turn any element into a **block** element.
+
+This technique is often used on **links** in order to increase their clickable zone, which can be easily evaluated by setting a background color.
+
+为了增加可点击的区域, 设置背景色, 这项技术通常用于超链接标签.
 
 ```css
 .menu a {
   background: red;
   color: white;
-  display: blcok;
+  display: block;
 }
 ```
 
-#### display:inline
+### display:inline
 
 This turns any element into **inline** elements, as if they were just simple text.  
-it is often used to create `horizontal navigations`,where list items are semantically but not visually useful.
+it is often used to create `horizontal navigators`, where list items are semantically but not visually useful.
+
+```html
+<ul class="menu">
+  <li><a href="#"> Home</a></li>
+  <li><a href="#"> Features</a></li>
+  <li><a href="#"> About</a></li>
+</ul>
+```
 
 ```css
-<ul
-  class="menu"
-  > <li
-  > <a
-  href="#"
-  > Home</a
-  > </li
-  > <li
-  > <a
-  href="#"
-  > Features</a
-  > </li
-  > <li
-  > <a
-  href="#"
-  > About</a
-  > </li
-  > </ul
-  > .menu
-  li {
+.menu li {
   display: inline;
 }
 ```
 
-#### display:list-item
+### display:list-item
 
-The only HTML elements displayed as `list-item` are the **list-items `<li>`** but also the **definition descriptions `<dd>`** .  
-A list item is rendered with a bullet point (if an unordered list `<ul>`) or with a incremental number(if within an ordered list `<ol>`).  
-Because the rendering of these bullet points and numbers varies across browsers,and is also hard to style in CSS,the `display:list-item` rule
-is never used.Actually,it is common for `<li>`s to be rendered as `display:block` or `display:inline`,as they are more flexible to style.
+The only HTML elements displayed as `list-item` are the **list-items `<li>`** but also the **definition descriptions `<dd>`** .
 
-#### display:none
+A list item is rendered with a bullet point (if an unordered list `<ul>`) or with a incremental number(if within an ordered list `<ol>`).
 
-Applying `display:none;` to an HTML element removes it from your webpages.as if it never existed in your code.
+Because the rendering of these bullet points and numbers varies across browsers, and is also hard to style in CSS, the `display:list-item` rule is never used. Actually, it is common for `<li>`s to be rendered as `display:block` or `display:inline`, as they are more flexible to style.
 
-#### visibility:hidden
+### display:none
 
-The CSS property `visibility` is slightly similar to `dispaly`.Applying `visibility:hidden;`hidden an element from your page,but only turns it invisible:
-it still takes up the space it was supposed to.
+Applying `display:none;` to an HTML element removes it from your webpages. as if it never existed in your code.
+
+### visibility:hidden
+
+The CSS property `visibility` is slightly similar to `display`. Applying `visibility:hidden;` hidden an element from your page, but only turns it invisible: it still takes up the space it was supposed to.
 
 ```css
 .vis {
