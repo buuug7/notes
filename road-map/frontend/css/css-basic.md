@@ -928,7 +928,7 @@ By setting the dimensions of an element, it will remain fixed no matter the leng
 
 ### CSS overflow
 
-The `overflow` CSS property allows us to manage the case of content being longer than its container.  
+The `overflow` CSS property allows us to manage the case of content being longer than its container.
 
 The default value is `visible`: the content will be displayed anyway. By applying `overflow: hidden;`, your simply forbid any overflowing content to be seen.
 
@@ -941,17 +941,20 @@ The default value is `visible`: the content will be displayed anyway. By applyin
 
 ### CSS border
 
-The edges of the rectangle  
-Because an HTML elemnent is rendered as a rentangle, it can have up to 4 borders:top,bottom,left and right.your can set a border on all sides at once,or on each side individually.
+The edges of the rectangle
+
+Because an HTML element is rendered as a rectangle, it can have up to 4 borders: top, bottom, left and right. your can set a border on all sides at once, or on each side individually.
 
 #### border types and location
 
 A CSS border has 3 properties:
 
-- `border-color`defined by using a color
-- `border-style` can be solid,dashed,dotted...
+- `border-color` defined by using a color
+- `border-style` can be solid, dashed, dotted
 - `border-width` defined by using a size unit
-  It also has 4 possible sides:
+
+It also has 4 possible sides:
+
 - `border-top`
 - `border-bottom`
 - `border-left`
@@ -963,7 +966,8 @@ blockquote {
   border-style: solid;
   border-width: 1px;
 }
-/* The shorthand property border allows to define all 3 properties at once*/
+
+/* The shorthand property border allows to define all 3 properties at  */
 blockquote {
   border: 1px solid blue;
 }
@@ -985,10 +989,11 @@ blockquote {
 }
 ```
 
-### CSS padding
+---
 
-To give space to your inner content  
-The **padding** is the space between an element's border and its content.
+## CSS padding
+
+To give space to your inner content, The **padding** is the space between an element's border and its content.
 
 ```css
 blockquote {
@@ -1000,11 +1005,15 @@ blockquote {
 }
 ```
 
-### CSS margin
+---
 
-To push away your neighbours  
-If padding adds space inside an element(between its border and its content),margins adds space outside between and element and other elements.  
-如果说内边距是在一个元素的内部的边框跟它的内容之间添加空间的话,外边距就是在元素与元素之间添加空间
+## CSS margin
+
+To push away your neighbors
+
+If padding adds space inside an element(between its border and its content), margins adds space outside between and element and other elements.
+
+如果说内边距是在一个元素的内部的边框跟它的内容之间添加空间的话, 外边距就是在元素与元素之间添加空间
 
 ```css
 p {
@@ -1012,19 +1021,15 @@ p {
 }
 ```
 
-#### merging vertical margins
+### merging vertical margins
+
+```html
+<h1 class="title"> main title</h1>
+<h2 class="subtitle"> I am subtitle</h2
+```
 
 ```css
-<h1
-  class="title"
-  > main
-  title</h1
-  > <h2
-  class="subtitle"
-  > I
-  am
-  subtitle</h2
-  > .title {
+> .title {
   margin-bottom: 30px;
 }
 .subtitle {
@@ -1032,18 +1037,21 @@ p {
 }
 ```
 
-above example,the margin between the two elements will be `30px`,and not `45px`.That is because margins that "touch" each other will **merge** with each other.  
+above example, the margin between the two elements will be `30px`, not `45px`. That is because margins that "touch" each other will **merge** with each other.
+
 记着,相邻两个元素的外边距会重合.
 
-#### choosing between margin and padding
+### choosing between margin and padding
 
-It is padding in the first case,margin in the second.also,considering how margins can **merge**.
+depend on your choices.
 
-### CSS size shorhand wheel
+---
+
+## CSS size shorthand wheel
 
 A circle shorthand method
 
-#### setting 4 values
+### setting 4 values
 
 ```css
 blockquote {
@@ -1064,9 +1072,9 @@ blockquote {
 ```
 
 The order is `top`,`right`,`bottom` and `left`.  
-If you eneter 3 values(top/right/bottom),your omit setting `left`.As `right` is counterpart(对应),it will use its value.
+If you enter 3 values(top/right/bottom), your omit setting `left`. As `right` is counterpart(对应), it will use its value.
 
-#### Other properties that can act as "wheel" shorthand
+### Other properties that can act as "wheel" shorthand
 
 - `margin`
 - `padding`
@@ -1078,56 +1086,60 @@ Indeed,`border` is(in that order) a shorthand for:
 - `border-style`
 - `border-color`
 
-### CSS Positioning
+---
 
-Breaking the flow  
+## CSS Positioning
+
+Breaking the flow
+
 Even without applying any CSS,an HTML document is already styled.Its content follows a nature Flow,directly dependent on the HTML Structure.  
-尽管没有用 CSS 样式文件装饰,但是 HTML 文档已经是被默认样式装饰过的.它的内容跟随文档流,而方向是根据 HTML 结构决定的.  
+尽管没有用 CSS 样式文件装饰, 但是 HTML 文档已经是被默认样式装饰过的. 它的内容跟随文档流, 而方向是根据 HTML 结构决定的.  
 But webpages often want elements to be positioned in a certain way to accomodate(容纳) for particular design needs,which requires breaking the Flow.  
-为了设计的需求网页通常需要将某些元素定位到特定的地方,这样就不得不打破原有的文档流.
+为了设计的需求网页通常需要将某些元素定位到特定的地方, 这样就不得不打破原有的文档流.
 
 ### The Flow
 
-The default behavior of a webpage  
-An HTML document is a **living** document  
-Even without any CSS applied ,an HTML document already has its own rules:
+The default behavior of a webpage
 
-- **fluidity**:how the content adapts to browser dimensions 流动性
-- **ordering**:in which order elements appear 有序性
+An HTML document is a **living** document, Even without any CSS applied, an HTML document already has its own rules:
+
+- **fluidity**: how the content adapts to browser dimensions 流动性
+- **ordering**: in which order elements appear 有序性
 - **stacking**: how elements appear on top of each other 堆叠性
 
-#### Fluidity 流动性
+### Fluidity 流动性
 
-In HTML,the content is king.all `block` elements are fluid,they will naturally adapt their layout to accommodate their inner content:
+In HTML,the content is king. all `block` elements are fluid, they will naturally adapt their layout to accommodate their inner content:
 
 - **width:100%** a block will take up the whole width available
-- **word wrap** if a block's inline content doesn't fit on a single line,it will continue on a new line
+- **word wrap** if a block's inline content doesn't fit on a single line, it will continue on a new line
 - **height:auto** a block's height varies automatically to match its content's size
-- A **block** si by default in full width
+- A **block** is by default in full width
 - Its **height** is the height of its content
 
-#### Ordering 有序性
+### Ordering 有序性
 
-HTML elements are displayed in the order in which they are written in the code.First in the code -> first in the browser.  
+HTML elements are displayed in the order in which they are written in the code. First in the code -> first in the browser.
+
 Each block appears in the order in which they appear in the HTML code, from top to bottom.
 
 ```html
 <p>First</p>
 <p>Second</p>
-<p>Thrid</p>
+<p>Third</p>
 <p>Fourth</p>
-
-/* The result */ First Second Third Fourth
 ```
 
-#### Stacking
+### Stacking
 
-A browser has 3 dimensions.  
-Each HTML element belongs to an imaginary layer.  
-The stack order depends on how elements are nested:child elements appear on top of their respective(各自) parents.
+A browser has 3 dimensions.
+
+Each HTML element belongs to an imaginary layer.
+
+The stack order depends on how elements are nested: child elements appear on top of their respective(各自) parents.
 
 - Each nested element appears on top of its parent.
-- The deeper in the hierarchy,the higher in the stack.
+- The deeper in the hierarchy, the higher in the stack.
 
 ```html
 <div>
@@ -1136,9 +1148,9 @@ The stack order depends on how elements are nested:child elements appear on top 
 </div>
 ```
 
-`<strong>` tag is on top,after is `<p>`,and the last is `<div>`tag
+`<strong>` tag is on top, after is `<p>`, and the last is `<div>`tag
 
-#### Breaking the flow
+### Breaking the flow
 
 Several CSS properties allow to disrupt the Flow:
 
@@ -1149,74 +1161,86 @@ Several CSS properties allow to disrupt the Flow:
 
 ### CSS position
 
-Going manual  
-要手动  
-The CSS `position` property is versatile and powerful.It allow to set or alter an element's position.It has 4 possible value:
+Going manual 要手动
+
+The CSS `position` property is versatile and powerful. It allow to set or alter an element's position. It has 4 possible value:
 
 - `static`(default value)
 - `relative`
 - `absolute`
 - `fixed`
-  It's often used alongside the 4 coordinates properties:
 
-* `left`
-* `right`
-* `top`
-* `bottom`
+It's often used alongside the 4 coordinates properties:
 
-#### Static
+- `left`
+- `right`
+- `top`
+- `bottom`
 
-This is the default `position` value:static elements just follow the natural flow.They aren't afffected by any `left`,`right`,`top` or `bottom` value.
+### Static
 
-#### relative
+This is the default `position` value: static elements just follow the natural flow. They aren't affected by any `left`,`right`,`top` or `bottom` value.
 
-when the `position` is set to `relative` ,an element can move according to its current position.  
-当将一个元素设置为`position:relative`,它会脱离文档流,具体偏移的位置根据其`left`,`right`,`top` and `bottom`的值来决定,偏移是相对于其原始位置,其相邻的其他元素并未察觉到该元素已经偏移了
+### relative
 
-#### absolute
+when the `position` is set to `relative`, an element can move according to its current position.  
+当将一个元素设置为`position:relative`, 它会脱离文档流,具体偏移的位置根据其`left`, `right`, `top` and `bottom`的值来决定, 偏移是相对于其原始位置, 其相邻的其他元素并未察觉到该元素已经偏移了.
 
-when the `position` is set to `absolute`,an element can move according to the **first positioned ancestor**.  
-a **positioned** element is one whose `position` value is either `relative`,`absolute` or `fixed`.so unless the position is not set or static,an element is `positioned`.  
+### absolute
+
+when the `position` is set to `absolute`, an element can move according to the **first positioned ancestor**.  
+a **positioned** element is one whose `position` value is either `relative`, `absolute` or `fixed`. so unless the position is not set or static, an element is `positioned`.
+
 The characteristic of a positioned element is that it can act as a **reference point for its child elements**.  
-your can use `left`,`right`,`top` and `bottom` to move it in a position container.  
+your can use `left`,`right`,`top` and `bottom` to move it in a position container.
+
 **what happens if we set both left AND right?**
 
-- if the `width` is not set,applying `left:0` and `right:0` will stretch the element across the whole width.it is the equivalent of setting `left:0` and `width:100%`.
-- if the `width` is set , then the `right` value is discarded(忽略).
+- if the `width` is not set, applying `left:0` and `right:0` will stretch the element across the whole width. it is the equivalent of setting `left:0` and `width:100%`.
+- if the `width` is set, then the `right` value is discarded(忽略).
 
 #### fixed
 
-when the `position` is set to `fixed`,it acts like `absolute`:you can set left/right and top/bottom coordinates.  
-The only difference is that the **point of reference is the viewport** . it means that a fixed element won't scroll with the page; it is fixed on the screen.  
+when the `position` is set to `fixed`, it acts like `absolute`: you can set left/right and top/bottom coordinates.
+
+The only difference is that the **point of reference is the viewport**. it means that a fixed element won't scroll with the page; it is fixed on the screen.
+
 被设置为`position:fixed`的元素与设置`position:absolute`十分相似,只是它参考的是当前**视口**
 
 ### CSS float
 
-The most unpredictable(无法预知) property  
-Behind the word `float`,an endless sea of possibilities(and misbehaviors).  
-`float` is probably the most difficult CSS concept to grasp. Its behavior can be intriguing(有趣的),unexpected,and magical(神奇的).  
-Probably because ,of all positioning properties there are ,it is the one that most influences its surroundings.  
-In other words,applying a float not only modifies the element it's applied upon **but also alter its ancestors,siblings,descendants,and following elements.**  
+The most unpredictable(无法预知) property
+
+Behind the word `float`, an endless sea of possibilities(and misbehaviors).
+
+`float` is probably the most difficult CSS concept to grasp. Its behavior can be intriguing(有趣的), unexpected, and magical(神奇的).
+
+Probably because, of all positioning properties there are, it is the one that most influences its surroundings.
+
+In other words, applying a float not only modifies the element it's applied upon **but also alter its ancestors,siblings,descendants,and following elements.**
+
 `float` can only have one of these 3 values:
 
 - `left` and `right` turns an element into a `floating` one
 - `none` removes the floating aspect
 
-#### when to use float
+### when to use float
 
 The purpose of floating an element is to push it to one side and make the next wrap around it.
 
-#### float=block
+### float=block
 
-floating elements will have a `display:block` applied to them automatically,and will mostly behave like block:
+floating elements will have a `display:block` applied to them automatically, and will mostly behave like block:
 
 - you can set a specific height and width
-- if no height is set,the element's height is that of the line-height
-- if a `width:100%` is applied,it will look like a block-level element
+- if no height is set, the element's height is that of the line-height
+- if a `width:100%` is applied, it will look like a block-level element
 
-#### clearing the float
+### clearing the float
 
-The clear property allows to **push elements** after **the float**.it can only be applied on **\*block** elements.
+The clear property allows to **push elements** after **the float**. it can only be applied on **block** elements.
+
+---
 
 ### CSS pseudo-classes
 
