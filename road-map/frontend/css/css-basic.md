@@ -901,10 +901,13 @@ The CSS property `visibility` is slightly similar to `display`. Applying `visibi
 }
 ```
 
-### CSS height and width
+---
 
-Setting fixed dimensions to your rectangles  
-The dimensions(or height and width)of an element are dynamic,as they fluctuate in order to fit the content.
+## CSS height and width
+
+Setting fixed dimensions to your rectangles
+
+The dimensions(or height and width)of an element are dynamic, as they fluctuate in order to fit the content.
 
 ```css
 blockquote {
@@ -912,23 +915,29 @@ blockquote {
 }
 ```
 
-The blockquote will not take up the whole width available,but will remain 600px wide in any situation:
+The blockquote will not take up the whole width available, but will remain 600px wide in any situation:
 
 - if the browser window is less wide than 600px,it will show a horizontal scrolling bar
 - if the browser window is wider than 600px,the blockquote will stay 600px wide and not take up the whole space
-  because we have only set the width,the blockquote remians fluid in height,the height becomes the variable dimension to fit the blockquote's content.
 
-#### Setting both height and width
+because we have only set the width, the blockquote remians fluid in height,the height becomes the variable dimension to fit the blockquote's content.
 
-#### CSS overflow
+### Setting both height and width
+
+By setting the dimensions of an element, it will remain fixed no matter the length of its content.
+
+### CSS overflow
 
 The `overflow` CSS property allows us to manage the case of content being longer than its container.  
-The default value is `visible`:the content will be displayed anyway.By applying `overflow:hidden;`,your simply forbid any overflowing content to be seen.
 
-#### Beware of fixed dimensions
+The default value is `visible`: the content will be displayed anyway. By applying `overflow: hidden;`, your simply forbid any overflowing content to be seen.
+
+### Beware of fixed dimensions
 
 - make sure your content doesn't overflow
-- if it does,use `overflow:hidden` or `overflow:auto` to prevent your design from breaking
+- if it does, use `overflow:hidden` or `overflow:auto` to prevent your design from breaking
+
+---
 
 ### CSS border
 
