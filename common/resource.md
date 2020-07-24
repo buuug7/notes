@@ -1,6 +1,7 @@
 ## CSS
 
 - [https://css-tricks.com/](https://css-tricks.com/)
+- [debounce and throttle](https://css-tricks.com/debouncing-throttling-explained-examples/)
 
 ## 各种小抄
 
