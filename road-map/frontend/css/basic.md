@@ -1974,16 +1974,18 @@ p {
 
 like `translate()`, the `scale()` function has x and y versions: `scaleX()` and `scaleY()` to resize horizontally and vertically respectively.
 
-#### skew
+### skew
 
-The `skew()` function allows to distort(扭曲) an element,by dragging its sides along a line basically.  
-This transform function is rarely used ,as its effects are quite unpredictable(无法预知),and its results not necessarily appealing,nevertheless(然而),let's see how it works.  
-Like `scale()`,the `skew()`function accepts either:
+The `skew()` function allows to distort(扭曲) an element, by dragging its sides along a line basically.
 
-- 1 parameter:the element is distorted horizontally
-- 2 parameter : the first value distorts the element horizongtally,the second one _vertically_
+This transform function is rarely used, as its effects are quite unpredictable(无法预知), and its results not necessarily appealing, nevertheless(然而), let's see how it works.
 
-And like `rotate()`,`skew()` only accepts angle value like degrees `deg`.
+Like `scale()`, the `skew()`function accepts either:
+
+- 1 parameter: the element is distorted horizontally
+- 2 parameter: the first value distorts the element horizongtally, the second one *vertically*
+
+And like `rotate()`, `skew()` only accepts angle value like degrees `deg`.
 
 ```css
 @keyframes skewing {
@@ -2006,12 +2008,15 @@ And like `rotate()`,`skew()` only accepts angle value like degrees `deg`.
     transform: skew(0deg);
   }
 }
+
 p {
   animation: skewing 10s steps(1) 0s infinite;
 }
 ```
 
-#### 3d fuctions
+### 3d fuctions
+
+---
 
 TODO
 
