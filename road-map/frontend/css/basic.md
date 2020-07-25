@@ -920,7 +920,7 @@ The blockquote will not take up the whole width available, but will remain 600px
 - if the browser window is less wide than 600px,it will show a horizontal scrolling bar
 - if the browser window is wider than 600px,the blockquote will stay 600px wide and not take up the whole space
 
-because we have only set the width, the blockquote remians fluid in height,the height becomes the variable dimension to fit the blockquote's content.
+because we have only set the width, the blockquote remains fluid in height,the height becomes the variable dimension to fit the blockquote's content.
 
 ### Setting both height and width
 
@@ -1286,10 +1286,10 @@ This pseudo-class targets links that have been visited. by default, links are bl
 
 ```css
 a {
-  color: dogerblue;
+  color: blue;
 }
 a:visited {
-  color: rebeccapurple;
+  color: purple;
 }
 ```
 
@@ -1323,10 +1323,10 @@ These pseudo-classes are related to the HTML hierarchy. They target HTML element
 
 ```css
 li:first-child {
-  background: greenyellow;
+  background: red;
 }
 li:last-child {
-  background: lightsalmon;
+  background: green;
 }
 ```
 
@@ -1493,7 +1493,7 @@ by default, the shape will end at the `farthest corner`, you can either choose:
 - `farthest-side`
 - `farthest-corner`
 
-The different is both hard to grasp and to visualize,so i won't go into detail. Mozilla has a [good description of the different values](https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient#Values)
+The different is both hard to grasp and to visualize, so i won't go into detail. Mozilla has a [good description of the different values](https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient#Values)
 
 ```css
 div {
@@ -1544,40 +1544,48 @@ CSS gradients are powerful, considering how endless the options are. you can wri
 
 ---
 
-### CSS transitions
+## CSS transitions
 
-From one rule to another  
-CSS transitions allow to smoothly go from one element's state to another,how it works is that individual properties are animated from an initial to a final state.  
+From one rule to another
+
+CSS transitions allow to smoothly go from one element's state to another, how it works is that individual properties are animated from an initial to a final state.
+
 you can define:
 
-- `transition-property` :which properties to animate
+- `transition-property`: which properties to animate
 - `transition-duration`: how long the animation lasts
 - `transition-timing-function`: how the intermediate states are calculated
 - `transition-delay`: to start the animation after a certain amount of time
-  you can set each CSS property individually or use the shorthand version: `transition`,in that case only the duration is mandatory  
-  keep in mind that a transition is a special kind of animation.where there's only a start and an end state.
 
-#### quick example
+you can set each CSS property individually or use the shorthand version `transition`, in that case only the duration is mandatory keep in mind that a transition is a special kind of animation. where there's only a start and an end state.
+
+### quick example
 
 Transitions are often used on hover states.
 
+```html
+<a href="#" class="with-transition"> i am with transitioned</a>
+```
+
 ```css
-<a href="#" class="with-transition" > i am with transitioned</a > a {
+a {
   background: lightgrey;
   color: grey;
 }
+
 a:hover {
   background: yellow;
   color: red;
 }
-a.with-transiton {
+
+a.with-transition {
   transition: 1s;
 }
 ```
 
-#### transition-duration
+### transition-duration
 
-A transition's duration is the only CSS property needed to create a transition. it can either be set in seconds `2s` or millisenconds `100ms`
+A transition's duration is the only CSS property needed to create a transition. it can either be set in seconds `2s` or milliseconds `100ms`
 
 ```css
 a {
@@ -1588,18 +1596,17 @@ a:hover {
   background: yellow;
   color: red;
 }
-a.with-fast-transiton {
+a.with-fast-transition {
   transition: 0.5s;
 }
-a.with-slow-transiton {
+a.with-slow-transition {
   transition: 2s;
 }
 ```
 
-#### transition-property
+### transition-property
 
-only 1/3 of CSS properties can be animated.Mozillia has a [complete list](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties)  
-by default,the `transition-property` property has a value of `all`,which simply means it will animate all possible properties.you can decide to only animate 1 or several properties.
+only 1/3 of CSS properties can be animated. Mozillia has a [complete list](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties), by default, the `transition-property` property has a value of `all`, which simply means it will animate all possible properties. you can decide to only animate 1 or several properties.
 
 ```css
 a {
@@ -1610,25 +1617,26 @@ a:hover {
   background: yellow;
   color: red;
 }
-a.with-background-transiton {
+a.with-background-transition {
   transition-property: background;
   transition: 0.5s;
 }
-a.with-all-transiton {
+a.with-all-transition {
   transition: 2s;
 }
 ```
 
-#### transition-timing-function
+### transition-timing-function
 
-The timing function determines how each property's value is calculated during the transition.by default ,the transition is easd:it accelerates at the start and slows at the end.
+The timing function determines how each property's value is calculated during the transition. by default, the transition is ease:it accelerates at the start and slows at the end.
 
-- `ease` slow start,fast middle,slow end
+- `ease` slow start, fast middle, slow end
 - `linear` constant speed
-- 'ease in' slow start,fast end
-- `ease out` fast start,slow end
-- `ease in out` like ease,but with more pronounced acceleration/decelaration curves(曲线)
-  if you want to visualize how other timing functions work,check out this [Easing Functions Cheat Sheet](http://easings.net/)
+- `ease in` slow start, fast end
+- `ease out` fast start, slow end
+- `ease in out` like ease, but with more pronounced acceleration/deceleration curves(曲线)
+
+if you want to visualize how other timing functions work, check out this [Easing Functions Cheat Sheet](http://easings.net/)
 
 ```css
 div {
@@ -1642,31 +1650,20 @@ div:hover {
 }
 ```
 
-#### transition-delay
+### transition-delay
 
-A delay will define how long the transitions has to wait before actually starting.like `transition-duration` you can either use seconds `s` or milliseconds `ms`.
+A delay will define how long the transitions has to wait before actually starting. like `transition-duration` you can either use seconds `s` or milliseconds `ms`.
+
+```html
+<div>
+  <p>hover the grey area</p>
+  <a href=""> without any delay</a>
+  <a href="" class="with-delay"> with a second delay</a>
+</div>
+```
 
 ```css
-<div
-  > <p
-  > hover
-  the
-  grey
-  area</p
-  > <a
-  href=""
-  > without
-  any
-  delay</a
-  > <a
-  href=""
-  class="with-delay"
-  > with
-  a
-  second
-  delay</a
-  > </div
-  > a {
+a {
   background: blue;
   color: white;
   transition: all 1s;
@@ -1679,31 +1676,32 @@ a.with-delay {
 }
 ```
 
-### CSS animations
+---
+
+## CSS animations
 
 a set sequence of CSS Rules  
-We hava just seen how CSS transitions are just a way to animate CSS properties between a starting state,and an end state.  
-so CSS transitions are specific kind of animations,where:
+We have just seen how CSS transitions are just a way to animate CSS properties between a starting state, and an end state. so CSS transitions are specific kind of animations, where:
 
-- there is only 2 states:start and end
+- there is only 2 states: start and end
 - the animation doesn't loop
 - the intermediate states are only controlled by the timing function
 
-**CSS animations are like mini movies whre you are the director giving out instructions(CSS rules) to your actors (HTML elements) for different scenes(keyframs).**
+**CSS animations are like mini movies where you are the director giving out instructions(CSS rules) to your actors (HTML elements) for different scenes(keyframes).**
 
-#### Animation properties
+### Animation properties
 
-like the `transition` property,`animation` is a shorthand property for several others:
+like the `transition` property, `animation` is a shorthand property for several others:
 
-- **name** : the animation's name
-- **duration** : how long the transiton lasts
-- **timing-function** : how the intermediate states are calculated
-- **delay** : to start the animation after a certain amount of time
-- **iteration-count** : how many times the animation should be performed
-- **direction** : if the animation should be reversed or not
-- **fill-mode** : what styles are applied before the animation starts and after it ends
+- **name**: the animation's name
+- **duration**: how long the transition lasts
+- **timing-function**: how the intermediate states are calculated
+- **delay**: to start the animation after a certain amount of time
+- **iteration-count**: how many times the animation should be performed
+- **direction**: if the animation should be reversed or not
+- **fill-mode**: what styles are applied before the animation starts and after it ends
 
-#### quick example
+### quick example
 
 To animate a loading button,you could write a bouncing animation:
 
@@ -1718,31 +1716,29 @@ To animate a loading button,you could write a bouncing animation:
     box-shadow: 0 50px 50 px rgba(0, 0, 0, 0.1);
   }
 }
-.loading-buttom {
+.loading-button {
   animation: bouncing 0.5s cubic-bezier(0.1, 0.25, 0.1, 1) 0s infinite alternate
     both;
 }
 ```
 
-- name :bouncing
-- duration 0.5s
-- timing-function:cubic-bezier(0.1,0.25,0.1,1)
+- name: bouncing
+- duration: 0.5s
+- timing-function: cubic-bezier(0.1, 0.25, 0.1, 1)
 - delay: 0s
-- iteration-count:infinite
+- iteration-count: infinite
 - direction: alternate(goes back and forth)
-- fill-mode:both
+- fill-mode: both
 
-#### @keyframes
+### @keyframes
 
-before applying animation to HTML elements,you need to **write animations using keyframes**.basically ,keyframes are each **intermediate step** in an animation.
-They are defined using **percentages**.
+before applying animation to HTML elements, you need to **write animations using keyframes**. basically, keyframes are each **intermediate step** in an animation. They are defined using **percentages**.
 
 - **6%** is the first step of the animation
 - **50** is the step halfway through the animation
 - **100%** is the last step
-  you can also use the keywords `from` and `to` instead of **0%** and **100%** respectively.  
-  Each keyframes is **CSS rule**,meaning that you can write CSS properties just like usuall.  
-  To define an animation,just write the keyword `@keyframes` followed by it **name**.
+
+you can also use the keywords `from` and `to` instead of **0%** and **100%** respectively. Each keyframes is **CSS rule**, meaning that you can write CSS properties just like usually. To define an animation, just write the keyword `@keyframes` followed by it **name**.
 
 ```css
 @keyframes around {
@@ -1772,12 +1768,12 @@ p {
 }
 ```
 
-#### animation-name
+### animation-name
 
 The animation name is used at least twice
 
 - when writing the animation using `@keyframes`
-- when using the animation usting the `animation-name` property (or with the animation shorthand)
+- when using the animation using the `animation-name` property (or with the animation shorthand)
 
 ```css
 @keyframes whatever {
@@ -1788,7 +1784,7 @@ The animation name is used at least twice
 }
 ```
 
-#### animation-duration
+### animation-duration
 
 `animation-duration` can be set in seconds `1s` or milliseconds `200ms`
 
@@ -1798,11 +1794,11 @@ The animation name is used at least twice
 }
 ```
 
-it default to `0s`,which means no animation at alll.
+it default to `0s`, which means no animation at all.
 
-#### animation-timing-function
+### animation-timing-function
 
-just like `transition timing-functions`,animation timing functions can use keywords like `linear`,`ease-out`,or be defined using custom `cubic bezier` functions.
+just like `transition timing-functions`, animation timing functions can use keywords like `linear`, `ease-out`, or be defined using custom `cubic bezier` functions.
 
 ```css
 .selector {
@@ -1810,12 +1806,11 @@ just like `transition timing-functions`,animation timing functions can use keywo
 }
 ```
 
-it default to `ease`
+it default to `ease`.
 
-# animation-delay
+### animation-delay
 
-just like `transiton delays` ,animation delays can be set in seonds `1s` or milliseconds `200ms`. it defaults to `0s` which means no delay at all,it's useful when triggering
-multiple animations in sequence.
+just like `transition delays`, animation delays can be set in seconds `1s` or milliseconds `200ms`. it defaults to `0s` which means no delay at all, it's useful when triggering multiple animations in sequence.
 
 ```css
 .a,
@@ -1831,9 +1826,9 @@ multiple animations in sequence.
 }
 ```
 
-#### animation-iteration-count
+### animation-iteration-count
 
-by default,animations are only played once(value of `1`),you can set 3 types of values:
+by default,animations are only played once(value of `1`), you can set 3 types of values:
 
 - integers like `2` or `3`
 - non-integers like `0.5` which will play only half the animation
@@ -1845,19 +1840,20 @@ by default,animations are only played once(value of `1`),you can set 3 types of 
 }
 ```
 
-#### animation-direction
+### animation-direction
 
 The animation's direction defines in which order the keyframes are read
 
-- **normal** : starts at `0%` ,ends at `100%` ,starts at `0%` again
-- **reverse** : starts at `100%`,ends at `0%`,starts at `100%` again
-- **alternate** : starts at `0%`,goes to `100%`,goes to `0%`
-- **alternate-reverse** : starts at `100%` ,gotes to `0%` ,goes to `100%`
+- **normal**: starts at `0%`, ends at `100%`, starts at `0%` again
+- **reverse**: starts at `100%`, ends at `0%`, starts at `100%` again
+- **alternate**: starts at `0%`, goes to `100%`, goes to `0%`
+- **alternate-reverse**: starts at `100%`, goes to `0%`, goes to `100%`
 
-#### animation-fill-mode
+### animation-fill-mode
 
-an animation's fill mode defines what happens before the animation starts and after it ends.
-the detail you can find [here](http://marksheet.io/css-animations.html#animation-fill-mode)
+an animation's fill mode defines what happens before the animation starts and after it ends. the detail you can find [here](http://marksheet.io/css-animations.html#animation-fill-mode)
+
+---
 
 ### CSS transform
 
