@@ -1242,7 +1242,7 @@ The clear property allows to **push elements** after **the float**. it can only 
 
 ---
 
-### CSS pseudo-classes
+## CSS pseudo-classes
 
 Enhancing the CSS selectors
 
@@ -1253,21 +1253,20 @@ Enhancing the CSS selectors
 All of these selectors can have pseudo-classes attached to them. A pseudo-class:
 
 - defines a particular state of the element
-- is a keyword that stats with a colon`:`
+- is a keyword that starts with a colon `:`
 
-#### Syntax
+### Syntax
 
-A psedo-class cant't exist on its own. it must be attached to a selector. The pseudo-class will only define a particular state of that selecor.  
-The syntax looks like this:
+A pseudo-class cannot exist on its own. it must be attached to a selector. The pseudo-class will only define a particular state of that selector. The syntax looks like this:
 
 ```css
-.selecotr:pseudo-class {
+.selector:pseudo-class {
 }
 ```
 
-#### :hover
+### :hover
 
-For example,a common pseudo-class used is `:hover`,which will apply a CSS style when the targeted element is **hover**.
+For example, a common pseudo-class used is `:hover`, which will apply a CSS style when the targeted element is **hover**.
 
 ```css
 a {
@@ -1279,11 +1278,11 @@ a:hover {
 ```
 
 The first line defines how all `<a>` elements should look like(blue).  
-The second line defines how `<a>` should look like when **hovered**(blue).
+The second line defines how `<a>` should look like when **hovered**(red).
 
-#### :visited
+### :visited
 
-This pseudo-class targets links that have been visited.by default ,links are blue and turn purple when you are visited them.Google results work like that.
+This pseudo-class targets links that have been visited. by default, links are blue and turn purple when you are visited them. Google results work like that.
 
 ```css
 a {
@@ -1294,9 +1293,9 @@ a:visited {
 }
 ```
 
-#### :focus
+### :focus
 
-This pseudo-class happens when an HTML element is **in focus**.This is particularly useful for HTML `inputs`.
+This pseudo-class happens when an HTML element is **in focus**. This is particularly useful for HTML `inputs`.
 
 ```css
 .form-input {
@@ -1309,24 +1308,31 @@ This pseudo-class happens when an HTML element is **in focus**.This is particula
 }
 ```
 
-#### :first-child and :last-child
+### :first-child and :last-child
 
-These pseudo-classes are related to the HTML hierarchy.They target HTML elements depending on the order in which they appear in the code.
+These pseudo-classes are related to the HTML hierarchy. They target HTML elements depending on the order in which they appear in the code.
 
-```
+```html
 <ul>
   <li>one</li>
   <li>two</li>
   <li>three</li>
   <li>four</li>
 </ul>
-li:first-child{background:greenyellow;}
-li:last-child{background:lightsalmon;}
 ```
 
-#### :nth-child
+```css
+li:first-child {
+  background: greenyellow;
+}
+li:last-child {
+  background: lightsalmon;
+}
+```
 
-This pseudo-class is a more global version of `:first-child` and `:last-child`.with `:nth:child`,your can calculate which child element you want to target.
+### :nth-child
+
+This pseudo-class is a more global version of `:first-child` and `:last-child`. with `:nth:child`, your can calculate which child element you want to target.
 
 ```css
 /* target the second element */
@@ -1336,16 +1342,15 @@ li:nth-child(2) {
 
 /* odd and even  */
 li:nth-child(odd) {
-  backgrond: gold;
+  background: gold;
 }
 li:nth-child(even) {
-  backgrond: green;
+  background: green;
 }
 ```
 
 The n iterator  
-The most powerful aspect of `:nth-child` is how it can target elements based upon caculations by using the `n` keyword.  
-The `n` value increments from **zero 0** to the **number** of child elements present.
+The most powerful aspect of `:nth-child` is how it can target elements based upon calculations by using the `n` keyword. The `n` value increments from **zero 0** to the **number** of child elements present.
 
 ```css
 /* every third element */
@@ -1353,33 +1358,36 @@ li:nth-child(3n) {
   background: red;
 }
 
-n+1
+/* n+1 */
 /* what if you want to target the 1st item and every third item  */
-li:nth-child(3n+1) {
+li:nth-child(3n + 1) {
   background: red;
 }
 ```
 
-#### Other pseudo-classes
+### Other pseudo-classes
 
-There are dozens of pseudo-classes availables,some of them for very specific states.The most used ones are the one's we've covered.
+There are dozens of pseudo-classes available, some of them for very specific states. The most used ones are the one's we've covered.
 
-### CSS gradients
+---
 
-From one color to another  
-When we talk about gradients in CSS ,we talk about gradients of colors.  
-There are 2 types of gradients in CSS:
+## CSS gradients
 
-- **linear**:colors go from point to another,in a straight line
-- **radials**:colors go from the center of a circle to its edges,in all directions
-  A gradient is considered a `background image` and must be used with the according property.
+From one color to another
 
-#### linear-gradient
+When we talk about gradients in CSS ,we talk about gradients of colors. There are 2 types of gradients in CSS:
 
-The syntax for linear gradients is quite complex,but the basic idea is to define:
+- **linear**: colors go from point to another, in a straight line
+- **radials**: colors go from the center of a circle to its edges, in all directions
+
+A gradient is considered a `background image` and must be used with the according property.
+
+### linear-gradient
+
+The syntax for linear gradients is quite complex ,but the basic idea is to define:
 
 - which color you want
-- where these colors must appear along the axis(at the start,middle,end,etc)
+- where these colors must appear along the axis(at the start, middle, end, etc)
 - in which direction the gradient must go
 
 ```css
@@ -1390,18 +1398,18 @@ div {
 
 by default:
 
-- the **direction** is **vertical**,from top to bottom
+- the **direction** is **vertical**, from top to bottom
 - the **first** color is at the **start**(top)
 - the **second** color is at the **end**(bottom)
 
-##### change the direction
+#### change the direction
 
-if to top to bottom direction doesn't suit you ,you can alter it by either:
+if to top to bottom direction doesn't suit you, you can alter it by either:
 
-- defining the destination of the gradient,with keywords like **to left top**
+- defining the destination of the gradient, with keywords like **to left top**
+- defining a special angel in degree like `45deg`
 
-* defining a spacific angel in degree like `45deg`
-  the direction must be set before the colors:
+the direction must be set before the colors:
 
 ```css
 div {
@@ -1409,16 +1417,16 @@ div {
 }
 ```
 
-if you want a more specific angle,you can use a value in degrees:
+if you want a more specific angle, you can use a value in degrees:
 
-- `0deg` in the defualt value,from top to bottom
-- `20deg` is lightly diagonal,going clockwise
-- `90deg` is like 3pm,from right to left.
+- `0deg` in the default value, from top to bottom
+- `20deg` is lightly diagonal, going clockwise
+- `90deg` is like 3pm, from right to left.
 - `180deg` is from bottom to top
 
-##### Adding more colors
+#### Adding more colors
 
-you can insert as manay colors as you want. they will be equlaly distributed along the axis:
+you can insert as many colors as you want. they will be equally distributed along the axis:
 
 - **2 colors**:0% and 100%
 - **3 colors**:0%,50% and 100%
@@ -1430,9 +1438,9 @@ div {
 }
 ```
 
-##### setting specific color stops
+#### setting specific color stops
 
-if you don't want colors to equally distributed ,you can set specific color stop positions,using either percentages `%` or pixels `px`
+if you don't want colors to equally distributed, you can set specific color stop positions, using either percentages `%` or pixels `px`
 
 ```css
 div {
@@ -1442,17 +1450,16 @@ div {
 
 In this setup:
 
-- `orange` has no stop position,so it default to zero `0%`
-- `grey` is closer to the top,at `10%` instead of `50%`
+- `orange` has no stop position, so it default to zero `0%`
+- `grey` is closer to the top, at `10%` instead of `50%`
 
-#### radial-gradient
+### radial-gradient
 
-while linear gradients follow a single-line axis,**radial gradients** spread out in all directions.Their syntax is fairly similar to linear ones,as they both have **color stops**.
-but instead of specifying a direction you need to spcify:
+while linear gradients follow a single-line axis, **radial gradients** spread out in all directions. Their syntax is fairly similar to linear ones, as they both have **color stops**. but instead of specifying a direction you need to specify:
 
-- a shape:either a circle or an ellipse
-- a starting point:which will be the center of the circle/ellipse
-- an end point : where the edge of the circle/ellipse wiil be
+- a shape: either a circle or an ellipse
+- a starting point: which will be the center of the circle/ellipse
+- an end point: where the edge of the circle/ellipse will be
 
 ```css
 div {
@@ -1467,7 +1474,7 @@ by default :
 - the first color starts at the center
 - the last color ends at the farthest corner
 
-##### start position
+#### start position
 
 the **start position** works like `background positions`,you set it with the `at` keyword.
 
@@ -1477,15 +1484,16 @@ div {
 }
 ```
 
-##### end position
+#### end position
 
-by default ,the shape wiil end at the `farthest corner`,you can either choose:
+by default, the shape will end at the `farthest corner`, you can either choose:
 
 - `closest-side`
 - `closest-corner`
 - `farthest-side`
 - `farthest-corner`
-  The different is both hard to grasp and to visualize,so i won't go into detail. Mozilla has a [good description of the different values](https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient#Values)
+
+The different is both hard to grasp and to visualize,so i won't go into detail. Mozilla has a [good description of the different values](https://developer.mozilla.org/en-US/docs/Web/CSS/radial-gradient#Values)
 
 ```css
 div {
@@ -1497,7 +1505,7 @@ div:hover {
 }
 ```
 
-##### fixed size
+#### fixed size
 
 instead of setting both start and end position,you can just set **specific dimensions**
 
@@ -1508,8 +1516,7 @@ div {
 }
 ```
 
-CSS gradients are powerful,considering how endless the options are.  
-you can write some buttons with CSS gradient.
+CSS gradients are powerful, considering how endless the options are. you can write some buttons with CSS gradient.
 
 ```css
 .button-grey {
@@ -1534,6 +1541,8 @@ you can write some buttons with CSS gradient.
   background-image: linear-gradient(#97cc76, #8bcc62);
 }
 ```
+
+---
 
 ### CSS transitions
 
