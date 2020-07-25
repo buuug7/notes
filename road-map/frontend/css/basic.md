@@ -1855,34 +1855,35 @@ an animation's fill mode defines what happens before the animation starts and af
 
 ---
 
-### CSS transform
+## CSS transform
 
-Fashioning unique shapes  
+Fashioning unique shapes
+
 CSS transforms are a collection of functions that allow to shape elements in particular ways:
 
-- **translate**: moves the elment along up to 3 axis (x,y and z)
+- **translate**: moves the element along up to 3 axis (x, y and z)
 - **rotate**: moves the element around a central point
 - **scale**: resize the element
 - **skew**: distorts(扭曲) the element
 
-#### transform properties
+### transform properties
 
 There are 3 CSS transform properties available:
 
-- `transform` define which transform function to use (translate,rotate,scale)
+- `transform` define which transform function to use (translate, rotate, scale)
 - `transform-origin` allows to modify the origin point of a transformation (works like `background positions`)
 - `transform-style` is for 3d settings
 
-##### Doesn't break the flow
+### Doesn't break the flow
 
-to prevent unexpected behavior,transformed elements do not affect the flow, whether rotated,scaled or translated,the won't affect other elements.
+to prevent unexpected behavior, transformed elements do not affect the flow, whether rotated, scaled or translated, the won't affect other elements.
 
-#### translate
+### translate
 
-The `translate()` function allows to move an element across the plane(on the x and y axis).it accepts either:
+The `translate()` function allows to move an element across the plane(on the x and y axis). it accepts either:
 
-- 1 parameter:moves the element along the `x` axis
-- 2 parameter:first value is for the `x` axis,second for the `y` one
+- 1 parameter: moves the element along the `x` axis
+- 2 parameter: first value is for the `x` axis, second for the `y` one
 
 ```css
 @keyframes translating {
@@ -1907,28 +1908,35 @@ p {
 }
 ```
 
-Remember:`transform` is the CSS property,`translate()` is the CSS value attached to that property (and also happens to be a function).  
+Remember:`transform` is the CSS property, `translate()` is the CSS value attached to that property (and also happens to be a function).  
 you can use `translateX()` and `translateY()` to only move your element along the `x` and `y` axis respectively.
 
-#### rotate
+### rotate
 
-The `rotate()` function allows to make an element revolve around a fixed point.By default ,it revolves around the element's center.  
-`rotate()` accepts only 1 parameter ,which is an angle value defined in degrees `deg`,gradians `grad`,radians `rad` or turns `turn`(which 1 turn being equivalent to a full circle).
+The `rotate()` function allows to make an element revolve around a fixed point. By default, it revolves around the element's center.
 
-```
-@keyframes rotating{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(360deg);}
+`rotate()` accepts only 1 parameter, which is an angle value defined in degrees `deg`, gradians `grad`, radians `rad` or turns `turn`(which 1 turn being equivalent to a full circle).
+
+```css
+@keyframes rotating {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
-p{animation:rotating 4s linear infinite;}
+p {
+  animation: rotating 4s linear infinite;
+}
 ```
 
-#### scale
+### scale
 
-The `scale()` function allows to **resize an element**. It can either expand(扩大) or shrink(缩小) it.The function accepts either:
+The `scale()` function allows to **resize an element**. It can either expand(扩大) or shrink(缩小) it. The function accepts either:
 
-- 1 parameter:the element is resized uniformily in height and width
-- 2 parameter :the first value resizes the element horizontally,the second one vetically
+- 1 parameter: the element is resized uniformily in height and width
+- 2 parameter: the first value resizes the element horizontally, the second one vertically
 
 The range of possible value is :
 
@@ -1964,7 +1972,7 @@ p {
 }
 ```
 
-like `translate()`,the `scale()` function has x and y versions:`scaleX()` and `scaleY()` to resize horizontally and vertically respectively.
+like `translate()`, the `scale()` function has x and y versions: `scaleX()` and `scaleY()` to resize horizontally and vertically respectively.
 
 #### skew
 
