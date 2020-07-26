@@ -724,7 +724,7 @@ Only the `x` and `y` values are required. The `blur` defaults to `0`, while the 
 
 ```css
 h1 {
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0, 2);
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 ```
 
@@ -1063,11 +1063,11 @@ blockquote {
 }
 /* it equal as below */
 blockquote {
-  padding: 20px, 20px, 20px, 20px;
+  padding: 20px 20px 20px 20px;
 }
 /* it equal as below */
 blockquote {
-  padding: 20px, 20px, 20px;
+  padding: 20px 20px 20px;
 }
 ```
 
@@ -1713,7 +1713,7 @@ To animate a loading button,you could write a bouncing animation:
   }
   100% {
     bottom: 50px;
-    box-shadow: 0 50px 50 px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1);
   }
 }
 .loading-button {
@@ -1794,7 +1794,7 @@ The animation name is used at least twice
 }
 ```
 
-it default to `0s`, which means no animation at all.
+it defaults to `0s`, which means no animation at all.
 
 ### animation-timing-function
 
@@ -1806,7 +1806,7 @@ just like `transition timing-functions`, animation timing functions can use keyw
 }
 ```
 
-it default to `ease`.
+it defaults to `ease`.
 
 ### animation-delay
 
@@ -1836,7 +1836,6 @@ by default,animations are only played once(value of `1`), you can set 3 types of
 
 ```css
 .selector {
-  animation-duration: infinite;
 }
 ```
 
@@ -1983,7 +1982,7 @@ This transform function is rarely used, as its effects are quite unpredictable(�
 Like `scale()`, the `skew()`function accepts either:
 
 - 1 parameter: the element is distorted horizontally
-- 2 parameter: the first value distorts the element horizongtally, the second one *vertically*
+- 2 parameter: the first value distorts the element horizongtally, the second one _vertically_
 
 And like `rotate()`, `skew()` only accepts angle value like degrees `deg`.
 
@@ -2014,47 +2013,61 @@ p {
 }
 ```
 
-### 3d fuctions
+### 3d functions
+
+3d version of `translate()`, which is `translate3d()`, and performs transformation along 3 dimensions, which means it includes the **z axis** as well(and as such, a standalone `translateZ()` function exists as well).
+
+The **z** parameter basically make the element move closer and further, whether we increase or decrease its value.
+
+```css
+@keyframes zooming {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 200px);
+  }
+}
+```
 
 ---
 
-TODO
+## CSS responsiveness
 
-### CSS responsiveness
+Designing for every screen.
 
-Designing for every screen  
-The WEB is meant to provide a platform to share information easily across the internet,no matter which device the information is viewed on. while the only
-disparaties between computers accessing the Web consisted mostly upon different screen resolutions,the rapid growth of mobile devices has changed the requirements:
-a website needs to be accessible on mobile in order to be relevant.  
-what options are available to handle mobile devices?  
-1 Not doing anything and let mobile users zoom in to read your website.
-2 create a second website,like [m.facebook.com](http://m.facebook.com),and direct mobile devices to that website
-3 use responsive web design
+The Web is meant to provide a platform to share information easily across the internet, no matter which device the information is viewed on. while the only disparities between computers accessing the Web consisted mostly upon different screen resolutions, the rapid growth of mobile devices has changed the requirements: a website needs to be accessible on mobile in order to be relevant.
 
-#### device ,browser ,viewport
+what options are available to handle mobile devices?
 
-before going further,we need to define some terms:
+1. Not doing anything and let mobile users zoom in to read your website.
+2. create a second website, like [m.facebook.com](http://m.facebook.com), and direct mobile devices to that website
+3. use responsive web design
 
-- **device** the hardware used:smartphone,tablet,pc or laptop
-- **browser** the software running:Firefox,Google Chrome,Safari,Internet Exploer
+### device, browser, viewport
+
+before going further, we need to define some terms:
+
+- **device** the hardware used: smartphone, tablet, pc or laptop
+- **browser** the software running: Firefox, Google Chrome, Safari, Internet Explorer
 - **viewport** the region within the browser that actually displays the webpage.
 
-![device/browser/viewport](http://marksheet.io/images/device-browser-viewport.png)
+![device/browser/viewport](./device-browser-viewport.png)
 
-#### Responsive web design
+### Responsive web design
 
-The idea behind **responsive web design** is to make your website adapt to fit to any device.it does so by targetting devices with your CSS and applying certain styles on these devices only.  
-Responsiveness relies upon the properties of either the device or the viewport.For example:
+The idea behind **responsive web design** is to make your website adapt to fit to any device.it does so by targetting devices with your CSS and applying certain styles on these devices only. Responsiveness relies upon the properties of either the device or the viewport. For example:
 
 - how wide is the viewport?
 - how high is the viewport?
 - how is the viewport oriented(朝向)?
 - what is the device's resolution(分辨率)?
 
-depending on the answer to these questions,a responsive CSS will apply different or additonal CSS rules.  
-Up until now,every part of our CSS was used by every device that accessed out website.Responsive web design allow us to apply certain styles in certain cases.
+depending on the answer to these questions, a responsive CSS will apply different or additional CSS rules.
 
-#### media queries
+Up until now, every part of our CSS was used by every device that accessed out website. Responsive web design allow us to apply certain styles in certain cases.
+
+### media queries
 
 We need to write blocks in our CSS that will only be used by devices that match that block's criterias(标准). these blocks are called **media queries**.
 
@@ -2072,46 +2085,48 @@ body {
 }
 ```
 
-here,the default text size is `14px`,but to accomdate for larger viewports,the text size is set to `16px` if the viewport is wider than 1200 pixels.
+here, the default text size is `14px`, but to accommodate for larger viewports,the text size is set to `16px` if the viewport is wider than 1200 pixels.
 
-##### several parameters
+### several parameters
 
 you can require **2 conditions** for a media query to be activated.
 
-```csscss
-body{font-size:18px;}
-@media (min-width:1000px;) and (orientation:landscape){
-  body{font-size:20px;}
+```css
+body {
+  font-size: 18px;
+}
+@media (min-width: 1000px) and (orientation: landscape) {
+  body {
+    font-size: 20px;
+  }
 }
 ```
 
-##### serveral CSS rules
+### several CSS rules
 
 you can include as many CSS rules as you want in the media query.
 
-#### parameters
+### parameters
 
-Media queries require parameters which act like conditions that need to be filled in order for the media query to be activated.  
-By writing `@media (min-width:1200px)`,we tell the browser to read this block only if the viewport is wider than 1200px;
+Media queries require parameters which act like conditions that need to be filled in order for the media query to be activated. By writing `@media (min-width:1200px)`, we tell the browser to read this block only if the viewport is wider than 1200px;
 
-##### width
+#### width
 
-The `width` parameter is the most used one in responsive web design.Thsi comes from the fact that webpages are read vetically.
+The `width` parameter is the most used one in responsive web design. this comes from the fact that webpages are read vertically.
 
-##### height
+#### height
 
-The `height` parameter works like the width one,expect it performs its checks on the viewports's height.you can use `min-height` and `max-height`.
-it's raraly used , as websites are mainly scrollable vertically.
+The `height` parameter works like the width one, expect it performs its checks on the viewports's height. you can use `min-height` and `max-height`. it's rarely used, as websites are mainly scrollable vertically.
 
-##### orientation
+#### orientation
 
-The orientation parameter can detect if the viewport is in either of the follwong modes:
+The orientation parameter can detect if the viewport is in either of the following modes:
 
 - **landscape**: the viewport is wider than it is tall
 - **portrait**: the viewport is taller than it is wide
 
 ```css
-@media (orientation: protrait) {
+@media (orientation: portrait) {
   /* for vertical viewports */
 }
 @media (orientation: landscape) {
@@ -2119,17 +2134,16 @@ The orientation parameter can detect if the viewport is in either of the follwon
 }
 ```
 
-Althought it's mostly used for tablets and smartphones,be aware that even on a widescreen monitor,the viewport can be in portrait if its width is smaller than its height.
+Although it's mostly used for tablets and smartphones, be aware that even on a widescreen monitor, the viewport can be in portrait if its width is smaller than its height.
 
-##### resolution
+#### resolution
 
-The `resolution` parameter is relevant to the `device's pixel density`,and can be expressed in either dots per inch `dpi` or dots per centimeter `dpcm`.  
-it depends on:
+The `resolution` parameter is relevant to the `device's pixel density`, and can be expressed in either dots per inch `dpi` or dots per centimeter `dpcm`. it depends on:
 
-- what your resolution is (like 1440x900,1024x768 etc.)
-- what your screen's diagonal is (like 11,14,21 etc.)
+- what your resolution is (like 1440x900, 1024x768 etc.)
+- what your screen's diagonal is (like 11, 14, 21 etc.)
 
-the pixel density basically tells how **crisp** your display is (the higher the dpi,the crisper the display).
+the pixel density basically tells how **crisp** your display is (the higher the dpi, the crisper the display).
 
 ```css
 @media (min-resolution: 300dpi) {
@@ -2137,17 +2151,18 @@ the pixel density basically tells how **crisp** your display is (the higher the 
 }
 ```
 
-Desktop screens usually have a pixel density around `100` dpi,smartphones on the other hand have an incredible range of dpi,for example:
+Desktop screens usually have a pixel density around `100` dpi, smartphones on the other hand have an incredible range of dpi, for example:
 
-- Nokia Lumia 640 :332dpi
-- Apple Iphone 6+ : 401dpi
-- Google Nexus 5 : 445dpi
-- HTC One :469dpi
-- Samsung Galaxy S6 : 577dpi
+- Apple iPhone 6+: 401dpi
+- Google Nexus 5: 445dpi
+- HTC One: 469dpi
+- Samsung Galaxy S6: 577dpi
 
-What role does CSS play here? well ,higher resolution screens wiil rend text very clearly:individual pixels become hardly noticable,and letters look absolutely smooth.  
-The problem is with **images** on Retina displays for example.it's a long topic,so read this [CSS Techniques for Retina](https://www.sitepoint.com/css-techniques-for-retina-displays/)  
-A Use case would be to provide a default background image for every device,and apply **high resolution background images** on Retina displays.
+What role does CSS play here? well, higher resolution screens will rend text very clearly: individual pixels become hardly noticeable and letters look absolutely smooth.
+
+The problem is with **images** on Retina displays for example. it's a long topic, so read this [CSS Techniques for Retina](https://www.sitepoint.com/css-techniques-for-retina-displays/)
+
+A Use case would be to provide a default background image for every device, and apply **high resolution background images** on Retina displays.
 
 ```css
 /* 40x40 logo */
@@ -2163,6 +2178,242 @@ A Use case would be to provide a default background image for every device,and a
 }
 ```
 
-keep in mind that the **background size must be set**.Otherwise,the `@2x` Retina image would take twice the space.
+keep in mind that the **background size must be set**. Otherwise, the `@2x` Retina image would take twice the space.
 
-> The `@2x` suffix is just Apple's notation for Retina images,and has been adoped as the de facto default notation in CSS
+> The `@2x` suffix is just Apple's notation for Retina images,and has been adopted as the de facto default notation in CSS.
+
+### mobile-first or desktop-first
+
+A mobile-first CSS would use `min-width` media queries in order to apply special rules for large viewports:
+
+```css
+@media (min-width: 768px) {
+  /* Rules for tablets and bigger viewports */
+}
+
+@media (min-width: 992px) {
+  /* Rules for laptops, small desktop screens and bigger viewports */
+}
+
+@media (min-width: 1200px) {
+  /* Rules for large desktop screen only */
+}
+```
+
+A desktop-first approach starts with styles for large screens and `max-width` media queries in order to apply special rules for large viewports.
+
+```css
+@media (max-width: 1199px) {
+  /* rules for laptops, small desktop screens, and smaller viewports */
+}
+
+@media (max-width: 991px) {
+  /* rules for tablets and smaller viewports */
+}
+
+@media (max-width: 767px) {
+  /* rules for smartphones only */
+}
+```
+
+---
+
+## scss
+
+If your have found yourself having to repeat code throughout your CSS, replace several instance of the same value, or lose yourself in a mess of selectors, CSS preprocessor are for you.
+
+Preprocessor are, as their name suggest, tools that have their own language and will generate regular CSS file.
+
+### Sass vs SCSS
+
+- Sass itself(Syntactically Awesome StyleSheets) in `.sass` files
+- SCSS(Sassy on CSS) in `.scss` files, which is something halfway between regular CSS and Sass
+
+Remember that:
+
+- Sass is the name of the preprocessor
+- SCSS is easy learn
+- all resources on the internet mention Sass, not SCSS
+- all feature are available for both syntaxes
+- everything in SCSS is available in Sass
+
+### why SCSS first
+
+- readability: the syntax is very similar to CSS
+- learning curve: it only and a few additional features on top of CSS
+- compatibility: a CSS file is a valid SCSS file
+- resources: lots of online articles to read and open source libraries to use
+- expandability: it's easy to go from SCSS to Sass
+
+### features
+
+- variable
+- nesting
+- mixin: custom functions that can accept parameters and will prevent useless repetitions
+- extensions: an easy way to inherit the same properties of another selector
+- operators: adding/subtract/multiply/divide values, like `960px / 4` or `$space * 2`
+
+### DRY code
+
+- variable prevent repeating values
+- nesting prevent repeating selectors
+- mixins and extensions prevent repeating properties
+
+### variables
+
+you need to prepend a variable with a `$` dollar sign:
+
+```scss
+$yellow: #fce473;
+
+body {
+  background-color: $yellow;
+}
+```
+
+### Sass nesting
+
+In Sass, nesting CSS rules allows to define hierarchy selectors:
+
+```scss
+.title {
+  strong {
+  }
+  em {
+  }
+}
+```
+
+to prevent rewriting the same parent selector, use the `&` instead
+
+```scss
+.title {
+  &:hover {
+    color: purple;
+  }
+}
+```
+
+it will generate:
+
+```css
+.title:hover {
+  color: purple;
+}
+```
+
+### mixins
+
+When you find yourself writing the same code over and over again, it feels like Sass mixins might help your out.
+
+Sass mixins are CSS functions that you can include whenever you want.
+
+```scss
+@mixin overlay() {
+  bottom: 0;
+  left: 0;
+
+  right: 0;
+  top: 0;
+  position: absolute;
+}
+```
+
+you can reference this mixin in any CSS rule by using `@include`
+
+```scss
+.modal-background {
+  @include overlay();
+  background: black;
+  opacity: 0.9;
+}
+```
+
+As usual, this `.scss` will be compiled into `.css`.
+
+```css
+.modal-background {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background: black;
+  opacity: 0.9;
+}
+```
+
+### mixin with parameters
+
+Because mixins are functions and because you might want to alter the output, mixins can accept parameters.
+
+```scss
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+.box {
+  @include border-radius(3px);
+}
+```
+
+output:
+
+```css
+.box {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+}
+```
+
+Optional parameters: if you want a parameter to have a default value while providing the possibility to set one occasionally, you can create optional parameters:
+
+```scss
+@mixin my-font-size($size: 12px) {
+  font-size: $size;
+}
+```
+
+### Sass extend
+
+A Sass `@extend` allow inheriting CSS properties from another selector:
+
+```scss
+.dark-theme {
+  background: black;
+  color: #fff;
+}
+
+.my-theme {
+  @extend .dark-theme;
+}
+```
+
+Difference with mixins:
+
+- The `@extend` rule doesn't have parameter. mixin do.
+- The `@extend` rule does combine selectors. mixin don't.
+
+A Sass `@extend` is more efficient, as it only writes the common properties once.
+
+### Placeholders
+
+Well, you might be thinking “The .small-uppercase isn’t semantic! I could use it in my HTML!”?
+
+You’re right, and that’s why placeholders exist in Sass.
+
+```scss
+%common-theme{
+  color: white;
+  background: black;
+}
+
+.my-theme {
+  @extend %common-theme;
+}
+```
+
+When in doubt, use mixins. They generate more CSS lines and are less elegant than extend/placeholders, but they are straightforward.
