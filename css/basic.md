@@ -2052,7 +2052,7 @@ before going further, we need to define some terms:
 - **browser** the software running: Firefox, Google Chrome, Safari, Internet Explorer
 - **viewport** the region within the browser that actually displays the webpage.
 
-![device/browser/viewport](./device-browser-viewport.png)
+![device/browser/viewport](device-browser-viewport.png)
 
 ### Responsive web design
 

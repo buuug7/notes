@@ -12,7 +12,7 @@
 
 一个域名由及部分组成, 它们被点分隔, 不同于中文, 需要从右往左阅读.
 
-![structure](./structure.png)
+![structure](structure.png)
 
 TLD(Top-Level Domain, 顶级域名), 顶级域名可以告诉用户域名所提供的服务类型, 最通用的顶级域名为(.com, .org, .net).
 
