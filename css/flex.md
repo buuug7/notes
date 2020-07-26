@@ -23,7 +23,7 @@
 
 ```css
 .container {
-  flex-direction: row|row-reverse|column|column-reverse;
+  /*flex-direction: row|row-reverse|column|column-reverse;*/
 }
 ```
 
@@ -38,7 +38,7 @@
 
 ```css
 .container {
-  flex-warp: nowrap|wrap|warp-reverse;
+  /*flex-warp: nowrap|wrap|warp-reverse;*/
 }
 ```
 
@@ -52,7 +52,7 @@
 
 ```css
 .container {
-  flex-flow: < "flex-direction" > || < "flex-wrap" >;
+  /*flex-flow: < "flex-direction" > || < "flex-wrap" >;*/
 }
 ```
 
@@ -62,7 +62,7 @@
 
 ```css
 .container {
-  justify-content: flex-start|flex-end|center|space-between|space-around;
+  /*justify-content: flex-start|flex-end|center|space-between|space-around;*/
 }
 ```
 
@@ -78,7 +78,7 @@
 
 ```css
 .container {
-  align-items: flex-start|flex-end|center|baseline|stretch;
+  /*align-items: flex-start|flex-end|center|baseline|stretch;*/
 }
 ```
 
@@ -94,7 +94,7 @@
 
 ```css
 .container {
-  align-content: flex-start|flex-end|center|space-between|space-aroud|stretch;
+  /*align-content: flex-start|flex-end|center|space-between|space-aroud|stretch;*/
 }
 ```
 
@@ -113,7 +113,7 @@
 
 ```css
 .item {
-  order: <integer>;
+  /*order: <integer>;*/
 }
 ```
 
@@ -122,7 +122,9 @@
 该属性定义了项目放大比例,默认为 0,即如果存在剩余空间,也不放大.
 
 ```css
-flex-grow: <number>;
+.item {
+  /*flex-grow: <number>;*/
+}
 ```
 
 #### flex-shrink
@@ -131,7 +133,7 @@ flex-grow: <number>;
 
 ```css
 .item {
-  flex-shrink: <number>;
+  /*flex-shrink: <number>;*/
 }
 ```
 
@@ -141,7 +143,7 @@ flex-grow: <number>;
 
 ```css
 .item {
-  flex-basis: <length>|auto;
+  /*flex-basis: <length>|auto;*/
 }
 ```
 
@@ -151,7 +153,7 @@ flex-grow: <number>;
 
 ```css
 .item {
-  flex: none|[< "flex-grow" > < "flex-shrink" >? || < "flex-basis" >];
+  /*flex: none|[< "flex-grow" > < "flex-shrink" >? || < "flex-basis" >];*/
 }
 ```
 
@@ -163,6 +165,6 @@ flex-grow: <number>;
 
 ```css
 .item {
-  align-self: auto|flex-start|flex-end|center|baseline|stretch;
+  /*align-self: auto|flex-start|flex-end|center|baseline|stretch;*/
 }
 ```
