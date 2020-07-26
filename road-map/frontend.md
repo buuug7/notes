@@ -18,3 +18,4 @@
 
 + [basic](../css/basic.md)
 + [sass-guidelines](../css/sass-guidelines.md)
++ [pseudo-selector](../css/pseudo-selector.md)
