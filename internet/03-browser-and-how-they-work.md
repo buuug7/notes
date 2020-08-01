@@ -26,7 +26,7 @@ A browser is a group of structured codes which together performs a series of tas
 The below image shows the main components of a web browser:
 下面图像显示了浏览器的主要组件:
 
-![browser-main-component](./browser-main-component.png)
+![browser-main-component](browser-main-component.png)
 
 1. The User Interface: The user interface is the space where User interacts with the browser. It includes the address bar, back and next buttons, home button, refresh and stop, bookmark option, etc. Every other part, except the window where requested web page is displayed, comes under it.
 
@@ -67,7 +67,7 @@ The networking layer will start sending the contents of the requested documents 
 
 网络层将请求的文档内容以8KBs大小分块然后发送给渲染引擎
 
-![rendering engine](./render-engin-process.png)
+![rendering engine](render-engin-process.png)
 
 The rendering engine parses the chunks of HTML document and convert the elements to DOM nodes in a tree called the “content tree” or the “DOM tree”. It also parses both the external CSS files as well in style elements.
 
