@@ -2,23 +2,23 @@
  *
  * @param sortedArray
  * @param seekElement
- * @param compareCallback
+ * @param compare
  */
 export function binarySearch(
   sortedArray: any[],
   seekElement: any,
-  compareCallback: (a, b) => number
+  compare: (a, b) => number
 ) {
   let startIndex = 0;
   let endIndex = sortedArray.length - 1;
 
   while (startIndex <= endIndex) {
     const middleIndex = Math.floor((endIndex - startIndex) / 2) + startIndex;
-    if (compareCallback(sortedArray[middleIndex], seekElement) === 0) {
+    if (compare(sortedArray[middleIndex], seekElement) === 0) {
       return middleIndex;
     }
 
-    if (compareCallback(sortedArray[middleIndex], seekElement) > 0) {
+    if (compare(sortedArray[middleIndex], seekElement) > 0) {
       endIndex = middleIndex - 1;
     } else {
       startIndex = middleIndex + 1;
