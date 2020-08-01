@@ -1,0 +1,28 @@
+{
+  "name": "notes",
+  "version": "1.0.0",
+  "description": "自己收集的一些非常有用的 web 开发的相关技巧知识, 以备自己以后查看, 也可方便别人学习查看, 都是 web 开发当中频繁用到的, 并且有详细的例子, 陆续更新当中.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/buuug7/notes.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/buuug7/notes/issues"
+  },
+  "homepage": "https://github.com/buuug7/notes#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-typescript": "^7.10.4",
+    "@types/jest": "^26.0.8",
+    "babel-jest": "^26.2.2",
+    "jest": "^26.2.2"
+  }
+}
