@@ -24,5 +24,6 @@
     "@types/jest": "^26.0.8",
     "babel-jest": "^26.2.2",
     "jest": "^26.2.2"
-  }
+  },
+  "type": "module"
 }
