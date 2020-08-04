@@ -10,5 +10,3 @@ export function quickSort(originArray, compare = (a, b) => a - b) {
     return quickSort(less).concat([pivot]).concat(quickSort(greater));
   }
 }
-
-console.log(quickSort([2, 3, 1, 5, 4]));

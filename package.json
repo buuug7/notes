@@ -18,12 +18,9 @@
   },
   "homepage": "https://github.com/buuug7/notes#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-typescript": "^7.10.4",
     "@types/jest": "^26.0.8",
-    "babel-jest": "^26.2.2",
-    "jest": "^26.2.2"
-  },
-  "type": "module"
+    "jest": "^26.2.2",
+    "ts-jest": "^26.1.4",
+    "typescript": "^3.9.7"
+  }
 }
