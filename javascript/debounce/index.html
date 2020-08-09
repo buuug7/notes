@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Document</title>
+</head>
+<body>
+<input type="text" name="name" id="name"/>
+
+<script>
+
+  function debounce(fn, wait) {
+    var time = null;
+    return function() {
+      var _this = this;
+      if (time) {
+        clearTimeout(time);
+      }
+      var arg = arguments;
+      time = setTimeout(function() {
+        fn.apply(_this, arg);
+      }, wait);
+    };
+  }
+
+
+  const handle = debounce((e) => {
+    console.log(e.target.value);
+  }, 1000);
+
+  document.querySelector('#name').addEventListener('input', handle);
+</script>
+</body>
+</html>
