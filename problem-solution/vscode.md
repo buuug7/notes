@@ -1,4 +1,19 @@
-# vscode
+# vscode shortcut
+
+## general
+
+- show command palette
+  - windows `ctrl+shift+p` or `F1`
+- quick open, go to file
+  - windows `ctrl+p`
+- new window/instance
+  - windows `ctrl+shift+n`
+- close window/instance
+  - windows `ctrl+shift+w`
+- user setting
+  - windows `ctrl+,`
+- keyboard shortcut
+  - windows `ctrl+k ctrl+s`
 
 ## 左侧菜单
 
@@ -9,7 +24,8 @@
   - mac `shift + command + f`
   - windows `ctrl + shift + f`
 - Source Control
-  - mac `shift + control + g`
+  - mac `ctrl + shift + g`
+  - windows `ctrl + shift + g g`
 - Run
   - mac `shift + command + d`
   - windows `ctrl + shift + d`
@@ -20,12 +36,20 @@
 ## 多个光标编辑
 
 - 区域选择，使用 `shift + up|down|left|right`
-- 使用`option + command + up|down` 在上面或者下面插入一个新的光标
-- 选中下一个出现的字符串 `control + g`, 选中所有出现的字符串`control + command + g`
+- 在上面或者下面插入一个新的光标
+  - mac `option + command + up|down`
+  - windows `ctrl + alt + up|down`
+- 选中下一个出现的字符串
+  - mac `ctrl + g`
+  - windows `alt + j`
+- 选中所有出现的字符串
+  - mac `ctrl + cmd + g`
+  - windows `ctrl + alt + shift + j`
 
 ## intelliSence
 
-使用 `control + space` 触发提示
+- mac `ctrl + space`
+- windows `ctrl + space`
 
 ## 行操作
 
