@@ -2,11 +2,20 @@
 
 ## 左侧菜单
 
-- Explore `shift + command + e`
-- Search `shift + command + f`
-- Source Control `shift + control + g`
-- Run `shift + command + d`
-- Extensions `shift + command + x`
+- Explore
+  - mac `shift + command + e`
+  - windows `ctrl + shift + e`
+- Search
+  - mac `shift + command + f`
+  - windows `ctrl + shift + f`
+- Source Control
+  - mac `shift + control + g`
+- Run
+  - mac `shift + command + d`
+  - windows `ctrl + shift + d`
+- Extensions
+  - mac `shift + command + x`
+  - windows `ctrl + shift + x`
 
 ## 多个光标编辑
 
