@@ -64,6 +64,16 @@ URLs 指定我们想要通信的主机，具体执行什么动作由 HTTP Verbs 
 
 ## URLs (统一资源定位符)请求消息是通过 Uniform Resource Locators(URLs)发送的
 
+格式 `<protocol>://<login>:<password>@<host>:<port>/<path>?<request parameters>#<anchor>`
+
+- `<protocol>` 协议, 例如 HTTP 跟 HTTPS
+- `<login>` and `<password>` 在有些协议里面需要认证信息
+- `<host>` 域名或者 IP 地址
+- `<port>` 端口号, HTTP 默认为 80, HTTPS 默认为 443
+- `<path>` 特定文件或者页面的地址路径
+- `<request parameters>` 提交到服务器的参数
+- `<anchor>` 允许你连接到页面或者文档的特定部分
+
 ```
 http://www.domain.com:1234/path/to/resource?a=b&x=y
 protocol = http
@@ -138,7 +148,7 @@ type/subtype
 
 ## HTTP 访问控制（CORS）
 
-跨域资源共享(Cross-origin resource sharing, 缩写CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器 让运行在一个 origin (domain) 上的 Web 应用被准许访问来自不同源服务器上的指定的资源。当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，资源会发起一个跨域 HTTP 请求。
+跨域资源共享(Cross-origin resource sharing, 缩写 CORS) 是一种机制，它使用额外的 HTTP 头来告诉浏览器 让运行在一个 origin (domain) 上的 Web 应用被准许访问来自不同源服务器上的指定的资源。当一个资源从与该资源本身所在的服务器不同的域、协议或端口请求一个资源时，资源会发起一个跨域 HTTP 请求。
 
 出于安全原因，浏览器限制从脚本内发起的跨源 HTTP 请求。 例如，XMLHttpRequest 和 Fetch API 遵循同源策略。 这意味着使用这些 API 的 Web 应用程序只能从加载应用程序的同一个域请求 HTTP 资源，除非响应报文包含了正确 CORS 响应头。
 
