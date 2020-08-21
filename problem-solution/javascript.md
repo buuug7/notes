@@ -1,16 +1,44 @@
-## javascript related
+# javascript related
 
-#### 为什么有些函数前面有个`+function(){}`或者`!function(){}`
+## fetch 下载的例子
+
+```javascript
+fetch(url, myInit).then((res) => {
+  const contentType = res.headers.get("Content-Type");
+  // 根据返回contentType，处理是json，还是下载文件
+  if (contentType.toLowerCase() == "application/json;charset=utf-8") {
+    res.json().then((data) => {
+      alert(data.success);
+    });
+  } else if (
+    contentType.toLowerCase() ==
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  ) {
+    res.blob().then((blob) => {
+      // 创建一个a标签，用于下载
+      var a = document.createElement("a");
+      var url = window.URL.createObjectURL(blob);
+      var fileName = "被下载的文件.txt";
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
+});
+```
+
+## 为什么有些函数前面有个`+function(){}`或者`!function(){}`
 
 参考[stackoverflow](https://stackoverflow.com/questions/5827290/javascript-function-leading-bang-syntax)
 
-#### 关于 var
+## 关于 var
 
 在函数内部声明变量不适用 var 就会变成全局变量
 
-#### javascript 获取 dom api
+## javascript 获取 dom api
 
-```
+```javascript
 // 可以往控制台写东西
 console.log();
 
@@ -18,72 +46,124 @@ console.log();
 document.getElementById("元素的id");
 
 //获取元素的属性:
-document.getElementById("元素的id").getAttribute("属性名")
+document.getElementById("元素的id").getAttribute("属性名");
 
 // 获取元素样式的属性:
-document.getElementById("table1").style.style的属性名
+document.getElementById("table1").style.style的属性名;
 
 //获取表单输入框的值:
-document.getElementById("表单属性名").value
-
+document.getElementById("表单属性名").value;
 ```
 
-#### javascript 弹出一个窗口
+## javascript 弹出一个窗口
 
-```
-/* openURL 暂时未用到 */
+```javascript
+// openURL 暂时未用到
 function openURL(url) {
-  window.open(url, 'Share', 'width=550,height=400,toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0');
+  window.open(
+    url,
+    "Share",
+    "width=550,height=400,toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0"
+  );
 }
 ```
 
-#### Javascript 获取时间
+## Javascript 获取时间
 
-```
+```javascript
 var tick = new Date();
-var month = (tick.getMonth()+1).toString().replace(/^(\d)$/, "0\$1");
-var day = tick.getDate().toString().replace(/^(\d)$/, "0\$1");
-var h = tick.getHours().toString().replace(/^(\d)$/, "0\$1");
-var m = tick.getMinutes().toString().replace(/^(\d)$/, "0\$1");
+var month = (tick.getMonth() + 1).toString().replace(/^(\d)$/, "0$1");
+var day = tick
+  .getDate()
+  .toString()
+  .replace(/^(\d)$/, "0$1");
+var h = tick
+  .getHours()
+  .toString()
+  .replace(/^(\d)$/, "0$1");
+var m = tick
+  .getMinutes()
+  .toString()
+  .replace(/^(\d)$/, "0$1");
 document.write(month + "-" + day + " " + h + ":" + m);
 ```
 
-#### 罗马数字跟阿拉伯数字相互转换
+## 罗马数字跟阿拉伯数字相互转换
 
-```
-function romanize (num) {
- if (!+num)
-  return false;
- var    digits = String(+num).split(""),
-  key = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM",
-         "","X","XX","XXX","XL","L","LX","LXX","LXXX","XC",
-         "","I","II","III","IV","V","VI","VII","VIII","IX"],
-  roman = "",
-  i = 3;
- while (i--)
-  roman = (key[+digits.pop() + (i * 10)] || "") + roman;
- return Array(+digits.join("") + 1).join("M") + roman;
+```javascript
+function romanize(num) {
+  if (!+num) return false;
+  var digits = String(+num).split(""),
+    key = [
+      "",
+      "C",
+      "CC",
+      "CCC",
+      "CD",
+      "D",
+      "DC",
+      "DCC",
+      "DCCC",
+      "CM",
+      "",
+      "X",
+      "XX",
+      "XXX",
+      "XL",
+      "L",
+      "LX",
+      "LXX",
+      "LXXX",
+      "XC",
+      "",
+      "I",
+      "II",
+      "III",
+      "IV",
+      "V",
+      "VI",
+      "VII",
+      "VIII",
+      "IX",
+    ],
+    roman = "",
+    i = 3;
+  while (i--) roman = (key[+digits.pop() + i * 10] || "") + roman;
+  return Array(+digits.join("") + 1).join("M") + roman;
 }
 
-function deromanize (str) {
- var    str = str.toUpperCase(),
-  validator = /^M*(?:D?C{0,3}|C[MD])(?:L?X{0,3}|X[CL])(?:V?I{0,3}|I[XV])$/,
-  token = /[MDLV]|C[MD]?|X[CL]?|I[XV]?/g,
-  key = {M:1000,CM:900,D:500,CD:400,C:100,XC:90,L:50,XL:40,X:10,IX:9,V:5,IV:4,I:1},
-  num = 0, m;
- if (!(str && validator.test(str)))
-  return false;
- while (m = token.exec(str))
-  num += key[m[0]];
- return num;
+function deromanize(str) {
+  var str = str.toUpperCase(),
+    validator = /^M*(?:D?C{0,3}|C[MD])(?:L?X{0,3}|X[CL])(?:V?I{0,3}|I[XV])$/,
+    token = /[MDLV]|C[MD]?|X[CL]?|I[XV]?/g,
+    key = {
+      M: 1000,
+      CM: 900,
+      D: 500,
+      CD: 400,
+      C: 100,
+      XC: 90,
+      L: 50,
+      XL: 40,
+      X: 10,
+      IX: 9,
+      V: 5,
+      IV: 4,
+      I: 1,
+    },
+    num = 0,
+    m;
+  if (!(str && validator.test(str))) return false;
+  while ((m = token.exec(str))) num += key[m[0]];
+  return num;
 }
 ```
 
-#### Javascript 数组常用 api
+## Javascript 数组常用 api
 
 数组就是一组相关数据的集合,不过 js 中的数组长度一般不指定,可以随意增加长度
 
-```
+```javascript
 //push()方法返回值为压入数组(堆栈)后的新数组长度
 //pop()方法返回值为其取出元素的内容
 
@@ -123,22 +203,21 @@ function deromanize (str) {
 //reduceRight从右侧遍历,参数同上
 ```
 
-#### Javascript 事件委托
+## Javascript 事件委托
 
-```
+```javascript
 //首先你的错误是由于闭包造成的，虽然修改后可以避免错误，但我强烈建议你使用事件委托完成事件绑定。代码可以修改如下：
-function test(){
-   var doc=document.getElementsByTagName('body')[0];
-   doc.onclick=function(e){
-      e=e || window.event;
-      var tagChild=e.srcElement||e.target;
-      if(tagChild.nodeType==1 && tagChild.tagName.toLowerCase()=="p"){
-alert(tagChild.id);
-      }
-      tagChild=null;
-   }
+function test() {
+  var doc = document.getElementsByTagName("body")[0];
+  doc.onclick = function (e) {
+    e = e || window.event;
+    var tagChild = e.srcElement || e.target;
+    if (tagChild.nodeType == 1 && tagChild.tagName.toLowerCase() == "p") {
+      alert(tagChild.id);
+    }
+    tagChild = null;
+  };
 }
-
 ```
 
 优点：
@@ -147,7 +226,7 @@ alert(tagChild.id);
 - 减少使用 for 循环绑定事件，同样提高了性能
 - 性能提高了，你的代码质量就会得到认可
 
-#### 执行环境 闭包
+## 执行环境 闭包
 
 每个函数都有自己的执行环境,这些环境彼此独立,每发生一次函数调用,脚本引擎就需要预先为函数创建一个 执行环境
 
@@ -171,7 +250,7 @@ alert(tagChild.id);
 - 2-->通过调用 A 把 B 的引用返回来,赋值给其他作用域里德变量 c
 - 3-->通过 c 执行 B
 
-#### 函数相关
+## 函数相关
 
 - 查看函数的形参个数:调用函数名.length 即可
 - 查看函数的实际参数个数:arguments.length 即可
@@ -182,7 +261,7 @@ alert(tagChild.id);
 - 闭包:被返回来的内部函数以及它的作用域链,就叫做一个闭包
 - 每一个函数都有一个执行环境
 
-#### Javascript 回收机制
+## Javascript 回收机制
 
 js 垃圾回收机制:
 
@@ -191,7 +270,7 @@ js 垃圾回收机制:
 
 一个局部的变量在函数执行结束之后才被释放,所以在遍历的时候用匿名函数加上小括号运行可以解决变量立即释放的问题,以致不在其执行结束后仍旧可以访问的问题
 
-#### 数据类型
+## 数据类型
 
 javascript 是一种弱类型的脚本语言,其变量根据赋值来决定数据类型,在方法内部声明的变量为局部变量,在方法外部声明的变量为全局变量,或者在方法内部不加 var 时声明的变量也为全局变量  
 typeof 关键字通常用来判断变量的数据类型
@@ -208,17 +287,17 @@ typeof 关键字通常用来判断变量的数据类型
 
 - 引用数据类型,Object 类型,Array 类型等等..
 
-```
+```javascript
 var arr=[];
 var obj={};
 var date=new Date[];
 ```
 
-#### javascript 去除重复
+## javascript 去除重复
 
 ```javascript
 // 第一种：也是最笨的吧
-Array.prototype.unique1 = function() {
+Array.prototype.unique1 = function () {
   var r = new Array();
   label: for (var i = 0, n = this.length; i < n; i++) {
     for (var x = 0, y = r.length; x < y; x++) {
@@ -232,7 +311,7 @@ Array.prototype.unique1 = function() {
 };
 
 // 第二种：这个正则天书一样
-Array.prototype.unique2 = function() {
+Array.prototype.unique2 = function () {
   return this.sort()
     .join(",,")
     .replace(/(,|^)([^,]+)(,,\2)+(,|$)/g, "$1$2$4")
@@ -242,7 +321,7 @@ Array.prototype.unique2 = function() {
 };
 
 // 第三种：使用对象的【hasOwnProperty】方法
-Array.prototype.unique3 = function() {
+Array.prototype.unique3 = function () {
   var temp = {},
     len = this.length;
   for (var i = 0; i < len; i++) {
@@ -261,7 +340,7 @@ Array.prototype.unique3 = function() {
 };
 
 // 第四种：先排序，前项比后项。这个方法挺简单的，但也实用
-Array.prototype.unique4 = function() {
+Array.prototype.unique4 = function () {
   var temp = new Array();
   this.sort();
   for (i = 0; i < this.length; i++) {
@@ -274,7 +353,7 @@ Array.prototype.unique4 = function() {
 };
 
 // 下面是以前经常用的，效率也很好。有点想hash表的感觉
-Array.prototype.unique5 = function() {
+Array.prototype.unique5 = function () {
   var res = [],
     hash = {};
   for (var i = 0, elem; (elem = this[i]) != null; i++) {
@@ -287,7 +366,7 @@ Array.prototype.unique5 = function() {
 };
 ```
 
-#### 对象函数闭包原型
+## 对象函数闭包原型
 
 - javascript 中一切都是对象
 
