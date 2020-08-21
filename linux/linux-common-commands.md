@@ -9,8 +9,9 @@ kill -9 pid
 ## 查看端口占用情况
 
 ```bash
-netstat -anp |grep 端口号
+netstat -anp | grep 端口号
 netstat -nultp 该命令是查看当前所有已经使用的端口情
+// 用该命令也可以查看当前服务器是不是有用户访问
 ```
 
 ## 查看各种发行版方式
