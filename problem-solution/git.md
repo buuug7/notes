@@ -1,5 +1,43 @@
 ## git related
 
+## git 合并两个不同的远程仓库分支
+
+```
+1. 下载远程仓库1
+git clone 远程仓库地址
+2.下载远程仓库2
+git remote add mySecond + 第二个远程仓库地址
+3.把mySecond远程仓库数据拉取到本地
+git fetch mySecond
+4.在本地创建local分支并拉取mySecond代码到local，自动切换到local
+git checkout -b local mySecond/master
+可以执行下面的命令查看当前分支
+git branch -a
+由于我们需要把local分支合并到第一个仓库中去，我们再切换到仓库1下的master分支
+git checkout master
+注：为了保险，你可以在仓库1下创建本地分支，然后再合并，命令如下：
+git checkout -b mergeBranch origin/master
+
+5.合并代码
+git merge local
+代码可能出现冲突，然后解决完冲突,上传代码
+
+复制代码
+git push origin master
+
+//如果执行第四步第二种保险的操作
+git push origin mergeBranch
+
+To http:....git
+
+ * [new branch]      mergeBranch -> mergeBranch
+复制代码
+fatal: refusing to merge unrelated histories 错误
+出现原因是因为两个分支没有取得联系，在操作命令后面加
+
+--allow-unrelated-histories
+
+```
 
 #### git 拉去远程分支
 
