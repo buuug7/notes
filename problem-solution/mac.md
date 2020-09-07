@@ -1,3 +1,12 @@
+# mac
+
+## mac 下查看.mobileprovision 文件及钥匙串中证书.cer 文件
+
+```
+ security cms -D -i meamcert2021.mobileprovision
+
+```
+
 ## mac brew 更换源
 
 更换
