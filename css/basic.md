@@ -245,7 +245,7 @@ only a few CSS properties can be inherited from ancestors.they are mainly text p
 
 ## CSS Priority 优先级
 
-An HTML elemnt can be targeted by **multiple css rules** .
+An HTML element can be targeted by **multiple css rules** .
 
 ### order of CSS rules
 
@@ -2406,7 +2406,7 @@ Well, you might be thinking “The .small-uppercase isn’t semantic! I could us
 You’re right, and that’s why placeholders exist in Sass.
 
 ```scss
-%common-theme{
+%common-theme {
   color: white;
   background: black;
 }
