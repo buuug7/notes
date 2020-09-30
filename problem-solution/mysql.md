@@ -4,7 +4,6 @@
 
 > <https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04>
 
-
 ```bash
 ## install
 apt install mysql-server
@@ -14,34 +13,6 @@ sudo service mysql start
 
 ## 根据提示配置安全 Run the security script
 sudo mysql_secure_installation
-```
-
-### ubuntu20.04 允许 mysql 远程连接
-
-```bash
-# /etc/mysql/mysql.conf.d/mysqld.cnf
-# comment bind_address=127.0.0.1
-# or set bind_address=0.0.0.0
-
-# 如果表中的root用户的host不是 %, 先更新 host = '%'
-update mysql.user set host = '%' where user = 'root';
-
-grant all privileges ON *.* TO root@"%";
-flush privileges;
-```
-
-
-### 完整登陆 mysql 命令
-
-```
-mysql -h主机 -u用户名 -p密码 -P端口号
-```
-
-### 添加用户并赋予权限
-
-```mysql
-CREATE USER 'username'@'%' IDENTIFIED BY 'ThePassword'; -- Creates the user
-GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION; -- Gives all the privileges to the new user on the newly created database
 ```
 
 ### 查看当前用户认证信息
@@ -58,9 +29,38 @@ ALTER USER "root"@"localhost" IDENTIFIED BY "newPassword";
 
 ### 修改 root 用户认证密码 plugin
 
-```mysql
+```sql
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';
 FLUSH PRIVILEGES ;
+```
+
+### 添加用户并赋予权限
+
+```sql
+-- Creates the user
+CREATE USER 'username'@'%' IDENTIFIED BY 'ThePassword';
+-- Gives all the privileges to the new user on the newly created database
+GRANT ALL PRIVILEGES ON *.* TO 'username'@'%' WITH GRANT OPTION;
+```
+
+### ubuntu20.04 允许 mysql 远程连接
+
+```bash
+# /etc/mysql/mysql.conf.d/mysqld.cnf
+# comment bind_address=127.0.0.1
+# or set bind_address=0.0.0.0
+
+# 如果表中的root用户的host不是 %, 先更新 host = '%'
+update mysql.user set host = '%' where user = 'root';
+
+grant all privileges ON *.* TO root@"%";
+flush privileges;
+```
+
+### 完整登陆 mysql 命令
+
+```
+mysql -h主机 -u用户名 -p密码 -P端口号
 ```
 
 ### 设置 MYSQL 密码策略
@@ -78,7 +78,6 @@ SET GLOBAL validate_password.policy = 'LOW';
 # 设置密码最小长度
 SET GLOBAL validate_password.length = 4;
 ```
-
 
 ### Removing MySQL with APT
 
@@ -110,7 +109,7 @@ rm -rf /etc/mysql
 
 ### 创建数据库
 
-```mysql
+```sql
 create database `awesome_comments` default charset utf8mb4 collate utf8mb4_unicode_ci;
 ```
 
@@ -474,7 +473,6 @@ JSON_REPLACE(json_doc, path, val[, path, val] ...)
 json_doc 是 JSON 字符串
 path 是要插入数据或更新值的元素的路径。
 val 是新的值.
-
 
 MYSQL JSON 的操作函数 -- JSON_SET (), JSON_INSERT(), and JSON_REPLACE()
 
