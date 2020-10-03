@@ -42,7 +42,15 @@ RDBMS 是 SQL 的基本，包括主流的现代化数据库系统，比如 MS SQ
 
 查询语句用来从数据库中获取数据，返回的数据储存在一个结果表中，称为结果集。
 
-```mysql
+```
+SELECT
+    col1 [AS alias1], ..., colN [AS aliasN]
+FROM
+    table_name
+;
+```
+
+```sql
 select * from user;
 ```
 
@@ -59,6 +67,16 @@ select distinct name from user;
 ### SQL WHERE Clause
 
 > The WHERE clause is used to filter records. The WHERE clause is used to extract only those records that fulfill a specified condition.
+
+```
+SELECT
+    expr1 [AS alias1], ..., exprN [AS aliasN]
+FROM
+    table_name
+WHERE
+    logical_expression
+;
+```
 
 Where 语句用来过滤记录。被用来精确返回符合指定条件的记录。
 
@@ -99,6 +117,10 @@ select * from user where not name = 'alex';
 ```
 
 ## SQL ORDER BY Keyword
+
+```
+ORDER BY expr1 [ASC, DESC], ..., exprN [ASC, DESC];
+```
 
 > The ORDER BY keyword is used to sort the result-set in ascending or descending order.
 
@@ -145,6 +167,10 @@ select * from user where age is not null;
 ```
 
 ## SQL UPDATE Statement
+
+```
+UPDATE table_name SET col1 = expr1, col2 = expr2, …, colN = expr;
+```
 
 > The UPDATE statement is used to modify the existing records in a table.
 
@@ -437,6 +463,18 @@ HAVING 语句添加到 SQL 的原因是因为 WHERE 关键字不能用在聚合�
 select age, count(id) from user group by age having count(id) > 1;
 ```
 
+## query group template
+
+```
+SELECT column_name [, list_of_other_columns]
+     , aggregation [, list_of_aggregations]
+FROM table_name
+[WHERE list_of_conditions]
+GROUP BY column_name [, list_of_other_columns]
+[HAVING list_of_aggregate_conditions]
+[ORDER BY list_of_columns/aliases];
+```
+
 ## SQL EXISTS Operator
 
 The EXISTS operator is used to test for the existence of any record in a subquery.
@@ -504,10 +542,21 @@ The INSERT INTO SELECT statement copies data from one table and inserts it into 
 - INSERT INTO SELECT requires that data types in source and target tables match
 - The existing records in the target table are unaffected
 
+```
+INSERT INTO table_name (column_1, column_2,..., column_n) VALUES
+(list_of_values_1) [, (list_of_values_2), ..., (list_of_values_m)]
+```
+
 INSERT INTO SELECT 语句复制数据从一个表插入到另外一个表中
 
 - INSERT INTO SELECT 需求元数据和目标数据匹配
 - 目标表中已经存在的数据不受影响
+
+```
+INSERT INTO table1 (column_1, column_2, ..., column_n)
+SELECT column_1, column_2, ..., column_n FROM table2
+WHERE condition;
+```
 
 ```mysql
 insert into user2 select * from user;
