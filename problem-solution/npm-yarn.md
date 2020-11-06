@@ -1,7 +1,16 @@
 ## npm related
 
+#### npm 如何下架已经发布得包
 
-#### npm发部带scope的包
+打开<https://www.npmjs.com/support/>, 填写申请单即可.下面是样例
+
+Subject: please help me unpublish the old **@buuug7/simplify** package
+
+How can we help?
+the old **@buuug7/simplify** package is outdate, i published new package to replace it and the **@buuug7/simplify** is not used any more, please help me delete it [@buuug7/simplify](https://www.npmjs.com/package/@buuug7/simplify). thanks.
+
+#### npm 发部带 scope 的包
+
 先在 package.json 中 name 中指定 '@scopeName/packageName', 然后在发布的时候需要指定 --access public 选项 `npm publish --access public`
 
 #### Node version management
