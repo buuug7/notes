@@ -42,12 +42,11 @@ RDBMS 是 SQL 的基本，包括主流的现代化数据库系统，比如 MS SQ
 
 查询语句用来从数据库中获取数据，返回的数据储存在一个结果表中，称为结果集。
 
-```
+```sql
 SELECT
     col1 [AS alias1], ..., colN [AS aliasN]
 FROM
-    table_name
-;
+    table_name;
 ```
 
 ```sql
@@ -60,7 +59,7 @@ select * from user;
 
 Distinct 语句用来返回不同的值。在一个表中，一个列通常包含了许多重复值，有时你只想列出不同的值。
 
-```mysql
+```sql
 select distinct name from user;
 ```
 
@@ -68,7 +67,7 @@ select distinct name from user;
 
 > The WHERE clause is used to filter records. The WHERE clause is used to extract only those records that fulfill a specified condition.
 
-```
+```sql
 SELECT
     expr1 [AS alias1], ..., exprN [AS aliasN]
 FROM
@@ -80,7 +79,7 @@ WHERE
 
 Where 语句用来过滤记录。被用来精确返回符合指定条件的记录。
 
-```mysql
+```sql
 select * from user where name = 'alex'
 ```
 
@@ -110,7 +109,7 @@ And 和 OR 操作符用来对数据过滤超过一个条件的时候使用。
 
 如果条件不是真，NOT 操作符显示该记录。
 
-```mysql
+```sql
 select * from user where age > 20 and sex = 'boy';
 select * from user where age > 20 or age < 15;
 select * from user where not name = 'alex';
@@ -118,7 +117,7 @@ select * from user where not name = 'alex';
 
 ## SQL ORDER BY Keyword
 
-```
+```sql
 ORDER BY expr1 [ASC, DESC], ..., exprN [ASC, DESC];
 ```
 
@@ -130,7 +129,7 @@ ORDER BY 关键字用来排序结果集。
 
 ORDER BY 默认使用升序，使用 DESC 关键字用来降序。
 
-```mysql
+```sql
 select * from user order by name asc, age desc ;
 ```
 
@@ -140,7 +139,7 @@ select * from user order by name asc, age desc ;
 
 INSERT INTO 语句用来在表中插入新记录
 
-```mysql
+```sql
 insert into user(name, age) values ('alex', 22);
 insert into user values (null, 'alex', 22);
 ```
@@ -161,14 +160,14 @@ insert into user values (null, 'alex', 22);
 
 使用 IS NULL 和 NOT NULL 来判断。
 
-```mysql
+```sql
 select * from user where age is null;
 select * from user where age is not null;
 ```
 
 ## SQL UPDATE Statement
 
-```
+```sql
 UPDATE table_name SET col1 = expr1, col2 = expr2, …, colN = expr;
 ```
 
@@ -176,7 +175,7 @@ UPDATE table_name SET col1 = expr1, col2 = expr2, …, colN = expr;
 
 更新语句用来修改存在的记录。
 
-```mysql
+```sql
 update user set name = 'Twice' where id = 1;
 ```
 
@@ -186,7 +185,7 @@ update user set name = 'Twice' where id = 1;
 
 删除语句用来删除存在的记录。
 
-```mysql
+```sql
 delete from user where id = 1;
 
 -- 删除user表中所有记录
@@ -221,7 +220,7 @@ MIN()函数返回选择列中最小的值。
 
 MAX()函数返回选择列中最大值。
 
-```mysql
+```sql
 select min(id) from user;
 select max(id) from user;
 ```
@@ -240,7 +239,7 @@ AVG()函数返回数字列的平均值
 
 SUM()函数返回一个数字列的总和。
 
-```mysql
+```sql
 select count(id) from user;
 select avg(age) from user;
 select sum(age) from user;
@@ -259,7 +258,7 @@ There are two wildcards often used in conjunction with the LIKE operator:
 - `-` The underscore represents a single character
 - `-` 下划线代表一个字符
 
-```mysql
+```sql
 select * from user where name like 't%';
 select * from user where name like 'al_x';
 ```
@@ -281,7 +280,7 @@ select * from user where name like 'al_x';
 
 Mysql 中使用 regexp
 
-```mysql
+```sql
 select * from user where name regexp '^[ab]';
 select * from user where name regexp '[a-z]$'
 ```
@@ -296,7 +295,7 @@ IN 操作符允许在 WHERE 指定多个值。
 
 IN 操作符是多个 OR 条件的简写。
 
-```mysql
+```sql
 select * from user where name in ('alex', 'twice');
 ```
 
@@ -310,7 +309,7 @@ BETWEEN 操作符从给定范围选择值，值可以是数字，文本或者日
 
 BETWEEN 操作符包含开始和结束值。
 
-```mysql
+```sql
 select * from user where age between 22 and 24;
 select * from user where age not between 22 and 24;
 ```
@@ -321,7 +320,7 @@ select * from user where age not between 22 and 24;
 
 SQL 中别名用来给表，列一个零时名字。 别名通常用来使列名字更又可读性。别名的范围在该条查询语句中。
 
-```mysql
+```sql
 select u.name as username from user as u;
 ```
 
@@ -358,7 +357,7 @@ JOIN 语句用来组合多个表，基于多个表之间的关系。
 
 INNER JOIN 关键字匹配存在两个表中的记录
 
-```mysql
+```sql
 select user.name, article.title from user inner join article on user.id = article.user_id;
 -- equivalent above
 select user.name, article.title from user join article on user.id = article.user_id;
@@ -370,7 +369,7 @@ select user.name, article.title from user join article on user.id = article.user
 
 左连接返回左表中所有记录，和匹配右表的记录。如果没有匹配，右表返回的值都为空。
 
-```mysql
+```sql
 select user.name, article.title from user left join article on user.id = article.user_id;
 ```
 
@@ -380,7 +379,7 @@ select user.name, article.title from user left join article on user.id = article
 
 右连接返回右表的所有记录，以及左表中匹配的记录。当没匹配的时候，左侧表的值为空。
 
-```mysql
+```sql
 select user.name, article.title from user right join article on user.id = article.user_id;
 ```
 
@@ -400,11 +399,11 @@ Tip: FULL OUTER JOIN and FULL JOIN are the same.
 
 自连接时常规连接，只是表跟自己连接而已。
 
-```
+```sql
 SELECT column_name(s) FROM table1 T1, table1 T2 WHERE condition;
 ```
 
-```mysql
+```sql
 select u1.name, u2.name from user u1 join user u2 where u1.id = 1;
 ```
 
@@ -422,7 +421,7 @@ UNION 操作符用来把多个 SELECT 语句结合到一起。
 - 列必须有同样的数据类型
 - 每一个 SELECT 语句的顺序必须一样
 
-```mysql
+```sql
 select name, age from user
 union
 select name,age from user;
@@ -432,7 +431,7 @@ The UNION operator selects only distinct values by default. To allow duplicate v
 
 UNION 操作符默认返回不同的值，如果要返回重复值，要使用 UNION ALL
 
-```mysql
+```sql
 select name, age from user
 union all
 select name,age from user;
@@ -448,7 +447,7 @@ The GROUP BY statement is often used with aggregate functions (COUNT, MAX, MIN, 
 
 GROUP BY 语句通常跟聚合函数一起使用来分组结果集。
 
-```mysql
+```sql
 -- 按照年龄统计用户数
 select age, count(*) from user group by age;
 ```
@@ -459,13 +458,13 @@ The HAVING clause was added to SQL because the WHERE keyword could not be used w
 
 HAVING 语句添加到 SQL 的原因是因为 WHERE 关键字不能用在聚合函数里面。
 
-```mysql
+```sql
 select age, count(id) from user group by age having count(id) > 1;
 ```
 
 ## query group template
 
-```
+```sql
 SELECT column_name [, list_of_other_columns]
      , aggregation [, list_of_aggregations]
 FROM table_name
@@ -485,7 +484,7 @@ The EXISTS operator returns true if the subquery returns one or more records.
 
 EXISTS 操作符返会真如果子查询匹配到结果。
 
-```mysql
+```sql
 select name from user where exists(select age from user where age > 22);
 ```
 
@@ -503,7 +502,7 @@ The ALL operator returns true if all of the subquery values meet the condition.
 
 ALL 操作符返回真如果所有子查询的返回值都满足条件。
 
-```mysql
+```sql
 select age from user where age > 22; -- 23, 24
 
 -- any
@@ -523,7 +522,7 @@ The SELECT INTO statement copies data from one table into a new table.
 
 SELECT INTO 语句把数据从一个表复制到一个新表。
 
-```
+```sql
 SELECT *
 INTO newtable [IN externaldb]
 FROM oldtable
@@ -542,7 +541,7 @@ The INSERT INTO SELECT statement copies data from one table and inserts it into 
 - INSERT INTO SELECT requires that data types in source and target tables match
 - The existing records in the target table are unaffected
 
-```
+```sql
 INSERT INTO table_name (column_1, column_2,..., column_n) VALUES
 (list_of_values_1) [, (list_of_values_2), ..., (list_of_values_m)]
 ```
@@ -552,13 +551,13 @@ INSERT INTO SELECT 语句复制数据从一个表插入到另外一个表中
 - INSERT INTO SELECT 需求元数据和目标数据匹配
 - 目标表中已经存在的数据不受影响
 
-```
+```sql
 INSERT INTO table1 (column_1, column_2, ..., column_n)
 SELECT column_1, column_2, ..., column_n FROM table2
 WHERE condition;
 ```
 
-```mysql
+```sql
 insert into user2 select * from user;
 ```
 
@@ -568,7 +567,7 @@ The CASE statement goes through conditions and returns a value when the first co
 
 If there is no ELSE part and no conditions are true, it returns NULL.
 
-```
+```sql
 CASE
     WHEN condition1 THEN result1
     WHEN condition2 THEN result2
@@ -581,7 +580,7 @@ END;
 
 SQL IFNULL(), ISNULL(), COALESCE(), and NVL() Functions
 
-```mysql
+```sql
 select ifnull(name, 'default name') from user;
 select name from user where isnull(age);
 ```
@@ -592,7 +591,7 @@ TODO
 
 ## SQL COMMENTS
 
-```mysql
+```sql
 -- single line comments
 
 /*
