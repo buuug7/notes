@@ -1,4 +1,212 @@
-# JavaScript Useful Hacks
+# Some Useful Javascript snippet
+
+```javascript
+// 兄弟元素
+[...el.parentNode.children].filter((child) => child !== el);
+
+// 前一个元素
+el.previousElementSibling;
+
+// 后一个元素
+el.nextElementSibling;
+
+// 获得匹配元素的第一个祖先元素
+el.closest(selector);
+
+// 获取给定元素的祖元素集合，不包括元素本身和最后一个祖元素
+function parentsUntil(el, selector) {
+  const result = [];
+  el = el.parentNode;
+
+  while (el && !el.matches(selector)) {
+    result.push(el);
+    el = el.parentNode;
+  }
+
+  return result;
+}
+
+// Form
+document.querySelector("#input").value;
+```
+
+## javascript 获取或者设置 DOM 属性
+
+```javascript
+// 获取
+el.getAttribute("foo");
+
+// 设置
+el.setAttribute("foo", "bar");
+
+// 获取data-属性
+el.getAttribute("data-foo");
+
+// 设置data-属性
+el.dataset["foo"];
+```
+
+## javascript 与 css
+
+```javascript
+// 获取元素样式
+// null 的意思是不返回伪类元素
+window.getComputedStyle(el, null);
+
+// 设置元素样式
+el.style.color = "#ff0011";
+
+// 添加类
+el.classList.add(className);
+
+// 移除类
+el.classList.remove(className);
+
+// 判定是否包含具体类
+el.classList.contains(className);
+
+// toggle class
+el.classList.toggle(className);
+```
+
+## javascript 计算 DOM 宽高
+
+```javascript
+// Window height
+// Width 与 Height 获取方法相同，下面以 Height 为例：
+// 不含 scrollbar，与 jQuery 行为一致
+window.document.documentElement.clientHeight;
+// 含 scrollbar
+window.innerHeight;
+
+// Document height
+const body = document.body;
+const html = document.documentElement;
+const height = Math.max(
+  body.offsetHeight,
+  body.scrollHeight,
+  html.clientHeight,
+  html.offsetHeight,
+  html.scrollHeight
+);
+
+// Element height
+// 精确到整数（border-box 时为 height - border 值，content-box 时为 height + padding 值）
+el.clientHeight;
+// 精确到小数（border-box 时为 height 值，content-box 时为 height + padding + border 值）
+el.getBoundingClientRect().height;
+
+// 获取元素滚动条垂直位置
+document.documentElement.scrollTop;
+```
+
+## DOM 操作
+
+```javascript
+// 从 DOM 中移除元素
+el.remove();
+
+// 返回指定元素及其后代的文本内容
+el.textContent;
+
+// 设置元素的文本内容
+el.textContent = string;
+
+// 获取HTML
+el.innerHTML;
+
+// 设置HTML
+el.innerHTML = htmlString;
+
+// Append 插入到子节点的末尾
+el.appendChild(newEl);
+
+// 克隆元素
+// 深度复制传参 true
+el.cloneNode();
+
+// 如果匹配给定的选择器，返回true
+el.matches(selector);
+
+// 移除所有节点
+el.innerHTML = "";
+
+// Append 插入到子节点的末尾
+el.appendChild(newEl);
+
+// Prepend 插入到子节点的前面
+el.insertBefore(newEl, el.firstChild);
+
+// 在选中元素前插入新节点
+// insertBefore
+const p1 = document.querySelector("#p1");
+const newEl = document.createElement("p");
+newEl.textContent = "Hello world";
+p1.parentNode.insertBefore(newEl, p1);
+
+// 在选中元素后插入新节点
+// insertAfter
+const p1 = document.querySelector("#p1");
+const newEl = document.createElement("p");
+newEl.textContent = "Hello world";
+p1.parentNode.insertBefore(newEl, p1.nextSibling);
+```
+
+## 解析 HTML 字符串
+
+```javascript
+// 解析 HTML 字符串
+const range = document.createRange();
+const parse = range.createContextualFragment.bind(range);
+
+const rawHtml = `<ul><li>1</li><li>2</li><li>3</li></ul>`;
+document.body.appendChild(parse(rawHtml));
+```
+
+## 自定义事件
+
+```javascript
+// 创建自定义事件
+const event = new CustomEvent("custom-event", {
+  detail: { key1: "someValue" },
+});
+
+const btn = document.querySelector("#btn");
+// 监听已创建的自定义事件
+btn.addEventListener("custom-event", (e) => {
+  console.log("event", e);
+});
+
+// 当按钮被点击的时候调度事件
+btn.addEventListener("click", (e) => {
+  btn.dispatchEvent(event);
+});
+```
+
+## 合并数组
+
+```javascript
+const arr1 = [1, 2, 3];
+const arr2 = [2, 3, 4];
+
+// result: [1, 2, 3, 2, 3, 4]
+const mergeArr = [...arr1, ...arr2];
+```
+
+## 合并多个对象
+
+```javascript
+// result: { a: 1, b: 2, c: 3 }
+const obj = Object.assign({ a: 1 }, { b: 2 }, { c: 3 });
+```
+
+## 检测一个对象是否为空
+
+```javascript
+function isEmptyObject(obj) {
+  return Object.keys(obj).length === 0;
+}
+```
 
 ## 生成介于两个数之间的随机数
 
