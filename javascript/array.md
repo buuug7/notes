@@ -1,5 +1,21 @@
 # javascript 数组的常用方法
 
+## 创建数组
+
+```javascript
+// 创建一个数组
+const arr = new Array();
+
+// 创建一个数组并赋值
+const arr2 = new Array(1, 2, 3);
+
+// 字面量创建数组
+const arr3 = [];
+
+// 将一组值转换为数组
+const arr4 = Array.of("a", "b", "c");
+```
+
 ## Array.from(arrayLike[, mapFn[, thisArg]])
 
 从一个类数组或者可迭代对象中创建一个新的数组实例
@@ -383,6 +399,9 @@ arr;
 
 // result: ["a", "b", "c"]
 ["a", "b", "c"].sort();
+
+// 指定排序方法
+[1, 2, 3].sort((a, b) => a - b);
 ```
 
 ## Array.prototype.slice()
