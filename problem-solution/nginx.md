@@ -1,8 +1,11 @@
-# Nginx
+# Nginx 基本操作
 
-## ubuntu 上 nginx 命令
+## ubuntu 基本操作
 
 ```bash
+# 安装
+apt install nginx
+
 # 启动|重启|停止
 sudo service nginx start|restart|stop
 
@@ -12,7 +15,7 @@ nginx -s reload
 
 ## windows 上 nginx 操作常用命令
 
-```shell
+```bash
 # 启动
 start nginx
 # 快速停止nginx，可能并不保存相关信息
@@ -27,7 +30,7 @@ nginx.exe -s reopen
 nginx -v
 ```
 
-## 配置文件
+## 配置文件 (ubuntu)
 
 配置文件通常位于 `/etc/nginx/nginx.conf` , 一个标准的配置文件类似于下面的样子
 
@@ -55,11 +58,8 @@ http {
     location / {
     }
   }
-  这里是一些配置
-  ...
-}
-
-mail {
+  # 更多配置
+  # ...
 }
 ```
 
@@ -76,14 +76,16 @@ mail {
 - `~*` 开头表示不区分大小写的正则匹配
 - `/` 通用匹配, 如果没有其它匹配,任何请求都会匹配到
 
-```nginx
+```
 #所以实际使用中，个人觉得至少有三个匹配规则定义，如下：
 #直接匹配网站根，通过域名访问网站首页比较频繁，使用这个会加速处理，官网如是说。
+
 #这里是直接转发给后端应用服务器了，也可以是一个静态首页
 # 第一个必选规则
 location = / {
     proxy_pass http://tomcat:8080/index
 }
+
 # 第二个必选规则是处理静态文件请求，这是nginx作为http服务器的强项
 # 有两种配置模式，目录匹配或后缀匹配,任选其一或搭配使用
 location ^~ /static/ {
@@ -92,6 +94,7 @@ location ^~ /static/ {
 location ~* \.(gif|jpg|jpeg|png|css|js|ico)$ {
     root /webroot/res/;
 }
+
 #第三个规则就是通用规则，用来转发动态请求到后端应用服务器
 #非静态文件请求就默认是动态请求，自己根据实际把握
 #毕竟目前的一些框架的流行，带.php,.jsp后缀的情况很少了
@@ -112,42 +115,9 @@ location / {
 rewrite 功能就是，使用 nginx 提供的全局变量或自己设置的变量，结合正则表达式和标志位实现 url 重写以及重定向。rewrite 只能放在 server{},location{},if{}中，并且只能对域名后边的除去传递的参数外的字符串起作用。[详细介绍](https://segmentfault.com/a/1190000002797606)
 例如`http://seanlook.com/a/we/index.php?id=1&u=str`只对`/a/we/index.php`重写。语法`rewrite regex replacement [flag]`.
 
-## 链接 sites-available 到 sites-enabled
-
-```
-ln -s /etc/nginx/sites-available/yoursoups80.app /etc/nginx/sites-enabled/yoursoups80.app
-```
-
-## 防盗链
-
-```
-server {
-	listen       80;
-	server_name demo.neoease.com;
-	index index.html index.htm index.php;
-	root  /var/www/demo_neoease_com;
-
-	# 这里为图片添加为期 1 年的过期时间, 并且禁止 Google, 百度和本站之外的网站引用图片
-	location ~ .*\.(ico|jpg|jpeg|png|gif)$ {
-		expires 1y;
-		valid_referers none blocked demo.neoease.com *.google.com *.baidu.com;
-		if ($invalid_referer) {
-			return 404;
-		}
-	}
-
-	log_format demo.neoease.com '$remote_addr - $remote_user [$time_local] $request'
-	'$status $body_bytes_sent $http_referer '
-	'$http_user_agent $http_x_forwarded_for';
-	access_log  /var/log/demo.neoease.com.log demo.neoease.com;
-}
-```
-
-## proxy_pass rewrite
-
 比如将`http://some.com/api`代理到`http://some.com:3000`, 主义 url 中 api 被去掉了
 
-```
+````
 server {
     listen 80;
     root /path/to;
@@ -160,26 +130,58 @@ server {
     }
 }
 
+
+## 链接 sites-available 到 sites-enabled
+
+```bash
+ln -s /etc/nginx/sites-available/yoursoups80.app /etc/nginx/sites-enabled/yoursoups80.app
+
+````
+
+## 防盗链
+
+```bash
+server {
+listen 80;
+server_name demo.neoease.com;
+index index.html index.htm index.php;
+root /var/www/demo_neoease_com;
+
+    # 这里为图片添加为期 1 年的过期时间, 并且禁止 Google, 百度和本站之外的网站引用图片
+    location ~ .*\.(ico|jpg|jpeg|png|gif)$ {
+    	expires 1y;
+    	valid_referers none blocked demo.neoease.com *.google.com *.baidu.com;
+    	if ($invalid_referer) {
+    		return 404;
+    	}
+    }
+
+    log_format demo.neoease.com '$remote_addr - $remote_user [$time_local] $request'
+    '$status $body_bytes_sent $http_referer '
+    '$http_user_agent $http_x_forwarded_for';
+    access_log  /var/log/demo.neoease.com.log demo.neoease.com;
+}
+
 ```
 
 ## 公司 nginx 配置例子
 
 ```
-user  root;
-worker_processes  1;
+user root;
+worker_processes 1;
 
-error_log  /var/log/nginx/error.log warn;
-pid        /var/run/nginx.pid;
+error_log /var/log/nginx/error.log warn;
+pid /var/run/nginx.pid;
 
 events {
-    worker_connections  1024;
+  worker_connections 1024;
 }
 
 http {
-    upstream backend {
-        server 10.59.8.51:8880;
-        server 10.59.8.53:8880 down;
-    }
+  upstream backend {
+    server 10.59.8.51:8880;
+    server 10.59.8.53:8880 down;
+  }
 
     include       /etc/nginx/mime.types;
     default_type  application/octet-stream;
@@ -248,5 +250,7 @@ http {
             alias /apps/eam-storage/;
         }
     }
+
 }
+
 ```
