@@ -1,14 +1,5 @@
 # others
 
-## 重启 wsl
-
-```
-//WSL-Ubuntu18.04 LTS 重启方法
-//以管理员权限运行cmd
->>net stop LxssManager	//停止
->>net start LxssManager	//启动
-```
-
 ## 安装 v2ray
 
 ```
