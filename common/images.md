@@ -1,12 +1,18 @@
-# images
+# 常见图片格式概述
 
 There are several different image storage formats, and they all have their pros and cons. Let's briefly consider the most common formats:
+
+有几种不同的图像存储格式，它们各有利弊。让我们简单地总结下最常见的格式：
 
 ## JPEG
 
 JPEG (Joint Photographic Experts Group) is most commonly used to process and store photos. It is recognized by all browsers and devices, and it provides a controlled degree of compression;
 
 (联合图像专家组)最常用于处理和存储照片。它被所有浏览器和设备所识别，并提供受控程度的压缩
+
+## JPG
+
+跟 JPEG 没有区别，全名、正式扩展名是 JPEG。但因 DOS、Windows 95 等早期系统采用的 8.3 命名规则只支持最长 3 字符的扩展名，为了兼容采用了.jpg。也因历史习惯和兼容性考虑，.jpg 目前更流行。
 
 ## PNG
 
@@ -24,7 +30,7 @@ SVG (Scalable Vector Graphics) provides the ability to scale files without chang
 
 ICO (Windows icon) is used in situations when you need small pictures of a fixed size, such as labels on the desktop. The format supports transparency and allows only small-sized drawings. A picture of this format is displayed next to the site address or bookmark in your browser;
 
-(Windows图标)用于需要固定大小的小图片（例如桌面上的标签）的情况。该格式支持透明度，并且仅允许使用小型图纸。此格式的图片显示在浏览器中站点地址或书签旁边；
+(Windows 图标)用于需要固定大小的小图片（例如桌面上的标签）的情况。该格式支持透明度，并且仅允许使用小型图纸。此格式的图片显示在浏览器中站点地址或书签旁边；
 
 ## GIF
 
