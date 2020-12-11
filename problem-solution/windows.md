@@ -1,5 +1,11 @@
 # windows related
 
+## 查看端口
+
+```
+netstat -ano|findstr 8080
+```
+
 ## wsl 跟 windows 互相访问
 
 > 这里的 wsl 指的是 wsl2
