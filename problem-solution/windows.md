@@ -16,6 +16,15 @@ wsl 中访问 windows 中部署的应用, 以 nginx 为例, nginx 在 windows �
 
 ## 重启 wsl
 
+如果有问题，先在 powerShell 中关闭 wsl
+
+```bash
+wsl --shutdown
+
+```
+
+如果以上不起作用，请尝试下面的
+
 ```
 //WSL-Ubuntu18.04 LTS 重启方法
 //以管理员权限运行cmd
