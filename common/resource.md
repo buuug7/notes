@@ -1,3 +1,8 @@
+## 常用设计工具
+
+- [sketch](https://www.sketch.com/)
+- [figma](https://www.figma.com/)
+
 ## CSS
 
 - [https://css-tricks.com/](https://css-tricks.com/)
@@ -70,3 +75,8 @@
 ## 镜像
 
 - https://npm.taobao.org/mirrors
+- https://mirrors.tuna.tsinghua.edu.cn/
+- https://developer.aliyun.com/mirror/
+- https://hub.fastgit.org/
+- https://mirrors.cloud.tencent.com/
+- http://mirrors.ustc.edu.cn/help/index.html

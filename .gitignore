@@ -9,4 +9,5 @@ gen
 /dist
 
 .DS_Store
+.vscode
 

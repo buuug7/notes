@@ -1,5 +1,37 @@
 # windows related
 
+## 查看端口
+
+```
+netstat -ano|findstr 8080
+```
+
+## wsl 跟 windows 互相访问
+
+> 这里的 wsl 指的是 wsl2
+
+windows 访问 wsl 中部署的应用, 比如 nginx, 在 wsl 启动后监听 8080 端口, 那么在 windows 中可以直接访问 `http://localhost:8080`. 也就是 wsl 中监听的端口跟在 windows 中使用的是同一个接口.
+
+wsl 中访问 windows 中部署的应用, 以 nginx 为例, nginx 在 windows 中监听 8080 端口,那么在 wsl 中只能通过 wsl 跟 windows 中建立的虚拟网卡中分配的 IP 去访问,通过在 windows 中`控制面板\网络和 Internet\网络连接` 名字为**vEthernet (WSL)**的虚拟网卡中查看详情来获取 IP,假如 IP 为 172.17.240.1,则访问的地址为 `172.17.240.1:8080`地址来访问.
+
+## 重启 wsl
+
+如果有问题，先在 powerShell 中关闭 wsl
+
+```bash
+wsl --shutdown
+
+```
+
+如果以上不起作用，请尝试下面的
+
+```
+//WSL-Ubuntu18.04 LTS 重启方法
+//以管理员权限运行cmd
+>>net stop LxssManager	//停止
+>>net start LxssManager	//启动
+```
+
 ## windows10 wsl2 --参考的对象类型不支持尝试的操作
 
 wsl2 在使用 vpn 后会起不来，解决方案就是 cmd 下管理员权限执行 netsh winsock reset
