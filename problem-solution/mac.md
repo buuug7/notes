@@ -67,7 +67,7 @@ sudo ncdu
 # 添加到$HOME/.zshrc文件末尾
 export PATH="$HOME/development/flutter/bin:$PATH"
 # 运行下面的命令让其立刻生效
-ource $HOME/.zshrc
+source $HOME/.zshrc
 
 # 同理bash也一样，只需要把zsh换成bash即可
 ```
@@ -101,9 +101,9 @@ nginx can run without sudo.
 nginx will load all files in /usr/local/etc/nginx/servers/.
 
 To have launchd start nginx now and restart at login:
-  brew services start nginx
+brew services start nginx
 Or, if you don't want/need a background service you can just run:
-  nginx
+nginx
 ```
 
 ## mac 查看 nginx 配置
