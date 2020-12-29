@@ -1,6 +1,6 @@
-## ubuntu related
+# ubuntu related
 
-#### 安装 git lfs
+## 安装 git lfs
 
 ```bash
 curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo bash
@@ -8,7 +8,7 @@ sudo apt-get install git-lfs
 git lfs install
 ```
 
-#### 上传下载文件
+## 上传下载文件
 
 ```bash
 # 从远程主机copy文件到本地
@@ -18,13 +18,13 @@ scp -r username@1.2.3.4:/home/username/myFile.txt .
 scp -r myFile.txt username@1.2.3.4:/home/username/
 ```
 
-#### ubuntu 查看 IP
+## ubuntu 查看 IP
 
 ```
 ifconfig -a
 ```
 
-#### proftpd
+## proftpd
 
 ```bash
 sudo apt-get update
@@ -70,7 +70,7 @@ Also, you can see statistics.
 ftpstats
 ```
 
-#### 常用卸载命令
+## 常用卸载命令
 
 ```bash
 apt-get autoremove ：
@@ -92,13 +92,13 @@ clean:
 类似上面的命令，但它删除包缓存中的所有包。
 ```
 
-#### 查看是那个发行版，比如是 centos 或者 ubuntu
+## 查看是那个发行版，比如是 centos 或者 ubuntu
 
 ```
 lsb_release -a
 ```
 
-#### ubuntu 安装 php7+nginx+mysql
+## ubuntu 安装 php7+nginx+mysql
 
 ```
 add-apt-repository ppa:ondrej/php 添加php源
@@ -133,20 +133,20 @@ update user set authentication_string=password('yourpassword') where user='root'
 
 ```
 
-#### ubuntu 转换 php5 跟 php7
+## ubuntu 转换 php5 跟 php7
 
 ```
 a2dismod php5
 a2enmod php7
 ```
 
-#### ubuntu 卸载 apache2
+## ubuntu 卸载 apache2
 
 ```
 sudo apt-get remove apache2*
 ```
 
-#### ubuntu 安装 php5 php7
+## ubuntu 安装 php5 php7
 
 ```
 sudo add-apt-repository ppa:ondrej/php
@@ -158,14 +158,14 @@ sudo apt-get -y install php5.6 php5.6-mcrypt php5.6-mbstring php5.6-curl php5.6-
 sudo apt-get -y install php7.1 php7.1-mcrypt php7.1-mbstring php7.1-curl php7.1-cli php7.1-mysql php7.1-gd php7.1-intl php7.1-xsl php7.1-zip php7.1-fpm
 ```
 
-#### php 安装有些项目时提示 requires ext-dom
+## php 安装有些项目时提示 requires ext-dom
 
 ```
 // 需要安装xml
 apt-get install php7.1-xml
 ```
 
-#### apache2
+## apache2
 
 [官网文档](http://httpd.apache.org/docs/)
 
