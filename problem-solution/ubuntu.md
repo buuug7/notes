@@ -1,5 +1,25 @@
 ## ubuntu related
 
+## hyper-v 设置分辨率
+
+```
+设置分辨率
+打开grub
+vim /etc/default/grub
+
+按i进入编辑状态，找到：
+GRUB_CMDLINE_LINUX_DEFAULT=“quiet splash”
+
+在之后加入分辨率设置：
+GRUB_CMDLINE_LINUX_DEFAULT=“quiet splash video=hyperv_fb:1280x720”
+
+按Esc，退出编辑；按Shift + : 然后输入wq保存退出
+
+运行sudo update-grub
+
+运行root重启
+```
+
 #### 安装 git lfs
 
 ```bash

@@ -660,3 +660,69 @@ Node 进程占用了 7 个线程, 其中最核心的是 v8 引擎，在 Node 启
 - 垃圾回收的几个线程
 
 JavaScript 的执行是单线程的，但 Javascript 的宿主环境，无论是 Node 还是浏览器都是多线程的
+
+## process.nextTick Promise
+
+Node 执行完所有同步任务，接下来就会执行 process.nextTick 的任务队列。如果你希望异步任务尽可能快地执行，那就使用 process.nextTick。
+
+根据语言规格，Promise 对象的回调函数，会进入异步任务里面的”微任务”（microtask）队列。微任务队列追加在 process.nextTick 队列的后面，也属于本轮循环。
+
+```javascript
+process.nextTick(() => console.log(1));
+Promise.resolve().then(() => console.log(2));
+process.nextTick(() => console.log(3));
+Promise.resolve().then(() => console.log(4));
+// 执行结果
+// 1
+// 3
+// 2
+// 4
+```
+
+## 一个标准的 node 回调示例
+
+简而言之，只要这几个关键点被满足，其他一切都是可变的：
+
+- 确保最后一个参数是一个回调函数；
+- 当有错误发生时，创建一个 Node Error 对象并将它作为回调函数的第一个参数返回；
+- 如果没有错误，就调用回调函数，将 error 参数设为 null，并传入相关数据；
+- 回调函数必须在 process.nextTick()中被调用，从而确保进程不被阻塞。
+
+```javascript
+function fib(n) {
+  if (n < 2) {
+    return n;
+  }
+
+  return fib(n - 1) + fib(n - 2);
+}
+
+const Obj = function () {};
+
+Obj.prototype.doSomething = function (arg1) {
+  // 确保最后一个参数是一个回调函数
+  const cb = arguments[arguments.length - 1];
+
+  if (!arg1) {
+    // 当有错误发生时，创建一个 Node Error 对象并将它作为回调函数的第一个参数返回
+    return cb(new Error("first arg missing"));
+  }
+
+  // 如果没有错误，就调用回调函数，将 error 参数设为 null，并传入相关数据；
+  // 回调函数必须在 process.nextTick()中被调用，从而确保进程不被阻塞。
+  process.nextTick(() => {
+    const data = fib(arg1);
+
+    cb(null, data);
+  });
+};
+
+const t = new Obj();
+t.doSomething(3, (err, value) => {
+  if (err) {
+    console.log(err);
+  } else {
+    console.log("value=", value);
+  }
+});
+```
