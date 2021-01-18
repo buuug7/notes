@@ -8,187 +8,219 @@
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <style>
-      .backdrop {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background-color: rgba(0, 0, 0, 0.3);
-        z-index: 10;
-        visibility: hidden;
-      }
-
-      .modal {
-        position: fixed;
-        max-width: 400px;
-        height: auto;
-        background-color: #fff;
-        z-index: 20;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        padding: 1rem;
-        display: none;
-        flex-direction: row;
-      }
-
-      .modal .close {
-        position: absolute;
-        right: 5px;
-        top: 5px;
-      }
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
-  <body>
-    <button id="openBtn">open</button>
+  <body style="padding: 1rem;">
+    <h2>Modal</h2>
 
-    <div class="backdrop"></div>
+    <button id="openModal">open modal</button>
     <div class="modal">
-      <button class="close">close</button>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <div class="title">My modal</div>
+          <button class="close">close</button>
+        </div>
+        <div class="modal-body">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            culpa doloribus, eveniet iure nulla ut! Accusantium asperiores,
+            earum hic ipsum laborum minima molestiae nihil officiis quisquam rem
+            repellat sunt. Ratione.
+          </p>
+          <p>
+            Amet atque aut autem dignissimos distinctio doloribus earum facere
+            fuga, hic illo inventore ipsam iusto modi nihil nobis non obcaecati
+            porro quaerat recusandae repudiandae similique tempore ullam ut vel
+            veritatis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            culpa doloribus, eveniet iure nulla ut! Accusantium asperiores,
+            earum hic ipsum laborum minima molestiae nihil officiis quisquam rem
+            repellat sunt. Ratione.
+          </p>
+          <p>
+            Amet atque aut autem dignissimos distinctio doloribus earum facere
+            fuga, hic illo inventore ipsam iusto modi nihil nobis non obcaecati
+            porro quaerat recusandae repudiandae similique tempore ullam ut vel
+            veritatis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            culpa doloribus, eveniet iure nulla ut! Accusantium asperiores,
+            earum hic ipsum laborum minima molestiae nihil officiis quisquam rem
+            repellat sunt. Ratione.
+          </p>
+          <p>
+            Amet atque aut autem dignissimos distinctio doloribus earum facere
+            fuga, hic illo inventore ipsam iusto modi nihil nobis non obcaecati
+            porro quaerat recusandae repudiandae similique tempore ullam ut vel
+            veritatis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            culpa doloribus, eveniet iure nulla ut! Accusantium asperiores,
+            earum hic ipsum laborum minima molestiae nihil officiis quisquam rem
+            repellat sunt. Ratione.
+          </p>
+          <p>
+            Amet atque aut autem dignissimos distinctio doloribus earum facere
+            fuga, hic illo inventore ipsam iusto modi nihil nobis non obcaecati
+            porro quaerat recusandae repudiandae similique tempore ullam ut vel
+            veritatis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            culpa doloribus, eveniet iure nulla ut! Accusantium asperiores,
+            earum hic ipsum laborum minima molestiae nihil officiis quisquam rem
+            repellat sunt. Ratione.
+          </p>
+          <p>
+            Amet atque aut autem dignissimos distinctio doloribus earum facere
+            fuga, hic illo inventore ipsam iusto modi nihil nobis non obcaecati
+            porro quaerat recusandae repudiandae similique tempore ullam ut vel
+            veritatis?
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
+            culpa doloribus, eveniet iure nulla ut! Accusantium asperiores,
+            earum hic ipsum laborum minima molestiae nihil officiis quisquam rem
+            repellat sunt. Ratione.
+          </p>
+          <p>
+            Amet atque aut autem dignissimos distinctio doloribus earum facere
+            fuga, hic illo inventore ipsam iusto modi nihil nobis non obcaecati
+            porro quaerat recusandae repudiandae similique tempore ullam ut vel
+            veritatis?
+          </p>
+        </div>
+      </div>
     </div>
 
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aperiam
-      at dicta dolore eaque, earum enim exercitationem expedita explicabo id
-      illum provident quas qui quo sapiente sequi sit sunt vero!
-    </p>
-    <p>
-      Aliquid animi deserunt rerum sed voluptate? A ad aliquid atque autem
-      blanditiis cum distinctio eligendi eos excepturi exercitationem maiores,
-      minima molestias nihil, nostrum officia perferendis sapiente sed sit ullam
-      velit!
-    </p>
-    <p>
-      Alias deserunt ipsa similique ut. Nihil, velit, veniam. Ab ad at atque
-      corporis delectus, ducimus eius error harum illo ipsam molestiae neque,
-      quam quis ratione rem, suscipit temporibus veniam voluptatibus.
-    </p>
-    <p>
-      Ab asperiores autem consequuntur excepturi ipsum mollitia odio quaerat
-      quidem temporibus vel? At, et, eum incidunt libero nemo nihil nobis
-      provident qui quo saepe, sapiente ut vel voluptatem. Ex, ipsum.
-    </p>
-    <p>
-      Deleniti exercitationem explicabo impedit laborum maiores nemo sunt?
-      Adipisci animi aperiam aspernatur cum ducimus est iure quasi qui sit
-      voluptate. Aliquam itaque mollitia odio pariatur perferendis qui quod sit
-      suscipit.
-    </p>
-    <p>
-      Accusantium animi illum laborum obcaecati omnis sequi ullam! Ab aliquid,
-      consectetur corporis exercitationem explicabo facilis fugit harum incidunt
-      officia pariatur praesentium quae quas quia recusandae reiciendis
-      repellendus rerum suscipit voluptate!
-    </p>
-    <p>
-      Architecto aut beatae culpa cum dolorem ducimus earum eligendi enim est
-      eum facere fuga fugiat fugit impedit ipsam magnam minus mollitia numquam
-      praesentium quam quasi rem sed, sit tempora vitae!
-    </p>
-    <p>
-      Aperiam beatae culpa dignissimos eos eum fugiat iusto, laboriosam modi nam
-      non obcaecati, odio quis quos saepe tempore unde vitae! Dolorem doloremque
-      excepturi odit quibusdam, quod ratione rem repellat sequi.
-    </p>
-    <p>
-      Aliquid magni natus ratione tenetur vel? Aliquid doloribus iste qui totam.
-      A cum, dolor ipsa provident quaerat quo repudiandae suscipit. Deleniti ex,
-      hic ipsam iure obcaecati quae tempore velit voluptatibus.
-    </p>
-    <p>
-      Accusantium ad, animi at commodi consectetur et eum facilis fugiat harum
-      ipsa ipsam itaque magni modi molestias natus officia quam qui quibusdam
-      quisquam quos sed similique suscipit tempora tenetur voluptatem.
-    </p>
-    <p>
-      Accusamus aliquam autem dicta eligendi est incidunt inventore, labore
-      laboriosam laborum perferendis, quidem quo rem sit tempora ullam vitae
-      voluptates! Commodi esse eum hic laborum nobis nostrum repellat, vitae
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem corporis
+      delectus dolorem error, harum, incidunt natus placeat provident quasi quia
+      quidem quo recusandae sint soluta veniam veritatis vero voluptas
+      voluptatum?
+    </div>
+    <div>
+      Corporis eveniet excepturi id laboriosam magnam nulla obcaecati possimus
+      praesentium voluptas voluptatum! A aperiam earum iusto modi pariatur!
+      Autem earum, ex facere ipsum minus necessitatibus nisi nobis possimus sed
       voluptate!
-    </p>
-    <p>
-      At aut corporis ea molestias nemo possimus quidem ut. Culpa distinctio
-      dolor ea eius, explicabo fuga magni minima nemo nesciunt repellat vitae
-      voluptate. Dolorum inventore sapiente similique tempora tempore veritatis.
-    </p>
-    <p>
-      A consectetur consequatur dignissimos dolores ipsam, iusto labore magnam
-      magni odio odit officiis omnis placeat porro quisquam quo quos recusandae
-      rerum sed vitae voluptatem? Excepturi magnam molestiae rerum saepe sit?
-    </p>
-    <p>
-      Ab, ad amet at blanditiis consectetur delectus eaque explicabo harum
-      incidunt, ipsum nesciunt pariatur perferendis quam velit veniam! Ad
-      adipisci aliquam, aut consectetur corporis ex illum maxime molestiae
-      repellat velit?
-    </p>
-    <p>
-      Dolorem nam sunt tempora voluptas! Accusamus accusantium adipisci ea eaque
-      fuga id laudantium maiores molestiae nemo optio porro quae quaerat
-      recusandae reiciendis repellendus rerum tempora temporibus totam vero,
-      voluptate voluptatum?
-    </p>
-    <p>
-      Accusamus at deserunt dicta, distinctio dolor doloribus eaque, eius error
-      expedita facere ipsum laborum modi molestiae necessitatibus officia optio
-      perferendis qui quos repellat repellendus sit ullam voluptatibus?
-      Doloribus quisquam, totam.
-    </p>
-    <p>
-      Molestiae qui, vitae. Accusantium dolor dolore eaque enim, illo in nostrum
-      reiciendis rem. Aliquam architecto aut deleniti ea eaque, illo, impedit in
-      magnam molestiae natus praesentium quaerat rem sapiente tenetur.
-    </p>
-    <p>
-      Adipisci consectetur cumque debitis deleniti dignissimos error est hic id
-      illum in, iste iusto perferendis quos rem saepe soluta tempore veritatis
-      voluptatem? Aliquid aut autem est expedita illum, minima ullam?
-    </p>
-    <p>
-      Delectus deserunt doloribus hic obcaecati recusandae? Ad architecto autem
-      culpa cum dignissimos dolores eaque esse, eveniet fugit, ipsa minus
-      numquam odio quibusdam quo rerum, similique suscipit totam ullam unde
+    </div>
+    <div>
+      Adipisci atque commodi cupiditate dicta doloremque, enim excepturi
+      expedita fuga illo illum natus, numquam possimus quas quasi qui quod quos
+      reiciendis repellat saepe sequi similique sint suscipit temporibus vero
+      voluptas.
+    </div>
+    <div>
+      Architecto consequatur debitis distinctio dolorum earum error
+      exercitationem ipsam labore laborum maiores minima, molestias nesciunt
+      nihil nostrum officia quia recusandae rem saepe sapiente sed sequi sit
+      temporibus veritatis voluptas voluptate?
+    </div>
+    <div>
+      Ab architecto atque consectetur cumque, dolor dolore dolores eaque eius
+      est eum exercitationem explicabo fugiat fugit, iusto minima natus nostrum
+      numquam officiis quam rem repellat repellendus rerum sapiente suscipit
+      veritatis.
+    </div>
+    <div>
+      Dolores ea fugit id ipsum, labore molestiae nesciunt nobis odio officia
+      rem sed tenetur vel voluptate. Architecto aspernatur beatae, consectetur,
+      cumque error excepturi harum illo magnam necessitatibus numquam sit
       voluptates.
-    </p>
-    <p>
-      Adipisci aliquam aperiam autem eos error est eum expedita ipsam laborum
-      libero molestiae pariatur, quaerat quia ratione reiciendis sapiente
-      suscipit, tempora, temporibus ullam veritatis vero voluptate voluptatem.
-      Nam, natus quos!
-    </p>
-    <p>
-      Ad asperiores deserunt doloremque ducimus ea esse est ex exercitationem
-      facilis, ipsam itaque molestias, nam necessitatibus obcaecati, quae quos
-      repudiandae sunt tempora ut voluptates? Atque blanditiis ex itaque
-      molestias qui.
-    </p>
-    <p>
-      Cum optio quae tenetur. Architecto iure iusto sapiente! Alias ea facere
-      quasi suscipit! Architecto asperiores at consequatur consequuntur corporis
-      eius eum excepturi incidunt, minima molestias nisi numquam perferendis,
-      quibusdam ullam.
-    </p>
+    </div>
+    <div>
+      Animi autem beatae eaque eius est id incidunt labore magnam molestias
+      neque provident qui quia saepe sunt totam velit, vitae. Accusamus alias
+      animi aut consequatur cupiditate laudantium libero soluta ullam.
+    </div>
+    <div>
+      Culpa cum delectus dignissimos dolorem fugit libero, molestiae nulla
+      possimus qui quo saepe sequi tempore veritatis? Aliquam amet eligendi est
+      eveniet ipsa nam quas sapiente sint temporibus. Exercitationem, incidunt
+      repellat.
+    </div>
+    <div>
+      Aliquid animi aperiam assumenda aut blanditiis culpa cupiditate deleniti
+      dolore excepturi exercitationem facere fuga minus modi molestias nisi qui
+      quis, recusandae rerum sed sit sunt tempora ullam, voluptatum? Ducimus,
+      officiis!
+    </div>
+    <div>
+      Aliquam aliquid aut esse est itaque, iusto maiores repudiandae? Architecto
+      asperiores dignissimos dolore ducimus nobis reprehenderit similique soluta
+      voluptate voluptatum? Amet dolorem, eum facilis magni minima nisi quas
+      saepe voluptatem.
+    </div>
+    <div>
+      Accusamus, accusantium aliquid assumenda at autem cumque doloremque fuga
+      illo incidunt, inventore maxime nemo nobis odio quidem quos rerum saepe
+      sint unde voluptas voluptates! Culpa eius obcaecati praesentium rerum vel.
+    </div>
+    <div>
+      At consectetur cumque debitis dignissimos error impedit itaque magni nihil
+      nisi sunt? Impedit laboriosam minus reprehenderit sit. At corporis eum
+      magnam nihil nisi provident, repellendus tempora voluptates. Labore,
+      mollitia perferendis?
+    </div>
+    <div>
+      Adipisci beatae consequatur cupiditate dolor doloribus ducimus ea
+      excepturi harum id ipsa ipsam itaque iure, laudantium natus nisi nulla
+      officiis quam quod rem repellendus saepe, sint veniam veritatis vero
+      vitae.
+    </div>
+    <div>
+      Assumenda commodi, delectus explicabo, facilis illum incidunt iure
+      laboriosam laborum minima nobis nulla possimus quas quidem saepe sed
+      sequi, sit ullam ut velit voluptatibus. Culpa error mollitia odio optio
+      quam.
+    </div>
+    <div>
+      Asperiores ipsum pariatur quasi sit! Aperiam, magni quas. Accusantium aut
+      dolorem incidunt ipsum minima, nam repudiandae tempora veniam vero. Animi
+      dignissimos dolores id illum ipsam quaerat, rerum similique sit
+      temporibus.
+    </div>
+    <div>
+      Adipisci aut, culpa, distinctio ea excepturi iure laudantium minus modi
+      nihil optio, porro quos reprehenderit sapiente vitae voluptatum. Animi
+      dolorum exercitationem expedita fugiat necessitatibus nemo nobis
+      repudiandae. Asperiores, fugiat, quasi!
+    </div>
 
     <script>
-      const openBtn = document.querySelector('#openBtn');
-      const backDrop = document.querySelector('.backdrop');
+      const openBtn = document.querySelector('#openModal');
       const modal = document.querySelector('.modal');
       const closeBtn = document.querySelector('.close');
 
       openBtn.addEventListener('click', () => {
-        backDrop.style.visibility = 'visible';
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
+        addMask();
+        modal.style.display = 'block';
+        modal.classList.add('show');
+        document.body.classList.add('modal-open');
       });
 
       closeBtn.addEventListener('click', () => {
-        backDrop.style.visibility = 'hidden';
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
+        modal.classList.remove('show');
+        document.body.classList.remove('modal-open');
+        removeMask();
       });
+
+      function addMask() {
+        const mask = document.createElement('div');
+        mask.className = 'mask show';
+        document.body.appendChild(mask);
+      }
+
+      function removeMask() {
+        const mask = document.querySelector('.mask');
+        document.body.removeChild(mask);
+      }
     </script>
   </body>
 </html>
