@@ -1,4 +1,4 @@
-# fs 模块
+# fs 模块常用方法
 
 ## fs.readdir
 
@@ -6,13 +6,13 @@
 
 ```javascript
 // 异步
-fs.readdir('./dir1', function(err, files) {
+fs.readdir("./dir1", function (err, files) {
   if (err) throw err;
   console.log(files);
 });
 
 // 同步
-let files = fs.readdirSync('./dir1');
+let files = fs.readdirSync("./dir1");
 console.log(files);
 ```
 
@@ -22,13 +22,13 @@ console.log(files);
 
 ```javascript
 // 异步
-fs.mkdir('./dir1', function(err) {
+fs.mkdir("./dir1", function (err) {
   if (err) throw err;
-  console.log('make dir success');
+  console.log("make dir success");
 });
 
 // 同步
-fs.mkdirSync('./dir2');
+fs.mkdirSync("./dir2");
 ```
 
 ## fs.rmdir
@@ -37,13 +37,13 @@ fs.mkdirSync('./dir2');
 
 ```javascript
 // 异步
-fs.rmdir('./dir1', function(err) {
+fs.rmdir("./dir1", function (err) {
   if (err) throw err;
-  console.log('delete success');
+  console.log("delete success");
 });
 
 // 同步
-fs.rmdirSync('./dir2');
+fs.rmdirSync("./dir2");
 ```
 
 ## fs.unlink
@@ -52,13 +52,13 @@ fs.rmdirSync('./dir2');
 
 ```javascript
 // 异步
-fs.unlink('./a.txt', function(err) {
+fs.unlink("./a.txt", function (err) {
   if (err) throw err;
-  console.log('success delete file');
+  console.log("success delete file");
 });
 
 // 同步
-fs.unlinkSync('./b.txt');
+fs.unlinkSync("./b.txt");
 ```
 
 ## fs.readFile
@@ -67,20 +67,20 @@ fs.unlinkSync('./b.txt');
 
 ```javascript
 // 异步
-fs.readFile('./css.md', { encoding: 'utf-8', flag: 'r' }, function(err, data) {
+fs.readFile("./css.md", { encoding: "utf-8", flag: "r" }, function (err, data) {
   if (err) throw err;
 
   console.log(data);
 });
 
-fs.readFile('./css.md', 'utf-8', function(err, data) {
+fs.readFile("./css.md", "utf-8", function (err, data) {
   if (err) throw err;
 
   console.log(data);
 });
 
 // 同步
-let data = fs.readFileSync('./css.md', 'utf-8');
+let data = fs.readFileSync("./css.md", "utf-8");
 console.log(data);
 ```
 
@@ -90,36 +90,36 @@ console.log(data);
 
 ```javascript
 // 异步
-fs.writeFile('./a.txt', 'text more ..', function(err) {
+fs.writeFile("./a.txt", "text more ..", function (err) {
   if (err) throw err;
   console.log(err);
 });
 
 // 同步
-fs.writeFileSync('./b.txt', 'some text');
+fs.writeFileSync("./b.txt", "some text");
 ```
 
 ## fs.read
 
 ```javascript
 // 异步
-fs.open('./dir1/css.md', 'r', function(err, fd) {
+fs.open("./dir1/css.md", "r", function (err, fd) {
   if (err) throw err;
 
   let buffer = new Buffer.alloc(255);
 
-  fs.read(fd, buffer, 0, 10, 0, function(err, bytesRead, buffer) {
+  fs.read(fd, buffer, 0, 10, 0, function (err, bytesRead, buffer) {
     if (err) throw err;
     console.log(bytesRead, buffer.slice(0, bytesRead).toString());
 
-    fs.close(fd, function(err) {
+    fs.close(fd, function (err) {
       if (err) throw err;
     });
   });
 });
 
 // 同步
-let fd = fs.openSync('./dir1/css.md', 'r');
+let fd = fs.openSync("./dir1/css.md", "r");
 let buffer = new Buffer.alloc(255);
 let bytesRead = fs.readSync(fd, buffer, 0, 10, 0);
 console.log(buffer.slice(0, bytesRead).toString());
@@ -129,24 +129,24 @@ console.log(buffer.slice(0, bytesRead).toString());
 
 ```javascript
 // 异步
-fs.open('./c.txt', 'w', function(err, fd) {
+fs.open("./c.txt", "w", function (err, fd) {
   if (err) throw err;
 
-  let buffer = new Buffer.alloc(11, 'hello world');
+  let buffer = new Buffer.alloc(11, "hello world");
 
-  fs.write(fd, buffer, 0, 11, 0, function(err, bytesWritten, buffer) {
+  fs.write(fd, buffer, 0, 11, 0, function (err, bytesWritten, buffer) {
     if (err) throw err;
 
-    console.log('write success');
+    console.log("write success");
 
-    fs.close(fd, function(err) {
+    fs.close(fd, function (err) {
       if (err) throw err;
     });
   });
 });
 
 // 同步
-let fd = fs.openSync('./d.txt', 'w');
-let buffer = new Buffer.alloc(11, 'hello world');
+let fd = fs.openSync("./d.txt", "w");
+let buffer = new Buffer.alloc(11, "hello world");
 fs.writeSync(fd, buffer, 0, 11, 0);
 ```
