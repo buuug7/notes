@@ -1,5 +1,15 @@
 # windows related
 
+## window 上访问 docker volume 挂载的数据
+
+I'm on Windows + WSL 2 (Ubuntu 18.04), Docker v19.03. I found my Docker volumes in this location, type in the Windows file explorer :
+
+`\\wsl$\docker-desktop-data\version-pack-data\community\docker\volumes\`
+
+## window 文件管理器中访问 wsl2 文件夹
+
+在文件管理器中输入路径`\\wsl$`
+
 ## windows chrome 删除浏览器地址栏中错误的建议地址
 
 开始输入网站的地址。当您的浏览器开始自动在 Chrome 的地址栏中填充错误的地址时，请在 Mac 上按住 Shift 键和功能键，或者在 Windows 上按住 Shift 键，然后点击 Delete 键。看到某个网站突出显示后，您还可以点击键盘上的向上和向下箭头以拉出任何建议的结果以将其删除。如此简单-比清除整个历史记录要方便得多。

@@ -1,9 +1,9 @@
 ## java 常用命令
 
-## String数组 转 int数组
+## String 数组 转 int 数组
 
 ```
-int[] numbers = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray(); 
+int[] numbers = Arrays.stream(line.split(",")).mapToInt(Integer::parseInt).toArray();
 ```
 
 ### 编译一个文件夹下所有的类
@@ -54,4 +54,13 @@ jar cvfe out.jar com.App src
 # 打包当前src目录的所有文件并指定程序入口为com.App
 # 并指定MANIFEST.MF,输出文件的名字为out.jar
 jar cvfm out.jar src/MANIFEST.MF src
+
+
+# 打包可执行的jar
+# 输出文件out.jar
+# 入口文件为b7.App
+# -C 指定临时改变的目录
+# b7/ 为要打包的class文件目录
+jar cvfe out.jar b7.App -C src b7/
+
 ```
