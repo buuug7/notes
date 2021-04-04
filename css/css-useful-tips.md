@@ -44,6 +44,7 @@ html {
 任何内容后面跟着的浮动元素会环绕在该内容的周围直到你清除该浮动, 用下面给出的代码来解决你的浮动问题.
 
 现代化的 clearfix
+
 ```css
 .clearfix::after {
   display: block;
@@ -53,6 +54,7 @@ html {
 ```
 
 古典的 clearfix
+
 ```css
 .clearfix:before,
 .clearfix:after {
@@ -89,9 +91,10 @@ html {
 
 ## 关于定位的解释(position explained)
 
-- position:fixed; 是基于浏览器视口来定位元素
-- position:absolute; 是根据它最近的已定位的父元素来定位的, 配合 TRBL(top right bottom left)来定位(如果父元素没有设置 position, 则以浏览器左上角为原点定位)
-- position:relative; 参照父元素左上角结合 TRBL 来定位
+- fixed 元素的默认定位行为，元素会根据正常文档流来定位，设置 TRBL(top right bottom left)属性不会起任何作用。
+- relative 元素根据文档的正常流来定位，以它原本的位置作为参考点，通过设置 TRBL(top right bottom left)偏移来定位，它的偏移不会影响其他的元素。
+- absolute 元素会从正常文档流中移除，不为元素预留空间，是根据它最近的已定位的祖先元素来定位的, 配合 TRBL(top right bottom left)来定位(如果父元素没有设置 position, 则以浏览器左上角为原点定位)
+- sticky 元素根据正常流定位，然后相对于它最近滚动祖先，通过设置 TRBL 的值来偏移。偏移值不会影响任何其他元素的位置。
 
 ## 定位与宽度(position and width)
 
