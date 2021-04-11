@@ -12,4 +12,6 @@
 
 ## Complexity
 
-`O(n^2)`
+- best: `n^2`
+- Worst: `n^2`
+- Average: `n^2`
