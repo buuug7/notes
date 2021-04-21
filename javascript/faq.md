@@ -1,26 +1,33 @@
 # javascript FAQ
 
-### __proto__, prototype, constructor
+### 高阶函数
 
-①__proto__和constructor属性是对象所独有的；
-② prototype属性是函数所独有的，因为函数也是一种对象，所以函数也拥有__proto__和constructor属性。
-__proto__属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的__proto__属性所指向的那个对象（父对象）里找，一直找，直到__proto__属性的终点null，再往上找就相当于在null上取值，会报错。通过__proto__属性将对象连接起来的这条链路即我们所谓的原型链。
-prototype属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即f1.__proto__ === Foo.prototype。
-constructor属性的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向Function。
+高阶函数是指至少满足下列条件之一的函数
+
+- 函数可以作为参数被传递
+- 函数可以作为返回值输出
+
+### **proto**, prototype, constructor
+
+①**proto**和 constructor 属性是对象所独有的；
+② prototype 属性是函数所独有的，因为函数也是一种对象，所以函数也拥有**proto**和 constructor 属性。
+**proto**属性的作用就是当访问一个对象的属性时，如果该对象内部不存在这个属性，那么就会去它的**proto**属性所指向的那个对象（父对象）里找，一直找，直到**proto**属性的终点 null，再往上找就相当于在 null 上取值，会报错。通过**proto**属性将对象连接起来的这条链路即我们所谓的原型链。
+prototype 属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法，即 f1.**proto** === Foo.prototype。
+constructor 属性的含义就是指向该对象的构造函数，所有函数（此时看成对象了）最终的构造函数都指向 Function。
 
 ### 创建自定义事件
 
 > [CustomEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CustomEvent)
 
 ```javascript
-let customEvent = new CustomEvent('custom-evt', {
-  detail: { someKey: 'value..' }
+let customEvent = new CustomEvent("custom-evt", {
+  detail: { someKey: "value.." },
 });
 
 document.dispatchEvent(customEvent);
 
 // 捕获事件
-document.addEventListener('custom-evt', function(e) {
+document.addEventListener("custom-evt", function (e) {
   console.log(e.detail);
 });
 ```
@@ -33,17 +40,17 @@ TODO
 
 ```javascript
 var text = element.textContent;
-element.textContent = 'this is some sample text';
+element.textContent = "this is some sample text";
 
 // 给定如下HTML:
 //   <div id="divA">This is <span>some</span> text</div>
 
 // 获得文本内容:
-var text = document.getElementById('divA').textContent;
+var text = document.getElementById("divA").textContent;
 // |text| is set to "This is some text".
 
 // 设置文本内容:
-document.getElementById('divA').textContent = 'This is some text';
+document.getElementById("divA").textContent = "This is some text";
 // divA的HTML现在是这样的:
 // <div id="divA">This is some text</div>
 ```
