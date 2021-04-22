@@ -62,6 +62,7 @@ html5,的文档模式为
 - 浏览器支持脚本,但脚本被禁用
 
 ```html
+
 <noscript>
   <p>本页面需要浏览器支持JavaScript.</p>
 </noscript>
@@ -73,21 +74,23 @@ html5,的文档模式为
 
 #### 语法
 
-严格模式(strict mode),严格模式是为 JavaScript 定义了一种不同的解释与执行模型,在严格模式下,ECMAScript3 中一些不确定的行为将得到处理,而且对某些不安全的操作会抛出错误.可以在脚本顶部或者函数内部的上方添加`"strict mode";`
+严格模式(strict mode)，严格模式是为 JavaScript 定义了一种不同的解释与执行模型，在严格模式下，ECMAScript3
+中一些不确定的行为将得到处理，而且对某些不安全的操作会抛出错误。可以在脚本顶部或者函数内部的上方添加`"use strict";`
 
 ```JavaScript
-"strict mode";
+"use strict";
 
 // or
-function(){
-  "strict mode";
+function fn () {
+  "use strict";
   // 函数体
 }
 ```
 
 #### 变量
 
-ECMAScript 的变量是松散类型的,是可以用来保存任何类型的数据.使用`var`操作符定义的变量将成为定义该变量作用域中的局部变量.省略`var`会导致创建全局变量,我们不建议通过省略`var`来定义全局变量,因为在局部作用域中定义的全局变量很难维护.
+ECMAScript 的变量是松散类型的，是可以用来保存任何类型的数据。使用`var`操作符定义的变量将成为定义该变量作用域中的局部变量。省略`var`会导致创建全局变量，我们不建议通过省略`var`
+来定义全局变量，因为在局部作用域中定义的全局变量很难维护。
 
 #### 数据类型
 
@@ -97,20 +100,23 @@ typeof 操作符用来检测给定变量的数据类型,返回值有:
 - boolean 布尔值
 - string 字符串
 - number 数值
-- object 数值是对象或 null
+- object 数值是对象或 null 或 array
 - function 函数
 
-undefined 类型,值只有一个就是 undefined,使用 var 声明变量但是未初始化,该变量就为 undefined,同样未申明的变量用 typeof 检测也会返回 undefined,所有我们在定义一个变量的时候一定要初始化,这是一个明智的选择,可以避免很多问题.
+undefined 类型，值只有一个就是 undefined，使用 var 声明变量但是未初始化，该变量就为 undefined，同样未申明的变量用 typeof 检测也会返回
+undefined，所有我们在定义一个变量的时候一定要初始化，这是一个明智的选择，可以避免很多问题。
 
-null 类型是第二个只有一个值的数据类型,这个特殊的值就是 null.null 值表示一个空对象指针.null == undefined ,会返回 true.
+null 类型是第二个只有一个值的数据类型，这个特殊的值就是 null。null 值表示一个空对象指针。null == undefined ，会返回 true。
 
-Boolean 类型只有两个字面值:true 和 false,任何类型的值都可以转换为 Boolean 值,空字符串,0,NaN,null,undefined 被转换为 false,其余的都被转换为 true.
+Boolean 类型只有两个字面值：true 和 false，任何类型的值都可以转换为 Boolean 值，空字符串，0，NaN，null，undefined 被转换为 false，其余的都被转换为 true。
 
 Number 类型
 
 - 浮点数,其保存值所需要的内存空间是整数的两倍,可用 e 表示法,浮点数值计算会产生舍入误差,所以永远不要测试某个特定的浮点数值.
-- 数值范围,由于内存限制,不可能保存世界上所有数值,ECMAScript 能够表示的最小和最大数值保存在`Number.MIN_VALUE`和`Number.MAX_VALUE`中,超出该范围的值会被自动转换为特殊的 Infinity,正无穷(Infinity),负无穷(-Infinity).
-- NaN(Not a Number),这个数值用于表示一个本来要返回数值的操作未返回数值的情况,比如`1/0`会返回 NaN,任何与 NaN 涉及的操作都会返回 NaN,NaN 与任何值不相等,包括自身.`isNaN()`函数用来判断 NaN.
+- 数值范围,由于内存限制,不可能保存世界上所有数值,ECMAScript 能够表示的最小和最大数值保存在`Number.MIN_VALUE`和`Number.MAX_VALUE`中,超出该范围的值会被自动转换为特殊的
+  Infinity,正无穷(Infinity),负无穷(-Infinity).
+- NaN(Not a Number),这个数值用于表示一个本来要返回数值的操作未返回数值的情况,比如`1/0`会返回 NaN,任何与 NaN 涉及的操作都会返回 NaN,NaN 与任何值不相等,包括自身.`isNaN()`函数用来判断
+  NaN.
 - 数值转换
   - Number()函数,转换的规则比较复杂
   - parseInt()函数,转换为整数
@@ -230,7 +236,7 @@ for (var item in arr) {
 }
 ```
 
-label 语句,一般都是配合 for 等循环语句使用.
+label 语句, 一般都是配合 for 等循环语句使用.
 
 ```javascript
 start: for (var i = 0; i < count; i++) {
@@ -296,7 +302,7 @@ switch (num) {
 - 由于不存在函数签名的特性,ECMAScript 函数不能重载.
 
 ```javascript
-function sum() {
+function sum () {
   return arguments;
 }
 ```
@@ -314,13 +320,16 @@ function sum() {
 
 #### 执行环境及作用域
 
-执行环境(execution content),执行环境定义了变量或函数有权访问的其他数据.每一个执行环境都有一个与之关联的变量对象,环境中定义的所有变量和函数都保存在这个对象中.全局执行环境是最外围的一个执行环境,根据 ECMAScript 实现的宿主不同,表示执行环境的对象也不同,在 Web 浏览器中,全区执行环境被认为是`window`对象,因此所有全局变量和函数都是作为 window 对象的属性和方法创建的.
+执行环境(execution content),执行环境定义了变量或函数有权访问的其他数据.每一个执行环境都有一个与之关联的变量对象,环境中定义的所有变量和函数都保存在这个对象中.全局执行环境是最外围的一个执行环境,根据
+ECMAScript 实现的宿主不同,表示执行环境的对象也不同,在 Web 浏览器中,全区执行环境被认为是`window`对象,因此所有全局变量和函数都是作为 window 对象的属性和方法创建的.
 
 某个执行环境的所有代码执行完毕后,该环境被销毁,保存在其中的所有变量和函数定义也随之销毁.
 
 每个函数都有自己的执行环境,当执行流进入一个函数时,函数的环境就会被推入一个环境栈中.而在函数执行之后,栈将其环境弹出,把控制权返还给之前的执行环境.
 
-当代码在一个环境中执行时,会创建变量对象的一个 **作用域** **scope chain**,作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问.作用域链的前端始终都是当前执行代码所在环境的变量对象.作用域链中的下一个变量对象来自包含(外部)环境,而在下一个变量对象则来自下一个包含环境.这样一直延续到全局执行环境.全局执行环境的对象始终是作用域链中的最后一个对象.
+当代码在一个环境中执行时,会创建变量对象的一个 **作用域** **scope chain**
+,作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问.作用域链的前端始终都是当前执行代码所在环境的变量对象.作用域链中的下一个变量对象来自包含(外部)
+环境,而在下一个变量对象则来自下一个包含环境.这样一直延续到全局执行环境.全局执行环境的对象始终是作用域链中的最后一个对象.
 
 标示符解析是沿着作用域链一级一级地搜索标示符的过程.搜索过程始终从作用域链的前端开始,然后逐级地向后回溯,直到找到标示符为止,如果找不到则发生错误.
 
@@ -454,7 +463,7 @@ alert(); // 0,1,2,3,4
 // reverse() 取反
 // sort() 默认按照升序排列,不过通常情况下并不是我们想要的结果,它接受一个函数
 var numbers = [1, 2, 3, 10, 4];
-numbers.sort(function(value1, value2) {
+numbers.sort(function (value1, value2) {
   return value2 - value1;
 });
 
@@ -517,26 +526,26 @@ numbers.lastIndexOf(2); // 4
 // map() 对数组中的每一项运行给定函数,返回每次函数调用的结果组成的数组
 
 var numbers = [1, 2, 3, 4, 5, 4, 3, 2, 1];
-var everyResult = numbers.every(function(item, index, array) {
+var everyResult = numbers.every(function (item, index, array) {
   return item > 2;
 });
 alert(everyResult); // false
 
-var someResult = numbers.some(function(item, index, array) {
+var someResult = numbers.some(function (item, index, array) {
   return item > 2;
 });
 alert(someResult); // true
 
-var filterResult = numbers.filter(function(item, index, array) {
+var filterResult = numbers.filter(function (item, index, array) {
   return item > 2;
 });
 alert(filterResult); // 3,4,5,4,3
 
-numbers.forEach(function(item, index, array) {
+numbers.forEach(function (item, index, array) {
   // 执行某些操作
 });
 
-var mapResult = numbers.map(function(item, index, array) {
+var mapResult = numbers.map(function (item, index, array) {
   return item * 2;
 });
 alert(mapResult); // 2, 4, 6, 8, 10, 8, 6, 4, 2
@@ -552,7 +561,7 @@ alert(mapResult); // 2, 4, 6, 8, 10, 8, 6, 4, 2
 // 传给reduce()和reduceRight()的函数接收四个参数:前一个值,当前值,项的索引和数组对象
 // 这个函数返回的任何值都会作为第一个参数自动传给下一个项,第一次迭代发生在第二项上,因此第一个参数是数组的第一项,第二个参数是数组的第二项
 var numbers = [1, 2, 3, 4, 5];
-var sum = numbers.reduce(function(prev, cur, index, array) {
+var sum = numbers.reduce(function (prev, cur, index, array) {
   return prev + cur;
 });
 alert(sum); // 15
@@ -772,11 +781,12 @@ alert(reBed.test(str2)); //true
 
 ```javascript
 // 定义函数
-function sum(num1, num2) {
+function sum (num1, num2) {
   return num1 + num2;
 }
+
 // 或者
-var sum = function(num1, num2) {
+var sum = function (num1, num2) {
   return num1 + num2;
 };
 // 也可以用构造函数Function来声明,但是不建议
@@ -790,13 +800,14 @@ var sum = function(num1, num2) {
 
 ```javascript
 alert(num(10, 10));
-function sum(num1, num2) {
+
+function sum (num1, num2) {
   return num1 + num2;
 }
 
 // 下面的会出错
 alert(sum(10, 10));
-var sum = function(num1, num2) {
+var sum = function (num1, num2) {
   return num1 + num2;
 };
 ```
@@ -825,7 +836,8 @@ var sum = function(num1, num2) {
 #### 基本包装类型
 
 为了便于操作基本类型值,ECMAScript 提供了 3 个特殊的引用类型,Boolean,Number 和 String,每当读取一个基本类型值时候,后台就会创建一个对应的基本包装类型的对象.从而让我们能够调用一些方法来操作这些数据.  
-引用类型和基本包装类型的主要区别就是对象的生存期,使用 new 操作符创建的引用类型的实力,在执行流离开当前作用域之前都一直保存在内存中.而自动创建的基本包装类型的对象,则只存在于一行代码执行的一瞬间.这意味着我们不能在运行时为基本类型值添加属性和方法.
+引用类型和基本包装类型的主要区别就是对象的生存期,使用 new
+操作符创建的引用类型的实力,在执行流离开当前作用域之前都一直保存在内存中.而自动创建的基本包装类型的对象,则只存在于一行代码执行的一瞬间.这意味着我们不能在运行时为基本类型值添加属性和方法.
 
 ```javascript
 //
@@ -943,7 +955,7 @@ text.replace(/at/g, "ond"); // cond, bond, sond, fond
 // 传递给函数的三个参数分别为: 模式的匹配项,模式匹配项在字符串中的位置和原始字符串
 // 这个函数应该返回一个字符串
 var text = "cat, bat, sat, fat";
-var result = text.replace(/.at/g, function(match, pos, originalText) {
+var result = text.replace(/.at/g, function (match, pos, originalText) {
   switch (match) {
     case "cat":
       return "bigCat";
@@ -1044,4 +1056,5 @@ String.fromCharCode(104, 101, 108, 108, 111); // "hello"
     - 每个包装类型都映射到基本类型
     - 在读取模式下访问基本类型值时,就会创建对应的基本包装类型的一个对象,从而方便了数据操作
     - 基本类型值的语句一经执行完毕,就会立刻销毁创建的基本类型包装对象
-- 在所有代码执行之前,作用于中已经存在两个内置对象,Global 和 Math,在大多数 ECMAScript 实现中不能直接访问 Global 对象,不过在 web 浏览器中 window 承担了 Global 对象的角色,全局变量和函数都是 Global 对象的属性.Math 提供了很多属性和方法,用于辅助完成复杂的数学计算.
+- 在所有代码执行之前,作用于中已经存在两个内置对象,Global 和 Math,在大多数 ECMAScript 实现中不能直接访问 Global 对象,不过在 web 浏览器中 window 承担了 Global
+  对象的角色,全局变量和函数都是 Global 对象的属性.Math 提供了很多属性和方法,用于辅助完成复杂的数学计算.
