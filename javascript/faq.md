@@ -24,21 +24,46 @@
 > [CustomEvent](https://developer.mozilla.org/zh-CN/docs/Web/API/CustomEvent)
 
 ```javascript
-let customEvent = new CustomEvent("custom-evt", {
-  detail: { someKey: "value.." },
+let customEvent = new CustomEvent("myEvt", {
+  detail: { someKey: "some value" },
 });
-
-document.dispatchEvent(customEvent);
 
 // 捕获事件
-document.addEventListener("custom-evt", function (e) {
+document.addEventListener("myEvt", function (e) {
   console.log(e.detail);
 });
+
+// 触发时间
+document.dispatchEvent(customEvent);
 ```
 
-### for..in for...of 却别
+### for, forEach, for..in, for..of 区别
 
-TODO
+在 JavaScript 中有 4 中主要的方式用来遍历数组：
+
+- `for (let i = 0; i < arr.length; ++i)`
+- `arr.forEach((v, i) => { /_ ... _/ })`
+- `for (let i in arr)`
+- `for (const v of arr)`
+
+for 和 for..in 循环结构使您可以访问数组中的索引，而不是实际的元素。而 forEach 和 for..of，您可以访问数组元素本身。
+
+针对非数值属性（Non-Numeric Properties），for..in 会遍历非数值属性，而其他几种遍历则不会。
+
+针对数组中的空元素，for..in 和 forEach 会跳过空元素, 但是 for 和 for..of 不会.
+
+如果你想迭代一个对象的属性，你可以用 for-in 循环（这也是它的本职工作）或内建的 Object.keys()方法。
+
+总结：
+
+通常，for..of 是迭代 JavaScript 中数组的最可靠方法。它比常规的 for 循环更简洁，并且没有 for..in 和 forEach 那样多的边缘情况。 for..of 的主要缺点是您需要做一些额外的工作才能访问索引，并且无法像 forEach 那样进行链接。 forEach 在使用的时候有一些限制(比如在在 forEach 中不能使用 await, yield），但是在许多情况下，它使代码更简洁。
+
+```javascript
+// To access the current array index in a for/of loop, you can use the Array#entries() function.
+for (const [i, v] of arr.entries()) {
+  console.log(i, v); // Prints "0 a", "1 b", "2 c"
+}
+```
 
 ### Node.textContent 属性可以表示一个节点及其后代节点的文本内容
 
@@ -47,7 +72,7 @@ var text = element.textContent;
 element.textContent = "this is some sample text";
 
 // 给定如下HTML:
-//   <div id="divA">This is <span>some</span> text</div>
+// <div id="divA">This is <span>some</span> text</div>
 
 // 获得文本内容:
 var text = document.getElementById("divA").textContent;
@@ -65,15 +90,15 @@ Loose typing means that variables are declared without a type.
 弱类型指的是在申明变量的时候不指定变量的类型
 
 ```JavaScript
-/*JavaScript Example(loose typing)*/
-var a=13;// Number declaration
-var b="thirteen";// String declaration
+// JavaScript Example(loose typing)
+var a = 13; // Number declaration
+var b = "thirteen"; // String declaration
 ```
 
 ```java
-/*Java Example(Strong typing)*/
-int a=13; // int declaration
-string b="thirteen"; // String declaration
+// Java Example(Strong typing)
+int a = 13; // int declaration
+string b = "thirteen"; // String declaration
 ```
 
 ### 什么叫纯函数
@@ -86,42 +111,41 @@ shim 垫片的意思，指把一个库引入另一个旧的浏览器，然后用
 
 ### DOM 的操作
 
-```
-  // DOM查找
-  let ul = document.querySelector('ul');
-  let firstChild = document.querySelector('ul li:first-child');
+```javascript
+// DOM查找
+let ul = document.querySelector("ul");
+let firstChild = document.querySelector("ul li:first-child");
 
-  // DOM创建 Element
-  // element = document.createElement(tagName[, options]);
-  let newLi = document.createElement('li');
-  newLi.textContent = '5 ipsum amet.';
+// DOM创建 Element
+// element = document.createElement(tagName[, options]);
+let newLi = document.createElement("li");
+newLi.textContent = "some text";
 
-  // DOM 创建 textNode
-  let textNode = document.createTextNode('pu guohong');
-  document.body.appendChild(textNode);
+// DOM 创建 textNode
+let textNode = document.createTextNode("some text");
+document.body.appendChild(textNode);
 
-  // DOM 添加
-  // element.appendChild(aChild);
-  ul.appendChild(newLi);
+// DOM 添加
+// element.appendChild(aChild);
+ul.appendChild(newLi);
 
-  // DOM 替换
-  // 返回的是被移除的DOM
-  // replacedNode = parentNode.replaceChild(newChild, oldChild);
-  let r = ul.replaceChild(newLi, firstChild);
-  console.log(r);
+// DOM 替换
+// 返回的是被移除的DOM
+// replacedNode = parentNode.replaceChild(newChild, oldChild);
+let replacedNode = ul.replaceChild(newLi, firstChild);
 
-  // DOM 移除
-  // 移除第二个li
-  // oldChild = node.removeChild(child);
-  // or node.removeChild(child);
-  ul.removeChild(ul.children[1]);
+// DOM 移除
+// 移除第二个li
+// oldChild = node.removeChild(child);
+// or node.removeChild(child);
+ul.removeChild(ul.children[1]);
 
-  // 插入
-  // insertedNode = parentNode.insertBefore(newNode, referenceNode);
-  ul.insertBefore(newLi, ul.lastElementChild);
+// 插入
+// insertedNode = parentNode.insertBefore(newNode, referenceNode);
+ul.insertBefore(newLi, ul.lastElementChild);
 
-  // dupNode = node.cloneNode([deep]);
-  // deep=true|false
-  let cloneUl = ul.cloneNode(true);
-  document.body.appendChild(cloneUl);
+// dupNode = node.cloneNode([deep]);
+// deep=true|false
+let cloneUl = ul.cloneNode(true);
+document.body.appendChild(cloneUl);
 ```
