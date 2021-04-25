@@ -1,22 +1,14 @@
-## 说一下 Vue 的双向绑定数据的原理
+# the latest interview questions
 
-使用的是发布-订阅的模式，通过 Object.defineProperty() 来劫持各个属性的 setter，getter，在数据变动时发布消息给订阅者，触发相应监听回调。
-
-## dom 事件以流的形式传递，先从最外层元素向最内层元素流过，此过程称为捕获，到达最内层元素后又重新向最外层元素流动，此过程称为冒泡。
-
-通过 addEventListener 绑定事件，默认是在冒泡阶段触发事件，如果 useCapture 设置为 true，则事件是在捕获阶段触发。一个事件只会触发一次，要么冒泡阶段，要么捕获阶段。
-
-## JS 运行机制
-
-[JS 运行机制](../javascript/faq.md#JS 运行机制)
-
-## Vue 中 key 的作用
-
-key 是给每一个 VNODE 的唯一 id,依靠 key,我们的 diff 操作可以更准确、更快速
-
-## Vue 组件 data 为什么必须是函数
-
-因为 js 本身的特性带来的，如果 data 是一个对象，那么由于对象本身属于引用类型，当我们修改其中的一个属性时，会影响到所有 Vue 实例的数据。如果将 data 作为一个函数返回一个对象，那么每一个实例的 data 属性都是独立的，不会相互影响了
+- [=== 跟 == 区别](<../javascript/faq.md#=== 跟 == 区别>)
+- [JS 运行机制](<../javascript/faq.md#JS 运行机制>)
+- [JavaScript 中作用域和变量提升](../javascript/scope-hoisting.md)
+- [变量提升(hoisting)](<../javascript/faq.md#变量提升(hoisting)>)
+- [javascript 的闭包](../javascript/faq.md#闭包)
+- [DOM 事件流](<../javascript/faq.md#DOM 事件流>)
+- [Vue 中 key 的作用](<../javascript/vue.md#Vue 中 key 的作用>)
+- [Vue 双向绑定数据的原理](<../javascript/vue.md#Vue 双向绑定数据的原理>)
+- [Vue 组件 data 为什么必须是函数](<../javascript/vue.md#Vue 组件 data 为什么必须是函数>)
 
 ## vue 生命周期的理解
 
@@ -55,14 +47,6 @@ Dog.prototype = new Animal();
 const dog1 = new Dog();
 dog1.say(); // I am a animal
 ```
-
-## === 跟 == 区别
-
-`==`运算符是在进行必要的类型转换后，再比较。`===`运算符不会进行类型转换，所以如果两个值不是相同的类型，会直接返回 false。
-
-## 请解释变量提升（hoisting）
-
-变量提升（hoisting）是用于解释代码中变量声明行为的术语。使用 var 关键字声明或初始化的变量，会将声明语句“提升”到当前作用域的顶部。 但是，只有声明才会触发提升，赋值语句（如果有的话）将保持原样。函数声明会使函数体提升，但函数表达式（以声明变量的形式书写）只有变量声明会被提升。
 
 ## 请描述事件冒泡
 
@@ -188,10 +172,6 @@ Access-Control-Allow-Credentials: true
 
 3. 服务端代理: 使用 nginx 代理下原始接口，在返回的时候添加额外的跨越响应头
 
-## 请描述一下 javascript 的闭包
-
-[闭包](../javascript/faq.md#闭包)
-
 ## 请描述一下 javascript 的作用域链（Scope Chain）
 
 javascript 有两种作用域类型，局部作用域跟全局作用域，作用域决定了变量的可见性。函数内部申明的变量为局部变量，函数之外申明的变量为全局变量。内部函数可以访问外部函数变量以及全局变量的这种机制，用链式查找决定哪些数据能被内部函数访问。
@@ -211,7 +191,3 @@ javascript 有两种作用域类型，局部作用域跟全局作用域，作用
 - 合并多个文件为单个文件，减少 http 请求
 - 压缩资源代码，以减少体积
 - 图片懒加载
-
-## JavaScript 中作用域和变量提升
-
-[scope-hoisting](../javascript/scope-hoisting.md)

@@ -23,18 +23,18 @@
 ```javascript
 var book = {
   _year: 2004,
-  edition: 1
+  edition: 1,
 };
 Object.defineProperty(book, "year", {
-  get: function() {
+  get: function () {
     return this._year;
   },
-  set: function(newValue) {
+  set: function (newValue) {
     if (newValue > 2004) {
       this._year = newValue;
       this.edition += newValue - 2004;
     }
-  }
+  },
 });
 book.year = 2005;
 book.edition; // 2
@@ -47,22 +47,22 @@ book.edition; // 2
 var book = {};
 Object.defineProperties(book, {
   _year: {
-    value: 2004
+    value: 2004,
   },
   edition: {
-    value: 1
+    value: 1,
   },
   year: {
-    get: function() {
+    get: function () {
       return this._year;
     },
-    set: function(newValue) {
+    set: function (newValue) {
       if (newValue > 2004) {
         this._year = newValue;
         this.edition += newValue - 2004;
       }
-    }
-  }
+    },
+  },
 });
 ```
 
@@ -99,7 +99,7 @@ function Person(name, age, job) {
   this.name = name;
   this.age = age;
   this.job = job;
-  this.sayName = function() {
+  this.sayName = function () {
     alert(this.name);
   };
 }
@@ -116,7 +116,7 @@ function Person() {}
 Person.prototype.name = "Nicholas";
 Person.prototype.age = 29;
 Person.prototype.job = "Software engineer";
-Person.prototype.sayName = function() {
+Person.prototype.sayName = function () {
   alert(this.name);
 };
 
@@ -145,9 +145,9 @@ Person.prototype = {
   name: "Nicholas",
   age: 29,
   job: "Software Engineer",
-  syaName: function() {
+  syaName: function () {
     alert(this.name);
-  }
+  },
 };
 
 // 实例的原型仅指向原型,而不是指向构造函数
@@ -172,9 +172,9 @@ function Person(name, age, job) {
 }
 Person.prototype = {
   constructor: Person,
-  sayName: function() {
+  sayName: function () {
     alert(this.name);
-  }
+  },
 };
 
 var person1 = new Person("Nicholas", 29, "Software Engineer");
@@ -196,7 +196,7 @@ function Person(name, age, job) {
   this.job = job;
 
   if (typeof this.sayName != "function") {
-    Person.prototype.sayName = function() {
+    Person.prototype.sayName = function () {
       alert(this.name);
     };
   }
@@ -256,7 +256,7 @@ function SuperType(name) {
   this.colors = ["red", "blue", "green"];
 }
 
-SuperType.prototype.sayName = function() {
+SuperType.prototype.sayName = function () {
   alert(this.name);
 };
 
@@ -269,7 +269,7 @@ function SubType(name, age) {
 // 继承方法
 SubType.prototype = new SuperType();
 
-SubType.prototype.sayAge = function() {
+SubType.prototype.sayAge = function () {
   alert(this.age);
 };
 
@@ -301,7 +301,7 @@ function object(o) {
 // 这种原型式继承,要求你必须有一个对象可以作为另一个对象的基础.
 var person = {
   name: "Nicholas",
-  friends: ["Shelby", "Court", "Van"]
+  friends: ["Shelby", "Court", "Van"],
 };
 
 var anotherPerson = object(person);
@@ -345,7 +345,7 @@ anotherPerson.friends; // Shelby,Court,Van,Rob,Barbie
 ```javascript
 function createAnother(original) {
   var clone = object(original);
-  clone.sayHi = function() {
+  clone.sayHi = function () {
     alert("Hi");
   };
   return clone;
@@ -372,7 +372,7 @@ function SuperType(name) {
   this.colors = ["red", "blue", "green"];
 }
 
-SuperType.prototype.sayName = function() {
+SuperType.prototype.sayName = function () {
   alert(this.name);
 };
 
@@ -383,7 +383,7 @@ function SubType(name, age) {
 
 inheritPrototype(SubType, SuperType);
 
-SubType.prototype.sayAge = function() {
+SubType.prototype.sayAge = function () {
   alert(this.age);
 };
 
@@ -423,7 +423,7 @@ function sayHi() {
   alert("hi");
 }
 // 函数表达式
-var sayHi = function() {
+var sayHi = function () {
   alert("hi");
 };
 ```
@@ -450,7 +450,7 @@ function factorial(num) {
 //
 //
 function createComparisonFunction(propertyName) {
-  return function(object1, object2) {
+  return function (object1, object2) {
     var value1 = ojbect1[propertyName]; // 内部函数访问了外部函数的propertyName变量
     var value2 = object2[propertyName]; // 同理
     if (value1 < value2) {
@@ -473,7 +473,7 @@ function createComparisonFunction(propertyName) {
 用作块级作用域(私有作用域)的匿名函数语法
 
 ```javascript
-(function() {
+(function () {
   // 这里是块级作用域
 })();
 ```
@@ -491,7 +491,7 @@ function MyObject() {
     return false;
   }
   // 特权方法
-  this.publicMethod = function() {
+  this.publicMethod = function () {
     privateVariable++;
     return privateFunction();
   };
@@ -503,16 +503,16 @@ function MyObject() {
 通过在私有作用域中定义私有变量和函数,同样也可以创建特权方法.
 
 ```javascript
-(function() {
+(function () {
   // 私有变量和私有函数
   var privateVariable = 10;
   function privateFunction() {
     return false;
   }
   // 构造函数
-  MyObject = function() {};
+  MyObject = function () {};
   // 公有特权方法
-  MyObject.prototype.publicMethod = function() {
+  MyObject.prototype.publicMethod = function () {
     privateVariable++;
     return privateFunction();
   };
@@ -526,16 +526,16 @@ function MyObject() {
 ```javascript
 var singleton = {
   name: value,
-  method: function() {
+  method: function () {
     // ...
-  }
+  },
 };
 ```
 
 模块模式通过为单例添加私有变量和特权方法能够使其得到增强.
 
 ```javascript
-var singleton = (function() {
+var singleton = (function () {
   // 私有变量和私有函数
   var privateVariable = 10;
   function privateFunction() {
@@ -544,10 +544,10 @@ var singleton = (function() {
   // 特权方法和属性
   return {
     publicProperty: true,
-    publicMethod: function() {
+    publicMethod: function () {
       privateVariable++;
       return privateFunction();
-    }
+    },
   };
 })();
 ```
@@ -557,7 +557,7 @@ var singleton = (function() {
 这种增强模式适合那些单例必须是某种类型的实例.同时还必须添加某些属性和方法对其加以增强的情况.
 
 ```javascript
-var singleton = (function() {
+var singleton = (function () {
   // 私有变量和私有属性
   var privateVariable = 10;
   function privateFunction() {
@@ -566,7 +566,7 @@ var singleton = (function() {
   // 创建对象
   var object = new CustomType();
   object.publicProperty = true;
-  object.publicMethod = function() {
+  object.publicMethod = function () {
     privateVariable++;
     return privateFunction();
   };
@@ -639,7 +639,7 @@ window.open("https://github.com", "_blank", "width=300,height=300");
 ```javascript
 // 超时调用
 // 5秒之后在执行
-var timeoutId = setTimeout(function() {
+var timeoutId = setTimeout(function () {
   console.log("opps...");
 }, 5000);
 
@@ -647,7 +647,7 @@ var timeoutId = setTimeout(function() {
 clearTimeout(timeoutId);
 
 // 间歇调用
-var interval = setInterval(function() {
+var interval = setInterval(function () {
   console.log("hello");
 }, 1000);
 
@@ -878,7 +878,7 @@ head.appendChild(style);
 - 事件冒泡(event bubbling)
 - 事件捕获(event capturing)
 
-DOM2 级事件规定事件流包括三个阶段,事件捕获阶段,处于目标阶段和事件冒泡阶段.首先发生的是事件捕获,为截获事件提供了机会,然后是实际目标接受到事件,最后一个阶段是冒泡阶段,可以在这个阶段对事件作出响应.
+DOM2 级事件规定事件流包括三个阶段,事件捕获阶段,处于目标阶段和事件冒泡阶段.首先发生的是事件捕获,为截获事件提供了机会,然后是实际目标接收到事件,最后一个阶段是冒泡阶段,可以在这个阶段对事件作出响应.
 
 #### 事件处理程序
 
