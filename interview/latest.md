@@ -5,7 +5,7 @@
 - [=== 跟 == 区别](../javascript/faq.md#===-跟-==-区别)
 - [JS 运行机制](../javascript/faq.md#JS-运行机制)
 - [JavaScript 中作用域和变量提升](../javascript/scope-hoisting.md)
-- [变量提升(hoisting)](<../javascript/faq.md#变量提升(hoisting))
+- [变量提升 hoisting](../javascript/faq.md#变量提升-hoisting)
 - [javascript 的闭包](../javascript/faq.md#闭包)
 - [请描述事件冒泡](../javascript/faq.md#请描述事件冒泡)
 - [DOM 事件流](../javascript/faq.md#DOM-事件流)
