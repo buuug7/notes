@@ -62,7 +62,6 @@ html5,的文档模式为
 - 浏览器支持脚本,但脚本被禁用
 
 ```html
-
 <noscript>
   <p>本页面需要浏览器支持JavaScript.</p>
 </noscript>
@@ -302,7 +301,7 @@ switch (num) {
 - 由于不存在函数签名的特性,ECMAScript 函数不能重载.
 
 ```javascript
-function sum () {
+function sum() {
   return arguments;
 }
 ```
@@ -327,8 +326,7 @@ ECMAScript 实现的宿主不同,表示执行环境的对象也不同,在 Web �
 
 每个函数都有自己的执行环境,当执行流进入一个函数时,函数的环境就会被推入一个环境栈中.而在函数执行之后,栈将其环境弹出,把控制权返还给之前的执行环境.
 
-当代码在一个环境中执行时,会创建变量对象的一个 **作用域** **scope chain**
-,作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问.作用域链的前端始终都是当前执行代码所在环境的变量对象.作用域链中的下一个变量对象来自包含(外部)
+当代码在一个环境中执行时,会创建变量对象的一个 **作用域 scope chain**,作用域链的用途是保证对执行环境有权访问的所有变量和函数的有序访问.作用域链的前端始终都是当前执行代码所在环境的变量对象.作用域链中的下一个变量对象来自包含(外部)
 环境,而在下一个变量对象则来自下一个包含环境.这样一直延续到全局执行环境.全局执行环境的对象始终是作用域链中的最后一个对象.
 
 标示符解析是沿着作用域链一级一级地搜索标示符的过程.搜索过程始终从作用域链的前端开始,然后逐级地向后回溯,直到找到标示符为止,如果找不到则发生错误.
@@ -374,7 +372,7 @@ person.age = 22;
 // 对象字面量来创建
 var person = {
   name: "buuug7",
-  age: 22
+  age: 22,
 };
 
 // 访问 , 点表示法
@@ -781,7 +779,7 @@ alert(reBed.test(str2)); //true
 
 ```javascript
 // 定义函数
-function sum (num1, num2) {
+function sum(num1, num2) {
   return num1 + num2;
 }
 
@@ -801,7 +799,7 @@ var sum = function (num1, num2) {
 ```javascript
 alert(num(10, 10));
 
-function sum (num1, num2) {
+function sum(num1, num2) {
   return num1 + num2;
 }
 
