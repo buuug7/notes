@@ -40,3 +40,13 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
 组件是将 props 转换为 UI，而高阶组件是将组件转换为另外一个组件。
+
+## quick try JSX
+
+参考 <https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html>
+
+## 何时使用 Ref
+
+- 管理 dom 的聚焦 focus，文本选择，或者媒体播放的控制等
+- 出发命令式的动画
+- 与第三方的 DOM 集成

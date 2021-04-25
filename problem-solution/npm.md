@@ -1,5 +1,9 @@
 # npm related
 
+## mac 下面 npm 全局包安装的位置
+
+`/usr/local/lib/node_modules`
+
 ## npm 如何下架已经发布得包
 
 打开<https://www.npmjs.com/support/>, 填写申请单即可.下面是样例
