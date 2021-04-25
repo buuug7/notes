@@ -1,6 +1,6 @@
-## JavaScript OOP 来自于[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
+# JavaScript OOP 来自于[MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Introduction_to_Object-Oriented_JavaScript)
 
-### 面向对象编程
+## 面向对象编程
 
 面向对象编程是用抽象的方式创建基于现实世界模型的一种编程模式,包括模块化,多态,封装几种技术
 
@@ -9,7 +9,7 @@
 
 面向对象编程的目的是在编程中促进更多的灵活性和可维护性,在大型软件工程中广为流行.凭借其对模块的重用,面向对象的代码开发更简单,更容易理解,相比非模块化编程方法,它能更直接的分析,编码和理解复杂的情况和过程
 
-### 术语
+## 术语
 
 - Namespace 命名空间 允许开发人员在一个独特,应用相关的名字下捆绑所有的功能的容器
 - Class 类 定义对象的特征,它是对象属性和方法的模板定义
@@ -22,11 +22,11 @@
 - Abstraction 抽象 结合复杂的继承,方法,属性的对象能够模拟现实的模型
 - Polymorphism 多态 不同类可以定义相同的方法或属性
 
-### 原型编程(prototype-based programming)
+## 原型编程(prototype-based programming)
 
 基于原型的编程不是面向对象编程中体现的风格，且行为重用（在基于类的语言中也称为继承）是通过装饰它作为原型的现有对象的过程实现的。这种模式也被称为弱类化，原型化，或基于实例的编程。
 
-### JavaScript 面向对象编程
+## JavaScript 面向对象编程
 
 #### 命名空间
 
@@ -275,7 +275,7 @@ JavaScript Function 类继承自 Object 类（这是典型的具体化） 。Fun
 ```JavaScript
 var foo = function(){};
 console.log( 'foo is a Function: ' + (foo instanceof Function) );                  // logs "foo is a Function: true"
-cpnsole.log( 'foo.prototype is an Object: ' + (foo.prototype instanceof Object) ); // logs "foo.prototype is an Object: true"
+console.log( 'foo.prototype is an Object: ' + (foo.prototype instanceof Object) ); // logs "foo.prototype is an Object: true"
 ```
 
 ##### 多态
