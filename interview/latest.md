@@ -1,14 +1,14 @@
 # the latest interview questions
 
-- [=== 跟 == 区别](<../javascript/faq.md#=== 跟 == 区别>)
-- [JS 运行机制](<../javascript/faq.md#JS 运行机制>)
+- [=== 跟 == 区别](../javascript/faq.md#===-跟-==-区别)
+- [JS 运行机制](../javascript/faq.md#JS-运行机制)
 - [JavaScript 中作用域和变量提升](../javascript/scope-hoisting.md)
-- [变量提升(hoisting)](<../javascript/faq.md#变量提升(hoisting)>)
+- [变量提升(hoisting)](<../javascript/faq.md#变量提升(hoisting))
 - [javascript 的闭包](../javascript/faq.md#闭包)
-- [DOM 事件流](<../javascript/faq.md#DOM 事件流>)
-- [Vue 中 key 的作用](<../javascript/vue.md#Vue 中 key 的作用>)
-- [Vue 双向绑定数据的原理](<../javascript/vue.md#Vue 双向绑定数据的原理>)
-- [Vue 组件 data 为什么必须是函数](<../javascript/vue.md#Vue 组件 data 为什么必须是函数>)
+- [DOM 事件流](../javascript/faq.md#DOM-事件流)
+- [Vue 中 key 的作用](../javascript/vue.md#Vue-中-key-的作用)
+- [Vue 双向绑定数据的原理](../javascript/vue.md#Vue-双向绑定数据的原理)
+- [Vue 组件 data 为什么必须是函数](../javascript/vue.md#Vue-组件-data-为什么必须是函数)
 
 ## vue 生命周期的理解
 
