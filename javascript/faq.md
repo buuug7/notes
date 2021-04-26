@@ -1,5 +1,103 @@
 # javascript FAQ
 
+## restful
+
+REST 是英文 representational state transfer(表象性状态转变)或者表述性状态转移。Rest 是 web 服务的一种架构风格，使用 HTTP，URI，XML，JSON，HTML 等广泛流行的标准和协议。轻量级，跨平台，跨语言的架构设计。它是一种设计风格，不是一种标准，是一种思想。
+
+restful 对应的中文是 rest 式的。Restful web service 是一种常见的 rest 的应用，是遵守了 rest 风格的 web 服务。rest 式的 web 服务是一种 ROA(The Resource-Oriented Architecture)(面向资源的架构)。
+
+### Rest 架构的主要原则
+
+- 网络上的所有事物都被抽象为资源
+- 每个资源都有一个唯一的资源标识符
+- 同一个资源具有多种表现形式(xml,json 等)
+- 对资源的各种操作不会改变资源标识符
+- 所有的操作都是无状态的
+- 符合 REST 原则的架构方式即可称为 RESTful
+
+### 为什么会出现 Restful
+
+在 Restful 之前的操作：
+
+- GET /photos/query/{photo} 获取特定 photo
+- POST /photos/create 创建 photo
+- POST /photos/update/{photo} 更新特定 photo
+- GET/POST /photos/delete/{photo} 删除特定 photo
+
+RESTful 用法：
+
+| Verb      | URI             | Description     |
+| --------- | --------------- | --------------- |
+| GET       | /photos         | 获取所有 photos |
+| POST      | /photos         | 创建 photo      |
+| GET       | /photos/{photo} | 获取特定 photo  |
+| PUT/PATCH | /photos/{photo} | 更新特定 photo  |
+| DELETE    | /photos/{photo} | 删除特定 photo  |
+
+之前的操作是没有问题的，大神认为是有问题的，有什么问题呢？你每次请求的接口或者地址，都在做描述。例如查询的时候用了 query，新增的时候用了 create，其实完全没有这个必要，我使用了 get 请求，就是查询。使用 post 请求，就是新增的请求，我的意图很明显，完全没有必要做描述，这就是为什么有了 restful。
+
+### 如何使用
+
+| http 方法 | 资源操作 |
+| --------- | -------- |
+| GET       | SELECT   |
+| POST      | INSERT   |
+| PUT       | UPDATE   |
+| DELETE    | DELETE   |
+
+安全性：对 REST 接口的访问，不会使服务器端资源的状态发生变化
+
+## OSI
+
+OSI（Open System Interconnect），即开放式系统互联。 一般都叫 OSI 参考模型，OSI 定义了网络互连的七层框架（物理层、数据链路层、网络层、传输层、会话层、表示层、应用层）。
+![OSI](.//resource/osi.png)
+
+## HTTP
+
+超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP 是万维网的数据通信的基础。设计 HTTP 最初的目的是为了提供一种发布和接收 HTML 页面的方法。通过 HTTP 或者 HTTPS 协议请求的资源由统一资源标识符（Uniform Resource Identifiers，URI）来标识。
+
+HTTP（HyperText Transport Protocol）是超文本传输协议的缩写，它是一个**应用层**协议，它用于传送 WWW 方式的数据。HTTP 协议采用了请求/响应模型。客户端向服务器发送一个请求，请求头包含请求的方法、URL、协议版本、以及包含请求修饰符、客户信息和内容的类似于 MIME 的消息结构。服务器以一个状态行作为响应，响应的内容包括消息协议的版本，成功或者错误编码加上包含服务器信息、实体元信息以及可能的实体内容。
+
+## TCP
+
+传输控制协议（英语：Transmission Control Protocol，缩写为 TCP）是一种面向连接的、可靠的、基于字节流的**传输层**通信协议。在简化的计算机网络 OSI 模型中，它完成第四层传输层所指定的功能，用户数据包协议（UDP）是同一层内另一个重要的传输协议。
+
+在因特网协议族（Internet protocol suite）中，TCP 层是位于 IP 层之上，应用层之下的中间层。不同主机的应用层之间经常需要可靠的、像管道一样的连接，但是 IP 层不提供这样的流机制，而是提供不可靠的包交换。
+
+应用层向 TCP 层发送用于网间传输的、用 8 位字节表示的数据流，然后 TCP 把数据流分区成适当长度的报文段（通常受该计算机连接的网络的数据链路层的最大传输单元（MTU）的限制）。之后 TCP 把结果包传给 IP 层，由它来通过网络将包传送给接收端实体的 TCP 层。TCP 为
+了保证不发生丢包，就给每个包一个序号，同时序号也保证了传送到接收端实体的包的按序接收。然后接收端实体对已成功收到的包发回一个相应的确认（ACK）；如果发送端实体在合理的往返时延（RTT）内未收到确认，那么对应的数据包就被假设为已丢失将会被进行重传。TCP 用一个校验和函数来检验数据是否有错误；在发送和接收时都要计算校验和。
+
+## IP
+
+网际协议（英语：Internet Protocol，缩写为 IP），又译互联网协议，是用于分组交换数据网络的一种协议。
+
+IP 是在 TCP/IP 协议族中**网络层**的主要协议，任务是仅仅根据源主机和目的主机的地址传送数据。为此目的，IP 定义了寻址方法和数据报的封装结构。第一个架构的主要版本，现在称为 IPv4，仍然是最主要的互联网协议，尽管世界各地正在积极部署 IPv6。
+
+## 宿主对象 host objects 和原生对象 native object 的区别
+
+原生对象是由 ECMAScript 规范定义的 JavaScript 内置对象，比如 String、Math、RegExp、Object、Function 等等。
+
+宿主对象是由运行时环境（浏览器或 Node）提供，比如 window、XMLHTTPRequest 等。
+
+## 匿名函数的典型应用场景
+
+- 匿名函数可以在 IIFE 中使用，来封装局部作用域内的代码，以便其声明的变量不会暴露到全局作用域。
+- 匿名函数可以作为只用一次，不需要在其他地方使用的回调函数。当处理函数在调用它们的程序内部被定义时，代码具有更好地自闭性和可读性，可以省去寻找该处理函数的函数体位置的麻烦。
+
+## options 请求
+
+在有很多情况下,当我们在 js 里面调用一次 ajax 请求时,在浏览器那边却会查询到两次请求,第一次的 Request Method 参数是 OPTIONS,还有一次就是我们真正的请求,比如 get 或是 post 请求方式
+
+查阅相关的资料之后发现,这是浏览器对复杂跨域请求的一种处理方式,在真正发送请求之前,会先进行一次预请求,就是我们刚刚说到的参数为 OPTIONS 的第一次请求,他的作用是用于试探性的服务器响应是否正确,即是否能接受真正的请求,如果在 options 请求之后获取到的响应是拒绝性质的,例如 500 等 http 状态,那么它就会停止第二次的真正请求的访问
+
+大致说明一下,有三种方式会导致这种现象:
+
+1. 请求的方法不是 GET/HEAD/POST
+2. POST 请求的 Content-Type 并非 application/x-www-form-urlencoded, multipart/form-data, 或 text/plain
+3. 请求设置了自定义的 header 字段
+
+比如我的 Content-Type 设置为“application/json;charset=utf-8”并且自定义了 header 选项导致了这种情况。
+
 ## 原型链继承
 
 通过申明一个构造函数，然后在该构造函数的原型上添加属性和方法，然后子类调用父类构造函数来达到继承的目的。

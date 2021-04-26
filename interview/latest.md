@@ -1,6 +1,6 @@
 # the latest interview questions
 
-## JavaScript
+## Common
 
 - [=== 跟 == 区别](../javascript/faq.md#===-跟-==-区别)
 - [JS 运行机制](../javascript/faq.md#JS-运行机制)
@@ -20,6 +20,13 @@
 - [说下客户端缓存有哪些以及区别](../javascript/faq.md#说下客户端缓存有哪些以及区别)
 - [常见的 web 页面优化的手段有哪些](../javascript/faq.md#常见的-web-页面优化的手段有哪些)
 - [你对 MVVM 的理解](../javascript/faq.md#你对-MVVM-的理解)
+- [options 请求](../javascript/faq.md#options 请求)
+- [匿名函数的典型应用场景](../javascript/faq.md#匿名函数的典型应用场景)
+- [宿主对象 host objects 和原生对象 native object 的区别](../javascript/faq.md#宿主对象-host-objects-和原生对象-native-object-的区别)
+- [IP](../javascript/faq.md#IP)
+- [TCP](../javascript/faq.md#TCP)
+- [OSI](../javascript/faq.md#OSI)
+- [HTTP](../javascript/faq.md#HTTP)
 
 ## Css
 
