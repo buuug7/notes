@@ -1,4 +1,4 @@
-# the latest interview questions
+# The latest interview questions
 
 ## Common
 
@@ -20,13 +20,18 @@
 - [说下客户端缓存有哪些以及区别](../javascript/faq.md#说下客户端缓存有哪些以及区别)
 - [常见的 web 页面优化的手段有哪些](../javascript/faq.md#常见的-web-页面优化的手段有哪些)
 - [你对 MVVM 的理解](../javascript/faq.md#你对-MVVM-的理解)
-- [options 请求](../javascript/faq.md#options 请求)
+- [options 请求](../javascript/faq.md#options-请求)
 - [匿名函数的典型应用场景](../javascript/faq.md#匿名函数的典型应用场景)
 - [宿主对象 host objects 和原生对象 native object 的区别](../javascript/faq.md#宿主对象-host-objects-和原生对象-native-object-的区别)
 - [IP](../javascript/faq.md#IP)
 - [TCP](../javascript/faq.md#TCP)
 - [OSI](../javascript/faq.md#OSI)
 - [HTTP](../javascript/faq.md#HTTP)
+- [document 中的 load 事件和 DOMContentLoaded 事件之间的区别](../javascript/faq.md#document-中的-load-事件和-DOMContentLoaded-事件之间的区别)
+- [javascript 数据类型判断](../javascript/faq.md#javascript-数据类型判断)
+- [解释 Ajax](../javascript/faq.md#解释-Ajax)
+- [Pure Functions 纯函数](../javascript/faq.md#Pure-Functions-纯函数)
+- [HTML5 有什么优势](../javascript/faq.md#HTML5-有什么优势)
 
 ## Css
 
@@ -39,3 +44,5 @@
 - [Vue 双向绑定数据的原理](../javascript/vue.md#Vue-双向绑定数据的原理)
 - [Vue 生命周期](../javascript/vue.md#Vue-生命周期)
 - [Vue 组件 data 为什么必须是函数](../javascript/vue.md#Vue-组件-data-为什么必须是函数)
+- [$nextTick 是做什么的](../javascript/vue.md#$nextTick-是做什么的)
+- [什么是虚拟 DOM](../javascript/vue.md#$什么是虚拟-DOM)

@@ -1,5 +1,51 @@
 # javascript FAQ
 
+
+## HTML5 有什么优势
+
+- 语义: 能够让你更恰当地描述你的内容是什么
+- 连通性: 能够让你跟服务器之间通过新技术进行通讯
+- 离线&储存: 能够让网页在客户端本地存储数据以高效地离线运行
+- 多媒体: 使 audio 和 video 成为 web 中的一等公民
+- 2D/3D 绘图效果: 提供了一个更加分化范围的呈现选择
+- 性能&集成 :提供了非常显著的性能优化和更有效的计算机硬件使用
+- 设备访问 Device Access: 能够处理各种输入和输出设备
+- 样式设计: 让作者来创作更加复杂的主题吧
+
+## Pure Functions 纯函数
+
+一个函数的返回结果只依赖于它的参数，并且在执行过程里面没有副作用(side effects)，我们就把这个函数叫做纯函数.优点有:
+
+- 容易可测试(testable)
+- 因为相同的输入必定是相同的输出，因此结果可以缓存(cacheable)
+- 因为不用担心有副作用(side-effects),因此可以更好地工作
+
+## DOCTYPE 有什么用？
+
+由于遗留原因，需要 doctype。省略时，浏览器倾向于使用与某些规范不兼容的不同呈现模式。在文档中包含 DOCTYPE 可确保浏览器尽最大努力遵循相关规范。
+
+## 解释 Ajax
+
+AJAX 的全称是 Asynchronous JavaScript and XML，是一种利用 Javascript 请求服务器数据的技术，在不需要重新加载整个网页的情况下，实现从服务端获取数据，动态更新网页部分内容。
+
+## javascript 数据类型判断
+
+typeof 可以正确识别：Undefined、Boolean、Number、String、Symbol、Function 等类型的数据，但是对于其他的都会认为是 object。但是可以使用`Object.prototype.toString`去做详细判定。
+
+```javascript
+const rs = Object.prototype.toString.call(new Date()).split(" ")[1];
+const ty = rs.substring(0, rs.length - 1).toLowerCase(); // date
+```
+
+## document 中的 load 事件和 DOMContentLoaded 事件之间的区别
+
+当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。window 的 load 事件仅在 DOM 和所有相关资源全部完成加载后才会触发。
+
+
+## const 定义的 Array 中间元素能否被修改? 如果可以, 那 const 修饰对象的意义是?
+
+可以被修改。const 的意义是为了保证变量指向的内存地址不发生变化。
+
 ## restful
 
 REST 是英文 representational state transfer(表象性状态转变)或者表述性状态转移。Rest 是 web 服务的一种架构风格，使用 HTTP，URI，XML，JSON，HTML 等广泛流行的标准和协议。轻量级，跨平台，跨语言的架构设计。它是一种设计风格，不是一种标准，是一种思想。
