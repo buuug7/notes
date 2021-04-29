@@ -9,16 +9,14 @@
 
     <script>
       function debounce(fn, wait) {
-        var time = null;
+        let time = null;
+
         return function () {
-          var _this = this;
+          console.log(time, time)
           if (time) {
             clearTimeout(time);
           }
-          var arg = arguments;
-          time = setTimeout(function () {
-            fn.apply(_this, arg);
-          }, wait);
+          time = setTimeout(() => fn(...arguments), wait);
         };
       }
 
@@ -26,7 +24,7 @@
         "input",
         debounce((e) => {
           console.log(e.target.value);
-        }, 1000)
+        }, 2000)
       );
     </script>
   </body>
