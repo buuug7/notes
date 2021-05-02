@@ -1,29 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
-<body>
-
-<input type="text" id="name">
-<script>
-  function throttle(fn, wait) {
-    let time = null;
-    return function() {
-      const arg = arguments;
-      if (!time) {
-        time = setTimeout(() => {
-          time = null;
-          fn.apply(this, arg);
-        }, wait);
+  <head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+  </head>
+  <body>
+    <input type="text" id="name" />
+    <script>
+      function throttle(fn, wait) {
+        let time = null;
+        return function () {
+          if (!time) {
+            time = setTimeout(() => {
+              fn(...arguments);
+              time = null;
+            }, wait);
+          }
+        };
       }
-    };
-  }
 
-  document.querySelector('#name').addEventListener('input', throttle(e => {
-    console.log('e: ', e.target.value);
-  }, 2000));
-</script>
-</body>
+      document.querySelector("#name").addEventListener(
+        "input",
+        throttle((e) => {
+          console.log(e.target.value);
+        }, 2000)
+      );
+    </script>
+  </body>
 </html>

@@ -1,5 +1,60 @@
 # The written questions
 
+## 使用 JS 返回当前时间戳
+
+```javascript
+const timestamp = Date.parse(new Date());
+```
+
+## 遍历对象
+
+```javascript
+const obj = {
+  x: 1,
+  y: {
+    a: 2,
+    b: {
+      c: 3,
+      d: 4,
+    },
+  },
+};
+
+function fn(obj) {
+  Object.keys(obj).forEach((key) => {
+    const value = obj[key];
+    if (typeof value === "object") {
+      fn(value);
+    } else {
+      // do something
+      console.log(key, value);
+    }
+  });
+}
+
+// 或者使用forEach
+
+function fn(obj) {
+  Object.keys(obj).forEach((key) => {
+    const item = obj[key];
+    if (typeof item === "object") {
+      fn(item);
+    } else {
+      // do something
+      console.log(key, item);
+    }
+  });
+}
+```
+
+## 正则判断 QQ
+
+5-10 位数字
+
+```javascript
+const reg = /^\d{5,10}$/;
+```
+
 ## 判断一个字符串中出现次数最多的字符，统计这个次数
 
 ```javascript
@@ -143,7 +198,6 @@ const imgLazyLoad = function () {
 document.addEventListener("scroll", imgLazyLoad);
 ```
 
-
 ## 对象 copy
 
 // 普通实现，只考虑普通对象属性，不考虑内置对象和函数。
@@ -259,7 +313,6 @@ Dog.prototype = new Animal();
 ```
 
 借用构造函数实现继承解决了原型链继承的 2 个问题：引用类型共享问题以及传参问题。但是由于方法必须定义在构造函数中，所以会导致每次创建子类实例都会创建一遍方法。
-
 
 ## 组合继承
 
