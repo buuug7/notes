@@ -1,3 +1,5 @@
+# consignor-rn IOS 打包报错
+
 ## react-native ios 打包报错 Multiple commands produce
 
 请参考 <https://www.jianshu.com/p/39d1ea030716?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation>

@@ -16,6 +16,18 @@ const arr3 = [];
 const arr4 = Array.of("a", "b", "c");
 ```
 
+## Array.isArray(obj)
+
+用来判断 obj 否是一个 Array
+
+```javascript
+// result: false
+Array.isArray(1);
+
+// result: true
+Array.isArray([1, 2, 3]);
+```
+
 ## Array.from(arrayLike[, mapFn[, thisArg]])
 
 从一个类数组或者可迭代对象中创建一个新的数组实例
@@ -44,18 +56,6 @@ function fn() {
 }
 // result: [1, 2, 3]
 fn(1, 2, 3);
-```
-
-## Array.isArray(obj)
-
-用来判断 obj 否是一个 Array
-
-```javascript
-// result: false
-Array.isArray(1);
-
-// result: true
-Array.isArray([1, 2, 3]);
 ```
 
 ## Array.of(element0[, ...[, elementN]])
@@ -148,16 +148,7 @@ copyWithin() 方法浅复制数组的一部分到同一数组中的另一个位�
 
 ## Array.prototype.reduceRight()
 
-接受一个函数作为累加器,数组的每个值(从右到左)将其减少为单个值,语法`arr.reduceRight(callback[, initialValue])`,callback 函数接受的参数跟 reduce()方法 callback 一致
-
-```javascript
-// reduce跟reduceRight区别
-// result: "abc"
-["a", "b", "c"].reduce((pre, cur, index, array) => pre + cur);
-
-// result: "cba"
-["a", "b", "c"].reduceRight((pre, cur, index, array) => pre + cur);
-```
+接受一个函数作为累加器,数组的每个值(从右到左)将其减少为单个值,调用方式跟 `reduce` 方法一致。
 
 ## Array.prototype.reverse()
 
