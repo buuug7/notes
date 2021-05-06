@@ -53,46 +53,34 @@ console.log(myCar.getInfo());
 
 #### The Constructor Pattern 构造器模式
 
-对象构造器是被用来创建特殊类型的对象的，首先它要准备使用的对象，其次在对象初次被创建时，通过接收参数，构造器要用来对 对象的属性和方法赋值.
+对象构造器是被用来创建特殊类型的对象的，首先它要准备使用的对象，其次在对象初次被创建时，通过接收参数，构造器要用来对对象的属性和方法赋值.
 
 创建对象的三种方式
 
 ```JavaScript
-// Each of the following options will create a new empty object:
+// 对象字面量
 var newObject = {};
-// or
+// 使用Object.create(Object.prototype)
 var newObject = Object.create(Object.prototype);
-// or
+// 使用new Object()
 var newObject = new Object();
 ```
 
 把键值对赋值给对象的四种方法
 
 ```JavaScript
-// ECMAScript 3 compatible approaches
-
-// 1. Dot syntax
-
 // Set properties
 newObject.someKey = "Hello World";
-
-// Get properties
-var value = newObject.someKey;
-
-// 2. Square bracket syntax
-
-// Set properties
+// Or
 newObject["someKey"] = "Hello World";
 
 // Get properties
+var value = newObject.someKey;
+// Or
+// Get properties
 var value = newObject["someKey"];
 
-// ECMAScript 5 only compatible approaches
-// For more information see: http://kangax.github.com/es5-compat-table/
-
-// 3. Object.defineProperty
-
-// Set properties
+// use Object.defineProperty Set or update properties
 Object.defineProperty(newObject, "someKey", {
   value: "for more control of the property's behavior",
   writable: true,
@@ -100,33 +88,7 @@ Object.defineProperty(newObject, "someKey", {
   configurable: true
 });
 
-// If the above feels a little difficult to read, a short-hand could
-// be written as follows:
-
-var defineProp = function (obj, key, value) {
-  var config = {
-    value: value,
-    writable: true,
-    enumerable: true,
-    configurable: true
-  };
-  Object.defineProperty(obj, key, config);
-};
-
-// To use, we then create a new empty "person" object
-var person = Object.create(Object.prototype);
-
-// Populate the object with properties
-defineProp(person, "car", "Delorean");
-defineProp(person, "dateOfBirth", "1981");
-defineProp(person, "hasBeard", false);
-
-console.log(person);
-// Outputs: Object {car: "Delorean", dateOfBirth: "1981", hasBeard: false}
-
-// 4. Object.defineProperties
-
-// Set properties
+// use Object.defineProperties Set properties
 Object.defineProperties(newObject, {
 
   "someKey": {
@@ -140,50 +102,24 @@ Object.defineProperties(newObject, {
   }
 
 });
-
-// Getting properties for 3. and 4. can be done using any of the
-// options in 1. and 2.
-
-// Usage:
-
-// Create a race car driver that inherits from the person object
-var driver = Object.create(person);
-
-// Set some properties for the driver
-defineProp(driver, "topSpeed", "100mph");
-
-// Get an inherited property (1981)
-console.log(driver.dateOfBirth);
-
-// Get the property we set (100mph)
-console.log(driver.topSpeed);
 ```
 
 一个简单的构造器模式的例子:
 
 ```JavaScript
-function Car (model, year, miles) {
+function Person (name, age) {
 
-  this.model = model;
-  this.year = year;
-  this.miles = miles;
+  this.name = name;
+  this.age = age;
 
-  this.toString = function () {
-    return this.model + " has done " + this.miles + " miles";
-  };
+  this.hello = function() {
+    console.log('Hello World');
+  }
 }
 
 // Usage:
-
-// We can create new instances of the car
-var civic = new Car("Honda Civic", 2009, 20000);
-var mondeo = new Car("Ford Mondeo", 2010, 5000);
-
-// and then open our browser console to view the
-// output of the toString() method being called on
-// these objects
-console.log(civic.toString());
-console.log(mondeo.toString());
+var person1 = new Person("Tom", 18);
+var person2 = new Person("Cat", 9);
 ```
 
 使用“原型”的构造器：在 Javascript 中函数有一个 prototype 的属性。当我们调用 Javascript 的构造器创建一个对象时，构造函数 prototype 上的属性对于所创建的对象来说都看见。照这样，就可以创建多个访问相同 prototype 的 Car 对象了。
@@ -286,9 +222,7 @@ myModule.reportMyConfig();
 
 在 JavaScript 中，模块模式通常用来模拟一个对象中类似于类概念中的私有或者公开方法和变量，这样有利于从全局作用域中分离出来，不至于跟页面中其他的脚本中的函数命名冲突。
 
-模块模式使用闭包来确保了"私有"，它提供了一种将私有方法和变量，保护的代码片段从全局作用域中隔离开的方法，使用这种模式，仅仅只有公开的 API 被返回，其他的所有都保持了私有。
-
-该模式跟 IIFE 很类似，只是返回对象而不是一个函数。
+模块模式使用闭包来确保了"私有"，它提供了一种将私有方法和变量，保护的代码片段从全局作用域中隔离开的方法，使用这种模式，仅仅只有公开的 API 被返回，其他的所有都保持了私有。该模式跟 IIFE 很类似，只是返回对象而不是一个函数。
 
 一个简单的模块模式的模板样例:
 
@@ -322,11 +256,3 @@ var myNamespace = (function () {
 
 })();
 ```
-
-Advantages
-
-能够避免类库之间命名冲突,减少全局污染
-
-Disadvantages
-
-由于进入公开和私有的成员的方法不同,当想改变成员可见性的时候不得不在引用成员的每个地方都去修改对私有成员进行单元测试困难,bug 热修复困难,并且私有成员继承困难,可扩展有限

@@ -1,11 +1,10 @@
-## ES6 新特性和一些陌生的知识
+# ES6 新特性和一些陌生的知识
 
-#### 集合 Set
+## 集合 Set
 
 集合 Set 对象允许你存储任意类型的唯一值(不能重复),无论它是原始值或者是对象引用.
 
 ```javascript
-// 语法
 // 参数iterable 一个可迭代对象，其中的所有元素都会被加入到 Set 中。null被视作 undefined 。
 new Set([iterable]);
 
@@ -33,14 +32,12 @@ const arr = [...mySet];
 console.log(arr); // [ 1, 3, 'buuug7' ]
 ```
 
-#### Map 集合
+## Map 集合
 
 Map 对象就是简单的键值映射,其中键和值可以是任意值(对象或者原始值)  
 Map 对象会按元素插入的顺序遍历— for...of 循环每次遍历都会返回一个 [key, value] 数组。
 
 ```javascript
-// 语法
-// iterable
 // Iterable 可以是一个数组或者其他 iterable 对象，其元素或为键值对，或为两个元素的数组。
 // 每个键值对都会添加到新的 Map。null 会被当做 undefined。
 new Map([iterable]);
@@ -57,7 +54,7 @@ Object 和 Map 类似的一点是,它们都允许你按键存取一个值,都可
 // 示例
 const myMap = new Map();
 const keyObj = {},
-  keyFun = function() {},
+  keyFun = function () {},
   keyString = "a string";
 
 myMap.set(keyObj, "some value related to keyObj");
@@ -71,7 +68,7 @@ console.log(myMap.get(keyString)); // some value related to keyString
 console.log(myMap.get("a string")); // some value related to keyString
 
 console.log(myMap.get({})); // undefined , 因为keyObj !== {}
-console.log(myMap.get(function() {})); // undefined ,因为keyFunc !== function () {}
+console.log(myMap.get(function () {})); // undefined ,因为keyFunc !== function () {}
 
 // 用for...of 方法迭代
 for (let item of myMap) {
@@ -94,7 +91,11 @@ for (let [k, v] of myMap.entries()) {
 myMap.forEach((v, k) => console.log(k + "<==>" + v));
 
 // 与数组的关系
-const arr = [["k1", "v1"], ["k2", "v2"], ["k3", "v3"]];
+const arr = [
+  ["k1", "v1"],
+  ["k2", "v2"],
+  ["k3", "v3"],
+];
 // 二位数组转换成Map
 const arrToMap = new Map(arr);
 console.log(arrToMap); //Map { 'k1' => 'v1', 'k2' => 'v2', 'k3' => 'v3' }
@@ -128,7 +129,7 @@ Float64Array();
 
 参数:
 
-- length :当传入 lengch 参数时,一个内部数组缓冲区被创建,该缓存区的大小是传入的 length 乘以数组中每个元素的字节数,每个元素的值都为 0.(译者注:每个元素的字节数是由具体的构造函数决定的,比如 Int16Array 的每个元素的字节数为 2,Int32Array 的每个元素的字节数为 4)
+- length :当传入 length 参数时,一个内部数组缓冲区被创建,该缓存区的大小是传入的 length 乘以数组中每个元素的字节数,每个元素的值都为 0.(译者注:每个元素的字节数是由具体的构造函数决定的,比如 Int16Array 的每个元素的字节数为 2,Int32Array 的每个元素的字节数为 4)
 - typedArray :当传入一个包含任意类型元素的任意类型化数组对象(typedArray) (比如 Int32Array)作为参数时,typeArray 被复制到一个新的类型数组。typeArray 中的每个值会在复制到新的数组之前根据构造器进行转化.新的生成的类型化数组对象将会有跟传入的数组相同的 length(译者注:比如原来的 typeArray.length==2,那么新生成的数组的 length 也是 2,只是数组中的每一项进行了转化)
 - object :当传入一个 object 作为参数时，如同通过 TypedArray.from() 方法一样创建一个新的类型数组。
 - buffer, byteOffset, length :当传入 arrayBuffer 和可选参数 byteOffset,可选参数 length 时,一个新的类型化数组视图将会被创建,该类型化数组视图用于呈现传入的 ArrayBuffer 实例。byteOffset 和 length 指定类型化数组视图暴露的内存范围,如果两者都未传入,那么整个 buffer 都会被呈现,如果仅仅忽略 length,那么 buffer 中偏移(byteOffset)后剩下的 buffer 将会被呈现.
@@ -223,10 +224,11 @@ console.log(a); // 1
 console.log(b); // 2
 ```
 
-#### function\* 声明
+#### `function*` 声明
 
-function*声明定义一个 generator(生成器)函数，返回一个 generator 对象,生成器是一种可以从中退出并在之后重新进入的函数，生成器的环境会在每次执行后被保存，下次进入时可以继续使用。  
-调用一个生成器函数并不马上执行它的主体，而是返回一个这个生成器函数的迭代器(iterator)对象，当这个迭代器的 next()方法被调用时,生成器函数的主体会被执行直至第一个 yield 表达式.该表达式定义了迭代器返回的值，或者，被 yield*委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value 属性，表示产出的值，和一个 done 属性，表示生成器是否已经产出了它最后的值。
+`function*`声明定义一个 generator(生成器)函数，返回一个 generator 对象,生成器是一种可以从中退出并在之后重新进入的函数，生成器的环境会在每次执行后被保存，下次进入时可以继续使用。
+
+调用一个生成器函数并不马上执行它的主体，而是返回一个这个生成器函数的迭代器(iterator)对象，当这个迭代器的 next()方法被调用时,生成器函数的主体会被执行直至第一个 yield 表达式.该表达式定义了迭代器返回的值，或者，被 yield\*委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value 属性，表示产出的值，和一个 done 属性，表示生成器是否已经产出了它最后的值。
 
 ```javascript
 function* idMaker() {
@@ -409,9 +411,9 @@ c.walk();
 var car = {
   name: "jeep",
   color: "red",
-  move: function() {
+  move: function () {
     console.log(`${this.name} moving`);
-  }
+  },
 };
 car.move(); // jeep moving
 
@@ -427,14 +429,13 @@ var obj = {
     return "d " + super.toString();
   },
   // Computed (dynamic) property names
-  ["prop_" + (() => 42)()]: 42
+  ["prop_" + (() => 42)()]: 42,
 };
 ```
 
 #### 模板字面量(Template literals)
 
-模板字面量(Template literals)是允许嵌入表达式的字符串字面量。并且支持多行字符串和字符串插补特性。在 ES2015 / ES6 规范中，其被称之为模板字符串(template strings)。  
-模板字符串使用反引号 (``) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法(\${expression})的占位符。
+模板字面量(Template literals)是允许嵌入表达式的字符串字面量。并且支持多行字符串和字符串插补特性。在 ES2015 / ES6 规范中，其被称之为模板字符串(template strings)。 模板字符串使用反引号 (````) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法`${expression}`的占位符。
 
 ```javascript
 `string text``string text line 1
@@ -502,9 +503,9 @@ var iterable = {
           return { value: this.i++, done: false };
         }
         return { value: undefined, done: true };
-      }
+      },
     };
-  }
+  },
 };
 
 for (var value of iterable) {
@@ -522,8 +523,8 @@ for...of 语法是为各种 Collection 对象专门定制的,并不适用于 obj
 ```javascript
 // for...in 遍历每一个属性名称,而 for...of遍历每一个属性值
 
-Object.prototype.objCustom = function() {};
-Array.prototype.arrCustom = function() {};
+Object.prototype.objCustom = function () {};
+Array.prototype.arrCustom = function () {};
 
 let iterable = [3, 5, 7];
 iterable.foo = "hello";
