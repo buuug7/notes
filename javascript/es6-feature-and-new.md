@@ -12,16 +12,14 @@ new Set([iterable]);
 const mySet = new Set();
 mySet.add(1);
 mySet.add(2);
-mySet.add(3);
-mySet.add("buuug7");
+mySet.add("some text");
 
-console.log(mySet); // Set { 1,2,3,'buuug7' }
+console.log(mySet); // Set(3) { 1, 2, 'some text' }
 console.log(mySet.has(5)); //false
 console.log(mySet.size); // 3
 console.log(mySet.delete(2)); // true
 console.log(mySet.delete(88)); // false
 
-console.log("..............................");
 // 迭代set
 for (let item of mySet.keys()) {
   console.log(item);
@@ -29,13 +27,13 @@ for (let item of mySet.keys()) {
 
 // 与 Array互换
 const arr = [...mySet];
-console.log(arr); // [ 1, 3, 'buuug7' ]
+console.log(arr); // [ 1, 3, 'some text' ]
 ```
 
 ## Map 集合
 
 Map 对象就是简单的键值映射,其中键和值可以是任意值(对象或者原始值)  
-Map 对象会按元素插入的顺序遍历— for...of 循环每次遍历都会返回一个 [key, value] 数组。
+Map 对象会按元素插入的顺序遍历, for...of 循环每次遍历都会返回一个 [key, value] 数组。
 
 ```javascript
 // Iterable 可以是一个数组或者其他 iterable 对象，其元素或为键值对，或为两个元素的数组。
@@ -43,7 +41,8 @@ Map 对象会按元素插入的顺序遍历— for...of 循环每次遍历都会
 new Map([iterable]);
 ```
 
-Objects 和 maps 的比较  
+Object 和 maps 的比较:
+
 Object 和 Map 类似的一点是,它们都允许你按键存取一个值,都可以删除键,还可以检测一个键是否绑定了值.因此,一直以来,我们都把对象当成 Map 来使用,不过,现在有了 Map,下面的区别解释了为什么使用 Map 更好点.
 
 - 一个对象通常都有自己的原型,所以一个对象总有一个"prototype"键。不过，从 ES5 开始可以使用 map = Object.create(null)来创建一个没有原型的对象。
@@ -53,9 +52,9 @@ Object 和 Map 类似的一点是,它们都允许你按键存取一个值,都可
 ```javascript
 // 示例
 const myMap = new Map();
-const keyObj = {},
-  keyFun = function () {},
-  keyString = "a string";
+const keyObj = {};
+const keyFun = function () {};
+const keyString = "a string";
 
 myMap.set(keyObj, "some value related to keyObj");
 myMap.set(keyFun, "some value related to KeyFun");
@@ -68,7 +67,7 @@ console.log(myMap.get(keyString)); // some value related to keyString
 console.log(myMap.get("a string")); // some value related to keyString
 
 console.log(myMap.get({})); // undefined , 因为keyObj !== {}
-console.log(myMap.get(function () {})); // undefined ,因为keyFunc !== function () {}
+console.log(myMap.get(function () {})); // undefined,因为keyFunc !== function () {}
 
 // 用for...of 方法迭代
 for (let item of myMap) {
@@ -104,7 +103,7 @@ const mapToArr = [...arrToMap];
 console.log(mapToArr); // [ [ 'k1', 'v1' ], [ 'k2', 'v2' ], [ 'k3', 'v3' ] ]
 ```
 
-#### TypedArray
+## TypedArray
 
 一个 TypedArray 对象描述一个表示底层的二进制数据缓存区的类似数组(array-like)视图.没有名为 TypedArray 的全局属性,也没有直接可见的 TypedArray 构造函数.
 
@@ -148,9 +147,9 @@ for (let item of int16) {
 }
 ```
 
-#### const, let
+## const, let
 
-const 声明创建一个只读的常量。这不意味着常量指向的值不可变，而是变量标识符的值只能赋值一次。(译者注：JavaScript 中的常量和 Java，C++中的常量一个意思。注意区分常量的值和常量指向的值的不同)
+const 声明创建一个只读的常量。这不意味着常量指向的值不可变，而是变量标识符的值只能赋值一次。(JavaScript 中的常量和 Java，C++中的常量一个意思。注意区分常量的值和常量指向的值的不同)
 
 ```javascript
 const name1 = value1 [,name2 = value2 [,...[,nameN = valueN]]];
@@ -175,7 +174,7 @@ f(5); // 1
 f(5, 2); // 10
 ```
 
-#### 剩余参数(rest parameter)
+## 剩余参数(rest parameter)
 
 允许长度不确定的实参表示为一个数组,如果一个函数的最后一个形参是以 ... 为前缀的，则在函数被调用时,该形参会成为一个数组,数组中的元素都是传递给该函数的多出来的实参的值。
 
@@ -188,7 +187,7 @@ f(1, 2); // []
 f(1, 2, 3, 4, 5); // [3,4,5]
 ```
 
-#### 展开操作符(spread operator)
+## 展开操作符(spread operator)
 
 扩展语法允许在需要多个参数（用于函数调用）或多个元素（用于数组文本）或多个变量（用于解构分配）的位置扩展表达式。
 
@@ -204,7 +203,7 @@ var args = [0, 1, 2];
 myFunction(...args);
 ```
 
-#### 解析赋值 (destructuring assignment)
+## 解析赋值 (destructuring assignment)
 
 解构赋值（destructuring assignment）语法是一个 Javascript 表达式，它使得从数组或者对象中提取数据赋值给不同的变量成为可能。
 
@@ -224,11 +223,11 @@ console.log(a); // 1
 console.log(b); // 2
 ```
 
-#### `function*` 声明
+## `function*` 声明
 
 `function*`声明定义一个 generator(生成器)函数，返回一个 generator 对象,生成器是一种可以从中退出并在之后重新进入的函数，生成器的环境会在每次执行后被保存，下次进入时可以继续使用。
 
-调用一个生成器函数并不马上执行它的主体，而是返回一个这个生成器函数的迭代器(iterator)对象，当这个迭代器的 next()方法被调用时,生成器函数的主体会被执行直至第一个 yield 表达式.该表达式定义了迭代器返回的值，或者，被 yield\*委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value 属性，表示产出的值，和一个 done 属性，表示生成器是否已经产出了它最后的值。
+调用一个生成器函数并不会马上执行它的主体，而是返回一个这个生成器函数的迭代器(iterator)对象，当这个迭代器的 next()方法被调用时,生成器函数的主体会被执行直至第一个 yield 表达式.该表达式定义了迭代器返回的值，或者，被 `yield*`委派至另一个生成器函数。next()方法返回一个对象，该对象有一个 value 属性，表示产出的值，和一个 done 属性，表示生成器是否已经产出了它最后的值。
 
 ```javascript
 function* idMaker() {
@@ -244,9 +243,9 @@ console.log(gen.next().value); // 2
 console.log(gen.next().value); // undefined
 ```
 
-#### yield
+## yield
 
-yield 关键字用来暂停和继续一个生成器函数(function\*),yield 关键字使生成器函数暂停执行，并返回跟在它后面的表达式的当前值. 可以把它想成是 return 关键字的一个基于生成器的版本.
+yield 关键字用来暂停和继续一个生成器函数(`function*`),yield 关键字使生成器函数暂停执行，并返回跟在它后面的表达式的当前值. 可以把它想成是 return 关键字的一个基于生成器的版本.
 
 ```javascript
 function* foo() {
@@ -262,7 +261,7 @@ console.log(iterator.next()); // { value:2, done:false }
 console.log(iterator.next()); // { value:undefined, done:true }
 ```
 
-#### 箭头函数
+## 箭头函数
 
 箭头函数就是简写形式的函数表达式,并且它拥有词法作用域的 this 值(即不会产生自己作用域下的 this,arguments,super...),箭头函数总是匿名的.
 
@@ -279,7 +278,7 @@ singleParam => { statements }
 param => ({ foo:bar })
 ```
 
-#### class 类
+## class 类
 
 是 es2015 中引入的基于原型的继承的语法糖.并不是 javascript 里加入新的面向对象的继承模型.javascript 中的类知识能让我们用更加简洁明了的语法创建对象以及处理相关继承.
 
@@ -403,24 +402,28 @@ const c = new Child("bob", "8");
 c.walk();
 ```
 
-#### 对象字面量 object literals
+## 对象字面量 object literals
 
-对象字面量时封闭在花括号对({})中的一个对象的零个或者多个"属性名--值"对的列表,
+对象字面量是封闭在花括号对**{}**中的一个对象的零个或者多个"属性名-值"对的列表
 
 ```javascript
-var car = {
-  name: "jeep",
-  color: "red",
-  move: function () {
-    console.log(`${this.name} moving`);
+const person = {
+  name: "tom",
+  age: 222,
+  walk() {
+    console.log(`${this.name} walk`);
   },
 };
-car.move(); // jeep moving
+person.walk(); // tom walk
 
 // ES2015 增强的对象字面量
 var obj = {
   // __proto__
-  __proto__: theProtoObj,
+  __proto__: {
+    someMethod() {
+      // ...
+    },
+  },
   // Shorthand for ‘handler: handler’
   handler,
   // Methods
@@ -433,7 +436,7 @@ var obj = {
 };
 ```
 
-#### 模板字面量(Template literals)
+## 模板字面量(Template literals)
 
 模板字面量(Template literals)是允许嵌入表达式的字符串字面量。并且支持多行字符串和字符串插补特性。在 ES2015 / ES6 规范中，其被称之为模板字符串(template strings)。 模板字符串使用反引号 (````) 来代替普通字符串中的用双引号和单引号。模板字符串可以包含特定语法`${expression}`的占位符。
 
@@ -442,7 +445,7 @@ var obj = {
  string text line 2``string text ${expression} string text`;
 ```
 
-#### for...of 语句
+## for...of 语句
 
 for...of 语句在可迭代对象(包括 Array,Map,Set,String,TypedArray,arguments 对象等等)上创建一个迭代循环,对每个不同属性值,调用一个自定义的有执行语句的迭代挂钩.
 
@@ -538,7 +541,7 @@ for (let i of iterable) {
 }
 ```
 
-#### import
+## import
 
 import 语句用于导入从外部模块，另一个脚本等导出的函数，对象或原语。
 
@@ -580,7 +583,7 @@ import "my-module";
 import {reallyReallyLongModuleMemberName as shortName, anotherLongModuleName as short} from "my-module";
 ```
 
-#### export
+## export
 
 export 语句用于从给定的文件 (或模块) 中导出函数，对象或原语。
 
