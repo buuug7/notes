@@ -5,7 +5,7 @@
 ```javascript
 fetch(url, myInit).then((res) => {
   const contentType = res.headers.get("Content-Type");
-  // 根据返回contentType，处理是json，还是下载文件
+  // 根据返回contentType, 处理是json, 还是下载文件
   if (contentType.toLowerCase() == "application/json;charset=utf-8") {
     res.json().then((data) => {
       alert(data.success);
@@ -15,7 +15,7 @@ fetch(url, myInit).then((res) => {
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
   ) {
     res.blob().then((blob) => {
-      // 创建一个a标签，用于下载
+      // 创建一个a标签, 用于下载
       var a = document.createElement("a");
       var url = window.URL.createObjectURL(blob);
       var fileName = "被下载的文件.txt";
@@ -206,7 +206,7 @@ function deromanize(str) {
 ## Javascript 事件委托
 
 ```javascript
-//首先你的错误是由于闭包造成的，虽然修改后可以避免错误，但我强烈建议你使用事件委托完成事件绑定。代码可以修改如下：
+//首先你的错误是由于闭包造成的, 虽然修改后可以避免错误, 但我强烈建议你使用事件委托完成事件绑定. 代码可以修改如下:
 function test() {
   var doc = document.getElementsByTagName("body")[0];
   doc.onclick = function (e) {
@@ -220,11 +220,11 @@ function test() {
 }
 ```
 
-优点：
+优点:
 
-- 页面监听事件的标签元素减少，有效提高性能问题
-- 减少使用 for 循环绑定事件，同样提高了性能
-- 性能提高了，你的代码质量就会得到认可
+- 页面监听事件的标签元素减少, 有效提高性能问题
+- 减少使用 for 循环绑定事件, 同样提高了性能
+- 性能提高了, 你的代码质量就会得到认可
 
 ## 执行环境 闭包
 
@@ -296,7 +296,7 @@ var date=new Date[];
 ## javascript 去除重复
 
 ```javascript
-// 第一种：也是最笨的吧
+// 第一种: 也是最笨的吧
 Array.prototype.unique1 = function () {
   var r = new Array();
   label: for (var i = 0, n = this.length; i < n; i++) {
@@ -310,7 +310,7 @@ Array.prototype.unique1 = function () {
   return r;
 };
 
-// 第二种：这个正则天书一样
+// 第二种: 这个正则天书一样
 Array.prototype.unique2 = function () {
   return this.sort()
     .join(",,")
@@ -320,7 +320,7 @@ Array.prototype.unique2 = function () {
     .split(",");
 };
 
-// 第三种：使用对象的【hasOwnProperty】方法
+// 第三种: 使用对象的【hasOwnProperty】方法
 Array.prototype.unique3 = function () {
   var temp = {},
     len = this.length;
@@ -339,7 +339,7 @@ Array.prototype.unique3 = function () {
   return tempArr;
 };
 
-// 第四种：先排序，前项比后项。这个方法挺简单的，但也实用
+// 第四种: 先排序, 前项比后项. 这个方法挺简单的, 但也实用
 Array.prototype.unique4 = function () {
   var temp = new Array();
   this.sort();
@@ -352,7 +352,7 @@ Array.prototype.unique4 = function () {
   return temp;
 };
 
-// 下面是以前经常用的，效率也很好。有点想hash表的感觉
+// 下面是以前经常用的, 效率也很好. 有点想hash表的感觉
 Array.prototype.unique5 = function () {
   var res = [],
     hash = {};
@@ -399,10 +399,10 @@ instanceof 表示的是一种继承关系,原型链结构
 
 - 原型的灵活性
 
-在 Java 和 C#中，你可以简单的理解 class 是一个模子，对象就是被这个模子压出来的一批一批月饼（中秋节刚过完）。压个啥样，就得是个啥样，不能随便动，动一动就坏了。
-而在 javascript 中，就没有模子了，月饼被换成了面团，你可以捏成自己想要的样子。
-首先，对象属性可以随时改动。
-对象或者函数，刚开始 new 出来之后，可能啥属性都没有。但是你可以这会儿加一个，过一会儿在加两个，非常灵活。
+在 Java 和 C#中, 你可以简单的理解 class 是一个模子, 对象就是被这个模子压出来的一批一批月饼(中秋节刚过完). 压个啥样, 就得是个啥样, 不能随便动, 动一动就坏了.
+而在 javascript 中, 就没有模子了, 月饼被换成了面团, 你可以捏成自己想要的样子.
+首先, 对象属性可以随时改动.
+对象或者函数, 刚开始 new 出来之后, 可能啥属性都没有. 但是你可以这会儿加一个, 过一会儿在加两个, 非常灵活.
 
 - 执行上下文
 
