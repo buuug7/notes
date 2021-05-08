@@ -1,4 +1,65 @@
-# javascript FAQ
+# javascript 杂项
+
+## javascript 弹出一个窗口
+
+```javascript
+window.open(
+  url,
+  "Share",
+  "width=550,height=400,toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0"
+);
+```
+
+## 为什么有些函数前面有个`+function(){}`或者`!function(){}`
+
+参考[stackoverflow](https://stackoverflow.com/questions/5827290/javascript-function-leading-bang-syntax)
+
+## fetch 下载的例子
+
+```javascript
+fetch(url, myInit).then((res) => {
+  const contentType = res.headers.get("Content-Type");
+  // 根据返回contentType, 处理是json, 还是下载文件
+  if (contentType.toLowerCase() == "application/json;charset=utf-8") {
+    res.json().then((data) => {
+      alert(data.success);
+    });
+  } else if (
+    contentType.toLowerCase() ==
+    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+  ) {
+    res.blob().then((blob) => {
+      // 创建一个a标签, 用于下载
+      var a = document.createElement("a");
+      var url = window.URL.createObjectURL(blob);
+      var fileName = "被下载的文件.txt";
+      a.href = url;
+      a.download = fileName;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
+});
+```
+
+## Javascript 获取时间
+
+```javascript
+const now = new Date();
+const month = (now.getMonth() + 1).toString().replace(/^(\d)$/, "0$1");
+const day = now
+  .getDate()
+  .toString()
+  .replace(/^(\d)$/, "0$1");
+const hour = now
+  .getHours()
+  .toString()
+  .replace(/^(\d)$/, "0$1");
+const minutes = now
+  .getMinutes()
+  .toString()
+  .replace(/^(\d)$/, "0$1");
+```
 
 ## js 中， 0.1 + 0.2 === 0.3 是否为 true ? 在不知道浮点数位数时应该怎样判断两个浮点数之和与第三数是否相等？
 
