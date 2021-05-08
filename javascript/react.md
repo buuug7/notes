@@ -1,3 +1,5 @@
+# React
+
 ## shouldComponentUpdate 的作用
 
 shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新

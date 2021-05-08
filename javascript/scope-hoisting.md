@@ -1,12 +1,12 @@
-## JavaScript Scope and Hoisting
+# JavaScript Scope and Hoisting
 
-### 作用域
+## 作用域
 
-在 JavaScript 中，函数是我们在声明变量时，实际的作用域分隔符，也就是说常见的循环及表达式（如 if, for, while, switch 及 try）并“不能“指定作用域，这一点有别于大部分的程序语言。
+在 JavaScript 中, 函数是我们在声明变量时, 实际的作用域分隔符, 也就是说常见的循环及表达式(如 if, for, while, switch 及 try)并"不能"指定作用域, 这一点有别于大部分的程序语言.
 
 ## 变量提升
 
-在运行时，所有的变量及函数声明将会被移到函数的起始位置（即函式的作用域）- 这就是所谓的变量提升。虽然如此，但是良好的习惯是在作用域的一开始就声明所有变量，避免因未声明就操作变量造成未预期的错误。
+在运行时, 所有的变量及函数声明将会被移到函数的起始位置(即函式的作用域), 这就是所谓的变量提升. 虽然如此, 但是良好的习惯是在作用域的一开始就声明所有变量, 避免因未声明就操作变量造成未预期的错误.
 
 ## JavaScript 拥有函数级别的作用域
 
@@ -90,18 +90,4 @@ function test() {
 	}
 }
 test();
-```
-
-## 我们该如何编码
-
-首先申明变量必须用 var, 并且放在最顶部申明, 建议在一个作用域中用单个 var 申明变量.
-I recommend using JSLint with the onevar option to enforce this,your code should be look like below:
-
-```JavaScript
-/*jslint onevar: true [...] */
-function foo(a, b, c) {
-    var x = 1,
-    	bar,
-    	baz = "something";
-}
 ```

@@ -1,15 +1,15 @@
 # Set
 
-Set 对象是值的集合，你可以按照插入的顺序迭代它的元素。 Set 中的元素只会出现一次，即 Set 中的元素是唯一的。
+Set 对象是值的集合, 你可以按照插入的顺序迭代它的元素. Set 中的元素只会出现一次, 即 Set 中的元素是唯一的.
 
 ## 值的相等
 
-因为 Set 中的值总是唯一的，所以需要判断两个值是否相等。+0 和-0 是相等的。另外，NaN 和 undefined 都可以被存储在 Set 中， NaN 之间被视为相同的值（NaN 被认为是相同的，尽管 NaN !== NaN）。
+因为 Set 中的值总是唯一的, 所以需要判断两个值是否相等. +0 和-0 是相等的. 另外, NaN 和 undefined 都可以被存储在 Set 中, NaN 之间被视为相同的值(NaN 被认为是相同的, 尽管 NaN !== NaN).
 
 ```javascript
 const mySet = new Set();
 
-// 在Set对象尾部添加一个元素。返回该Set对象。
+// 在Set对象尾部添加一个元素. 返回该Set对象.
 mySet.add(1);
 mySet.add(2);
 mySet.add(3);
@@ -20,19 +20,19 @@ mySet.size;
 // 移除Set对象内的所有元素
 mySet.clear();
 
-// 移除Set中与这个值相等的元素，返回Set.prototype.has(value)在这个操作前会返回的值
+// 移除Set中与这个值相等的元素, 返回Set.prototype.has(value)在这个操作前会返回的值
 mySet.delete(3);
 
-// 返回一个布尔值，表示该值在Set中存在与否。
+// 返回一个布尔值, 表示该值在Set中存在与否.
 mySet.has(2);
 
-// 与 keys()方法相同，返回一个新的迭代器对象，该对象包含Set对象中的按插入顺序排列的所有元素的值。
+// 与 keys()方法相同, 返回一个新的迭代器对象, 该对象包含Set对象中的按插入顺序排列的所有元素的值.
 mySet.keys();
 // 与 values()方法相同
 mySet.values();
 
-// 返回一个新的迭代器对象，该对象包含Set对象中的按插入顺序排列的所有元素的值的[value, value]数组。
-// 为了使这个方法和Map对象保持相似， 每个值的键和值相等。
+// 返回一个新的迭代器对象, 该对象包含Set对象中的按插入顺序排列的所有元素的值的[value, value]数组.
+// 为了使这个方法和Map对象保持相似,  每个值的键和值相等.
 // [Set Entries] { [ 1, 1 ], [ 2, 2 ], [ 3, 3 ] }
 mySet.entries();
 
@@ -42,8 +42,8 @@ for (let item of mySet) {
 }
 
 // forEach迭代
-// 按照插入顺序，为Set对象中的每一个值调用一次callBackFn。
-// 如果提供了thisArg参数，回调中的this会是这个参数。
+// 按照插入顺序, 为Set对象中的每一个值调用一次callBackFn.
+// 如果提供了thisArg参数, 回调中的this会是这个参数.
 mySet.forEach((value, value2) => {
   console.log(`value=${value}, value2=${value2}`);
 });

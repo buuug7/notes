@@ -23,7 +23,7 @@ document.body.children;
 只读属性,返回 Node 的第一个元素节点
 
 ```javascript
-document.body.firstElementChild; 
+document.body.firstElementChild;
 ```
 
 #### ParentNode.lastElementChild
