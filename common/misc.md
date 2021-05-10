@@ -1,4 +1,4 @@
-# common knowledge
+# MISC
 
 ## 乱数假文 lorem ipsum
 
@@ -12,10 +12,6 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 sublime 中文乱数假文插件
 https://github.com/cjltsod/sublime-ChineseLoremIpsum
-
-## php 中的 PRC
-
-date.timezone = PRC. PRC, People's Republic of China, 中华人民共和国, 也就是日期使用中国的时区.
 
 ## UTC
 
