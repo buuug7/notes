@@ -81,6 +81,18 @@ truncate table user;
 
 ```
 
+## 重命名列
+
+```
+alter table table_name change column_name new_column_name varchar(255);
+```
+
+## 调整列顺序
+
+```
+alter table table_name modify column_name  varchar(255) after id;
+```
+
 ## SQL ALTER TABLE Statement
 
 The ALTER TABLE statement is used to add, delete, or modify columns in an existing table.

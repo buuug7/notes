@@ -1,5 +1,13 @@
 # ubuntu related
 
+## ubuntu 设置时区
+
+新版本的 ubuntu 推荐使用 `timedatectl`来查看系统时区设定。也可以使用 `cat /etc/timezone` 命令查看当前系统设置的时区，但是现在不推荐。
+
+如果要修改时区设定，先使用`timedatectl list-timezones`列出系统支持的所有时区信息，找出你需要设置的时区。然后使用 `timedatectl set-timezone your_time_zone` 来设置时区，比如设定`Asia/Shanghai`, 则可以使用`timedatectl set-timezone Asia/Shanghai`.
+
+使用 tzdata 现在不推荐这种方式了。
+
 ## hyper-v 设置分辨率
 
 ```
