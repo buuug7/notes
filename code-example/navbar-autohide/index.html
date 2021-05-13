@@ -48,12 +48,10 @@
   </head>
   <body>
     <nav id="myNav">
-      <div class="title">
-        Auto hide nav
-      </div>
+      <div class="title">Auto hide nav</div>
     </nav>
 
-    <div>
+    <div style="margin: 2rem; margin-top: 4rem">
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corporis
         distinctio, ea. Ad asperiores dolorum ea illo laboriosam numquam officia
@@ -291,13 +289,13 @@
     </div>
 
     <script>
-      const myNav = document.querySelector('#myNav');
-      let scrolling = false,
-        previousTop = 0,
-        scrollDelta = 10,
-        scrollOffset = 150;
+      const myNav = document.querySelector("#myNav");
+      let scrolling = false;
+      let previousTop = 0;
+      let scrollDelta = 10;
+      let scrollOffset = 150;
 
-      document.addEventListener('scroll', function() {
+      document.addEventListener("scroll", function () {
         if (!scrolling) {
           scrolling = true;
           requestAnimationFrame(autoHideNav);
@@ -308,13 +306,13 @@
         const currentTop = window.scrollY || window.pageYOffset;
         // scroll up
         if (previousTop - currentTop > scrollDelta) {
-          myNav.classList.remove('hidden');
+          myNav.classList.remove("hidden");
         } else if (
           currentTop - previousTop > scrollDelta &&
           currentTop > scrollOffset
         ) {
           // scroll down
-          myNav.classList.add('hidden');
+          myNav.classList.add("hidden");
         }
         previousTop = currentTop;
         scrolling = false;
