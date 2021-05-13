@@ -1,5 +1,7 @@
 # Some Useful snippet for javascript
 
+## DOM 有些操作
+
 ```javascript
 // 兄弟元素
 [...el.parentNode.children].filter((child) => child !== el);
@@ -29,6 +31,38 @@ function parentsUntil(el, selector) {
 
 // Form
 document.querySelector("#input").value;
+```
+
+## node 中使用 axios 库下载文件
+
+```javascript
+async function downLoadFile(url, dir) {
+  try {
+    const fName = url.split("/").pop();
+    const filePath = path.resolve(__dirname, dir, fName);
+    const writer = fs.createWriteStream(filePath);
+    const response = await axios({
+      url: url,
+      method: "get",
+      responseType: "stream",
+    });
+
+    response.data.pipe(writer);
+    return new Promise((resolve, reject) => {
+      writer.on("finish", (e) => {
+        console.log("finish", fName);
+        resolve();
+      });
+      writer.on("error", (e) => {
+        console.log("error:", e);
+        console.log("error:", fName);
+        reject();
+      });
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
 ```
 
 ## javascript 获取或者设置 DOM 属性
