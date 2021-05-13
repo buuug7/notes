@@ -76,12 +76,15 @@ el.classList.toggle(className);
 ## javascript 计算 DOM 宽高
 
 ```javascript
-// Window height
-// Width 与 Height 获取方法相同，下面以 Height 为例：
-// 不含 scrollbar，与 jQuery 行为一致
-window.document.documentElement.clientHeight;
+// 宽度计算
 // 含 scrollbar
+window.innerWidth;
+// 不含 scrollbar
+window.document.documentElement.clientWidth;
+
+// 高度它们是一致的
 window.innerHeight;
+window.document.documentElement.clientHeight;
 
 // Document height
 const body = document.body;
