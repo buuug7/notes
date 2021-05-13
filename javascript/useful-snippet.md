@@ -11,6 +11,7 @@ el.previousElementSibling;
 el.nextElementSibling;
 
 // 获得匹配元素的第一个祖先元素
+// 注意：它自己是它的第一个祖先元素
 el.closest(selector);
 
 // 获取给定元素的祖元素集合，不包括元素本身和最后一个祖元素
@@ -42,8 +43,11 @@ el.setAttribute("foo", "bar");
 // 获取data-属性
 el.getAttribute("data-foo");
 
+// 获取一个元素上所有data-属性
+el.dataset;
+
 // 设置data-属性
-el.dataset["foo"];
+el.dataset["foo"] = "bar";
 ```
 
 ## javascript 与 css
