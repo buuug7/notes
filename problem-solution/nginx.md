@@ -1,4 +1,8 @@
-# Nginx 基本操作
+/usr/local/Cellar# Nginx 基本操作
+
+## nginx 设置缓存
+
+https://www.nginx.com/blog/nginx-caching-guide/#:~:text=The%20local%20disk%20directory%20for,path%2Fto%2Fcache%2F.
 
 ## ubuntu 基本操作
 
