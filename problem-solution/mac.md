@@ -1,5 +1,9 @@
 # mac
 
+## mac brew 安装软件的位置
+
+一般位置都会在 `/usr/local/Cellar`下面
+
 ## mac 下查看.mobileprovision 文件及钥匙串中证书.cer 文件
 
 ```
