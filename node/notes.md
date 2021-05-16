@@ -644,11 +644,11 @@ process.on("message", (message) => {
 
 #### process.nextTick()
 
-nodeJs 的一个异步执行函数，效率比 setTimeout(fn, 0)更高，执行顺序要早与 setTimeout，在主逻辑的末尾任务队列调用之前执行。
+nodeJs 的一个异步执行函数，效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
 
 #### setInterval()
 
-setInterval()定时器函数，按照指定的周期不断调用函数或计算表达式。等待主线程完成后调用。timeout 时间一致时，按照 setInterval 设置的顺序来执行。
+setInterval()定时器函数，按照指定的周期不断调用函数。等待主线程执行完毕后调用。timeout 时间一致时，按照 setInterval 设置的顺序来执行。
 
 ## node 线程
 
