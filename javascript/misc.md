@@ -1,5 +1,20 @@
 # javascript 杂项
 
+## fetch 上传文件
+
+```javascript
+const api = "http://localhost:3000/api/upload;
+const formData = new FormData();
+formData.append("img", file);
+
+fetch(api, {
+  method: "post",
+  body: formData,
+}).then((res) => {
+  //
+});
+```
+
 ## 宏任务 微任务
 
 宏任务(macro task),又称为 task, 包括 script 代码块, I/O, xhr, setTimeout, setInterval, setImmediate, UI 交互事件, postMessage 等. 浏览器为了能够使得 JS 引擎跟 UI 引擎有序配合执行, 会在每一个 macro task 执行结束后, 在下一个 macro task 执行前, 对页面进行重新渲染. 执行流程为:

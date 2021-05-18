@@ -1,4 +1,8 @@
-/usr/local/Cellar# Nginx 基本操作
+# Nginx 基本操作
+
+## nginx 教程
+
+- https://github.com/openresty/nginx-tutorials
 
 ## nginx 设置缓存
 
