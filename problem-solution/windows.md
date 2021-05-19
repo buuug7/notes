@@ -1,5 +1,13 @@
 # windows related
 
+## 从 windows 资源管理器访问 wsl
+
+资源管理器中输入
+
+```
+\\wsl$
+```
+
 ## window 上访问 docker volume 挂载的数据
 
 I'm on Windows + WSL 2 (Ubuntu 18.04), Docker v19.03. I found my Docker volumes in this location, type in the Windows file explorer :
