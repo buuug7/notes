@@ -227,6 +227,68 @@ export default function App() {
 }
 ```
 
+## Error boundary 错误边界
+
+为了解决部分 UI 错误而不引起整个应用奔溃, react 16 引入了错误边界来处理这些问题. 错误边界是一种 react 组件, 用来捕获发生在其子组件树中的错误, 打印错误, 并显示备用 UI. react 不支持使用 hooks 的方式写 error boundary.
+
+注意在开发环境中有可能无法测试错误边界的情况, 请使用生产测试. 使用 create-react-app 作为脚手架的请在`npm run build`之后测试.
+
+#### 错误边界无法捕获的错误有下面这些
+
+- 事件处理器错误
+- 异步代码(setTimeout, requestAnimationFrame 等)
+- 服务端渲染
+- 它自身抛出的错误
+
+#### 关于未捕获的错误(Uncaught Error)行为
+
+要注意未被任何错误边界捕获的错误会导致整个组件树被卸载, 这是 react 16 后默认的行为.
+
+#### 错误边界位置
+
+错误边界应该放置在哪里? 具体粒度由开发者自己决定, 为了简单起见, 你可以将其放置在最顶层的路由.
+
+#### 如何捕获事件处理器发生的错误
+
+关于事件处理器中发生的错误, 开发者可以使用 try/catch 语句来捕获.
+
+#### 错误边界的例子
+
+```jsx
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.log(error);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <h1>Something went wrong.</h1>;
+    }
+    return this.props.children;
+  }
+}
+
+function App() {
+  return (
+    <div className="App">
+      <div>Hello world</div>
+      <MyErrorBoundary>
+        <SomeComponent />
+      </MyErrorBoundary>
+    </div>
+  );
+}
+```
+
 ## shouldComponentUpdate 的作用
 
 shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新

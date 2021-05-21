@@ -1,5 +1,15 @@
 # windows related
 
+## windows 10 安装 wsl
+
+Windows Subsystem for Linux Installation Guide for Windows 10:
+
+<https://docs.microsoft.com/en-us/windows/wsl/install-win10?
+
+## enable hyper-v
+
+请参考 <https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v>
+
 ## 从 windows 资源管理器访问 wsl
 
 资源管理器中输入
