@@ -289,6 +289,102 @@ function App() {
 }
 ```
 
+## Forwarding refs 转发 refs
+
+Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 使用调用`React.createRef`对组件进行 ref 转发.
+
+```jsx
+import React from "react";
+
+const MyButton = React.forwardRef((props, ref) => {
+  return <button ref={ref}>{props.children}</button>;
+});
+
+// also can custom the display name in devtool
+MyButton.displayName = "MyButton";
+
+const MyButtonWrap = React.forwardRef((props, ref) => (
+  <MyButton ref={ref}>{props.children}</MyButton>
+));
+
+function App() {
+  const ref = React.useRef();
+
+  React.useEffect(() => {
+    ref.current.onclick = (e) => {
+      alert(e.target.textContent);
+    };
+  }, []);
+
+  return (
+    <div>
+      <MyButtonWrap ref={ref}>my button</MyButtonWrap>
+    </div>
+  );
+}
+
+export default App;
+```
+
+## React.Fragment 片段
+
+当使用`React.Fragment`组件包裹多个子元素, 在渲染的时候不会向 DOM 增加额外的节点. 由于 react 组件只能有一个根节点, 在有`React.Fragment`存在的情况下, 就可以变相的实现一个组件返回多个根节点了, 因为`React.Fragment`这一层在渲染到真实 DOM 的时候会被移除. `<React.Fragment></React.Fragment>`的简写形式为`<></>`
+
+使用场景:
+
+- 那些对父子元素有语义限制的场合, 比如`tr`下面只允许`td`
+- 希望返回多个根节点的组件
+
+```jsx
+function MyComponent() {
+  return (
+    <React.Fragment>
+      <td>A</td>
+      <td>B</td>
+      <td>C</td>
+    </React.Fragment>
+  );
+}
+```
+
+## hight-order component（HOC）高阶组件
+
+具体来说，一个高阶组件是接受一个组件返回一个新组件的函数。
+
+```javascript
+const EnhancedComponent = enhance(WrappedComponent);
+```
+
+组件是将 props 转换为 UI，而高阶组件是将组件转换为另外一个组件。通常在高阶组件中不应该修改输入组件, 而应该使用组合的方式来增加新的功能.
+
+```javascript
+function User() {
+  return <div>username: Tom</div>;
+}
+
+function withLog(Component) {
+  // enhance component
+  function ComponentWithLog(props) {
+    console.log("componentName:", Component.name);
+    return <Component {...props} />;
+  }
+
+  // custom HOC name in devtools
+  ComponentWithLog.displayName = `${Component.name}WithLog`;
+  return ComponentWithLog;
+}
+
+export default function App() {
+  const UserWithLog = withLog(User);
+
+  return (
+    <div>
+      <UserWithLog />
+    </div>
+  );
+}
+```
+
 ## shouldComponentUpdate 的作用
 
 shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新
@@ -307,3 +403,44 @@ shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，�
 
 - 根据组件的职责通常把组件分为 UI 组件和容器组件。
 - UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑
+
+## props, state 区别
+
+As a general rule, use props to configure a component when it renders. Use state to keep track of any component data that you expect to change over time.
+
+一般来说，当组件渲染的时候，使用 props 来配置组件的行为。而使用 state 来跟踪随着时间而变化的组件数据。
+
+## callback 跟 useRef，React.createRef 区别
+
+callback ref 中当前 ref 存储的就是 dom 的引用，不需要在通过 ref.current 来去访问，其他几个都是需要使用 ref.current 属性去访问引用的 dom
+
+## function component 使用 callback ref
+
+```javascript
+function MyInput() {
+  let inputRef = null;
+
+  return (
+    <div>
+      <button
+        onClick={(e) => {
+          inputRef.focus();
+        }}
+      >
+        focus input
+      </button>
+      <input type="text" ref={(node) => (inputRef = node)} />
+    </div>
+  );
+}
+```
+
+## quick try JSX
+
+参考 <https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html>
+
+## 何时使用 Ref
+
+- 管理 dom 的聚焦 focus，文本选择，或者媒体播放的控制等
+- 出发命令式的动画
+- 与第三方的 DOM 集成
