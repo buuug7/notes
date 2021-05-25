@@ -198,7 +198,7 @@ md c:\test\myfolder
 // 删除文件夹，该文件夹必须是空文件夹
 rd directoryName
 
-// 删除文件夹以及该文件夹中所有的文件，/s的意思是会进行删除，添加了/q，即quiet，安静模式
+// 删除文件夹以及该文件夹中所有的文件，/s的意思是会进行递归删除，添加了/q，即quiet，安静模式
 rd /s /q directoryName
 
 // 删除文件

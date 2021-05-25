@@ -30,9 +30,9 @@ react 使构建用户界面变得简单. 为你应用的每一个状态设计精
 
 ## what's JSX ?
 
-一种类似于 XML 语法的模板语言, 在构建的时候 JSX 被转换成 React.createElement.
+一种类似于 XML 语法的模板语言, 在构建的时候 JSX 被转换成 `React.createElement(component, props, ...children)`. react 官方对此的定义是 JSX 是 `React.createElement`.
 
-```jsx
+```javascript
 <div className="app">
   <h4>Hello world</h4>
   <p>lorem ipsum dolor site amet</p>
@@ -49,6 +49,15 @@ React.createElement(
   React.createElement("p", {}, "lorem ipsum dolor site amet")
 );
 ```
+
+注意:
+
+- 由于 JSX 会编译成 React.createElement,确保 React 在 JSX 代码作用域内
+- 自定义的组件必须以大写字母开头
+- props 默认值为 true, 比如 `<User age />`默认 age 会为 true
+- 可以使用...展开运算符在 JSX 中传递整个 props 对象
+- 函数表达式可以作为 JSX 子元素
+- true,false, undefined,null 是合法的子元素,但是不会渲染,如果想渲染这些值,请将它们转换为字符串
 
 ## react 哲学
 
@@ -85,7 +94,7 @@ import("./math.js").then((math) => {
 import OtherComponent from "./OtherComponent";
 ```
 
-```jsx
+```javascript
 const OtherComponent = React.lazy(() => import("./OtherComponent"));
 
 function MyComponent() {
@@ -101,7 +110,7 @@ function MyComponent() {
 
 Route-based code splitting 基于路由的代码分割
 
-```jsx
+```javascript
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -130,7 +139,7 @@ context 中默认值只有在组件它所处的上层组件树中的 **provider*
 
 由于基于 class 的组件社区会越来越少使用, 下面的例子是基于 hooks 的 context 的例子
 
-```jsx
+```javascript
 import React from "react";
 
 export const UserContext = React.createContext({
@@ -384,6 +393,24 @@ export default function App() {
   );
 }
 ```
+
+## optimizing performance
+
+- 在生产环境中请使用生产版本
+  - 如果使用 create react app 脚手架, 该优化的脚手架都帮你优化了, 你只需要 `npm run build`
+  - 如果使用 react 官方提供单个 bundle 文件,请在生产环境中使用以`.production.min.js`结尾的文件
+  - 使用 browserify 构建
+  - 使用 rollup 构建
+  - 使用 webpack 构建, 如果使用 webpack v4, 请使用`terser-webpack-plugin`优化代码, webpack v5 则不需要
+- 使用 DevTools Profiler 对组件进行性能分析
+- 对长列表, 推荐使用**虚拟滚动**技术, 它允许在给定的时间内渲染有限的内容, 以降低重新渲染组件的耗时.
+  - [react-window](https://github.com/bvaughn/react-window)
+  - [react-virtualized](https://github.com/bvaughn/react-virtualized)
+- avoid reconciliation 避免协调, 通过覆盖默认的 shouldComponentUpdate 来避免不必要的渲染, 从而以提高性能
+- 通过继承 PureComponent 让 react 只进行 props 浅比较从而提高性能. 对数据结构比较复杂的 props 和 state,在使用 PureComponent 的时候需要谨慎.
+- 使用不可变数据 immutability data 来避免 mutating data 易变且追踪的缺点以降低开发者心智负担, 同时也会让 react diff 算法更加高效, 推荐如下几个库可以帮助开发者处理复杂的深层次嵌套数据结构.
+  - [immer](https://github.com/immerjs/immer)
+  - [immutability-helper](https://github.com/kolodny/immutability-helper)
 
 ## shouldComponentUpdate 的作用
 
