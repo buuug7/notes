@@ -44,7 +44,7 @@ netstat -ano|findstr 8080
 
 windows 访问 wsl 中部署的应用, 比如 nginx, 在 wsl 启动后监听 8080 端口, 那么在 windows 中可以直接访问 `http://localhost:8080`. 也就是 wsl 中监听的端口跟在 windows 中使用的是同一个接口.
 
-wsl 中访问 windows 中部署的应用, 以 nginx 为例, nginx 在 windows 中监听 8080 端口,那么在 wsl 中只能通过 wsl 跟 windows 中建立的虚拟网卡中分配的 IP 去访问,通过在 windows 中`控制面板\网络和 Internet\网络连接` 名字为**vEthernet (WSL)**的虚拟网卡中查看详情来获取 IP,假如 IP 为 172.17.240.1,则访问的地址为 `172.17.240.1:8080`地址来访问.
+wsl 中访问 windows 中部署的应用, 以 nginx 为例, nginx 在 windows 中监听 8080 端口,那么在 wsl 中只能通过 wsl 跟 windows 中建立的虚拟网卡分配的 IP 去访问,通过在 windows 中`控制面板\网络和 Internet\网络连接` 名字为**vEthernet (WSL)**的虚拟网卡中查看详情来获取 IP,假如 IP 为 172.17.240.1,则访问的地址为 `172.17.240.1:8080`地址来访问.
 
 ## 重启 wsl
 
@@ -84,6 +84,7 @@ wsl2 在使用 vpn 后会起不来，解决方案就是 cmd 下管理员权限�
    - 在 windows 中 控制面板->网络和 Internet 链接->网络连接
    - 查看**vEthernet(Default Switch)** 中详细信息
    - 列表中 IPv4 即位主机 IP,使用该 IP 就可以在虚拟机中访问主机服务
+   - 在 win10 上, 如果虚拟机无法 ping 通主机, 请查看主机的防火墙是否在开启
 
 ## w 安装 Win10 出现我们无法创建新的分区，也找不到现有的
 

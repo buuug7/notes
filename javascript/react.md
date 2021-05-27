@@ -412,6 +412,41 @@ export default function App() {
   - [immer](https://github.com/immerjs/immer)
   - [immutability-helper](https://github.com/kolodny/immutability-helper)
 
+## portals
+
+通常,当你从组件的 render 方法返回一个元素的时候,该元素将被挂载到 DOM 节点中离其最近的父节点下面. 而 Portal 允许你将子节点挂载到父组件 DOM 节点以外的 其他 DOM 节点.
+
+从 portal 内部触发的事件会冒泡到包含 react 组件的父组件树中, 即使这些元素不是他的祖先元素.
+
+```html
+<div id="root"></div>
+<div id="modal-root"></div>
+```
+
+```javascript
+import ReactDOM from "react-dom";
+import React from "react";
+
+function Modal(props) {
+  const modalRoot = document.querySelector("#modal-root");
+  const el = document.createElement("div");
+
+  React.useEffect(() => {
+    modalRoot.appendChild(el);
+  }, []);
+
+  return ReactDOM.createPortal(props.children, el);
+}
+
+export default function App() {
+  return (
+    <div>
+      <Modal>Lorem ipsum dolor sit amet.</Modal>
+    </div>
+  );
+}
+```
+
 ## Reconciliation
 
 Reconciliation 是 React 的 diff 算法，用于比较更新前后的虚拟 DOM 树差异，从而使用最小的代价将原始 DOM 按照新的状态、属性进行更新。

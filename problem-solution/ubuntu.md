@@ -1,5 +1,34 @@
 # ubuntu related
 
+## ubuntu 20.04 设置静态 IP
+
+由于 ubuntu 17.10+　使用 [Netplan](https://netplan.io/) 作为默认的网络管理工具, 所以请使用 Netplan 配置网络, 之前的版本请使用 ifconfig 和`/etc/network/interfaces`来配置.
+
+使用`ip link`查看当前的网络的名称, 一般就是`eth0`. 在 `/etc/netplan`目录下有个`00-installer-config.yaml`, 可能有些环境的名字会不同, 编辑该文件
+
+```yaml
+network:
+  # the version of the network configuration format
+  version: 2
+  # device type: can be ethernets, bonds, bridges, or vlans
+  ethernets:
+    eth0:
+      dhcp4: no
+      addresses:
+        - 172.24.112.2/20
+      gateway4: 172.24.112.1
+      # DNS
+      # 可选配置
+      # nameservers:
+      #   addresses: [8.8.8.8, 1.1.1.1]
+```
+
+完毕后使用`sudo netplan apply`应用配置, 查看设定是否应用成功使用`ip addr`查看结果.
+
+参考:
+
+- [how-to-configure-static-ip-address-on-ubuntu-20-04](https://linuxize.com/post/how-to-configure-static-ip-address-on-ubuntu-20-04/)
+
 ## ubuntu 设置时区
 
 新版本的 ubuntu 推荐使用 `timedatectl`来查看系统时区设定。也可以使用 `cat /etc/timezone` 命令查看当前系统设置的时区，但是现在不推荐。

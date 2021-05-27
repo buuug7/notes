@@ -32,7 +32,7 @@ A package is a file or directory that is described by a package.json file. A pac
 
 一个被 package.json 描述的文件或者文件夹被称为一个包. 为了发布到 npm 仓库, 一个包必须包含 package.json 文件.
 
-Packages can be unscoped or scoped to a user or organization, and scoped packages can be private or public.
+Packages can be unscoped or scoped to a user or organization, and scoped packages can be private or public. Unscoped packages are always public.
 
 一个用户或者组织发布的包可以带命名空间或者不带命名空间, 带命名空间的包可是是公开的或者私有的.
 
