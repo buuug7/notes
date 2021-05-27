@@ -38,6 +38,26 @@ I'm on Windows + WSL 2 (Ubuntu 18.04), Docker v19.03. I found my Docker volumes 
 netstat -ano|findstr 8080
 ```
 
+## hyper-v 设置分辨率
+
+```
+设置分辨率
+打开grub
+vim /etc/default/grub
+
+按i进入编辑状态，找到：
+GRUB_CMDLINE_LINUX_DEFAULT=“quiet splash”
+
+在之后加入分辨率设置：
+GRUB_CMDLINE_LINUX_DEFAULT=“quiet splash video=hyperv_fb:1280x720”
+
+按Esc，退出编辑；按Shift + : 然后输入wq保存退出
+
+运行sudo update-grub
+
+运行root重启
+```
+
 ## wsl 跟 windows 互相访问
 
 > 这里的 wsl 指的是 wsl2
@@ -93,12 +113,11 @@ wsl2 在使用 vpn 后会起不来，解决方案就是 cmd 下管理员权限�
 ## 查看 windows 版本
 
 ```
-# cmd
 ver
 
 ```
 
-#### win10 常用快捷键有哪些
+## win10 常用快捷键有哪些
 
 - Win+L 快速锁屏
 - Win+E 打开 我的电脑
@@ -127,7 +146,7 @@ ver
   - web:搜索内容 搜索网页
   - folder:搜索内容 搜索文件
 
-#### windows 查看指定端口被占用 杀死指定进程
+## windows 查看指定端口被占用 杀死指定进程
 
 ```
 ## 最后一列显示的是进程PID
@@ -136,19 +155,19 @@ netstat -aon|findstr 1099
 taskkill -f -pid 进程PID
 ```
 
-#### chrome disabled CORS
+## chrome disabled CORS
 
 启动快捷方式添加 --disable-web-security --user-data-dir
 
-#### 操作无法完成 因为其中的文件或者文件夹在另一个程序中已经打开
+## 操作无法完成 因为其中的文件或者文件夹在另一个程序中已经打开
 
 <https://blog.csdn.net/feinifi/article/details/83216030 />
 
-#### office Tool
+## office Tool
 
 [office Tool](https://otp.landian.vip/en-us/#)
 
-#### office kms 服务器
+## office kms 服务器
 
 ```
 zh.us.to 有效
@@ -163,12 +182,12 @@ www.zgbs.cc 有效
 cy2617.jios.org 有效
 ```
 
-#### win10 查看版本号
+## win10 查看版本号
 
 - win+R 然后输入 winver
 - 或者在 cmd 的标题栏中就有 win10 的版本号
 
-#### windows 创建删除文件
+## windows 创建删除文件
 
 ```
 // 创建文件
@@ -186,14 +205,14 @@ type nul>m.txt
 // del m.txt
 ```
 
-#### windows 创建文件夹
+## windows 创建文件夹
 
 ```
 完整命令是md [盘符:\][路径\]新目录名
 md c:\test\myfolder
 ```
 
-#### windows 删除文件文件夹
+## windows 删除文件文件夹
 
 ```
 // 删除文件夹，该文件夹必须是空文件夹
@@ -209,37 +228,21 @@ del file1 file2
 del f*.txt
 ```
 
-#### VC 库下载地址
+## VC 库下载地址
 
 - [VC11](https://www.microsoft.com/en-us/download/details.aspx?id=30679)
 - [VC14](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
 - [VC15](https://go.microsoft.com/fwlink/?LinkId=746572)
 
-#### vcruntime140.dll 找不见
-
-Windows 下运行 php7 需要 Visual C++Redistributable 2015,下载地址为
-
-```
-https://www.microsoft.com/en-gb/download/details.aspx?id=48145
-```
-
-#### vcruntime110.dll
-
-其中在安装 wamp3.x 的时候回提示该文件找不到,下载地址为
-
-```
-https://www.microsoft.com/zh-CN/download/details.aspx?id=30679
-```
-
-#### 创建以点号开头的文件夹
+## 创建以点号开头的文件夹
 
 您无法使用 Windows 资源管理器创建名称以句点开头的文件夹，除非该文件夹的名称也以句点结束。输入名称 (.ssh.) 后，最后的句点会自动删除
 
-#### 在 word 如何在下划线上输入汉字
+## 在 word 如何在下划线上输入汉字
 
 先在空白地方打空格,然后选中空格,加下划线,最后就可以在线上打字了.
 
-#### URL 跟文件路径区别
+## URL 跟文件路径区别
 
 在 windows 中浏览器 url 用的是"/"表示路径
 而 windows 中的访问磁盘文件用的是"\"

@@ -1,38 +1,87 @@
-### basic linux operation 基础操作
+# Linux 基础操作
 
-#### 学会使用命令帮助
+## 杀死特定进程
+
+```
+kill -9 pid
+```
+
+## 查看端口占用情况
+
+```shell
+# 查看端口占用情况
+netstat -anp | grep 端口号
+
+# 该命令是查看当前所有已经使用的端口情, 用该命令也可以查看当前服务器是不是有用户访问
+netstat -nultp
+```
+
+## 查看各种发行版方式
+
+```
+lsb_release -a
+
+cat /etc/xxx-release XX为发行版名称
+
+/etc/issue
+```
+
+## ssh
+
+更详细的可以用 ssh -h 查看
+常用格式`ssh [-l login_name] [-p port] [user@]hostname`
+
+```shell
+# 举例
+# 不指定用户
+ssh 192.168.0.11
+
+# 指定用户
+ssh -l root 192.168.0.11
+ssh root@192.168.0.11
+
+# 制定端口
+ssh -p 12333 192.168.0.11
+ssh -l root -p 12333 216.230.230.114
+ssh -p 12333 root@216.230.230.114
+```
+
+另外修改配置文件`/etc/ssh/sshd_config`, 可以改 ssh 登录端口和禁止 root 登录. 改端口可以防止被端口扫描.  
+重启 sshd 服务: `service sshd restart`
+
+## 学会使用命令帮助
 
 whatis info man which whereis
 
-```linux
+```shell
 
-// 查看某个命令的简要说明
+# 查看某个命令的简要说明
 whatis commond
 
-// 正则匹配,搜索含有local字符的命令
+# 正则匹配,搜索含有local字符的命令
 whatis -w "local*"
 
-// 查看命令的详细说明
+# 查看命令的详细说明
 info commond
 
-// 查看命令的说明文当
+# 查看命令的说明文当
 man commond
 
-// 用来搜索只记住了部分关键字的命令
+# 用来搜索只记住了部分关键字的命令
 man -k commond
 
-// 查看命令程序的binary安装路径
+# 查看命令程序的binary安装路径
 which commond
 
-// 查看程序的搜索路径
+# 查看程序的搜索路径
 whereis commond
 ```
 
-#### files and directories manager 文件以及目录管理
+## files and directories manager 文件以及目录管理
 
 文件管理即为文件或者目录的创建,删除,查询,移动,mkdir/rm/mv
 
-```linux
+```
 // 创建mkdir
 mkdir directoryname
 
@@ -191,9 +240,9 @@ ls /home > a.txt
 // ctrl+H 删除光标前边的一个字符
 ```
 
-#### 文本处理
+## 文本处理
 
-```linux
+```
 
 // find 文件查找
 // 格式:find path -option [-print] [-exec -ok command] {} \;
@@ -308,6 +357,4 @@ sort /etc/hosts | uniq -d
 
 // 替换字符,将字符串abcdefg字符用数字替换
 // echo abcdefg | tr 'a-z' '0-9'
-
-
 ```
