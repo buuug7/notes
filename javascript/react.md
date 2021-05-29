@@ -412,6 +412,10 @@ export default function App() {
   - [immer](https://github.com/immerjs/immer)
   - [immutability-helper](https://github.com/kolodny/immutability-helper)
 
+## Reconciliation
+
+Reconciliation 是 React 的 diff 算法，用于比较更新前后的虚拟 DOM 树差异，从而使用最小的代价将原始 DOM 按照新的状态、属性进行更新。
+
 ## shouldComponentUpdate 的作用
 
 shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新
