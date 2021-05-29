@@ -1,11 +1,21 @@
 # npm
 
+## 给已经发布的包添加标签
+
+`npm dist-tag add <package-name>@<version> [<tag>]`
+
+## Scopes and package visibility
+
+- Unscoped packages are always public.
+- Private packages are always scoped.
+- Scoped packages are private by default; you must pass a command-line flag when publishing to make them public.
+
 ## npm package git URL format
 
 Git URLs used for npm packages can be formatted in the following ways:
 The commit-ish can be any tag, sha, or branch that can be supplied as an argument to git checkout. The default commit-ish is master.
 
-````
+```
 git://github.com/user/project.git#commit-ish
 git+ssh://user@hostname:project.git#commit-ish
 git+http://user@hostname/project/blah.git#commit-ish
@@ -40,7 +50,7 @@ Packages can be unscoped or scoped to a user or organization, and scoped package
 
 ```shell
 npm config ls -l
-````
+```
 
 ## 管理多个 registry
 

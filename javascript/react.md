@@ -1,5 +1,20 @@
 # react
 
+## 资源
+
+- https://reactjs.org/
+- https://github.com/Wavez/react-hooks-lifecycle
+- https://github.com/wojtekmaj/react-lifecycle-methods-diagram
+
+## react 两个工作阶段
+
+- render phase 渲染阶段, 调用 render, 然后将结果与上次渲染结果作比较
+- commit phase 提交阶段, 发生在 react 插入,更新以及删除 DOM 节点的时候, 此阶段会调用生命周期的 componentDidUpdate 或者 componentDidMount.
+
+## react 官方 blog 值得认真读的 post
+
+- https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+
 ## what's react ?
 
 A JavaScript library for building user interfaces.
@@ -306,14 +321,11 @@ Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下�
 import React from "react";
 
 const MyButton = React.forwardRef((props, ref) => {
-  return <button ref={ref}>{props.children}</button>;
+  return <button ref={ref}>{props.text}</button>;
 });
 
-// also can custom the display name in devtool
-MyButton.displayName = "MyButton";
-
 const MyButtonWrap = React.forwardRef((props, ref) => (
-  <MyButton ref={ref}>{props.children}</MyButton>
+  <MyButton ref={ref} {...props} />
 ));
 
 function App() {
@@ -327,12 +339,10 @@ function App() {
 
   return (
     <div>
-      <MyButtonWrap ref={ref}>my button</MyButtonWrap>
+      <MyButtonWrap ref={ref} text="awesome" />
     </div>
   );
 }
-
-export default App;
 ```
 
 ## React.Fragment 片段
@@ -447,9 +457,115 @@ export default function App() {
 }
 ```
 
-## Reconciliation
+## Reconciliation 协调
 
 Reconciliation 是 React 的 diff 算法，用于比较更新前后的虚拟 DOM 树差异，从而使用最小的代价将原始 DOM 按照新的状态、属性进行更新。
+
+## diff 算法
+
+两个不同类型元素比较时, 会卸载原来的树并建立新的树, 例如从`<a>`变成`<img>, 或者`<Article>`变成`<Comment>`都会触发一个完整的卸载重建流程.
+
+对比同类型的元素的时候, React 会保留 DOM 节点, 仅更新变更的属性, 例如:
+
+```javascript
+// 仅更新className
+<div className="before">
+<div className="after">
+```
+
+对比同类型的组件的时候, 组件实例保持不变, React 更新组件实例的 props 并调用实例的`componentDidUpdate()`方法, 然后调用 `render()` 方法.
+
+对 DOM 节点的子元素会进行递归遍历比较, 为了提高比较性能, react 增加了 Key 属性, 使用 key 来匹配原有树上的子元素以及最新树上的子元素. 请记住在设置 key 的时候,key 应该具有稳定可预测性.
+
+## Refs & DOM
+
+何时使用 Ref:
+
+- 管理 dom 的聚焦 focus，文本选择，或者媒体播放的控制等
+- 触发命令式的动画
+- 与第三方的 DOM 集成
+
+function component 使用 React.useRef 创建 ref:
+
+```javascript
+function MyInput() {
+  const inputRef = React.createRef();
+  return (
+    <div className="my-input">
+      <input type="text" ref={inputRef} />
+      <button
+        onClick={() => {
+          inputRef.current.focus();
+        }}
+      >
+        focus input
+      </button>
+    </div>
+  );
+}
+```
+
+function component 使用 callback ref:
+
+```javascript
+function MyInput() {
+  let inputRef = null;
+  return (
+    <div>
+      <button
+        onClick={(e) => {
+          inputRef.focus();
+        }}
+      >
+        focus input
+      </button>
+      <input type="text" ref={(node) => (inputRef = node)} />
+    </div>
+  );
+}
+```
+
+## render props
+
+render props 指的是在多个组件中使用函数 props 共享代码的一种技术. 它用来告知组件需要渲染什么内容.
+
+```javascript
+function UserList({ render, users }) {
+  return (
+    <div className="user-list">
+      {users.map((user) => (
+        <React.Fragment key={user.id}>{render(user)}</React.Fragment>
+      ))}
+    </div>
+  );
+}
+
+function User({ user }) {
+  return (
+    <div className="user" key={user.id}>
+      {user.name}
+    </div>
+  );
+}
+
+function App() {
+  const users = [
+    {
+      id: 1,
+      name: "user1",
+    },
+    {
+      id: 2,
+      name: "user2",
+    },
+  ];
+  return (
+    <div>
+      <UserList users={users} render={(user) => <User user={user} />} />
+    </div>
+  );
+}
+```
 
 ## shouldComponentUpdate 的作用
 
@@ -459,7 +575,7 @@ shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，�
 
 我们应当将 AJAX 请求放到 componentDidMount 函数中执行，主要原因有下:
 
-如果我们将 AJAX 请求放置在生命周期的其他函数中，比如 componentWillMount 这个函数在组建的渲染过程中调用次数无法确，可能调用一次也可能调用多次，这样会导致多次调用一个网络请求，而 componentDidMount 函数只会执行一次，保证了网络请求只调用一次。
+如果我们将 AJAX 请求放置在生命周期的其他函数中，比如 componentWillMount 这个函数在组建的渲染过程中调用次数无法确，可能调用一次也可能调用多次，这会导致一个网络请求被调用多次，而 componentDidMount 函数只会执行一次，保证了网络请求只调用一次。
 
 ## 概述下 React 中的事件处理逻辑
 
@@ -480,33 +596,58 @@ As a general rule, use props to configure a component when it renders. Use state
 
 callback ref 中当前 ref 存储的就是 dom 的引用，不需要在通过 ref.current 来去访问，其他几个都是需要使用 ref.current 属性去访问引用的 dom
 
-## function component 使用 callback ref
-
-```javascript
-function MyInput() {
-  let inputRef = null;
-
-  return (
-    <div>
-      <button
-        onClick={(e) => {
-          inputRef.focus();
-        }}
-      >
-        focus input
-      </button>
-      <input type="text" ref={(node) => (inputRef = node)} />
-    </div>
-  );
-}
-```
-
 ## quick try JSX
 
 参考 <https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html>
 
-## 何时使用 Ref
+## 废弃的几个 API
 
-- 管理 dom 的聚焦 focus，文本选择，或者媒体播放的控制等
-- 出发命令式的动画
-- 与第三方的 DOM 集成
+- `componentWillMount` react 17+会删除该 API
+- `UNSAFE_componentWillMount` `componentWillMount` 的别名
+-
+- `componentWillReceiveProps` react 17+会删除该 API
+- `UNSAFE_componentWillReceiveProps` `componentWillReceiveProps` 的别名
+
+- `componentWillUpdate` react 17+会删除该 API
+- `UNSAFE_componentWillUpdate` `componentWillUpdate` 的别名
+
+新增的 API:
+
+**getDerivedStateFromProps**
+
+在组件实例化之后以及重新渲染之前调用, 返回一个对象用来更新 state, 或者返回 null 来表示新的 props 不会引起 state 的变化, 该 API 用来替代 componentWillReceiveProps 的使用场景.
+
+```javascript
+class SomeComponent extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    // ...
+  }
+}
+```
+
+**getSnapshotBeforeUpdate**
+
+在组件更新前调用, 此方法的返回值将作为第三个参数传递给 componentDidUpdate, 这个生命周期函数通常是跟 componentDidUpdate 一起使用, 它覆盖了过时的 componentWillUpdate 的所有用例.
+
+```javascript
+class SomeComponent extends React.Component {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // ...
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // snapshot即是getSnapshotBeforeUpdate返回的值
+  }
+}
+```
+
+## 受控 和 非受控 组件
+
+名词“受控”和“非受控”通常用来指代表单的 inputs，但是也可以用来描述数据频繁更新的组件。用 props 传入数据的话，组件可以被认为是受控（因为组件被父级传入的 props 控制）。数据只保存在组件内部的 state 的话，是非受控组件（因为外部没办法直接控制 state）
+
+## 严格模式做了什么?
+
+- 识别不安全的生命周期
+- 如果使用 string ref API 会给予警告
+- 对使用 findDOMNode 给出警告
+- 检测意外的副作用
+- 检测过时的 context API
