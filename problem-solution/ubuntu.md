@@ -39,6 +39,21 @@ ${USER} 代表当前用户, someGroupName 用真是的用户组名称替换
 
 - https://github.com/nodesource/distributions
 
+## 安装 ubuntu 时磁盘分区设置
+
+选择 free(空闲空间)，然后点击 + 来设置分区，一般设置四个分区就够了，其他使用默认的
+
+- swap，交换分区，设置为逻辑分区， 大小设置为内存大小
+- boot，引导分区，设置为逻辑分区， 一般设置 200-300MB
+- /，根分区，可以设置主分区或者逻辑分区，推荐 20G+
+- /home，home 分区，设置为逻辑分区， 自己随便设置大小
+
+## ubuntu 设置时区
+
+新版本的 ubuntu 推荐使用 `timedatectl`来查看系统时区设定。也可以使用 `cat /etc/timezone` 命令查看当前系统设置的时区，但是现在不推荐。
+
+如果要修改时区设定，先使用`timedatectl list-timezones`列出系统支持的所有时区信息，找出你需要设置的时区。然后使用 `timedatectl set-timezone your_time_zone` 来设置时区，比如设定`Asia/Shanghai`, 则可以使用`timedatectl set-timezone Asia/Shanghai`.
+
 ## 查看 DNS, 查看 IP
 
 查看 DNS
