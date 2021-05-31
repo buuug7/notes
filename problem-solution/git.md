@@ -1,5 +1,23 @@
 # git related
 
+## Failed to connect to github.com port 443: Timed out
+
+结果报错： fatal: unable to access 'https://github.com/xxx.git/': Failed to connect to github.com port 443: Timed out 解决方案配置
+
+git 的代理
+
+```
+git config --global http.proxy "127.0.0.1:1080"
+git config --global https.proxy "127.0.0.1:1080"
+```
+
+那么取消代理的命令是
+
+```
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+```
+
 ## git 合并两个不同的远程仓库分支
 
 下载远程仓库 1
