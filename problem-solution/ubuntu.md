@@ -1,5 +1,44 @@
 # ubuntu related
 
+## 配置代理
+
+```
+export HTTP_PROXY=http://127.0.0.1:7890
+export HTTPS_PROXY=$HTTP_PROXY
+
+# Or if an authenticated proxy
+export HTTP_PROXY=http://username:password@proxy.fqdn.or.ip:3128
+export HTTPS_PROXY=$HTTP_PROXY
+```
+
+## 资源
+
+- https://askubuntu.com/
+
+## 修改密码
+
+```
+sudo passwd username
+```
+
+## 安装 docker
+
+参考:
+
+- https://docs.docker.com/engine/install/ubuntu/
+
+## 添加一个用户到用户组
+
+${USER} 代表当前用户, someGroupName 用真是的用户组名称替换
+
+`sudo gpasswd -a ${USER} someGroupName`
+
+## ubuntu 安装 nodejs
+
+参考:
+
+- https://github.com/nodesource/distributions
+
 ## 安装 ubuntu 时磁盘分区设置
 
 选择 free(空闲空间)，然后点击 + 来设置分区，一般设置四个分区就够了，其他使用默认的

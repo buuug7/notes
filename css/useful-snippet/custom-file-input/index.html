@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>custom file upload input</title>
+    <style>
+      .hidden-input {
+        position: absolute !important;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(1px 1px 1px 1px);
+      }
+      input.hidden-input:focus + label {
+        outline: thin dotted;
+      }
+      input.hidden-input:focus-within + label {
+        outline: thin dotted;
+      }
+      .my-label {
+        padding: 0.2rem;
+        border: 1px solid #eee;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="my-input" type="file" class="hidden-input" />
+    <label for="my-input" class="my-label">File input</label>
+  </body>
+</html>
