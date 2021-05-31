@@ -169,18 +169,7 @@ taskkill -f -pid 进程PID
 
 ## office kms 服务器
 
-```
-zh.us.to 有效
-kms.03k.org 有效
-kms.chinancce.com 有效
-kms.shuax.com 有效
-kms.dwhd.org 有效
-kms.luody.info 有效
-kms.digiboy.ir 有效
-kms.lotro.cc 有效
-www.zgbs.cc 有效
-cy2617.jios.org 有效
-```
++ https://www.coolhub.top/tech-articles/kms_list.html
 
 ## win10 查看版本号
 

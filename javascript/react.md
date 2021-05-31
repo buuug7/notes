@@ -317,6 +317,8 @@ function App() {
 
 Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 使用调用`React.createRef`对组件进行 ref 转发.
 
+React.forwardRef 会创建一个 React 组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。
+
 ```jsx
 import React from "react";
 
@@ -346,6 +348,8 @@ function App() {
 ```
 
 ## React.Fragment 片段
+
+React.Fragment 组件能够在不额外创建 DOM 元素的情况下，让 render() 方法中返回多个元素。
 
 当使用`React.Fragment`组件包裹多个子元素, 在渲染的时候不会向 DOM 增加额外的节点. 由于 react 组件只能有一个根节点, 在有`React.Fragment`存在的情况下, 就可以变相的实现一个组件返回多个根节点了, 因为`React.Fragment`这一层在渲染到真实 DOM 的时候会被移除. `<React.Fragment></React.Fragment>`的简写形式为`<></>`
 
