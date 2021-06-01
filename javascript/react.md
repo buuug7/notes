@@ -1,35 +1,33 @@
-# react
+# React
 
 ## 资源
 
 - https://reactjs.org/
 - https://github.com/Wavez/react-hooks-lifecycle
 - https://github.com/wojtekmaj/react-lifecycle-methods-diagram
+- https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+- [quick started with jsx](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)
 
-## react 两个工作阶段
+## React 两个工作阶段
 
 - render phase 渲染阶段, 调用 render, 然后将结果与上次渲染结果作比较
-- commit phase 提交阶段, 发生在 react 插入,更新以及删除 DOM 节点的时候, 此阶段会调用生命周期的 componentDidUpdate 或者 componentDidMount.
+- commit phase 提交阶段, 发生在 React 插入,更新以及删除 DOM 节点的时候, 此阶段会调用生命周期的 componentDidUpdate 或者 componentDidMount.
 
-## react 官方 blog 值得认真读的 post
-
-- https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
-
-## what's react ?
+## what's React ?
 
 A JavaScript library for building user interfaces.
 
-react 是一个用于构建用户界面的 JavaScript 库.
+React 是一个用于构建用户界面的 JavaScript 库.
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called “components”.
+React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
 
-react 是一个声明式, 高效且灵活的用于构建用户界面的 JavaScript 库. 它通过让你使用一种小的独立的被称为组件的代码片段, 然后通过组合他们来构建复杂的用户界面.
+React 是一个声明式, 高效且灵活的用于构建用户界面的 JavaScript 库. 它让你使用一种小的独立的被称为组件的代码片段, 然后组合他们来构建复杂的用户界面.
 
-## react features
+## React features
 
 ##### Declarative 声明式
 
-react 使构建用户界面变得简单. 为你应用的每一个状态设计精简的视图, 当数据变动时 react 能高效更新和渲染合适的组件. 编写声明式的视图能让你的代码更加有预测性且调试方便.
+React 使构建用户界面变得简单. 为你应用的每一个状态设计精简的视图, 当数据变动时 React 能高效更新和渲染合适的组件. 编写声明式的视图能让你的代码更加有预测性且调试方便.
 
 ##### Component Based 组件化
 
@@ -37,15 +35,21 @@ react 使构建用户界面变得简单. 为你应用的每一个状态设计精
 
 ##### Learn Once, Write Anywhere 学习一次, 跨平台编写
 
-无论你现在使用什么技术栈, 在无需重写现有代码的前提下,通过引入 react 来开发新功能. react 还可以使用 Node 进行服务器渲染，或使用 react-native 开发原生移动应用。
+无论你现在使用什么技术栈, 在无需重写现有代码的前提下,通过引入 React 来开发新功能. React 还可以使用 Node 进行服务器渲染, 或使用 react-native 开发原生移动应用.
 
-## what's react component ?
+## what's React component ?
 
-一个接受 props 参数, 并且返回一个 **react element** 的函数被称为组件. **react element** 描述了要在屏幕上渲染视图的一个轻量级抽象, 通常 react element 使用 JSX 来编写.
+一个接受 props 参数, 并且返回一个 **React element** 的函数被称为组件. **React element** 描述了要在屏幕上渲染视图的一个轻量级抽象, 通常 React element 使用 JSX 来编写.
 
 ## what's JSX ?
 
-一种类似于 XML 语法的模板语言, 在构建的时候 JSX 被转换成 `React.createElement(component, props, ...children)`. react 官方对此的定义是 JSX 是 `React.createElement`.
+一种类似于 XML 语法的模板语言, 在构建的时候 JSX 被转换成 `React.createElement`. react 官方对此的定义是 JSX 是 `React.createElement`语法糖.
+
+`React.createElement()`创建一个 React element, 其中参数 type 可以为普通的 dom tag 或者另一个 React component, 用 JSX 书写的代码会被翻译成 `React.createElement()`
+
+```javascript
+React.createElement(type, [props], [...children]);
+```
 
 ```javascript
 <div className="app">
@@ -67,20 +71,46 @@ React.createElement(
 
 注意:
 
-- 由于 JSX 会编译成 React.createElement,确保 React 在 JSX 代码作用域内
+- 由于 JSX 会编译成 React.createElement, 确保 React 在 JSX 代码作用域内
 - 自定义的组件必须以大写字母开头
 - props 默认值为 true, 比如 `<User age />`默认 age 会为 true
 - 可以使用...展开运算符在 JSX 中传递整个 props 对象
 - 函数表达式可以作为 JSX 子元素
 - true,false, undefined,null 是合法的子元素,但是不会渲染,如果想渲染这些值,请将它们转换为字符串
 
-## react 哲学
+## React 哲学
 
 - 将 UI 划分为组件
 - 用 react 创建一个静态版本
 - 确定 UI 的最小状态
 - 确定 state 存放在哪里
 - 添加反向数据流(让内层组件能改变上层组件 state)
+
+## React class component 生命周期
+
+组件的生命周期:
+
+```
+# Mounting:
+-> constructor()
+-> static getDerivedStateFromProps()
+-> render()
+-> componentDidMount()
+
+# Updating:
+-> static getDerivedStateFromProps()
+-> shouldComponentUpdate()
+-> render()
+-> getSnapshotBeforeUpdate()
+-> componentDidUpdate()
+
+# Unmounting:
+-> componentWillUnmount()
+
+# Error Handling:
+-> static getDerivedStateFromError()
+-> componentDidCatch()
+```
 
 ## 代码分割 code splitting
 
@@ -253,7 +283,7 @@ export default function App() {
 
 ## Error boundary 错误边界
 
-为了解决部分 UI 错误而不引起整个应用奔溃, react 16 引入了错误边界来处理这些问题. 错误边界是一种 react 组件, 用来捕获发生在其子组件树中的错误, 打印错误, 并显示备用 UI. react 不支持使用 hooks 的方式写 error boundary.
+为了解决部分 UI 错误而不引起整个应用奔溃, React 16 引入了错误边界来处理这些问题. 错误边界是一种 React 组件, 用来捕获发生在其子组件树中的错误, 打印错误, 并显示备用 UI. React 不支持使用 hooks 的方式写 error boundary.
 
 注意在开发环境中有可能无法测试错误边界的情况, 请使用生产测试. 使用 create-react-app 作为脚手架的请在`npm run build`之后测试.
 
@@ -266,7 +296,7 @@ export default function App() {
 
 #### 关于未捕获的错误(Uncaught Error)行为
 
-要注意未被任何错误边界捕获的错误会导致整个组件树被卸载, 这是 react 16 后默认的行为.
+要注意未被任何错误边界捕获的错误会导致整个组件树被卸载, 这是 React 16 后默认的行为.
 
 #### 错误边界位置
 
@@ -315,20 +345,21 @@ function App() {
 
 ## Forwarding refs 转发 refs
 
-Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 使用调用`React.createRef`对组件进行 ref 转发.
+Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用`React.createRef`对组件进行 ref 转发.
 
-React.forwardRef 会创建一个 React 组件，这个组件能够将其接受的 ref 属性转发到其组件树下的另一个组件中。
+React.forwardRef 会创建一个 React 组件, 这个组件能够将其接收到的 ref 属性转发到其组件树下的另一个组件中.
+
+使用场景:
+
+- 转发 ref 到一个 DOM 组件
+- 在高阶组件中转发 ref
 
 ```jsx
 import React from "react";
 
 const MyButton = React.forwardRef((props, ref) => {
-  return <button ref={ref}>{props.text}</button>;
+  return <button ref={ref}>my button</button>;
 });
-
-const MyButtonWrap = React.forwardRef((props, ref) => (
-  <MyButton ref={ref} {...props} />
-));
 
 function App() {
   const ref = React.useRef();
@@ -341,7 +372,7 @@ function App() {
 
   return (
     <div>
-      <MyButtonWrap ref={ref} text="awesome" />
+      <MyButton ref={ref} />
     </div>
   );
 }
@@ -349,7 +380,7 @@ function App() {
 
 ## React.Fragment 片段
 
-React.Fragment 组件能够在不额外创建 DOM 元素的情况下，让 render() 方法中返回多个元素。
+React.Fragment 组件能够在不额外创建 DOM 元素的情况下, 让 render() 方法中返回多个元素.
 
 当使用`React.Fragment`组件包裹多个子元素, 在渲染的时候不会向 DOM 增加额外的节点. 由于 react 组件只能有一个根节点, 在有`React.Fragment`存在的情况下, 就可以变相的实现一个组件返回多个根节点了, 因为`React.Fragment`这一层在渲染到真实 DOM 的时候会被移除. `<React.Fragment></React.Fragment>`的简写形式为`<></>`
 
@@ -370,15 +401,15 @@ function MyComponent() {
 }
 ```
 
-## hight-order component（HOC）高阶组件
+## hight-order component(HOC)高阶组件
 
-具体来说，一个高阶组件是接受一个组件返回一个新组件的函数。
+具体来说, 一个高阶组件是接收一个组件返回一个新组件的函数.
 
 ```javascript
 const EnhancedComponent = enhance(WrappedComponent);
 ```
 
-组件是将 props 转换为 UI，而高阶组件是将组件转换为另外一个组件。通常在高阶组件中不应该修改输入组件, 而应该使用组合的方式来增加新的功能.
+组件是将 props 转换为 UI, 而高阶组件是将组件转换为另外一个组件. 通常在高阶组件中不应该修改输入组件, 而应该使用组合的方式来增加新的功能.
 
 ```javascript
 function User() {
@@ -430,7 +461,7 @@ export default function App() {
 
 通常,当你从组件的 render 方法返回一个元素的时候,该元素将被挂载到 DOM 节点中离其最近的父节点下面. 而 Portal 允许你将子节点挂载到父组件 DOM 节点以外的 其他 DOM 节点.
 
-从 portal 内部触发的事件会冒泡到包含 react 组件的父组件树中, 即使这些元素不是他的祖先元素.
+从 portal 内部触发的事件会冒泡到包含 React 组件的父组件树中, 即使这些元素不是他的祖先元素.
 
 ```html
 <div id="root"></div>
@@ -461,13 +492,159 @@ export default function App() {
 }
 ```
 
+## React.PureComponent
+
+类似于 React.Component, 区别在于 React.Component 没有实现`shouldComponentUpdate()`, 而 React.PureComponent 使用 props 和 state 浅比较(shallow compare)实现了`shouldComponentUpdate()`.
+
+## React.memo
+
+```javascript
+function MyComponent(props) {
+  // render using props
+}
+
+const MyComponent = React.memo(MyComponent);
+
+function areEqual(preProps, nextProps) {
+  // return true or false
+}
+
+// use custom compare function as second parameter
+const MyComponent2 = React.memo(MyComponent, areEqual);
+```
+
+React.memo 是一个高阶组件, 它会记忆上次的渲染结果, 如果 props 没有发生变化, 那么它仅仅返回上次渲染结果而不是重新在渲染. 在对比 props 变化的时候使用的是对象浅比较, 你也可以使用自定义的比较函数来判定 props 的变动.
+
+## React.lazy 跟 Suspense
+
+`React.lazy`会定义一个动态加载组件, 这项技术会帮助你减少打包体积并延迟加载那些当前视图不需要的组件. 在使用 webpack 打包的时候,使用`import`导入的组件会进行代码分割以减少单个包的体积.
+
+`React.Suspense`当其下属的组件树中有些组件未准备就绪的时候, 允许你指定加载指示器或者 fallback UI. Suspense 跟 React.lazy 定义的组件配合使用的场景是 Suspense 目前唯一的使用场景.
+
+```javascript
+const HelloComponent = React.lazy(() => import("./Hello.js"));
+
+function App() {
+  return (
+    <div>
+      <React.Suspense fallback={"<div>Ops, something went wrong!</div>"}>
+        <HelloComponent />
+      </React.Suspense>
+    </div>
+  );
+}
+```
+
+## 关于 setState
+
+```javascript
+setState(updater, [callback]);
+
+// 传递一个对象更新state, React会使用shallow merge跟当前state进行合并
+// 在同一个事件循环周期内多次调用setState会合并为一次setState
+// 类似于: Object.assign(preState, {count: 2}, {count: 3})
+setState({
+  count: 9,
+});
+
+// 第一次参数传递一个function
+setState((preState, props) => {
+  return {
+    count: preState.someState + 1,
+  };
+});
+
+// 第二个参数传递一个回调函数用来获取更新后的state
+setState(
+  (preState, props) => {
+    // return new state
+  },
+  () => {
+    // do with the new changed state
+  }
+);
+```
+
+setState 会告诉 React 当前组件以及它的子组件需要使用更新后的 state 重新渲染, 这也是你更新用户界面的首选方式.
+
+setState 是异步的, 你可以把它理解为一个网络请求一样的操作, 在同一个事件循环周期内, React 会合并多次 setState 操作为一个 setState 操作, 所以 React 不保证在调用 setState 后组件的 state 立即就会更新.
+
+要读取更新后的 state, 有两种方式:
+
+- 在 setState 第二个参数 callback 中获取更新后的 state.
+- 在 componentDidUpdate 中获取
+
+## 关于 render()
+
+通常是返回一个 React element, 如果要返回多个元素, 请使用`React.Fragment`, 如果返回的是数字或者字符串, 会在 DOM 中渲染为 text node. 如果返回的是 Boolean 或者 null,则什么都不渲染.
+
+`render()` 函数应该是纯函数,意味着在该函数中你不能修改组件的 state, 对于相同的 state,render 函数应该返回相同的内容. 如果你想跟浏览器进行交互, 通常的方式是在`componentDidMount()`中执行相应的操作.
+
+## 关于组件的 constructor
+
+在组件中使用 constructor 的目的通常是:
+
+- 初始化组件的 state
+- 绑定事件到该实例
+
+在 constructor 中对 state 进行直接赋值(也是唯一一个能对 state 直接赋值的地方). 在 constructor 中你不应该调用`setState()`, 并避一切副作用. 在 constructor 中避免把 props 的值复制给 state, 如果这样做通常会引起 bug, 因为当 props 变更的时候,变更的结果不会反应到 state 上面, 如果要了解更多请参考 [you-probably-dont-need-derived-state](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+
+## 关于 componentDidMount()
+
+当一个组件挂载到 DOM 上后, 会立即调用`componentDidMount()`, 在该生命周期函数中是执行网络请求最佳的地方, 同样在该处你可以添加一些订阅设置. 在该函数内部, 你可以安全的调用 setState, 会触发组件重新渲染.
+
+## 关于 componentDidUpdate()
+
+该方法会在组件更新结束后立即调用, 对于组件初次加载, 不会调用该方法, 如果 shouldComponentUpdate()返回 false, 也不会调用该方法.
+
+在该方法内部, 你可以进行与 DOM 相关的操作, 也可以执行网络请求, 也可以调用 setState, 不过请设置好退出条件, 不然容易引起死循环.
+
+## 关于 componentWillUnmount()
+
+在组件卸载和销毁之前会调用该方法, 在该方法中通常是用来执行清理操作, 比如清除定时器, 取消网络请求, 清理在`componentDidMount()`中的订阅等.
+
+在该方法内部, 你不应该调用 setState, 因为组件从来不会再次渲染.
+
+## getDerivedStateFromProps
+
+在组件实例化之后以及重新渲染之前调用, 返回一个对象用来更新 state, 或者返回 null 来表示新的 props 不会引起 state 的变化, 该 API 用来替代 componentWillReceiveProps 的使用场景.
+
+```javascript
+class SomeComponent extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    // ...
+  }
+}
+```
+
+使用该方法会让你的组件变得臃肿复杂, 在使用之前请考虑如下几种情况:
+
+- 如果你想执行一些副作用, 比如 props 变化后要执行网络请求, 请考虑使用 componentDidUpdate 代替
+- 当 props 改变的时候,你想执行依赖于该 props 的其他计算, 请考虑优先使用 memorization
+- 当 props 改变的时候, 你想重置一部分 state, 请考虑使用 [fully controlled](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) 或者 [fully uncontrolled with a key](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key)
+
+## getSnapshotBeforeUpdate
+
+在组件更新前调用, 此方法的返回值将作为第三个参数传递给 componentDidUpdate, 这个生命周期函数通常是跟 componentDidUpdate 一起使用, 它覆盖了过时的 componentWillUpdate 的所有用例.
+
+```javascript
+class SomeComponent extends React.Component {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // ...
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // snapshot即是getSnapshotBeforeUpdate返回的值
+  }
+}
+```
+
 ## Reconciliation 协调
 
-Reconciliation 是 React 的 diff 算法，用于比较更新前后的虚拟 DOM 树差异，从而使用最小的代价将原始 DOM 按照新的状态、属性进行更新。
+Reconciliation 是 React 的 diff 算法, 用于比较更新前后的虚拟 DOM 树差异, 从而使用最小的代价将原始 DOM 按照新的状态, 属性进行更新.
 
 ## diff 算法
 
-两个不同类型元素比较时, 会卸载原来的树并建立新的树, 例如从`<a>`变成`<img>, 或者`<Article>`变成`<Comment>`都会触发一个完整的卸载重建流程.
+两个不同类型元素比较时, 会卸载原来的树并建立新的树, 例如从`<a>`变成`<img>`, 或者`<Article>`变成`<Comment>`都会触发一个完整的卸载重建流程.
 
 对比同类型的元素的时候, React 会保留 DOM 节点, 仅更新变更的属性, 例如:
 
@@ -485,7 +662,7 @@ Reconciliation 是 React 的 diff 算法，用于比较更新前后的虚拟 DOM
 
 何时使用 Ref:
 
-- 管理 dom 的聚焦 focus，文本选择，或者媒体播放的控制等
+- 管理 dom 的聚焦 focus, 文本选择, 或者媒体播放的控制等
 - 触发命令式的动画
 - 与第三方的 DOM 集成
 
@@ -573,85 +750,51 @@ function App() {
 
 ## shouldComponentUpdate 的作用
 
-shouldComponentUpdate 允许我们手动地判断是否要进行组件更新，根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新
+shouldComponentUpdate 允许我们手动地判断是否要进行组件更新, 根据组件的应用场景设置函数的合理返回值能够帮我们避免不必要的更新
 
 ## 在生命周期中的哪一步你应该发起 AJAX 请求
 
-我们应当将 AJAX 请求放到 componentDidMount 函数中执行，主要原因有下:
+我们应当将 AJAX 请求放到 componentDidMount 函数中执行, 主要原因有下:
 
-如果我们将 AJAX 请求放置在生命周期的其他函数中，比如 componentWillMount 这个函数在组建的渲染过程中调用次数无法确，可能调用一次也可能调用多次，这会导致一个网络请求被调用多次，而 componentDidMount 函数只会执行一次，保证了网络请求只调用一次。
+如果我们将 AJAX 请求放置在生命周期的其他函数中, 比如 componentWillMount 这个函数在组建的渲染过程中调用次数无法确, 可能调用一次也可能调用多次, 这会导致一个网络请求被调用多次, 而 componentDidMount 函数只会执行一次, 保证了网络请求只调用一次.
 
 ## 概述下 React 中的事件处理逻辑
 
-为了解决跨浏览器兼容性问题，React 会将浏览器原生事件封装为合成事件。这里的合成事件提供了与原生事件相同的接口，不过它们屏蔽了底层浏览器的细节差异，保证了行为的一致性。另外有意思的是，React 并没有直接将事件附着到子元素上，而是以单一事件监听器的方式将所有的事件发送到顶层进行处理。这样 React 在更新 DOM 的时候就不需要考虑如何去处理附着在 DOM 上的事件监听器，最终达到优化性能的目的。
+为了解决跨浏览器兼容性问题, React 会将浏览器原生事件封装为合成事件. 这里的合成事件提供了与原生事件相同的接口, 不过它们屏蔽了底层浏览器的细节差异, 保证了行为的一致性. 另外有意思的是, React 并没有直接将事件附着到子元素上, 而是以单一事件监听器的方式将所有的事件发送到顶层进行处理. 这样 React 在更新 DOM 的时候就不需要考虑如何去处理附着在 DOM 上的事件监听器, 最终达到优化性能的目的.
 
-## react 组件的划分业务组件技术组件？
+## React 组件的划分业务组件技术组件?
 
-- 根据组件的职责通常把组件分为 UI 组件和容器组件。
-- UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑
+- 根据组件的职责通常把组件分为 UI 组件和容器组件.
+- UI 组件负责 UI 的呈现, 容器组件负责管理数据和逻辑
 
 ## props, state 区别
 
 As a general rule, use props to configure a component when it renders. Use state to keep track of any component data that you expect to change over time.
 
-一般来说，当组件渲染的时候，使用 props 来配置组件的行为。而使用 state 来跟踪随着时间而变化的组件数据。
+一般来说, 当组件渲染的时候, 使用 props 来配置组件的行为. 而使用 state 来跟踪随着时间而变化的组件数据.
 
-## callback 跟 useRef，React.createRef 区别
+## callback 跟 useRef, React.createRef 区别
 
-callback ref 中当前 ref 存储的就是 dom 的引用，不需要在通过 ref.current 来去访问，其他几个都是需要使用 ref.current 属性去访问引用的 dom
-
-## quick try JSX
-
-参考 <https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html>
+callback ref 中当前 ref 存储的就是 dom 的引用, 不需要在通过 ref.current 来去访问, 其他几个都是需要使用 ref.current 属性去访问引用的 dom
 
 ## 废弃的几个 API
 
-- `componentWillMount` react 17+会删除该 API
+- `componentWillMount` React 17+会删除该 API
 - `UNSAFE_componentWillMount` `componentWillMount` 的别名
--
-- `componentWillReceiveProps` react 17+会删除该 API
+- `componentWillReceiveProps` React 17+会删除该 API
 - `UNSAFE_componentWillReceiveProps` `componentWillReceiveProps` 的别名
-
-- `componentWillUpdate` react 17+会删除该 API
+- `componentWillUpdate` React 17+会删除该 API
 - `UNSAFE_componentWillUpdate` `componentWillUpdate` 的别名
 
-新增的 API:
+## 受控和非受控组件
 
-**getDerivedStateFromProps**
-
-在组件实例化之后以及重新渲染之前调用, 返回一个对象用来更新 state, 或者返回 null 来表示新的 props 不会引起 state 的变化, 该 API 用来替代 componentWillReceiveProps 的使用场景.
-
-```javascript
-class SomeComponent extends React.Component {
-  static getDerivedStateFromProps(props, state) {
-    // ...
-  }
-}
-```
-
-**getSnapshotBeforeUpdate**
-
-在组件更新前调用, 此方法的返回值将作为第三个参数传递给 componentDidUpdate, 这个生命周期函数通常是跟 componentDidUpdate 一起使用, 它覆盖了过时的 componentWillUpdate 的所有用例.
-
-```javascript
-class SomeComponent extends React.Component {
-  getSnapshotBeforeUpdate(prevProps, prevState) {
-    // ...
-  }
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    // snapshot即是getSnapshotBeforeUpdate返回的值
-  }
-}
-```
-
-## 受控 和 非受控 组件
-
-名词“受控”和“非受控”通常用来指代表单的 inputs，但是也可以用来描述数据频繁更新的组件。用 props 传入数据的话，组件可以被认为是受控（因为组件被父级传入的 props 控制）。数据只保存在组件内部的 state 的话，是非受控组件（因为外部没办法直接控制 state）
+名词**受控**和**非受控**通常用来指代表单之类的元素, 例如 inputs, 但是也可以用来描述数据频繁更新的组件. 用 props 传入数据的话, 组件可以被认为是受控(因为组件被父级传入的 props 控制). 数据只保存在组件内部的 state 的话, 是非受控组件(因为外部没办法直接控制 state).
 
 ## 严格模式做了什么?
 
 - 识别不安全的生命周期
-- 如果使用 string ref API 会给予警告
-- 对使用 findDOMNode 给出警告
 - 检测意外的副作用
-- 检测过时的 context API
+- 检测过时的 API
+  - legacy string ref
+  - legacy findDOMNode
+  - legacy context API

@@ -1,5 +1,21 @@
 # windows related
 
+## wsl2 访问 windows ip 通过 hostname
+
+```
+# ping
+ping $(hostname).local
+```
+
+可以在`.bashrc`定义环境变量, 然后可以使用 HOST_LOCAL 在其他地方进行访问
+
+```bash
+# win10 host ip
+export HOST_LOCAL=$(hostname).local
+```
+
+比如在 NodeJS 中,使用`process.env['HOST_LOCAL']`访问
+
 ## windows 10 安装 wsl
 
 Windows Subsystem for Linux Installation Guide for Windows 10:
@@ -169,7 +185,7 @@ taskkill -f -pid 进程PID
 
 ## office kms 服务器
 
-+ https://www.coolhub.top/tech-articles/kms_list.html
+- https://www.coolhub.top/tech-articles/kms_list.html
 
 ## win10 查看版本号
 
