@@ -1,5 +1,31 @@
 # windows related
 
+## powershell 处理文件
+
+- https://blog.netwrix.com/2018/05/17/powershell-file-management/
+
+创建文件夹
+
+```
+New-Item -Path '\\fs\Shared\NewFolder' -ItemType Directory
+```
+
+创建文件
+
+```
+New-Item -Path '\\fs\Shared\NewFolder\newfile.txt' -ItemType File
+```
+
+## 设置 powershell 执行脚本策略
+
+powershell 非管理员允许模式默认禁止有些脚本的允许, 通过设置允许策略可以解除该限制
+
+- https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.security/set-executionpolicy?view=powershell-7.1
+
+```bash
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+```
+
 ## wsl2 访问 windows ip 通过 hostname
 
 ```

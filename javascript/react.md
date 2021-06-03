@@ -21,7 +21,7 @@ React 是一个用于构建用户界面的 JavaScript 库.
 
 React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
 
-React 是一个声明式, 高效且灵活的用于构建用户界面的 JavaScript 库. 它让你使用一种小的独立的被称为组件的代码片段, 然后组合他们来构建复杂的用户界面.
+React 是一个声明式, 高效且灵活的用于构建用户界面的 JavaScript 库. 它让你使用一种被称为组件的代码片段, 然后组合他们来构建复杂的用户界面.
 
 ## React features
 
@@ -798,3 +798,67 @@ callback ref 中当前 ref 存储的就是 dom 的引用, 不需要在通过 ref
   - legacy string ref
   - legacy findDOMNode
   - legacy context API
+
+## ReactDOM.render()
+
+```javascript
+ReactDOM.render(element, container[, callback])
+```
+
+在提供的 container 里渲染一个 React 元素，并返回对该组件的引用（或者针对无状态组件返回 null）。
+
+如果 React 元素之前已经在 container 里渲染过，这将会对其执行更新操作，并仅会在必要时改变 DOM 以映射最新的 React 元素。
+
+如果提供了可选的回调函数，该回调将在组件被渲染或更新之后被执行。
+
+## React DOM 元素
+
+为了性能和浏览器兼容性, React 实现了一套独立于浏览器的 DOM 系统, 所有的 DOM 属性都使用小驼峰的方式来书写,比如 tabindex 则为 tabIndex.
+
+checked:
+当<input>组件的类型为 checkbox 和 radio 的时候, 组件支持 checked 属性, defaultChecked 则是组件首次挂载时的默认值.
+
+className:
+对应为 css 的 class
+
+dangerouslySetInnerHTML:
+为 DOM 设置 innerHTML
+
+```javascript
+function MyComponent() {
+  return <div dangerouslySetInnerHTML={{ __html: "some html" }} />;
+}
+```
+
+htmlFor:
+由于 for 在 JavaScript 中为保留字,所以使用 htmlFor 替代 HTML 中的 for
+
+onChange:
+onChange 映射为 html 中的 onchange
+
+selected:
+在<selected>中设置 value 来选中相应的<option>
+
+```javascript
+function MySelect() {
+  return (
+    <select value="B">
+      <option value="A">A</option>
+      <option value="B">B</option>
+      <option value="C">C</option>
+    </select>
+  );
+}
+```
+
+## React 合成事件
+
+React 使用 SyntheticEvent 对浏览器事件进行了包装, 使得兼容性和跨浏览器更加友好.要想访问浏览器原生事件,只需要访问合成事件的 nativeEvent 即可.
+
+- https://reactjs.org/docs/events.html
+
+## testing
+
+推荐使用 jest 搭配 `react-testing-library` 来测试你的组件,`react-testing-library` 是基于`DOM Testing Library`,并且在 react-dom 跟 react-dom/test-utils 上提供了轻量级的函数来辅助开发者写出更加友好的测试代码.
+
+- [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)

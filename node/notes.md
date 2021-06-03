@@ -2,6 +2,26 @@
 
 some useful notes about nodejs
 
+## set node ENV
+
+Ubuntu
+
+```bash
+NODE_ENV=production node app.js
+```
+
+docker
+
+```docker
+ENV NODE_ENV=whatEver
+```
+
+or
+
+```
+-e "NODE_ENV=production"
+```
+
 ## install
 
 install with [nvm](https://github.com/creationix/nvm)
@@ -565,7 +585,7 @@ process 对象是一个全局变量，提供了有关当前 Node.js 进程的信
 - `process.cwd()` 查看进程的当前工作目录
 - `process.execPath` 返回启动进程的可执行文件的绝对路径名
 - `process.exit()` 同步地终止进程
-- `process.nextTick(cb)` 在 JavaScript 堆栈上的当前操作运行完成之后以及允许事件循环继续之前, 此队列会被完全耗尽. 效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
+- `process.nextTick(cb)` 在 JavaScript 堆栈上的当前操作运行完成之后以及运行事件循环继续之前, 此队列会被完全耗尽. 效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
 - `process.exit(0);` 同步地终止 nodejs 进程
 
 当 nodejs 清空其事件循环并且没有其他工作要安排时，会触发 'beforeExit' 事件
@@ -635,20 +655,6 @@ process.on("message", (message) => {
   process.send("child message");
 });
 ```
-
-## process.nextTick()、setTimeout()、setInterval()
-
-#### setTimeout()
-
-单线程运行机制，同一时间只能做一件事。无论怎样，都是要等主线线程的流程执行完毕后才会进行，且按照 setTimeout 设置的顺序进行排队执行。
-
-#### process.nextTick()
-
-nodeJs 的一个异步执行函数，效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
-
-#### setInterval()
-
-setInterval()定时器函数，按照指定的周期不断调用函数。等待主线程执行完毕后调用。timeout 时间一致时，按照 setInterval 设置的顺序来执行。
 
 ## node 线程
 

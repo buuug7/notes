@@ -17,13 +17,31 @@ fetch(api, {
 
 ## 宏任务 微任务
 
-宏任务(macro task),又称为 task, 包括 script 代码块, I/O, xhr, setTimeout, setInterval, setImmediate, UI 交互事件, postMessage 等. 浏览器为了能够使得 JS 引擎跟 UI 引擎有序配合执行, 会在每一个 macro task 执行结束后, 在下一个 macro task 执行前, 对页面进行重新渲染. 执行流程为:
+宏任务(macro task), 又称为 task, 包括:
+
+- script 代码块
+- I/O
+- xhr
+- setTimeout
+- setInterval
+- setImmediate
+- UI 交互事件
+- postMessage
+
+浏览器为了能够使得 JS 引擎跟 UI 引擎有序配合执行, 会在每一个 macro task 执行结束后, 在下一个 macro task 执行前, 对页面进行重新渲染. 执行流程为:
 
 ```
 macro task(JS 引擎) -> render(UI引擎) ->macro task(JS 引擎)...
 ```
 
-微任务(micro task), 包括 Promise.then, await, process.nextTick, MutationObserver. 执行流程为:
+微任务(micro task), 包括:
+
+- Promise.then
+- await
+- process.nextTick
+- MutationObserver
+
+执行流程为:
 
 ```
 micro task -> micro task -> ...
@@ -31,13 +49,64 @@ micro task -> micro task -> ...
 
 注意:
 
+- 微任务总是在宏任务执行过程中产生的任务, 它不能单独存在(微任务实际是宏任务的一个步骤), 可以理解为宏任务是微任务寄生的环境
 - 在同一层级的任务中, 微任务执行优先级别高于宏任务, 如果不考虑同一层级, 那么比较微任务跟宏任务优先级别是毫无意义
 - 在宏任务执行过程中产生的微任务, 会在该宏任务结束前一次性执行完毕
 - 微任务实际是宏任务的一个步骤, 所有微任务会在下一个宏任务之前会全部执行完毕.
 - 在微任务执行过程中产生的微任务会直接添加到微任务队列末端, 并在下一个宏任务执行之前全部执行掉.
 - 如果在微任务执行过程中产生的宏任务, 则会进入到宏任务队列末尾, 按照宏任务顺序在后面的事件循环中执行.
 - process.nextTick 会在当前执行栈的末尾, 下一次 Event loop 之前触发回调函数,也就是说, 它指定的任务总是发生在所有异步任务之前.
-- process.nextTick 跟 setImmediate 的区别在于, 多个 process.nextTick 总是在当前执行栈末尾一次性执行完毕. 多个 setImmediate 可能需要在多次 Event loop 才能执行完毕.
+
+## process.nextTick 跟 setImmediate 区别
+
+Use setImmediate if you want to queue the function behind whatever I/O event callbacks that are already in the event queue. Use process.nextTick to effectively queue the function at the head of the event queue so that it executes immediately after the current function completes.
+
+可以把 process.nextTick 理解为往已经存在的事件队列头部插入任务, 而 setImmediate 可以理解为把任务添加到已经存在事件队列的末端.
+
+```javascript
+A();
+B();
+C();
+```
+
+```
+| 正在执行 | 等待队列 |
+| A() B() C() | task1 task2 task3 ... |
+```
+
+```javascript
+A();
+process.nextTick(B);
+C();
+```
+
+```
+| 正在执行 | 等待队列 |
+| A() C() | B() task1 task2 task3 ... |
+```
+
+```javascript
+A();
+setImmediate(B);
+C();
+```
+
+```
+| 正在执行 | 等待队列 |
+| A() C() | task1 task2 task3 ... B() |
+```
+
+## setTimeout()
+
+单线程运行机制，同一时间只能做一件事。无论怎样，都是要等主线线程的流程执行完毕后才会进行，且按照 setTimeout 设置的顺序进行排队执行。该函数指定的任务为宏任务, 优先界别低于 process.nextTick().
+
+## process.nextTick()
+
+nodeJs 的一个异步执行函数，效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
+
+## setInterval()
+
+setInterval()定时器函数，按照指定的周期不断调用函数。等待主线程执行完毕后调用。timeout 时间一致时，按照 setInterval 设置的顺序来执行。
 
 ## package.json 中版本依赖通配符
 
