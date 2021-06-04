@@ -1,4 +1,67 @@
-# fs 模块常用方法
+# fs file system
+
+该模块下面的所有方法都有同步 synchronous 和 异步 asynchronous 方式调用.
+
+synchronous 同步方式调用:
+
+```javascript
+const fs = require("fs");
+
+fs.writeFileSync("./my.txt", "hello world");
+```
+
+callback 方式:
+
+```javascript
+const fs = require("fs");
+
+fs.writeFile("./my.txt", "hello world", (err) => {
+  if (err) {
+    console.log(err.message);
+  }
+  console.log("create successfully");
+});
+```
+
+promise 方式:
+
+```javascript
+const fs = require("fs/promises");
+
+async function createMyFile(path) {
+  await fs.writeFile(path, "hello world1");
+}
+
+createMyFile("./my.txt").then(() => {});
+```
+
+## file path
+
+文件路径可以是 string, Buffer, 或者使用 file 协议构建的 URL 对象
+
+```javascript
+// use URL linux based
+fs.readFileSync(new URL("file:///home/buuug7/code/test-node/my.txt"));
+
+// windows
+// use URL with hostname buuug7-pc
+fs.readFileSync(
+  new URL("file://buuug7-pc/c:/Users/buuug7/code/test-node/my.txt")
+);
+
+// windows
+// use URL without hostname
+fs.readFileSync(new URL("file:///c:/Users/buuug7/code/test-node/my.txt"));
+```
+
+## File descriptor 文件描述符
+
+每一个打开的文件都会在系统中维护一个文件描述符, 这个文件描述符通常都是一个数字. Node.js 屏蔽了不同系统实现的差异, 对每一个打开的文件赋予一个数字编号, 这个编号就是文件描述符.
+
+```javascript
+const file = fs.openSync("./my.txt", "r");
+console.log(file); // 3
+```
 
 ## fs.readdir
 
