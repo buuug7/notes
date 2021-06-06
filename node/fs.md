@@ -63,6 +63,33 @@ const file = fs.openSync("./my.txt", "r");
 console.log(file); // 3
 ```
 
+## fs.Dir, fs.Dirent
+
+fs.Dir 表示一个目录的 class， fs.Dirent 表示一个目录或者一个文件（从 fs.Dir 读取信息 返回的类型)。
+
+````javascript
+// 读取目录，遍历子目录，适合读取大目录，小的目录使用readdir
+const fs = require("fs");
+
+const dir = fs.opendirSync("./");
+let subDir;
+while ((subDir = dir.readSync())) {
+  console.log(subDir.name);
+}
+
+// 或者使用promise方式读取
+async function print(path) {
+  const dir = await fs.promises.opendir(path);
+  for await (const subDir of dir) {
+    console.log(subDir.name);
+  }
+}
+
+print("./").then(() => {});
+```
+
+
+
 ## fs.readdir
 
 读取目录
@@ -77,7 +104,7 @@ fs.readdir("./dir1", function (err, files) {
 // 同步
 let files = fs.readdirSync("./dir1");
 console.log(files);
-```
+````
 
 ## fs.mkdir
 
