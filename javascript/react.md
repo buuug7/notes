@@ -403,24 +403,23 @@ function App() {
 
 ## Forwarding refs 转发 refs
 
-Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用`React.createRef`对组件进行 ref 转发.
+Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用`React.forwardRef`对组件进行 ref 转发.
 
 React.forwardRef 会创建一个 React 组件, 这个组件能够将其接收到的 ref 属性转发到其组件树下的另一个组件中.
 
 使用场景:
 
-- 转发 ref 到一个 DOM 组件
-- 在高阶组件中转发 ref
+转发 ref 到一个 DOM 组件:
 
 ```jsx
 import React from "react";
 
-const MyButton = React.forwardRef((props, ref) => {
-  return <button ref={ref}>my button</button>;
-});
-
 function App() {
   const ref = React.useRef();
+
+  const MyButton = React.forwardRef((props, ref) => {
+    return <button ref={ref}>my button</button>;
+  });
 
   React.useEffect(() => {
     ref.current.onclick = (e) => {
@@ -431,6 +430,36 @@ function App() {
   return (
     <div>
       <MyButton ref={ref} />
+    </div>
+  );
+}
+```
+
+在高阶组件中转发 ref:
+
+```javascript
+import React from "react";
+
+function MyButton(props) {
+  return <button ref={props.forwardRef}>my button</button>;
+}
+
+function App() {
+  const ref = React.useRef();
+
+  const MyButtonForward = React.forwardRef((props, ref) => {
+    return <MyButton {...props} forwardRef={ref} />;
+  });
+
+  React.useEffect(() => {
+    ref.current.onclick = (e) => {
+      alert(e.target.textContent);
+    };
+  });
+
+  return (
+    <div>
+      <MyButtonForward ref={ref} />
     </div>
   );
 }
@@ -877,10 +906,169 @@ React 使用 SyntheticEvent 对浏览器事件进行了包装, 使得兼容性�
 
 - [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
 
-## hooks
+## what's hook?
 
-why hooks:
+hook 是一种特殊的函数,它让你把更多的 React 特性应用到函数组件(function component).
+
+## why hooks:
 
 - 复用有状态组件困难，使用 render props 和 HOC 极易形成 wrapper hell 包裹地狱
 - 复杂的组件很难理解，无数的生命周期钩子函数导致组件的逻辑混乱不堪，在其上增加新功能很容易引起 bug
 - class 对 JavaScript 来说增加了理解上的困难，样板代码太多，并且 class 让代码优化困难
+
+## rule of hook:
+
+- 只在函数式组件最顶层调用 hook
+- 只在函数式组件中调用 hook
+
+## useState
+
+useState 返回一个有状态的值和一个用来更新该值的函数.
+
+```javascript
+const [state, setState] = useState(initialState);
+
+setState(newState);
+setState((preState) => {
+  const newState = preState + 1;
+  return newState;
+});
+```
+
+lazy initial state 延迟设置 state 值:
+
+```javascript
+const [state, setState] = useState(() => {
+  const initialState = someExpensiveComputation(props);
+  return initialState;
+});
+```
+
+## useEffect
+
+useEffect 接收一个命令式,有副作用的代码. 可以在该函数内部改变 DOM,添加订阅,设置定时器,记录日志等有副作用的操作.传递给 useEffect 的函数会在组件渲染到屏幕之后执行.
+
+Although useEffect is deferred until after the browser has painted, it’s guaranteed to fire before any new renders. React will always flush a previous render’s effects before starting a new update.
+
+尽管 useEffect 被延迟到浏览器绘制后执行, 但一定确保在开始任何新渲染前触发 uesEffect 中的回调函数. 在开始新一轮的更新前, React 会始终刷新上一次的渲染效果.
+
+effect with cleanup:
+
+```javascript
+useEffect(() => {
+  const subscription = source.subscribe();
+  return () => {
+    subscription.unsubscribe();
+  };
+});
+```
+
+useEffect 会告诉 React, 当组件被浏览器渲染到屏幕上后, 请执行 useEffect 中的回调函数. useEffect 会在组件每一次渲染后都会执行, 但是你可以通过给 useEffect 传递第二个参数用来跳过不必要的调用. 请使用多个独立的 effect 分开你的关注点(业务), 而不是在一个 effect 中包含所有的业务代码.
+
+```javascript
+useEffect(() => {
+  // some effect
+}, [deps, ...])
+```
+
+React 使用`Object.is()`来确定两个值是否相等.
+
+## useReducer
+
+useReducer 是 useState 的高级版本, 接收一个 render `(state, action) => newState`, 返回新的 state 和一个 dispatch 函数.
+
+```javascript
+import React from "react";
+
+function reducer(state, action) {
+  switch (action.type) {
+    case "increment":
+      return { count: state.count + 1 };
+    case "decrement":
+      return { count: state.count - 1 };
+    default:
+      throw new Error();
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = React.useReducer(reducer, { count: 0 });
+  return (
+    <div className="Counter">
+      Count: {state.count}
+      <p>
+        <button onClick={() => dispatch({ type: "increment" })}>
+          increment
+        </button>
+        <button onClick={() => dispatch({ type: "decrement" })}>
+          decrement
+        </button>
+      </p>
+    </div>
+  );
+}
+```
+
+## useCallback
+
+返回一个带记忆的函数, callback 只有在它的依赖发生变化的时候才会再次调用.
+
+```javascript
+const memoizedCallback = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
+```
+
+`useCallback(fn, deps)` 跟 `useMemo(() => fn, deps)`等价
+
+## useMemo
+
+返回一个有记忆的值, 该值只有在它的依赖发生变化的时候才会更新. 如果没有依赖提供, 会在每次渲染的时候都重新计算该值.
+
+```javascript
+const memoizedValue = useMemo(() => expensiveComputeValue(a, b), [a, b]);
+```
+
+## useImperativeHandle
+
+```javascript
+useImperativeHandle(ref, createHandle, [deps]);
+```
+
+useImperativeHandle 可以自定义组件通过 ref 暴露给其调用者的属性或者方法.
+
+```javascript
+function MyInput(props, ref) {
+  const inputRef = useRef();
+  useImperativeHandle(ref, () => {
+    return {
+      focus() {
+        inputRef.current.focus();
+      },
+    };
+  });
+
+  return <input type="text" ref={inputRef} />;
+}
+
+function App() {
+  const MyInputForward = forwardRef(MyInput);
+  const myInputRef = useRef();
+
+  useEffect(() => {
+    setTimeout(() => {
+      myInputRef.current.focus();
+    }, 1000);
+  });
+
+  return (
+    <div className="App">
+      <MyInputForward ref={myInputRef} />
+    </div>
+  );
+}
+```
+
+## useLayoutEffect
+
+useLayoutEffect 跟 useEffect 功能类似, 但它会在 DOM 变更之后同步调用 effect. 在浏览器重绘之前, 在 useLayoutEffect 内部的代码会被同步的执行. 通常使用它来读取 DOM 的布局等. 通常推荐开发者使用 useEffect, 避免使用 useLayoutEffect.
