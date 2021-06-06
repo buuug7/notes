@@ -39,7 +39,7 @@ React 使构建用户界面变得简单. 为你应用的每一个状态设计精
 
 ## what's React component ?
 
-一个接受 props 参数, 并且返回一个 **React element** 的函数被称为组件. **React element** 描述了要在屏幕上渲染视图的一个轻量级抽象, 通常 React element 使用 JSX 来编写.
+组件指的是可复用的代码片段. 一个接受 props 参数, 并且返回一个 **React element** 的函数被称为组件. **React element** 描述了要在屏幕上渲染视图的一个轻量级抽象(元素描述了你在屏幕上所看到的内容), 通常 React element 使用 JSX 来编写.
 
 ## what's JSX ?
 
@@ -85,6 +85,64 @@ React.createElement(
 - 确定 UI 的最小状态
 - 确定 state 存放在哪里
 - 添加反向数据流(让内层组件能改变上层组件 state)
+
+## key
+
+key 是组件的一个特殊属性,key 帮助 React 识别被修改,删除,添加的 item,使得 React diff 运算更加高效.
+
+## Refs & DOM
+
+ref 是 React 组件的一个特殊属性, 通常用该属性来引用一个组件的实例或者访问 DOM. 创建的方式有:
+
+- React.useRef()
+- React.createRef()
+- callback 方式
+
+何时使用 Ref:
+
+- 管理 dom 的聚焦 focus, 文本选择, 或者媒体播放的控制等
+- 触发命令式的动画
+- 与第三方的 DOM 集成
+
+function component 使用 React.useRef 创建 ref:
+
+```javascript
+function MyInput() {
+  const inputRef = React.createRef();
+  return (
+    <div className="my-input">
+      <input type="text" ref={inputRef} />
+      <button
+        onClick={() => {
+          inputRef.current.focus();
+        }}
+      >
+        focus input
+      </button>
+    </div>
+  );
+}
+```
+
+function component 使用 callback ref:
+
+```javascript
+function MyInput() {
+  let inputRef = null;
+  return (
+    <div>
+      <button
+        onClick={(e) => {
+          inputRef.focus();
+        }}
+      >
+        focus input
+      </button>
+      <input type="text" ref={(node) => (inputRef = node)} />
+    </div>
+  );
+}
+```
 
 ## React class component 生命周期
 
@@ -658,54 +716,6 @@ Reconciliation 是 React 的 diff 算法, 用于比较更新前后的虚拟 DOM 
 
 对 DOM 节点的子元素会进行递归遍历比较, 为了提高比较性能, react 增加了 Key 属性, 使用 key 来匹配原有树上的子元素以及最新树上的子元素. 请记住在设置 key 的时候,key 应该具有稳定可预测性.
 
-## Refs & DOM
-
-何时使用 Ref:
-
-- 管理 dom 的聚焦 focus, 文本选择, 或者媒体播放的控制等
-- 触发命令式的动画
-- 与第三方的 DOM 集成
-
-function component 使用 React.useRef 创建 ref:
-
-```javascript
-function MyInput() {
-  const inputRef = React.createRef();
-  return (
-    <div className="my-input">
-      <input type="text" ref={inputRef} />
-      <button
-        onClick={() => {
-          inputRef.current.focus();
-        }}
-      >
-        focus input
-      </button>
-    </div>
-  );
-}
-```
-
-function component 使用 callback ref:
-
-```javascript
-function MyInput() {
-  let inputRef = null;
-  return (
-    <div>
-      <button
-        onClick={(e) => {
-          inputRef.focus();
-        }}
-      >
-        focus input
-      </button>
-      <input type="text" ref={(node) => (inputRef = node)} />
-    </div>
-  );
-}
-```
-
 ## render props
 
 render props 指的是在多个组件中使用函数 props 共享代码的一种技术. 它用来告知组件需要渲染什么内容.
@@ -790,6 +800,10 @@ callback ref 中当前 ref 存储的就是 dom 的引用, 不需要在通过 ref
 
 名词**受控**和**非受控**通常用来指代表单之类的元素, 例如 inputs, 但是也可以用来描述数据频繁更新的组件. 用 props 传入数据的话, 组件可以被认为是受控(因为组件被父级传入的 props 控制). 数据只保存在组件内部的 state 的话, 是非受控组件(因为外部没办法直接控制 state).
 
+如果一个 input 表单元素的值是由 React 控制，就其称为受控组件。
+
+一个非受控组件，就像是运行在 React 体系之外的表单元素。当用户将数据输入到表单字段（例如 input，dropdown 等）时，React 不需要做任何事情就可以映射更新后的信息。
+
 ## 严格模式做了什么?
 
 - 识别不安全的生命周期
@@ -862,3 +876,5 @@ React 使用 SyntheticEvent 对浏览器事件进行了包装, 使得兼容性�
 推荐使用 jest 搭配 `react-testing-library` 来测试你的组件,`react-testing-library` 是基于`DOM Testing Library`,并且在 react-dom 跟 react-dom/test-utils 上提供了轻量级的函数来辅助开发者写出更加友好的测试代码.
 
 - [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+
+## hooks
