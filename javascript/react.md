@@ -862,3 +862,11 @@ React 使用 SyntheticEvent 对浏览器事件进行了包装, 使得兼容性�
 推荐使用 jest 搭配 `react-testing-library` 来测试你的组件,`react-testing-library` 是基于`DOM Testing Library`,并且在 react-dom 跟 react-dom/test-utils 上提供了轻量级的函数来辅助开发者写出更加友好的测试代码.
 
 - [react-testing-library](https://testing-library.com/docs/react-testing-library/intro/)
+
+## hooks
+
+why hooks:
+
+- 复用有状态组件困难，使用 render props 和 HOC 极易形成 wrapper hell 包裹地狱
+- 复杂的组件很难理解，无数的生命周期钩子函数导致组件的逻辑混乱不堪，在其上增加新功能很容易引起 bug
+- class 对 JavaScript 来说增加了理解上的困难，样板代码太多，并且 class 让代码优化困难
