@@ -116,12 +116,6 @@ ls
 // 列出所有目录项(不胡略以.开头的文件)
 ls -a
 
-// 以列表的方式显示目录项
-ls -lrt
-
-// 给列出的项目前面加上id编号
-ls | cat -n
-
 // 查找目录以及文件find/locate,其中locate是在原来建立的索引中查找,find是实时查找
 // 查找当前目录下是否有a.txt文件
 find ./ -name a.txt
@@ -133,9 +127,6 @@ find ./ -name "*.txt"
 // 显示a.txt文件内容到屏幕
 cat a.txt
 
-// 按列列表显示a.txt文件内容
-cat -al|more a.txt
-
 // 显示a.txt文件前5行内容
 head -5 a.txt
 
@@ -145,8 +136,6 @@ tail -2 a.txt
 // 查找文件内容egrep
 // 在a.txt中查找buuug7字符串
 egrep 'buuug7' a.txt
-// 在a.txt中查找buuug7字符串并定向输出到b.txt
-egrep 'buuug7' a.txt > b.txt
 
 // chmod命令用来改变文件的读写执行等权限
 // 查看一个目录或者文件的权限用 ls -l 来看,左侧的十位数表示该文件的权限

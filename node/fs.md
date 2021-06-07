@@ -65,9 +65,9 @@ console.log(file); // 3
 
 ## fs.Dir, fs.Dirent
 
-fs.Dir 表示一个目录的 class， fs.Dirent 表示一个目录或者一个文件（从 fs.Dir 读取信息 返回的类型)。
+fs.Dir 表示一个目录的 class， fs.Dirent 表示一个目录或者一个文件（从 fs.Dir 读取信息时返回的类型)。
 
-````javascript
+```javascript
 // 读取目录，遍历子目录，适合读取大目录，小的目录使用readdir
 const fs = require("fs");
 
@@ -84,11 +84,91 @@ async function print(path) {
     console.log(subDir.name);
   }
 }
-
 print("./").then(() => {});
 ```
 
+## 监听目录或者文件
 
+```javascript
+fs.watch("./src", (e, filename) => {
+  // do something
+});
+```
+
+## createReadStream
+
+```javascript
+const stream = fs.createReadStream("./myFile.txt");
+
+let data = "";
+stream.on("data", (chunk) => {
+  data += chunk;
+});
+
+stream.on("end", () => {
+  console.log(data);
+});
+```
+
+## createWriteStream
+
+```javascript
+const writer = fs.createWriteStream("./name.txt");
+for (let i = 0; i < 100; i++) {
+  writer.write(`line ${i} \n`);
+}
+```
+
+## 查看文件状态
+
+- `fs.stat()`
+- `fs.lstat()` 功能跟 fs.stat 一致，对待符号链接文件不同，只对符号链接本身进行状态检测，不涉及其指向的文件
+- `fs.fstat()` 功能跟 fs.stat 一致，只是传参为文件描述符 fd
+
+```javascript
+fs.stat("./myFile.txt", (err, stats) => {
+  console.log(stats);
+});
+```
+
+## 检测用户对某个文件的访问权限 fs.access
+
+```javascript
+// check file is exists
+fs.access("./myFile.txt", fs.constants.R_OK, (err) => {
+  console.log(err);
+});
+
+// check file is writable
+fs.access("./myFile.txt", fs.constants.W_OK, (err) => {
+  console.log(err);
+});
+```
+
+## fs.appendFile
+
+往文件中追加更多内容，若文件不存在就会创建
+
+```javascript
+fs.appendFile("./myFile.txt", "some text", (err) => {
+  if (err) {
+    console.log(err);
+  }
+});
+```
+
+## 设置文件权限 mode
+
+```javascript
+// 权限使用十位八进制格式表示
+// r = 4 w = 2 x = 1 rw = 6 rx = 5 rwx = 7
+// 三位，第一位为所有者，第二位为所属用户组，第三位为其他用户组
+fs.chmod("./myFile.txt", 0o666, (err) => {
+  if (err) {
+    console.log(err);
+  }
+});
+```
 
 ## fs.readdir
 
@@ -104,7 +184,7 @@ fs.readdir("./dir1", function (err, files) {
 // 同步
 let files = fs.readdirSync("./dir1");
 console.log(files);
-````
+```
 
 ## fs.mkdir
 
