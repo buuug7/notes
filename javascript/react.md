@@ -859,7 +859,7 @@ ReactDOM.render(element, container[, callback])
 为了性能和浏览器兼容性, React 实现了一套独立于浏览器的 DOM 系统, 所有的 DOM 属性都使用小驼峰的方式来书写,比如 tabindex 则为 tabIndex.
 
 checked:
-当<input>组件的类型为 checkbox 和 radio 的时候, 组件支持 checked 属性, defaultChecked 则是组件首次挂载时的默认值.
+当`<input>`组件的类型为 checkbox 和 radio 的时候, 组件支持 checked 属性, defaultChecked 则是组件首次挂载时的默认值.
 
 className:
 对应为 css 的 class
