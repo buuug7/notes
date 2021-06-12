@@ -2,6 +2,16 @@
 
 some useful notes about nodejs
 
+## concat buffer chunk from readable stream
+
+```javascript
+const chunks = []
+for await (let chunk of readable) {
+  chunks.push(chunk)
+}
+console.log(Buffer.concat(chunks))
+```
+
 ## set node ENV
 
 Ubuntu

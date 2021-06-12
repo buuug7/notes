@@ -1,5 +1,15 @@
 # windows related
 
+## 查找指定应用进程是否运行
+
+```bash
+# 查看mongod.exe 是否允许
+tasklist /FI "IMAGENAME eq mongod.exe"
+
+# 查看node.exe 是否允许
+tasklist /FI "IMAGENAME eq node.exe"
+```
+
 ## powershell 处理文件
 
 - https://blog.netwrix.com/2018/05/17/powershell-file-management/

@@ -1025,6 +1025,8 @@ const memoizedCallback = useCallback(() => {
 
 返回一个有记忆的值, 该值只有在它的依赖发生变化的时候才会更新. 如果没有依赖提供, 会在每次渲染的时候都重新计算该值.
 
+它可以作为性能优化的一个手段, 请记住 useMemo 是在渲染期间运行的, 在该函数内部避免做一些副作用的操作.
+
 ```javascript
 const memoizedValue = useMemo(() => expensiveComputeValue(a, b), [a, b]);
 ```
@@ -1072,3 +1074,113 @@ function App() {
 ## useLayoutEffect
 
 useLayoutEffect 跟 useEffect 功能类似, 但它会在 DOM 变更之后同步调用 effect. 在浏览器重绘之前, 在 useLayoutEffect 内部的代码会被同步的执行. 通常使用它来读取 DOM 的布局等. 通常推荐开发者使用 useEffect, 避免使用 useLayoutEffect.
+
+## hooks 中如何使用之前的 state 跟 props
+
+```javascript
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCountRef = useRef();
+  useEffect(() => {
+    prevCountRef.current = count;
+  });
+  const prevCount = prevCountRef.current;
+  return (
+    <div>
+      Now: {count}, before: {prevCount}
+    </div>
+  );
+}
+```
+
+将该逻辑抽成单独的 hook
+
+```javascript
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  const prevCount = usePrevious(count);
+  return (
+    <div>
+      Now: {count}, before: {prevCount}
+    </div>
+  );
+}
+```
+
+## hook 实现 forceUpdate
+
+只是用来应急, 尽可能避免使用这种模式
+
+```javascript
+function Counter() {
+  const [ignored, forceUpdate] = useReducer((x) => x + 1, 0);
+  function handleClick() {
+    forceUpdate();
+  }
+
+  return <div></div>;
+}
+```
+
+## hook 如何侦测一个 DOM 节点
+
+使用 callback ref 来获取 DOM 相关的信息. 不推荐使用 useRef, 因为当 ref 是一个对象的时候, ref 的变化不会通知我们. 而使用 callback ref, 可以确保 DOM 被挂载后, 立即调用 ref 指定的回调, 回调中参数就是当前的 ref 所指向的 DOM.
+
+```javascript
+function Counter() {
+  const cb = (node) => {
+    // do something with dom
+  };
+  return (
+    <div>
+      <h1 ref={cb}>measured dom</h1>
+    </div>
+  );
+}
+```
+
+## react hooks 性能优化
+
+#### 条件式 effect
+
+请在 useEffect 中指定[deps], 避免在多次渲染时不必要的运行.
+
+#### 多使用 useCallback
+
+使用内联函数会对性能有影响, 多使用 useCallback, 它允许在多次重新渲染之间保持对相同回调的引用不变.
+
+#### 多使用 useMemo
+
+对于昂贵的计算, 请使用 useMemo 对计算结果进行缓存.
+
+#### 如何惰性创建昂贵的对象(需要大量计算)?
+
+初次初始化 state 操作昂贵, 使用一个函数返回初始 state, 这样避免在重新渲染的时候重新计算该初始值
+
+```javascript
+function Table(props) {
+  // createRows() 每次渲染都会调用
+  const [rows, setRows] = useState(createRows(props.count));
+  // ...
+}
+```
+
+```javascript
+function Table(props) {
+  // createRows() 多次渲染, 只调用一次
+  const [rows, setRows] = useState(() => createRows(props.count));
+  // ...
+}
+```
+
+#### 避免层层向下传递回调
+
+使用 context 往下层层传递回调,避免不必要的传递开销.
