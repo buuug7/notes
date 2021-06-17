@@ -109,92 +109,49 @@ fs.writeFileSync("/path/to/example.png", buf);
 
 ## events
 
-Node.js 核心 API 的大部分都基于惯用的异步事件驱动的体系结构，在该体系结构中，某些类型的对象（称为“发射器”）发出命名事件，会触发对象的监听器。
+The events module provides us the EventEmitter class, which is key to working with events in Node.js.
 
-例如：net.Server 对象当有一个新连接时会触发一个事件; 打开文件时, fs.ReadStream 会发出事件.
-
-所有发出事件的对象都是 EventEmitter 类的实例。这些对象暴露 eventEmitter.on（）函数，该函数允许将一个或多个函数附加到该对象发出的命名事件。通常，事件名称是驼峰式的字符串，但是可以使用任何有效的 JavaScript 属性键。
-
-当 EventEmitter 对象发出一个事件时，该特定事件附带的所有函数都会被同步调用。被调用的侦听器返回的任何值都将被忽略并丢弃。
+在 node.js 中可以使用 events 模块提供的 EventEmitter 类处理与事件相关的事情. 当 EventEmitter 对象发出一个事件时，该特定事件附带的所有函数都会被同步调用。
 
 ```javascript
-const EventEmitter = require("events").EventEmitter;
-class MyEmitter extends EventEmitter {}
-const myEmitter = new MyEmitter();
+const { EventEmitter } = require("events");
 
-// 如果使用 ES6 箭头函数, this将不会指向 EventEmitter 实例
-myEmitter.on("someEvent", function (...args) {
-  console.log("someEvent accurred");
-  console.log(args); // [ 'a', 'b' ]
-  console.log(this);
-});
+const myEvent = new EventEmitter();
+const callback1 = (event) => {
+  console.log(event);
+};
 
-// 错误处理
-myEmitter.on("error", (err) => {
-  console.error("some error");
-});
+myEvent.on("c1", callback1);
 
-myEmitter.emit("someEvent", "a", "b");
+// emit a event
+myEvent.emit("c1", "some payload");
+
+// remove c1 listener associated with callback1 callback
+myEvent.off("c1", callback1);
+
+// remove all listeners of named c1
+myEvent.removeAllListeners("c1");
 ```
 
-## FS
+## OS 模块
 
-使用 fs 模块可以按照在标准 POSIX 函数上建模的方式与文件系统进行交互。
+- os.arch()
+- os.cpus()
+- os.endianness()
+- os.freemem()
+- os.totalmem()
+- os.homedir()
+- os.hostname()
+- os.loadavg()
+- os.networkInterfaces()
+- os.platform()
+- os.release()
+- os.tmpdir()
+- os.type()
+- os.uptime()
+- os.userInfo()
 
-所有文件的操作均支持使用同步,异步,以及 promise 风格方式的调用.
-
-```javascript
-const fs = require("fs");
-
-// 异步
-fs.readFile("/path/to/file.txt", (err, data) => {
-  if (err) throw err;
-  console.log(data);
-});
-
-// 同步
-fs.readFileSync("/path/to/file.txt");
-
-// promise
-(async function () {
-  const data = await fs.promises.readFile("/path/to/file.txt");
-  console.log(data);
-})();
-```
-
-#### File paths
-
-大多数 fs 操作接受使用 file：协议以字符串，Buffer 或 URL 对象的形式指定的文件路径。
-
-```javascript
-const fs = require("fs");
-// string
-fs.readFileSync("/path/to/file.txt");
-
-// Buffer
-fs.readFileSync(Buffer.from("/path/to/file.txt"));
-
-// URL
-fs.readFileSync(new URL("file:///tmp/file.txt"));
-fs.readFileSync(new URL("file:///c:/tmp/file.txt")); // windows
-```
-
-#### 监视文件和文件夹
-
-```javascript
-const fs = require("fs");
-// 推荐使用
-fs.watch("/path/to/dirOrFile", () => {
-  // do something ...
-});
-
-// 不推荐使用
-fs.watchFile("/path/to/dirOrFile", () => {
-  // do something ...
-});
-```
-
-#### 逐行
+## 逐行
 
 ```javascript
 const fs = require("fs");
@@ -210,20 +167,6 @@ rl.question("Are you ok?", (data) => {
   rl.close();
 });
 ```
-
-#### FS 常用 API
-
-- fs.copyFile
-- fs.mkdir
-- fs.rmdir
-- fs.unlink
-- fs.watch
-- fs.read
-- fs.write
-- fs.open
-- fs.close
-- fs.openDir
-- fs.rename
 
 ## TCP 客户端
 
@@ -289,113 +232,6 @@ inputStream.on("readable", () => {
 });
 ```
 
-## HTTP
-
-为了支持所有可能的 HTTP 应用程序，Node.js 的 HTTP API 都是非常底层的。 它仅进行流处理和消息解析。 它将消息解析为消息头和消息主体，但不会解析具体的消息头或消息主体。
-
-```javascript
-const http = require("http");
-
-const server = http.createServer((req, res) => {
-  res.setHeader("Content-Type", "text/plain");
-  res.write("Hello world");
-  res.end();
-});
-
-server.listen(8001, () => {
-  console.log(`Listening on port 8001`);
-});
-```
-
-使用 http get 请求数据
-
-```javascript
-const https = require("https");
-
-https.get("https://httpbin.org/ip", (res) => {
-  const { statusCode, headers, rawHeaders } = res;
-  let error;
-
-  if (statusCode !== 200) {
-    error = new Error(`request failed with statusCode: ${statusCode}`);
-  }
-
-  if (error) {
-    console.log(error.message);
-    res.resume();
-    return;
-  }
-
-  res.setEncoding("utf8");
-  let rawData = "";
-  res.on("data", (chunk) => {
-    rawData += chunk;
-  });
-
-  res
-    .on("end", () => {
-      const parsedData = JSON.parse(rawData);
-      console.log("parsedData", parsedData);
-    })
-    .on("error", (e) => {
-      console.error(`failed: ${e.message}`);
-    });
-});
-```
-
-使用 http request 请求数据
-
-```javascript
-const https = require("https");
-
-const options = {
-  hostname: "httpbin.org",
-  path: "/post",
-  protocol: "https:",
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-  },
-};
-
-const request = https.request(options, (res) => {
-  const { statusCode, headers, rawHeaders } = res;
-
-  let error;
-
-  if (statusCode !== 200) {
-    error = new Error(`request failed with statusCode: ${statusCode}`);
-  }
-
-  if (error) {
-    console.error(error.message);
-    res.resume();
-    return;
-  }
-
-  res.setEncoding("utf8");
-
-  let rawData = "";
-  res.on("data", (chunk) => {
-    rawData += chunk;
-  });
-
-  res.on("end", () => {
-    console.log("result: ", JSON.parse(rawData));
-  });
-});
-
-const postData = {
-  id: 999,
-  value: "content",
-};
-
-request.write(JSON.stringify(postData));
-
-// 必须始终调用 req.end() 来表示请求的结束，即使没有数据被写入请求主体
-request.end();
-```
-
 ## DNS 模块
 
 dns 模块用于启用名称解析。 例如，使用它来查找主机名的 IP 地址。
@@ -407,6 +243,59 @@ dns.resolve("github.com", (err, addresses) => {
   if (err) throw err;
   console.log("addresses: ", addresses);
 });
+```
+
+## path 模块
+
+```javascript
+const path = require("path");
+
+// 返回路径的最后一部分。第二个参数可以过滤掉文件扩展名
+path.basename("/test/something"); //something
+path.basename("/test/something.txt"); //something.txt
+path.basename("/test/something.txt", ".txt"); //something
+
+// 返回路径的目录部分：
+path.dirname("/path/to/file.txt"); // /path/to
+
+// 返回路径的扩展部分
+path.extname("/path/to/file.txt"); // .txt
+
+// 连接多个路径
+const name = "joe";
+path.join("/", "users", name, "notes.txt"); //'/users/joe/notes.txt'
+
+// 当实际路径包含诸如 .或 ..，或双斜线的时候, 尝试将其转换为真实路径
+path.normalize("/users/joe/..//test.txt"); //'/users/test.txt'
+
+// 将字符串路径解析成对象
+// 返回如下的信息
+// {
+//   root: '/',
+//   dir: '/users',
+//   base: 'test.txt',
+//   ext: '.txt',
+//   name: 'test'
+// }
+path.parse("/users/test.txt");
+
+// 接受 2 个路径作为参数。根据当前工作目录，返回从第一个路径到第二个路径的相对路径。
+path.relative("/Users/joe", "/Users/joe/test.txt"); //'test.txt'
+path.relative("/Users/joe", "/Users/joe/something/test.txt"); //'something/test.txt'
+
+// 您可以使用 path.resolve() 获取相对路径的绝对路径计算
+
+// if run from my home folder
+// /Users/joe/joe.txt
+path.resolve("joe.txt");
+
+// if run from my home folder
+// /Users/joe/tmp/joe.txt 
+path.resolve("tmp", "joe.txt");
+
+// 如果第一个参数以斜杠开头，则表示它是绝对路径：
+///etc/joe.txt
+path.resolve("/etc", "joe.txt");
 ```
 
 ## crypto 模块
