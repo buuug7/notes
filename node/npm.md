@@ -1,5 +1,11 @@
 # npm
 
+## 清理cache
+
+```
+npm cache clean --force
+```
+
 ## 给已经发布的包添加标签
 
 `npm dist-tag add <package-name>@<version> [<tag>]`

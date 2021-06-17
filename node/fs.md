@@ -35,6 +35,17 @@ async function createMyFile(path) {
 createMyFile("./my.txt").then(() => {});
 ```
 
+## file system flags 文件系统标记
+
+- 'a': Open file for appending. The file is created if it does not exist.
+- 'ax': Like 'a' but fails if the path exists.
+- 'a+': Open file for reading and appending. The file is created if it does not exist.
+- 'r': Open file for reading. An exception occurs if the file does not exist.
+- 'r+': Open file for reading and writing. An exception occurs if the file does not exist.
+- 'w': Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
+- 'wx': Like 'w' but fails if the path exists.
+- 'w+': Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
+
 ## file path
 
 文件路径可以是 string, Buffer, 或者使用 file 协议构建的 URL 对象
@@ -73,8 +84,8 @@ const fs = require("fs");
 
 const dir = fs.opendirSync("./");
 let subDir;
-while ((subDir = dir.readSync())) {
-  console.log(subDir.name);
+while (null !== (subDir = dir.readSync())) {
+  console.log(`item name: ${subDir.name}`);
 }
 
 // 或者使用promise方式读取
@@ -93,6 +104,12 @@ print("./").then(() => {});
 fs.watch("./src", (e, filename) => {
   // do something
 });
+```
+
+## 监听文件 watchFile
+
+```javascript
+fs.watchFile("./myFile.txt", (curr, pre) => {});
 ```
 
 ## createReadStream
@@ -170,88 +187,192 @@ fs.chmod("./myFile.txt", 0o666, (err) => {
 });
 ```
 
-## fs.readdir
+## chown 设置文件属组
+
+```javascript
+// 将 myFile.txt 的拥有者设置为 root, 用户组设置为 root
+// chown root:root ./myFile.txt
+// 一般 root 用户的 uid 跟 gid 都为 0
+fs.chown("./myFile.txt", 0, 0, (err) => {
+  if (err) {
+    console.log(err);
+  }
+});
+```
+
+或者使用
+
+```javascript
+var exec = require("child_process").exec;
+exec("chown user:group filename");
+```
+
+## copyFile
+
+复制文件,不是复制文件夹, 如果目标文件存在,默认会覆盖
+
+```javascript
+fs.copyFile("./my.txt", "./my2.txt", (err) => {
+  console.log(err);
+});
+```
+
+## existsSync
+
+尽管 fs.exists 是被废弃了, 但是 existsSyn 仍旧推荐你使用, 返回 true 或者 false.
+
+```javascript
+const rs = fs.existsSync("./myFile.txt");
+```
+
+## 链接文件, 硬链接 link
+
+```javascript
+fs.link("./myFile.txt", "./myFile.link.txt", (err) => {
+  console.log(err);
+});
+```
+
+## mkdir 创建文件夹
+
+创建文件夹, 如果递归创建,请设置 recursive 为 true
+
+```javascript
+fs.mkdir("dir1/dir2", { recursive: true }, (err, path) => {
+  if (err) console.log(err);
+});
+```
+
+## 创建临时文件夹 mkdtemp
+
+```javascript
+const fs = require("fs");
+const os = require("os");
+const path = require("path");
+
+const tmpDir = os.tmpdir();
+
+fs.mkdtemp(path.join(tmpDir, "foo-"), (error, dir) => {
+  console.log(dir); // /tmp/foo-Dykxtb
+});
+```
+
+## open 打开文件
+
+返回文件描述符, 默认 flag 为'r'
+
+```javascript
+fs.open("./myFile.txt", "r", (err, fd) => {
+  if (err) console.log(err);
+
+  fs.readFile(fd, (err, buf) => {
+    console.log(buf);
+  });
+});
+```
+
+## read
+
+`fs.read(fd,[options,] callback)`, 这个是简化版的 read
+
+```javascript
+fs.open("./myFile.txt", "r", (err, fd) => {
+  if (err) console.log(err);
+  fs.read(fd, (err, bytesRead, buffer) => {
+    console.log(buffer.toString());
+  });
+});
+
+// 复杂版
+fs.open("./myFile", "r", function (err, fd) {
+  if (err) throw err;
+
+  let buffer = new Buffer.alloc(255);
+
+  fs.read(fd, buffer, 0, 10, 0, function (err, bytesRead, buffer) {});
+});
+```
+
+## readdir 读取目录
 
 读取目录
 
 ```javascript
 // 异步
 fs.readdir("./dir1", function (err, files) {
-  if (err) throw err;
   console.log(files);
 });
-
-// 同步
-let files = fs.readdirSync("./dir1");
-console.log(files);
 ```
 
-## fs.mkdir
-
-创建文件夹
-
-```javascript
-// 异步
-fs.mkdir("./dir1", function (err) {
-  if (err) throw err;
-  console.log("make dir success");
-});
-
-// 同步
-fs.mkdirSync("./dir2");
-```
-
-## fs.rmdir
-
-删除文件夹
-
-```javascript
-// 异步
-fs.rmdir("./dir1", function (err) {
-  if (err) throw err;
-  console.log("delete success");
-});
-
-// 同步
-fs.rmdirSync("./dir2");
-```
-
-## fs.unlink
-
-删除文件
-
-```javascript
-// 异步
-fs.unlink("./a.txt", function (err) {
-  if (err) throw err;
-  console.log("success delete file");
-});
-
-// 同步
-fs.unlinkSync("./b.txt");
-```
-
-## fs.readFile
+## readFile
 
 读取文件
 
 ```javascript
-// 异步
-fs.readFile("./css.md", { encoding: "utf-8", flag: "r" }, function (err, data) {
-  if (err) throw err;
-
+fs.readFile("./myFile.txt", (err, data) => {
   console.log(data);
 });
 
-fs.readFile("./css.md", "utf-8", function (err, data) {
-  if (err) throw err;
-
+fs.readFile("./myFile.txt", { encoding: "utf-8", flag: "r" }, (err, data) => {
   console.log(data);
 });
+```
 
-// 同步
-let data = fs.readFileSync("./css.md", "utf-8");
-console.log(data);
+## realpath
+
+返回真实 path 路径,绝对路径
+
+```javascript
+fs.realpath("./myFile.txt", (err, p) => {
+  console.log(p);
+});
+```
+
+## rename
+
+重命名文件
+
+```javascript
+fs.rename("./myFile.txt", "myFile2.txt", (err) => {
+  console.log(err);
+});
+```
+
+## rmdir 删除文件夹
+
+删除文件夹, 如果要递归删除, 请使用 `fs.rm(path, { recursive: true })` , 不建议使用 rmdir 的 recursive
+
+```javascript
+fs.rmdir("./dir1", (err) => {
+  console.log(err);
+});
+```
+
+## rm 删除文件夹或者文件
+
+```javascript
+fs.rm("./dir1", (err) => {
+  console.log(err);
+});
+
+// 递归删除
+fs.rm("./dir1", { recursive: true, force: true }, (err) => {
+  console.log(err);
+});
+```
+
+## 创建符号链接 symlink
+
+```JavaScript
+fs.symlink('./myFile.txt', './myFile.ln.txt', err => {
+    console.log(err);
+})
+```
+
+## 删除文件或者符号链接的文件
+
+```javascript
+fs.unlink("./myFile.txt", (err) => {});
 ```
 
 ## fs.writeFile
@@ -260,63 +381,22 @@ console.log(data);
 
 ```javascript
 // 异步
-fs.writeFile("./a.txt", "text more ..", function (err) {
-  if (err) throw err;
-  console.log(err);
-});
-
-// 同步
-fs.writeFileSync("./b.txt", "some text");
-```
-
-## fs.read
-
-```javascript
-// 异步
-fs.open("./dir1/css.md", "r", function (err, fd) {
-  if (err) throw err;
-
-  let buffer = new Buffer.alloc(255);
-
-  fs.read(fd, buffer, 0, 10, 0, function (err, bytesRead, buffer) {
-    if (err) throw err;
-    console.log(bytesRead, buffer.slice(0, bytesRead).toString());
-
-    fs.close(fd, function (err) {
-      if (err) throw err;
-    });
-  });
-});
-
-// 同步
-let fd = fs.openSync("./dir1/css.md", "r");
-let buffer = new Buffer.alloc(255);
-let bytesRead = fs.readSync(fd, buffer, 0, 10, 0);
-console.log(buffer.slice(0, bytesRead).toString());
+fs.writeFile("./a.txt", "text more ..", function (err) {});
 ```
 
 ## fs.write
 
 ```javascript
-// 异步
-fs.open("./c.txt", "w", function (err, fd) {
+// write with buffer
+fs.open("./myFile.txt", "w", (err, fd) => {
   if (err) throw err;
-
-  let buffer = new Buffer.alloc(11, "hello world");
-
-  fs.write(fd, buffer, 0, 11, 0, function (err, bytesWritten, buffer) {
-    if (err) throw err;
-
-    console.log("write success");
-
-    fs.close(fd, function (err) {
-      if (err) throw err;
-    });
-  });
+  const data = Buffer.from("hello world");
+  fs.write(fd, buffer, (err, bytesWritten, buf) => {});
 });
 
-// 同步
-let fd = fs.openSync("./d.txt", "w");
-let buffer = new Buffer.alloc(11, "hello world");
-fs.writeSync(fd, buffer, 0, 11, 0);
+// write with string
+fs.open("./myFile.txt", "w", (err, fd) => {
+  if (err) throw err;
+  fs.write(fd, "hello world", (err, bytesWritten, buf) => {});
+});
 ```

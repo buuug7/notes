@@ -5,11 +5,11 @@ some useful notes about nodejs
 ## concat buffer chunk from readable stream
 
 ```javascript
-const chunks = []
+const chunks = [];
 for await (let chunk of readable) {
-  chunks.push(chunk)
+  chunks.push(chunk);
 }
-console.log(Buffer.concat(chunks))
+console.log(Buffer.concat(chunks));
 ```
 
 ## set node ENV
@@ -86,22 +86,7 @@ process.argv;
 process.env.PATH = ":/some/path";
 ```
 
-## Buffer
-
-Buffer 对象用于表示固定长度的字节序列, 许多 Node.js API 支持缓冲区。Buffer 类是 JavaScript 的 Uint8Array 类的子类, 并使用涵盖其他用例的方法对其进行扩展。Buffer 类在全局范围内, 因此不需要使用 `require('buffer')`.
-
-Buffer 和字符串之间转换时, 可以指定字符编码. 如果未指定字符编码, 则将使用 UTF-8 作为默认值.
-
-```javascript
-const buf1 = Buffer.from("hello", "utf-8");
-console.log(buf1); // <Buffer 68 65 6c 6c 6f>
-console.log(buf1.toString()); // hello
-console.log(buf1.toString("hex")); // 68656c6c6f
-console.log(buf1.toString("base64")); // aGVsbG8=
-
-const buf2 = Buffer.from([97, 98, 99]);
-console.log(buf2.toString()); // abc
-```
+## 图片 base64 互相转换
 
 图片生产 base64
 
@@ -150,106 +135,6 @@ myEmitter.on("error", (err) => {
 });
 
 myEmitter.emit("someEvent", "a", "b");
-```
-
-## stream
-
-流是用于在 Node.js 中处理流数据的抽象接口。流模块提供用于实现流接口的 API . Node.js 提供了许多流对象, 例如, 对 HTTP 服务器的请求和 process.stdout 都是流实例. 流可以是可读的，可写的，或两者均可. 所有流都是 EventEmitter 的实例.
-
-Node.js 中有四种基本流类型:
-
-- 可写: 可向其写入数据的流, 例如，fs.createWriteStream()。
-- 可读: 可从中读取数据的流, 例如 fs.createReadStream()。
-- 双工: 既可读又可写的流, 例如 net.Socket
-- 转换: 双工流, 可以在写入和读取数据时修改或转换数据, 例如 zlib.createDeflate()。
-
-Node.js API 创建的所有流都仅在字符串和 Buffer(或 Uint8Array)对象上运行。但是, 流实现可以与其他类型的 JavaScript 值一起使用(null 除外, 它在流中具有特殊目的). 这样的流被认为以“对象模式”操作.
-
-```javascript
-const http = require("http");
-const fs = require("fs");
-
-// 如果不使用流, 会读取文件的全部内容，并在完成后调用回调函数
-// 如果文件很大，则该操作将花费大量时间。
-const serve = http.createServer((req, res) => {
-  fs.readFile(__dirname + "data.txt", (err, data) => {
-    res.end(data);
-  });
-});
-serve.listen(3000);
-
-// 如果使用流, 我们没有等待直到文件被完全读取
-// 而是在准备好要发送的大量数据后立即开始将其流式传输到 HTTP 客户端
-const server2 = http.createServer((req, res) => {
-  const stream = fs.createReadStream(__dirname + "/data.txt");
-  stream.pipe(res);
-});
-server2.listen(3000);
-```
-
-自定义可读流:
-
-```javascript
-const stream = require("stream");
-
-class MyReader extends stream.Readable {
-  constructor(options) {
-    super(options);
-    this.count = 0;
-  }
-
-  _read() {
-    if (this.count <= 100) {
-      this.count += 1;
-      this.push(String(Math.random() * 100));
-    } else {
-      this.push(null);
-    }
-  }
-}
-
-const myReader = new MyReader();
-
-myReader.on("data", (data) => {
-  console.log(data);
-});
-```
-
-自定义可写流:
-
-```javascript
-const stream = require("stream");
-
-const myWriter = new stream.Writable({
-  write(chunk, encoding, callback) {
-    process.stdout.write(chunk + "\n");
-    callback();
-  },
-});
-
-myWriter.write("a");
-myWriter.write("b");
-myWriter.end();
-```
-
-从可读流获取数据: 使用可写流读取可读流
-
-```javascript
-const stream = require("stream");
-const readableStream = new stream.Readable({
-  read(size) {},
-});
-const writableStream = new stream.Writable({
-  write(chunk, encoding, callback) {
-    console.log(chunk);
-    callback();
-  },
-});
-
-readableStream.pipe(writableStream);
-
-readableStream.push("a");
-readableStream.push("b");
 ```
 
 ## FS
