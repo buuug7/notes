@@ -1,8 +1,87 @@
 # npm
 
-## 清理cache
+Node package management
+
+## package.json
+
+package.json 包含了你项目的清单,以及一些有关包的元信息, 如果你的包想通过 npm 分发,那么 package.json 中必须要具备几个必选的属性, 比如 name, version, description 等.
+
+```json
+{
+  "name": "package name",
+  "version": "1.0.0",
+  "description": "description of package",
+  "main": "lib/index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Joe <joe@whatever.com> (https://whatever.com)",
+  "license": "ISC",
+  "dependencies": {
+    "vue": "^2.5.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.2"
+  },
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
+  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
+  "repository": "github:whatever/testing",
+  "homepage": "https://whatever.com/package",
+  "bugs": "https://github.com/whatever/package/issues",
+  "contributors": []
+}
+```
+
+- `version` 版本号
+- `name` 包名称
+- `description` 包介绍
+- `main` 包入口文件
+- `private` 如果设置为 true, 那么会阻止发布到 npm
+- `scripts` 定义一系列 node 可运行脚本
+- `keywords` 关键字
+- `author` 作者
+- `license` 许可证。
+- `dependencies` 包的依赖
+- `devDependencies` 包的开发依赖
+- `engines` 包所支持的 node 版本
+- `browserslist` 所支持的浏览器
+- `repository` 包源码仓库
+- `bugs` Links to the package issue tracker, most likely a GitHub issues page
+- `homepage` package homepage
+- `contributors` 贡献者
+
+## package-lock.json
+
+package-lock.json 文件的目标是跟踪依赖包的确切版本，确保每个人安装的依赖都会保持一致的版本, 而不会因为语义化版本指定的版本范围导致两个人安装不同的包.
+
+## 查看一个包的各个版本
 
 ```
+npm view packageName versions
+```
+
+# npm version use those symbols
+
+`x.x.x`
+
+- `^` 当升级的时候,第一位不变,后面的两位可变
+- `~` 中间一位不变,第三位可变
+- `>` 接受比指定版本大的版本号
+- `>=` 接受大于等于指定版本的版本
+- `<` 接受比指定版本号小的版本
+- `<=` 接受小于等于指定版本号的版本
+- `=` 版本号精确相等
+- `-` 接受一个范围的版本号
+- `||` 接受左右两侧指定的版本号规则
+
+## 清理 cache
+
+```bash
 npm cache clean --force
 ```
 
@@ -54,7 +133,7 @@ Packages can be unscoped or scoped to a user or organization, and scoped package
 
 ## 查看 npm 的配置
 
-```shell
+```bash
 npm config ls -l
 ```
 
@@ -64,13 +143,13 @@ Using npmrc to managing multiple profiles for different registries
 
 请使用 npmrc 来管理多个 registry
 
-```shell
+```bash
 npm install -g npmrc
 ```
 
 ## 获取或者设置 npm 仓库地址
 
-```shell
+```bash
 # 获取registry地址
 npm config get registry
 
@@ -97,17 +176,17 @@ the old **@buuug7/simplify** package is outdate, i published new package to repl
 
 ## Node version management
 
-```
-// 安装
+```bash
+# 安装
 npm install -g n
 
-// Use or install the latest official release:
+# Use or install the latest official release:
 n latest
 
-// Use or install the stable official release:
+# Use or install the stable official release:
 n stable
 
-// Use or install the latest LTS official release:
+# Use or install the latest LTS official release:
 n lts
 ```
 
@@ -124,28 +203,38 @@ n lts
 
 ## npm 配置仓库地址
 
-```
-// 淘宝地址
+```bash
+# 淘宝地址
 npm config set registry https://registry.npm.taobao.org
 
-//当你想发布自己的包时，需要将地址修改回来
+# 当你想发布自己的包时，需要将地址修改回来
 npm config set registry https://registry.npmjs.org/
 ```
 
-## npm 常用命令
+## npm 基本命令
 
-```
-//安装包并保存到package.json文件中的devDependencies属性中
-npm install packageName --save-dev
-or
-npm install packageName -D
+```bash
+# installing all dependencies
+npm install
 
-//安装包并保存到package.json文件中的dependencies属性中
-npm install packageName --save
+# install package to dependencies
+npm install <package-name> --save
 
-//全局安装一个包
-npm install packageName -g
+# install package to devDependencies
+npm install <package-name> --save-dev
 
-//npm升级自身
+# install package to global
+npm install <package-name> -g
+
+# update all packages
+npm update
+
+# update single package
+npm update <package-name>
+
+# Running Tasks
+npm run <task-name>
+
+# update npm itself
 npm install npm -g
 ```

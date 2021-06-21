@@ -2,6 +2,15 @@
 
 some useful notes about nodejs
 
+## node process gracefully terminate node 进程优雅退出
+
+`process.exit(0)`会直接退出, 参数 0 代表成功退出. 如果指代这次退出是非正常退出, 可以传递 1.
+
+```javascript
+// process gracefully terminate
+process.kill(process.pid, "SIGTERM");
+```
+
 ## concat buffer chunk from readable stream
 
 ```javascript
@@ -117,20 +126,19 @@ The events module provides us the EventEmitter class, which is key to working wi
 const { EventEmitter } = require("events");
 
 const myEvent = new EventEmitter();
-const callback1 = (event) => {
-  console.log(event);
-};
 
-myEvent.on("c1", callback1);
+const f1 = (event) => console.log(`f1`, event);
 
-// emit a event
-myEvent.emit("c1", "some payload");
+// listen c1 event
+myEvent.on("c1", f1);
 
 // remove c1 listener associated with callback1 callback
-myEvent.off("c1", callback1);
-
+myEvent.off("c1", f1);
 // remove all listeners of named c1
 myEvent.removeAllListeners("c1");
+
+// emit c1 event
+myEvent.emit("c1", "payload");
 ```
 
 ## OS 模块
@@ -290,7 +298,7 @@ path.relative("/Users/joe", "/Users/joe/something/test.txt"); //'something/test.
 path.resolve("joe.txt");
 
 // if run from my home folder
-// /Users/joe/tmp/joe.txt 
+// /Users/joe/tmp/joe.txt
 path.resolve("tmp", "joe.txt");
 
 // 如果第一个参数以斜杠开头，则表示它是绝对路径：
@@ -368,8 +376,7 @@ process 对象是一个全局变量，提供了有关当前 Node.js 进程的信
 - `process.argv` 查看进程启动时候传入得参数 , 第一个元素是 process.execPath。 第二个元素是正被执行的 JavaScript 文件的路径。 其余的元素是任何额外的命令行参数。
 - `process.cwd()` 查看进程的当前工作目录
 - `process.execPath` 返回启动进程的可执行文件的绝对路径名
-- `process.exit()` 同步地终止进程
-- `process.nextTick(cb)` 在 JavaScript 堆栈上的当前操作运行完成之后以及运行事件循环继续之前, 此队列会被完全耗尽. 效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
+- `process.nextTick(cb)` 在 JavaScript 堆栈上的当前操作运行完成之后以及运行事件循环继续之前, 此队列会被调用. 效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout。
 - `process.exit(0);` 同步地终止 nodejs 进程
 
 当 nodejs 清空其事件循环并且没有其他工作要安排时，会触发 'beforeExit' 事件
@@ -377,6 +384,21 @@ process 对象是一个全局变量，提供了有关当前 Node.js 进程的信
 ```javascript
 process.on("beforeExit", (code) => {
   console.log("code:", code);
+});
+```
+
+#### spawn
+
+`child_process.spawn()`方法使用给定的 command 衍生新的进程，并传入 args 中的命令行参数。 如果省略 args，则其默认为空数组。
+
+```javascript
+const cp = require("child_process");
+
+const child = cp.spawn("node", ["-v"]);
+child.stdout.pipe(process.stdout);
+
+child.stdout.on("data", (data) => {
+  console.log("data: ", data);
 });
 ```
 
@@ -388,6 +410,10 @@ process.on("beforeExit", (code) => {
 const cp = require("child_process");
 
 cp.exec("echo hello,world", (error, stdout) => {
+  console.log(stdout);
+});
+
+cp.exec("ls -la", (error, stdout) => {
   console.log(stdout);
 });
 ```
@@ -404,17 +430,6 @@ cp.execFile("node", ["-v"], (error, stdout) => {
 });
 ```
 
-#### spawn
-
-`child_process.spawn()`方法使用给定的 command 衍生新的进程，并传入 args 中的命令行参数。 如果省略 args，则其默认为空数组。通过流可以使用有大量数据输出的外部应用，节约内存.
-
-```javascript
-const cp = require("child_process");
-
-const child = cp.spawn("node", ["-v"]);
-child.stdout.pipe(process.stdout);
-```
-
 #### fork
 
 fork 方法会开发一个 IPC 通道，不同的 Node 进程进行消息传送
@@ -423,9 +438,11 @@ fork 方法会开发一个 IPC 通道，不同的 Node 进程进行消息传送
 // parent.js
 const cp = require("child_process");
 const child = cp.fork("./child.js");
+
 // 给子进程发送消息
 child.send("parent message");
-// 获取子进程发送得消息
+
+// 监听子进程消息
 child.on("message", (message) => {
   console.log("parent: ", message);
 });
@@ -434,10 +451,10 @@ child.on("message", (message) => {
 process.on("message", (message) => {
   // 获取父进程得消息
   console.log("child: ", message);
-
-  // 给父进程发送消息
-  process.send("child message");
 });
+
+// 给父进程发送消息
+process.send("child message");
 ```
 
 ## node 线程

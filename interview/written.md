@@ -82,56 +82,6 @@ console.log(result);
 console.log("max=", max);
 ```
 
-## 事件总线（发布订阅模式）
-
-```javascript
-class EventEmitter {
-  constructor() {
-    this.cache = {};
-  }
-
-  on(name, fn) {
-    if (this.cache[name]) {
-      this.cache[name].push(fn);
-    } else {
-      this.cache[name] = [fn];
-    }
-  }
-
-  off(name, fn) {
-    let tasks = this.cache[name];
-    if (tasks) {
-      this.cache[name] = tasks.filter((f) => f === fn);
-    }
-  }
-
-  emit(name, ...args) {
-    if (this.cache[name]) {
-      let tasks = [...this.cache[name]]; // 创建副本
-      for (let fn of tasks) {
-        fn(...args);
-      }
-    }
-  }
-}
-
-const eventBus = new EventEmitter();
-
-const f1 = function (name, age) {
-  console.log(`f1 ${name} ${age}`);
-};
-
-const f2 = function (name, age) {
-  console.log(`f2 ${name} ${age}`);
-};
-
-eventBus.on("a", f1);
-eventBus.on("b", f2);
-
-eventBus.emit("a", "tom", 22); // f1 tom 22
-eventBus.emit("b", "cat", 18); // f2 cat 18
-```
-
 ### 解析 URL 参数为对象
 
 ```javascript
@@ -505,19 +455,37 @@ class EventEmitter {
   off(name, fn) {
     const tasks = this.cache[name];
     if (tasks) {
-      this.cache[name] = tasks.filter((f) => f === fn);
+      this.cache[name] = tasks.filter((f) => f !== fn);
     }
   }
 
   emit(name, ...arg) {
     if (this.cache[name]) {
-      let tasks = [...this.cache[name]];
+      let tasks = this.cache[name];
       for (let fn of tasks) {
         fn(...arg);
       }
     }
   }
 }
+
+const event = new EventEmitter();
+
+const f1 = (e) => console.log("f1:", e);
+const f2 = (e) => console.log("f2:", e);
+
+event.on("a", f1);
+event.on("a", f2);
+
+// 取消f1监听a
+event.off("a", f1);
+
+event.emit("a", "a1");
+event.emit("a", "a2");
+
+// result
+// f2: a1
+// f2: a2
 ```
 
 ## 图片懒加载
