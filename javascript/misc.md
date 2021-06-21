@@ -1,5 +1,32 @@
 # javascript 杂项
 
+## javascript standard build in error
+
++ EvalError 代表了一个关于 eval 函数的错误
++ RangeError 当一个值不在其所允许的范围或者集合中
++ ReferenceError 代表当一个不存在的变量被引用时发生的错误
++ SyntaxError 当引擎在解析代码时遇到不符合语法的标记
++ TypeError 当操作无法执行或者一个值不是期望的类型
+  + 传递给函数的参数或者操作符跟所期望的类型不兼容
+  + 尝试修改一个无法修改的值
+  + 当试图以不恰当的方式使用一个值时
++ URIError 表示以一种错误的方式使用URI处理函数(decodeURIComponent, decodeURI)而产生的错误  
++ AggregateError 将多个错误包裹成一个单独的错误
+
+## encodeURI encodeURIComponent
+
+encodeURI转义除了如下字符串外的所有字符串
+```
+A-Z a-z 0-9 - _ . ! ~ * ' ( ); , / ? : @ & = + $ #
+```
+
+encodeURIComponent转义除了如下字符串外的所有字符串
+```
+A-Z a-z 0-9 - _ . ! ~ * ' ( )
+```
+
+也就是encodeURIComponent 会转义更多的字符串，建议使用encodeURIComponent编码你的URI
+
 ## fetch 上传文件
 
 ```javascript
