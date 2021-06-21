@@ -10,6 +10,37 @@ some useful notes about nodejs
 // process gracefully terminate
 process.kill(process.pid, "SIGTERM");
 ```
+## Node Error
+
+Node.js中所有的错误都继承于Javascript的Error类，总共分成四类：
+
++ 标准的 JavaScript 错误，例如 `<RangeError>`、`<ReferenceError>`等。
++ 由底层操作系触发的系统错误，例如试图打开不存在的文件。
++ 由应用程序代码触发的用户自定义的错误。
++ AssertionError 是一个特定类型的错误，通常用来表示断言失败。这类错误通常来自 assert 模块。
+
+## Event Loop
+
+任何需要太长时间将控制权返回给事件循环的 JavaScript 代码都会阻塞页面中任何 JavaScript 代码的执行，甚至阻塞 UI 线程, 导致用户无法进行其他操作。JavaScript 中几乎所有的 I/O
+都是非阻塞的。网络请求、文件系统操作等。这就是为什么 JavaScript 如此多地基于回调，基于 promise 和 async/await。
+
+#### the call stack 调用堆栈
+
+调用堆栈是一个后进先出 LIFO (Last In, First Out) 的堆栈，事件循环不断检查调用堆栈以查看是否有任何需要运行的函数。它会将找到的任何函数调用添加到调用堆栈中，并按顺序执行每个调用。
+
+#### The Message Queue 消息队列
+
+当 setTimeout() 被调用时，浏览器或 Node.js 启动计时器。一旦计时器到期，回调函数被放入消息队列。 事件循环优首先处理在调用栈中找到的所有东西，一旦里面没有任何东西，它就会去消息队列中取东西。
+
+#### ES6 Job Queue 任务队列
+
+ECMAScript 2015 引入了 Job Queue 的概念，它被 Promises 使用。这是一种尽快执行异步函数结果的方法，而不是放在调用堆栈的末尾。promise.then 将 promise fulfilled
+状态下的回调函数添加到 job queue 中。等到主任务队列执行完成时，然后在执行存在 job queue 队列中的回调函数。
+
+## JavaScript 任务队列
+
+js 中有三个任务队列：主任务队列，job queue，message queue， 它们的优先级是：主任务队列 > job queue > message queue。 每当要执行下一个任务前（或者一个任务完成后），js
+会根据优先级询问各个任务队列是否为空，一旦遇到非空任务队列时则取其第一个任务执行。
 
 ## concat buffer chunk from readable stream
 
@@ -65,7 +96,7 @@ const somePackage = require("somePackage");
 ```javascript
 module.exports = {
   name: "someName",
-  hello() {
+  hello () {
     console.log("hello world");
   },
 };
@@ -370,7 +401,8 @@ console.log("decrypted", decrypted);
 
 ## process 进程
 
-process 对象是一个全局变量，提供了有关当前 Node.js 进程的信息并对其进行控制。 作为全局变量，它始终可供 Node.js 应用程序使用，无需使用 require()。 它也可以使用 `require("process")` 显式地访问：
+process 对象是一个全局变量，提供了有关当前 Node.js 进程的信息并对其进行控制。 作为全局变量，它始终可供 Node.js 应用程序使用，无需使用 require()。 它也可以使用 `require("process")`
+显式地访问：
 
 - `process.env` 查看进程得环境变量
 - `process.argv` 查看进程启动时候传入得参数 , 第一个元素是 process.execPath。 第二个元素是正被执行的 JavaScript 文件的路径。 其余的元素是任何额外的命令行参数。
@@ -496,7 +528,7 @@ Promise.resolve().then(() => console.log(4));
 - 回调函数必须在 process.nextTick()中被调用，从而确保进程不被阻塞。
 
 ```javascript
-function fib(n) {
+function fib (n) {
   if (n < 2) {
     return n;
   }

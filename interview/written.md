@@ -234,11 +234,13 @@ function flat(arr) {
 function Animal() {
   this.color = "red";
 }
+
 Animal.prototype.say = function () {
   return "I am a animal";
 };
 
 function Dog() {}
+
 Dog.prototype = new Animal();
 
 const dog1 = new Dog();
@@ -301,10 +303,12 @@ class Animal {
   constructor(name) {
     this.name = name;
   }
+
   getName() {
     return this.name;
   }
 }
+
 class Dog extends Animal {
   constructor(name, age) {
     super(name);
@@ -411,7 +415,8 @@ function Animal(name) {
   this.name = name;
 }
 
-Animal.prototype.getName() {
+Animal.prototype.getName();
+{
   return this.name;
 }
 
@@ -429,7 +434,8 @@ function Animal(name) {
   this.name = name;
 }
 
-Animal.prototype.getName() {
+Animal.prototype.getName();
+{
   return this.name;
 }
 
@@ -547,13 +553,14 @@ function throttle(fn, wait) {
 ```javascript
 function getJson(url) {
   const xhr = new XMLHttpRequest();
-  xhr.open("GET", url);
-  xhr.onreadystatechange = function () {
-    if (xhr.status === 200) {
-      return xhr.responseText;
+  xhr.onreadystatechange = () => {
+    if (xhr.readyState === 4) {
+      xhr.status === 200
+        ? console.log(xhr.responseText)
+        : console.error("error");
     }
   };
-
+  xhr.open("GET", url);
   xhr.send();
 }
 ```
