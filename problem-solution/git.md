@@ -2,7 +2,7 @@
 
 ## Failed to connect to GitHub port 443: Timed out
 
-结果报错： fatal: unable to access 'https://github.com/xxx.git/': Failed to connect to github.com port 443: Timed out 
+结果报错： fatal: unable to access 'https://github.com/xxx.git/': Failed to connect to github.com port 443: Timed out
 解决方案配置 git 的代理
 
 ```bash
@@ -160,7 +160,7 @@ git config --global|local --list
 git config --global|local --edit
 
 git config --local user.name yourName
-git cofnig --local user.email yourEmail
+git config --local user.email yourEmail
 ```
 
 ## git basic operation
@@ -210,26 +210,25 @@ git commit --amend
 ## git 分支操作
 
 ```bash
-# git创建分支
-git checkout dev
+# git创建并切换分支
+git checkout -b dev
 
 # git切换分支
 git checkout dev
-
-# git创建并切换分支
-git checkout -b dev
 
 # git查看分支
 git branch -a
 
 # git删除本地分支
-git branch -delete dev
+git branch -D dev
+git branch --delete dev
 
 # git删除远程分支
 git push --delete origin dev
+git push origin :dev
 
 # git重命名本地分支
-git branch -m dev dev_renamed
+git branch -m dev dev_rename
 
 # git提交本地新分支到远程
 git push origin dev

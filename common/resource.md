@@ -10,12 +10,13 @@
 - Liveweaver
 - Conclusion
 
-## 漂亮的模板
+## 漂亮的模板 beautiful template
 
 - https://wrapbootstrap.com/
 - https://prium.github.io/falcon/v2.7.2/default/index.html
 - https://demo.dashboardpack.com/architectui-html-pro/index.html
 - https://wrapbootstrap.com/theme/unify-responsive-website-template-WB0412697
+- https://wrapbootstrap.com/theme/studio-bootstrap-5-admin-template-WB044G0L4
 
 ## 常用设计工具
 

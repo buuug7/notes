@@ -1,5 +1,20 @@
 # Blob & File
 
+## download file with createObjectURL
+
+```javascript
+const data = JSON.stringify({ name: "tom", age: 22 });
+const blob = new Blob([data], { type: "application/json" });
+const url = URL.createObjectURL(blob);
+
+const link = document.createElement("a");
+link.href = url;
+link.setAttribute("download", "collect-new-english-words.json");
+document.body.appendChild(link);
+link.click();
+document.body.removeChild(link);
+```
+
 ## Blob
 
 Blob 表示一个不可变,原始数据的类文件对象, 它的数据可以按照文本或者二进制格式进行读写, 也可以转换成 ReadableStream 来进行操作.
@@ -48,7 +63,7 @@ FileReader 对象允许 Web 应用程序异步读取存储在用户计算机上�
 
 FileReader 仅用于以安全的方式从用户（远程）系统读取文件内容 它不能用于从文件系统中按路径名简单地读取文件。
 
-FileReader读取图片并展示的例子:
+FileReader 读取图片并展示的例子:
 
 ```html
 <input type="file" id="my-input" />
