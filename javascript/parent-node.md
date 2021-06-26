@@ -63,5 +63,6 @@ document.body.prepend("some text");
 返回一个 NodeList 表示元素的列表,其中参数 selectors 为 CSS 选择器
 
 ```javascript
+// query the first div dom which have the class name equal to note
 document.querySelector("div.note");
 ```
