@@ -364,22 +364,22 @@ Javascript 是一门具有自动垃圾收集机制的编程语言,开发人员�
 ```javascript
 // new 操作符来创建
 var person = new Object();
-person.name = "buuug7";
-person.age = 22;
+person.name = "Tom";
+person.age = 18;
 
 // 对象字面量来创建
 var person = {
-  name: "buuug7",
-  age: 22,
+  name: "Tom",
+  age: 18,
 };
 
 // 访问 , 点表示法
-person.name; // buuug7
-person.age; // 22
+person.name; // Tom
+person.age; // 18
 
 // 访问, 方括号表示法
-person["name"]; // buuug7
-person["age"]; // 22
+person["name"]; // Tom
+person["age"]; // 18
 ```
 
 #### Array 类型
@@ -627,10 +627,10 @@ ECMAScript 通过 RegExp 类型来支持正则表达式.
 // 任何一个正则表达式都可以带一个或者多个表示(flags)
 // g: 表示全局模式(global),即模式将应用于所有字符串,而非在发现第一个匹配项时立刻停止
 // i: 表示不区分大小写(case-insensitive)
-//m: 表示多行(multiline)模式
+// m: 表示多行(multiline)模式
 
 // 创建正则表达式的方式有:字面量形式,使用RegExp构造函数
-// RegExp的实例属性: global,ignoreCase,lastInex,multiline,source
+// RegExp的实例属性: global,ignoreCase,lastIndex,multiline,source
 
 // exec()
 var pattern = /[bc]a/i;
@@ -650,29 +650,6 @@ var pattern = /\d{3}-\d{3}-\d{2}/;
 var text = "210-337-18";
 if (pattern.test(text)) {
   alert("yes!");
-}
-
-// RegExp实例继承的toLocaleString()和toString()方法都会返回正则表达式的字面量
-
-//
-// RegExp构造函数的属性
-//
-// input 最近一次匹配的字符串
-// lastMatch 最近一次的匹配项
-// lastParen 最近一次匹配的捕获组
-// leftContext input字符串lastMatch之前的文本
-// rightContext input字符串lastMatch之后的文本
-// multiline 布尔值,表示是否所有表达式都是用多行模式
-// 9个用于存储捕获组的构造函数属性,RegExp.$1,RegExp.$2 ... RegExp.$9
-var text = "this has been a short summer";
-var pattern = /(.)hort/g;
-if (pattern.test(text)) {
-  alert(RegExp.input); // this has been a short summer'
-  alert(RegExp.lastMatch); // short
-  alert(RegExp.lastParen); // s
-  alert(RegExp.leftContext); // this has been a
-  alert(RegExp.rightContext); // summer
-  alert(RegExp.multiline); // false
 }
 ```
 
@@ -736,7 +713,7 @@ pattern.test(9); // false
 // 用小括号表示
 // /(dog){2}/g;
 var pattern = /(dog){2,}/g;
-pattern.test("dogdogpppp"); //true
+pattern.test("dogdogpppp"); // true
 
 // 方向引用
 // 用 \编号 表示法来引用
@@ -752,28 +729,28 @@ pattern.test("dogdogpppp"); //true
 // ?!exp 负向前瞻 匹配后面不是exp的位置
 var str1 = "bedroom";
 var str2 = "bedding";
-var reBed = /(bed(?=room))/; //在我们捕获bed这个字符串时, 抢先去看接下来的字符串是不是room
-alert(reBed.test(str1)); //true
+var reBed = /(bed(?=room))/; // 在我们捕获bed这个字符串时, 抢先去看接下来的字符串是不是room
+alert(reBed.test(str1)); // true
 alert(RegExp.$1); //bed
-alert(RegExp.$2 === ""); //true
-alert(reBed.test(str2)); //false
+alert(RegExp.$2 === ""); // true
+alert(reBed.test(str2)); // false
 
 var str1 = "bedroom";
 var str2 = "bedding";
-var reBed = /(bed(?!room))/; //要来它后面不能是room
-alert(reBed.test(str1)); //false
-alert(reBed.test(str2)); //true
+var reBed = /(bed(?!room))/; // 要来它后面不能是room
+alert(reBed.test(str1)); // false
+alert(reBed.test(str2)); // true
 
 // 边界
 // ^ 开头,注意不能紧跟于左中括号的后面
-// $ 结尾,
+// $ 结尾
 // \b 单词边界,指[a-zA-Z_0-9]之外的字符
 // \B 非单词边界
 ```
 
 #### Function 类型
 
-每个函数都是 Function 类型的实例,而且都与其他引用类型一样具有属性和方法.由于函数都是对象,因此函数名实际上也是一个指向函数对象的指正,不会与某个函数绑定.
+每个函数都是 Function 类型的实例,而且都与其他引用类型一样具有属性和方法.由于函数都是对象,因此函数名实际上也是一个指向函数对象的指针,不会与某个函数绑定.
 
 ```javascript
 // 定义函数
@@ -815,7 +792,7 @@ var sum = function (num1, num2) {
 ##### 函数内部的属性
 
 - `arguments` 用来保存函数的参数
-  - 该对象有个`callee`属性,该属性是一个指针,指向拥有 arguments 对象的函数
+- 该对象有个`callee`属性,该属性是一个指针,指向拥有 arguments 对象的函数
 - `this` 该对象引用的是函数据以执行的环境对象,谁调用该函数,this 就指向谁
 - `caller` 保存着当前函数的函数引用,如果在全局作用域中调用当前函数,它的值为`null`
 
@@ -824,16 +801,16 @@ var sum = function (num1, num2) {
 - `length` 表示函数希望接收的命名参数的个数
 - `prototype` 属性,该属性不可枚举,使用`for-in`无法发现
 - `call() apply()` 这两个方法的用途都是在特定的作用域中调用函数,实际上是设置函数体内 this 对象的值,使用这个两个函数都可以扩展函数的作用域
-  - `call()` 第一个参数为运行函数的作用域对象,第二及其以后的参数是传递给函数的参数
-  - `apply()` 第一个参数为运行函数的作用域对象,第二个参数为传递给函数的数组或者 arguments 对象
+- `call()` 第一个参数为运行函数的作用域对象,第二及其以后的参数是传递给函数的参数
+- `apply()` 第一个参数为运行函数的作用域对象,第二个参数为传递给函数的数组或者 arguments 对象
 - `bind()` ECMAScript5 中定义的方法,该方法会创建一个函数的实例,其 this 值会被绑定到传给 bind()函数的值.
 - `toString()`,`toLocaleString()` 和 `valueOf()`都会返回函数的代码,在代码调试的时候非常有用
 
 #### 基本包装类型
 
-为了便于操作基本类型值,ECMAScript 提供了 3 个特殊的引用类型,Boolean,Number 和 String,每当读取一个基本类型值时候,后台就会创建一个对应的基本包装类型的对象.从而让我们能够调用一些方法来操作这些数据.  
-引用类型和基本包装类型的主要区别就是对象的生存期,使用 new
-操作符创建的引用类型的实力,在执行流离开当前作用域之前都一直保存在内存中.而自动创建的基本包装类型的对象,则只存在于一行代码执行的一瞬间.这意味着我们不能在运行时为基本类型值添加属性和方法.
+为了便于操作基本类型值,ECMAScript 提供了 3 个特殊的引用类型,Boolean,Number 和 String,每当读取一个基本类型值时候,后台就会创建一个对应的基本包装类型的对象.从而让我们能够调用一些方法来操作这些数据.
+
+引用类型和基本包装类型的主要区别就是对象的生存期,使用 new 操作符创建的引用类型的实例,在执行流离开当前作用域之前都一直保存在内存中.而自动创建的基本包装类型的对象,则只存在于一行代码执行的一瞬间.这意味着我们不能在运行时为基本类型值添加属性和方法.
 
 ```javascript
 //
@@ -969,7 +946,7 @@ var result = text.replace(/.at/g, function (match, pos, originalText) {
       return "opps...";
   }
 });
-alert(result); //"bigCat, bigBat, bigSat, bigFat"
+console.log(result); //"bigCat, bigBat, bigSat, bigFat"
 
 // split()
 // 根据指定的分隔符将一个字符串分割成多个字符串,并将结果放在一个数组中
@@ -983,9 +960,6 @@ colorText.split(",", 2); //  ["red", "blue"]
 // fromCharCode()
 // 它属于String构造函数的静态方法
 String.fromCharCode(104, 101, 108, 108, 111); // "hello"
-
-// HTML方法
-// 没啥意义,很少用到,忘记吧
 ```
 
 #### 单体内置对象
@@ -1043,7 +1017,7 @@ String.fromCharCode(104, 101, 108, 108, 111); // "hello"
 - Array 类型是一组值得有序列表,同时提供了操作和转换这些值的功能
 - Data 类提供了有关日期和时间的信息
 - RegExp 是 ECMAScript 支持正则表达式的一个接口,提供了基本和高级的正则表达式功能
-- 函数 Function 类型的实例,因此函数也是对象,这一点正是 JavaScript 最有特色的地方,因为函数是对象,所以函数也有方法,用来增强其功能
+- 函数是 Function 类型的实例,因此函数也是对象,这一点正是 JavaScript 最有特色的地方,因为函数是对象,所以函数也有方法,用来增强其功能
 - 因为有了基本包装类型,所以 JavaScript 中基本类型值可以被当做对象来访问.三种基本包装类型是
   - Boolean
   - Number
@@ -1052,5 +1026,5 @@ String.fromCharCode(104, 101, 108, 108, 111); // "hello"
     - 每个包装类型都映射到基本类型
     - 在读取模式下访问基本类型值时,就会创建对应的基本包装类型的一个对象,从而方便了数据操作
     - 基本类型值的语句一经执行完毕,就会立刻销毁创建的基本类型包装对象
-- 在所有代码执行之前,作用于中已经存在两个内置对象,Global 和 Math,在大多数 ECMAScript 实现中不能直接访问 Global 对象,不过在 web 浏览器中 window 承担了 Global
+- 在所有代码执行之前,作用域中已经存在两个内置对象,Global 和 Math,在大多数 ECMAScript 实现中不能直接访问 Global 对象,不过在 web 浏览器中 window 承担了 Global
   对象的角色,全局变量和函数都是 Global 对象的属性.Math 提供了很多属性和方法,用于辅助完成复杂的数学计算.
