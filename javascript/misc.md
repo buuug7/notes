@@ -1,5 +1,21 @@
 # javascript 杂项
 
+## javascript 监听动画完成
+
+```javascript
+dom.addEventListener("transitionend", (e) => {
+  // do something
+});
+```
+
+## `$(document).ready` equivalent without jQuery
+
+```javascript
+document.addEventListener("DOMContentLoaded", function (event) {
+  //do work
+});
+```
+
 ## 原型,构造函数和实例的关系
 
 每个构造函数都有一个原型对象, 原型对象包含了一个指向构造函数的指针, 而实例中包含了指向原型对象的内部指针.
