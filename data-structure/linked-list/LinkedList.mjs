@@ -1,4 +1,4 @@
-class LinkedListNode {
+export class LinkedListNode {
   constructor(value, next = null) {
     this.value = value;
 
@@ -11,7 +11,7 @@ class LinkedListNode {
   }
 }
 
-class LinkedList {
+export class LinkedList {
   constructor() {
     /** @type {LinkedListNode} */
     this.head = null;
@@ -115,20 +115,26 @@ class LinkedList {
     return deleteNode;
   }
 
-  find(value) {
+  find({ value = undefined, callback = undefined }) {
     if (!this.head) {
       return null;
     }
 
     let findNode = null;
     let currentNode = this.head;
+
     while (currentNode) {
-      if (currentNode.value === value) {
+      if (callback && callback(currentNode.value)) {
         findNode = currentNode;
         break;
-      } else {
-        currentNode = currentNode.next;
       }
+
+      if (value && value === currentNode.value) {
+        findNode = currentNode;
+        break;
+      }
+
+      currentNode = currentNode.next;
     }
 
     return findNode;
@@ -150,8 +156,13 @@ class LinkedList {
   }
 }
 
-const list = new LinkedList();
-list.append("a");
-list.append("b");
-list.append("c");
-list.append("d");
+// const list = new LinkedList();
+// list.append("a");
+// list.append("b");
+// list.append("c");
+// list.append("d");
+
+// const f = list.find({ value: 'b' });
+
+// console.log(list);
+// console.log(f);

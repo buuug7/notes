@@ -1,5 +1,21 @@
 # javascript 杂项
 
+## React and Vue are MVVM architecture ?
+
+首先他们都不是 MVVM, 仅仅是 MVVM 的一部分, (V or VM), 具体是 V 还是 VM 有争论, 没有统一的答案..
+
+对于 React
+
+It's more like MVVM and the mostly feature equivalent Vue officially declares itself as MVVM. React is the VVM of MVVM. The Model part is left to you to implement and usually depends on what kind of state management you decide to use.
+
+对于 Vue
+
+Technically, Vue.js is focused on the ViewModel layer of the MVVM pattern. It connects the View and the Model via two way data bindings. Actual DOM manipulations and output formatting are abstracted away into Directives and Filters.
+
+References:
+
+- https://stackoverflow.com/questions/51506440/mvvm-architectural-pattern-for-a-reactjs-application
+
 ## javascript 监听动画完成
 
 ```javascript
