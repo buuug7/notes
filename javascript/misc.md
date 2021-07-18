@@ -1,5 +1,69 @@
 # javascript 杂项
 
+## React and Vue are MVVM architecture ?
+
+首先他们都不是 MVVM, 仅仅是 MVVM 的一部分, (V or VM), 具体是 V 还是 VM 有争论, 没有统一的答案..
+
+对于 React
+
+It's more like MVVM and the mostly feature equivalent Vue officially declares itself as MVVM. React is the VVM of MVVM. The Model part is left to you to implement and usually depends on what kind of state management you decide to use.
+
+对于 Vue
+
+Technically, Vue.js is focused on the ViewModel layer of the MVVM pattern. It connects the View and the Model via two way data bindings. Actual DOM manipulations and output formatting are abstracted away into Directives and Filters.
+
+References:
+
+- https://stackoverflow.com/questions/51506440/mvvm-architectural-pattern-for-a-reactjs-application
+
+## javascript 监听动画完成
+
+```javascript
+dom.addEventListener("transitionend", (e) => {
+  // do something
+});
+```
+
+## `$(document).ready` equivalent without jQuery
+
+```javascript
+document.addEventListener("DOMContentLoaded", function (event) {
+  //do work
+});
+```
+
+## 原型,构造函数和实例的关系
+
+每个构造函数都有一个原型对象, 原型对象包含了一个指向构造函数的指针, 而实例中包含了指向原型对象的内部指针.
+
+## 理解原型
+
+只要创建一个新函数, 就会为该函数创建一个 prototype 属性, 这个属性指向函数的**原型对象**, 在默认情况下, 所有原型对象都会自动获得一个 constructor 属性, 这个属性指向了其构造函数.
+
+比如 Person.prototype.constructor 指向 Person 函数.
+
+```javascript
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+
+Person.prototype.sayName = function () {
+  console.log(this.name);
+};
+
+const p1 = new Person("Tom", 22);
+Person.prototype.constructor == Person; // true
+p1.__proto__ === Person.prototype; // true
+```
+
+## 调用构造函数经历的过程 (new 一个对象的过程)
+
+1. 创建一个新对象
+2. 将构造函数的作用域赋给新对象(因此 this 就指向了这个新对象)
+3. 执行构造函数中的代码(为这个新对象添加属性)
+4. 返回新对象
+
 ## javascript standard build in error
 
 - EvalError 代表了一个关于 eval 函数的错误
@@ -605,6 +669,10 @@ IIFE(Immediately Invoked Function Expression)( 立即调用函数表达式)是�
   // statements;
 })();
 ```
+
+## DOM2 级事件
+
+DOM2 级事件规定事件流包括三个阶段, 事件捕获阶段, 处于目标阶段和事件冒泡阶段. 首先发生的是事件捕获, 为截获事件提供了机会, 然后是实际目标接收到事件, 最后一个阶段是冒泡阶段, 可以在这个阶段对事件作出响应.
 
 ## 请描述事件冒泡
 

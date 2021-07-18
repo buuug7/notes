@@ -1,5 +1,12 @@
 # git related
 
+## git 设置 origin upstream
+
+```bash
+# 设置本地main分支关联远程(origin)的main分支
+git branch --set-upstream-to=origin/main main
+```
+
 ## Failed to connect to GitHub port 443: Timed out
 
 结果报错： fatal: unable to access 'https://github.com/xxx.git/': Failed to connect to github.com port 443: Timed out
