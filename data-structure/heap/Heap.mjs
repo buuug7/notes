@@ -1,6 +1,15 @@
 export class Heap {
-  constructor() {
+  constructor(comparatorFunction) {
     this.heapContainer = [];
+
+    const defaultComparator = (a, b) => {
+      if (a === b) {
+        return 0;
+      }
+      return a > b ? 1 : -1;
+    };
+
+    this.compare = comparatorFunction || defaultComparator;
   }
 
   getLeftChildIndex(parentIndex) {
@@ -16,7 +25,7 @@ export class Heap {
   }
 
   hasParent(childIndex) {
-    return this.parentIndex(childIndex) >= 0;
+    return this.getParentIndex(childIndex) >= 0;
   }
 
   hasLeftChild(parentIndex) {
@@ -53,14 +62,14 @@ export class Heap {
     return this.heapContainer[0];
   }
 
-  find(item, compare) {
+  find(item, comparator = this.compare) {
     const foundItemIndices = [];
     for (
       let itemIndex = 0;
       itemIndex < this.heapContainer.length;
       itemIndex++
     ) {
-      if (compare.equal(item, this.heapContainer[itemIndex])) {
+      if (comparator(item, this.heapContainer[itemIndex]) === 0) {
         foundItemIndices.push(itemIndex);
       }
     }
@@ -75,9 +84,52 @@ export class Heap {
     return this.heapContainer.toString();
   }
 
+  poll() {
+    if (this.heapContainer.length === 0) {
+      return null;
+    }
+
+    if (this.heapContainer === 1) {
+      return this.heapContainer.pop();
+    }
+
+    const item = this.heapContainer[0];
+    this.heapContainer[0] = this.heapContainer.pop();
+    this.heapDown();
+    return item;
+  }
+
   add(item) {
     this.heapContainer.push(item);
     this.heapUp(this.heapContainer.length - 1);
+    return this;
+  }
+
+  remove(item, comparator = this.compare) {
+    const numberOfItemsToRemove = this.find(item, comparator).length;
+    for (let iteration = 0; iteration < numberOfItemsToRemove; iteration++) {
+      const indexToRemove = this.find(item, comparator).pop();
+      if (indexToRemove === this.heapContainer.length - 1) {
+        this.heapContainer.pop();
+      } else {
+        this.heapContainer[indexToRemove] = this.heapContainer.pop();
+        const parentItem = this.parent(indexToRemove);
+        if (
+          this.hasLeftChild(indexToRemove) &&
+          (!parentItem ||
+            this.pairIsInCorrectOrder(
+              parentItem,
+              this.heapContainer[indexToRemove]
+            ))
+        ) {
+          this.heapDown(indexToRemove);
+        } else {
+          this.heapUp(indexToRemove);
+        }
+      }
+    }
+
+    return this;
   }
 
   heapUp(customStartIndex) {
@@ -126,6 +178,26 @@ export class Heap {
   }
 
   pairIsInCorrectOrder(firstElement, secondElement, compareFn) {
-    return compareFn(firstElement, secondElement);
+    throw new Error(`
+    You have to implement heap pair comparision method
+    for ${firstElement} and ${secondElement} values.`);
+  }
+}
+
+export class MiniHeap extends Heap {
+  pairIsInCorrectOrder(firstElement, secondElement) {
+    return (
+      this.compare(firstElement, secondElement) === -1 ||
+      this.compare(firstElement, secondElement) === 0
+    );
+  }
+}
+
+export class MaxHeap extends Heap {
+  pairIsInCorrectOrder(firstElement, secondElement) {
+    return (
+      this.compare(firstElement, secondElement) === 1 ||
+      this.compare(firstElement, secondElement) === 0
+    );
   }
 }
