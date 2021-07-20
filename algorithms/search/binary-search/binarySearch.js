@@ -1,4 +1,4 @@
-import Comparator from "../utils/Comparator";
+import Comparator from "../../utils/Comparator";
 
 /**
  * binary search
