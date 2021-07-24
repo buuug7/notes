@@ -1,5 +1,23 @@
 ## mysql related
 
+## mysql disable ONLY_FULL_GROUP_BY
+
+```sql
+-- query the current sql_mode;
+select @@GLOBAL.sql_mode;
+
+-- replace ONLY_FULL_GROUP_BY with ""
+SET GLOBAL sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
+```
+
+## 查询重复记录
+
+- https://blog.csdn.net/haoui123/article/details/80562835
+
+```
+
+```
+
 ### ubuntu18.04 + 安装 mysql 5.7 +
 
 > <https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-18-04>

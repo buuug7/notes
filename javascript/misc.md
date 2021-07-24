@@ -1,5 +1,35 @@
 # javascript 杂项
 
+## javascript 判断屏幕方向
+
+```javascript
+screen.orientation.onchange = function () {
+  // logs 'portrait' or 'landscape'
+  console.log(screen.orientation.type.match(/\w+/)[0]);
+};
+```
+
+## 保存 base64 文件
+
+```javascript
+/**
+ * Creates an anchor element `<a></a>` with
+ * the base64 pdf source and a filename with the
+ * HTML5 `download` attribute then clicks on it.
+ * @param  {string} pdf
+ * @return {void}
+ */
+function downloadPDF(pdf) {
+  const linkSource = `data:application/pdf;base64,${pdf}`;
+  const downloadLink = document.createElement("a");
+  const fileName = "vct_illustration.pdf";
+
+  downloadLink.href = linkSource;
+  downloadLink.download = fileName;
+  downloadLink.click();
+}
+```
+
 ## React and Vue are MVVM architecture ?
 
 首先他们都不是 MVVM, 仅仅是 MVVM 的一部分, (V or VM), 具体是 V 还是 VM 有争论, 没有统一的答案..
