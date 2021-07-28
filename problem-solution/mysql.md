@@ -1,5 +1,11 @@
 ## mysql related
 
+## mysql replace
+
+```sql
+update columnName set columnName = replace(columnName, '"', '');
+```
+
 ## mysql disable ONLY_FULL_GROUP_BY
 
 ```sql
@@ -10,12 +16,31 @@ select @@GLOBAL.sql_mode;
 SET GLOBAL sql_mode = (SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));
 ```
 
+or in the` /etc/mysql/mysql.conf.d` file add flowing
+
+```
+[mysqld]
+sql_mode = "STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION"
+```
+
 ## 查询重复记录
 
 - https://blog.csdn.net/haoui123/article/details/80562835
+- https://stackoverflow.com/questions/854128/find-duplicate-records-in-mysql
 
+例如查找 user 表中所有用户地址重复的记录
+
+```sql
+select * from user where address in
+  (select address from user group by address having count(address) > 1);
 ```
 
+or
+
+```sql
+select * from user a
+  inner join (select address from user group by address having count(address) > 1) b
+    on a.address = b.address;
 ```
 
 ### ubuntu18.04 + 安装 mysql 5.7 +
@@ -141,6 +166,10 @@ ALTER TABLE `test2` DROP PRIMARY KEY ,ADD PRIMARY KEY ( `id` )
 
 --增加索引
 ALTER TABLE `test2` ADD INDEX ( `id` )
+
+--增加索引
+create index indexName on img(columName);
+
 ALTER TABLE `category` MODIFY COLUMN `id` int(11) NOT NULL AUTO_INCREMENT FIRST ,ADD PRIMARY KEY (`id`);
 
 删除某一字段
