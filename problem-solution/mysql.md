@@ -1,4 +1,10 @@
-## mysql related
+# mysql related
+
+## mysql cast
+
+```sql
+select cast(1 as decimal(5,2));
+```
 
 ## mysql replace
 

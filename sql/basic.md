@@ -39,10 +39,31 @@ Tables contain records (rows) with data.
 
 一个数据库通常包含多个表, 每一个表通过他们的名字来区分. 表中包含了记录.
 
+## basic types
+
+#### Integer
+
+整数, 大多数数据库支持的数据范围为 `-2147483648 ~ 2147483647`
+
+#### REAL
+
+浮点类型, 类似于 DECIMAL, 但是 REAL 存储的是近似值, 而 DECIMAL 存储的是精确值
+
+#### DECIMAL
+
+定点数, 格式为`DECIMAL (precision, scale)`, 例如 `DECIMAL(6, 2)` 总位数为 6 位, 小数点后占据 2 位
+
+#### VARCHAR
+
+文本类型, 定长字符, 例如 varchar(255)表示字符长度不超过 255 个
+
+#### BOOLEAN
+
+布尔值
+
 ## The SQL SELECT Statement
 
-The `SELECT` statement is used to select data from a database. The data returned is stored in a result table, called the
-result-set.
+The `SELECT` statement is used to select data from a database. The data returned is stored in a result table, called the result-set.
 
 查询语句用来从数据库中获取数据, 返回的数据储存在一个结果表中, 称为结果集.
 
@@ -50,17 +71,15 @@ result-set.
 SELECT col1[AS alias1], ..., colN [AS aliasN]
 FROM
   table_name;
-```
 
-```sql
+-- eg. select all users
 select *
 from user;
 ```
 
 ## SQL SELECT DISTINCT Statement
 
-The `SELECT DISTINCT` statement is used to return only distinct (different) values. Inside a table, a column often
-contains many duplicate values; and sometimes you only want to list the different (distinct) values.
+The `SELECT DISTINCT` statement is used to return only distinct (different) values. Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values.
 
 Distinct 语句用来返回不重复的值. 在一个表中, 一个列通常包含了许多重复值, 有时你只想列出不同的值.
 
@@ -97,7 +116,7 @@ Operators in The WHERE Clause
 - `<` less than
 - `>=` great than or equal
 - `<=` less than or equal
-- `<>` or `!=` not equal
+- `<>` or `! =` not equal
 - `between` between a certain range
 - `like` search for a pattern
 - `in` to specify multiple possible values for a column
@@ -321,7 +340,7 @@ a specified pattern in a column.
 - `% stand for one or more character`
 - `_ stand for single character`
 - `[charlist] eg, [ab] stand for a or b`
-- `[!charlist] eg, [!ab] stand for not a or not c`
+- `[! charlist] eg, [! ab] stand for not a or not c`
 
 Mysql 中使用 regexp
 
@@ -374,7 +393,7 @@ where age not between 22 and 24;
 SQL aliases are used to give a table, or a column in a table, a temporary name. Aliases are often used to make column
 names more readable. An alias only exists for the duration of the query.
 
-SQL 中别名用来给表, 列一个临时的名字. 别名通常用来使列名字更有可读性，别名的使用范围仅仅在该条查询语句中有效.
+SQL 中别名用来给表, 列一个临时的名字. 别名通常用来使列名字更有可读性, 别名的使用范围仅仅在该条查询语句中有效.
 
 ```sql
 select u.name as username
@@ -646,7 +665,6 @@ The `INSERT INTO SELECT` statement copies data from one table and inserts it int
 
 - `INSERT INTO SELECT` requires that data types in source and target tables match
 - The existing records in the target table are unaffected
-
 
 INSERT INTO SELECT 语句复制数据从一个表插入到另外一个表中
 

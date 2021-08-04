@@ -48,13 +48,13 @@ chmod 777 file
 chmod -R 777 test
 
 # 你也可以用 chmod u+x file 的方式为 User 组添加运行权限
-# 其中u代表User, g代表Group, o代表Other
-# + 代表添加, -代表取消
+# 其中u代表User, g代表Group, o代表Other, a代表所有
+# + 代表添加, -代表取消, =代表覆盖
 # 例如为 file 所属用户组添加写权限
 chmod u+w file
 ```
 
-## chown 改变文件的拥有者
+## chown 改变文件的拥有者和分组
 
 ```bash
 # 把 file_or_directory 的所有者修改为 newUser

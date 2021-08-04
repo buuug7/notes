@@ -8,11 +8,11 @@ CREATE DATABASE 语句用来新建一个数据库。
 
 Syntax 语法
 
-```
+```sql
 CREATE DATABASE databasename;
 ```
 
-```mysql
+```sql
 -- mysql
 create database if not exists my_table default charset utf8;
 ```
@@ -413,7 +413,7 @@ Indexes are used to retrieve data from the database very fast. The users cannot 
 
 Syntax 语法
 
-```
+```sql
 CREATE INDEX index_name
 ON table_name (column1, column2, ...);
 
@@ -421,7 +421,7 @@ CREATE UNIQUE INDEX index_name
 ON table_name (column1, column2, ...);
 ```
 
-```mysql
+```sql
 create index age_index on my_table(age);
 create index id_age_index on my_table(id, age);
 
@@ -439,7 +439,7 @@ Often this is the primary key field that we would like to be created automatical
 
 通常用在主键上面用来生成一个行的唯一标识符
 
-```mysql
+```sql
 create table my_table(
     id int primary key auto_increment
 );
@@ -474,14 +474,14 @@ You can add SQL functions, WHERE, and JOIN statements to a view and present the 
 
 Syntax
 
-```
+```sql
 CREATE VIEW view_name AS
 SELECT column1, column2, ...
 FROM table_name
 WHERE condition;
 ```
 
-```mysql
+```sql
 create view my_view as select * from user;
 -- select from view
 select * from my_view;

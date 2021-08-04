@@ -1,3 +1,15 @@
+## 五种我认为值得掌握的现代编程语言
+
+- C(竞品：Zig): Unix/Linux/基础库 等一大波老牌开源基础库和平台开发
+- JavaScript(升级：TypeScript)：浏览器/NodeJS 后端/各种 App 内的 Web 开发，代表的是 Web 平台
+- Python(竞品：Julia)：代表的是一大堆 AI 工具支持的脚本环境
+- Go：代表的是一部分的后端开发
+- Rust：代表的是替代了 C++的大规模底层开发，Rust 的开发能力覆盖了 C++，但是又没有 C++那一堆问题，拥有新的表达力和生命周期控制，并且它对 Web 平台是对接的。
+
+## guide
+
+- https://www.markdownguide.org/
+
 ## online code
 
 - gitpod
