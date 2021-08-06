@@ -509,7 +509,7 @@ this CSS file is included in the browser and is called.
 
 ---
 
-### CSS font-familly
+### CSS font-family
 
 choosing a font  
 CSS provides several font properties, that directly affectly text rendering . the `font-familly` property defines which font to use.

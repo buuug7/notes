@@ -1,30 +1,5 @@
 # pseudo selector
 
-## 目录
-
-- [CSS3 新增加的三个属性选择器](#CSS3新增加的三个属性选择器)
-- [root](#root)
-- [not](#not)
-- [empty](#empty)
-- [target](#target)
-- [first-child](#firt-child)
-- [last-child](#last-child)
-- [nth-child(n)](#nth-childn)
-- [nth-last-child(n)](#nth-last-childn)
-- [first-of-type](#first-of-type)
-- [last-of-type](#last-of-type)
-- [nth-of-type(n)](#nth-of-typen)
-- [nth-last-of-type(n)](#nth-last-of-typen)
-- [only-child](#only-child)
-- [only-of-type](#only-of-type)
-- [enabled](#enabled)
-- [disabled](#disabled)
-- [checked](#checked)
-- [selection](#selection)
-- [read-only](#read-only)
-- [read-write](#read-write)
-- [before :after](#before-after)
-
 ### CSS3 新增加的三个属性选择器
 
 ```$xslt
@@ -92,9 +67,7 @@ p:empty {
 
 ```html
 <h2><a href="#brand">Brand</a></h2>
-<div class="menuSection" id="brand">
-  content for Brand
-</div>
+<div class="menuSection" id="brand">content for Brand</div>
 ```
 
 ### first-child
