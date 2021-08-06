@@ -10,26 +10,27 @@ Painting with code, while HTML is about defining the content of a webpage, CSS i
 
 For separating content and styling.
 
+为了使内容跟样式.
+
 ## why avoid tables
 
-- HTML 表格是累赘的,需要很多的样板代码
-- 语义错误,`<table>`是用来展现多维数据的
-- 改变布局需要修改 HTML 的结构,很不友好
+- HTML 表格是累赘的, 需要很多的样板代码
+- 语义错误, `<table>`是用来展现多维数据的
+- 改变布局需要修改 HTML 的结构, 很不友好
 - 容易引起语法错误
 - 可读性很差
 
 ## what CSS is
 
-CSS stands for Cascading Style Sheets(层叠式样式表). Its purpose is to style markup languages(like HTML or XML).  
-Therefore,CSS is worthless on its own, unless associated with an HTML document.
-(因此,CSS 自身并没有什么用处,除非与 HTML 文档关联.)  
-CSS brings an HTML documents to life.
+CSS stands for Cascading Style Sheets(层叠式样式表). Its purpose is to style markup languages(like HTML or XML). Therefore, CSS is worthless on its own, unless associated with an HTML document. CSS brings an HTML documents to life.
+
+CSS 指的是层叠式样式表, 它存在的目的是为了装饰标记语言(例如 HTML, XML). 因此, CSS 本身并没有多大用处, 除非它与 HTML 文档结合. CSS 赋予了 HTML 生命.
 
 ## how CSS works
 
-how CSS works is by selecting an HTML element(like a paragraph), choosing a property to alter (like the color),and applying a certain value(like red).
+how CSS works is by selecting an HTML element(like a paragraph), choosing a property to alter (like the color), and applying a certain value(like red).
 
-通过选择 HTML 元素, 修改 HTML 元素的属性值来工作的.
+CSS 是如何工作的, 它通过选择 HTML 元素, 修改 HTML 元素的属性值来工作的.
 
 ```css
 p {
@@ -39,13 +40,17 @@ p {
 
 ## where do i write CSS?
 
-#### CSS as an attribute,you can write CSS directly on an HTML elements,by using the sytle attribute.
+#### CSS as an attribute, you can write CSS directly on an HTML elements, by using the style attribute.
+
+通过 HTML 属性 style 书写内联样式
 
 ```html
-<p style="color:red;">this text is important.</p>
+<p style="color: red; ">this text is important.</p>
 ```
 
-#### CSS in the `<head>`,use `<style>` tag in the `<head>` of your HTML document.
+#### CSS in the `<head>`, use `<style>` tag in the `<head>` of your HTML document.
+
+通过在 HTML `<head>` -> `<style>`标签来书写 CSS
 
 ```html
 <html>
@@ -63,7 +68,9 @@ p {
 </html>
 ```
 
-#### CSS in a separate file, you can write your CSS in a separate file with a `.css` extension, and then link it to your HTML by using the `<link>` HTML tag.
+#### CSS in a separate file, you can write your CSS in a separate file with a `. css` extension, and then link it to your HTML by using the `<link>` HTML tag.
+
+在单独的文件中书写 CSS,然后使用 HTML `<link>` 标签来引入
 
 ```html
 <html>
@@ -81,7 +88,9 @@ the 3rd method of using a separate CSS file is preferred.
 
 ## why not style directly in the HTML?
 
-because we want to separate the content from its presentation(CSS). it makes **maintenance** easier as well : the same CSS file can be used for a whole website. it provides **flexiblity**: focus on the content on one side , the styling on the other.
+Because we want to separate the content from its presentation(CSS). it makes **maintenance** easier as well, the same CSS file can be used for a whole website. it provides **flexibility**: focus on the content on one side, the styling on the other.
+
+为什么不把样式直接写在 HTML 当中呢? 因为我们想让内容跟修饰内容的样式分离, 这样代码维护起来相对容易一点, 相同的 CSS 文件会用在整个网站中复用而不用重复多次定义. 这种模式为我们提供了更大的灵活性: 一边我们专注内容, 另一边我们专注于样式
 
 ---
 
@@ -104,16 +113,20 @@ CSS have a 3-part process:
 - the property defines what characteristic to alter
 - the value defines how to alter that characteristic
 
+- 选择器定义了要装饰的目标元素
+- 属性定义要修改 HTML 元素的那个特征
+- 属性值定义了要修饰元素特征的值
+
 ### quick example
 
 ```html
-<blockquote>sometings is ready.</blockquote>
+<blockquote>something is ready.</blockquote>
 ```
 
 ```css
 blockquote {
-  background: lightgreen;
-  color: darkgreen;
+  background: purple;
+  color: white;
 }
 ```
 
@@ -122,18 +135,17 @@ blockquote {
 ```css
 /* this is a css comment */
 div {
-  background: lightgreen;
+  background: purple;
 }
 ```
 
----
-
 ### CSS selectors
 
-CSS selectors define which elements we want out styling to be applied to.  
-CSS 选择器用来定义我们的样式到具体的的元素
+CSS selectors define which elements we want out styling to be applied to.
 
-### generic tag selectors
+CSS 选择器用来定义我们的样式需要应用到那个元素
+
+### generic tag selectors 普通标签选择器
 
 generic HTML tag selector is something like below:
 
@@ -154,7 +166,9 @@ li {
 
 ### classes
 
-Of all HTML attributes,the class attribute is the most important for CSS. It allows us to define a group of HTML elements that we can target specifically.
+Of all HTML attributes, the class attribute is the most important for CSS. It allows us to define a group of HTML elements that we can target specifically.
+
+在所有 HTML 属性中，class 属性是 CSS 最重要的属性。它允许我们定义一组可以专门针对的 HTML 元素。
 
 ```html
 <p class="data">something like ...</p>
@@ -166,7 +180,7 @@ Of all HTML attributes,the class attribute is the most important for CSS. It all
 }
 ```
 
-### IDs
+### ids
 
 you can also use the `id` attribute in your HTML, and target it with a hash `#` in your CSS
 
@@ -180,7 +194,7 @@ you can also use the `id` attribute in your HTML, and target it with a hash `#` 
 }
 ```
 
-### combining selectors
+### combining selectors 组合选择器
 
 see some examples in below:
 
@@ -199,7 +213,7 @@ em.date {
 }
 ```
 
-### hierarchy selectors
+### hierarchy selectors 分层选择器
 
 a **space** in a selector defines a ancestor/descendant relationship.
 
@@ -211,21 +225,20 @@ header a {
 
 this can be read from right to left as: "select all **a** elements that are within a **header** element". this will prevent all other links to remain unaffected.
 
-### Pseudo-class selectors
+### Pseudo-class selectors 伪类选择器
 
-HTML elments can have different **states**,the most common case is when you hover over a link. it's possible in CSS to apply a different style when such an event occurs.  
+HTML elements can have different **states**, the most common case is when you hover over a link. it's possible in CSS to apply a different style when such an event occurs.
+
 HTML 元素具有不同的状态, 最常见的情况是你把鼠标悬置在超链接上的时候. 当此事件发生的时候应用不同的 CSS 样式.
 
 ```css
 a {
   color: blue;
 }
-a:hover {
+a: hover {
   color: red;
 }
 ```
-
----
 
 ## CSS inheritance 继承
 
@@ -233,15 +246,15 @@ a:hover {
 
 The **color** value can be inherited from an ancestor.
 
+color 属性的值将会从父元素继承
+
 ### inherited properties
 
-only a few CSS properties can be inherited from ancestors.they are mainly text properties:
+only a few CSS properties can be inherited from ancestors. they are mainly text properties:
 
 - text color
-- font(family,size,style,weight)
+- font(family, size, style, weight)
 - line-height
-
----
 
 ## CSS Priority 优先级
 
@@ -266,28 +279,22 @@ p {
 the selector with the highest "score" will win
 
 - `#id` selectors are worth 100
-- `.class` selectors are worth 10
+- `. class` selectors are worth 10
 - `tag` selectors are worth 1
 
 ### how to avoid conflicts
 
 - only use class
 - avoid applying multiple classes on a single HTML element
-- don't use inline-styles
+- avoid use inline-styles
 
----
+## CSS color units (Different ways to define colors)
 
-## CSS color units
-
-Different ways to define colors
-
-Colors are widely used in CSS, whether for text color, background color, gradients, shadows, borders...There are several ways to define colors in CSS.
+Colors are widely used in CSS, whether for text color, background color, gradients, shadows, borders..., there are several ways to define colors in CSS.
 
 ### color names
 
-Defined by color names, CSS provides 145 colors names, from the most basic (black,white,orange...) to the more specific(lawngreen,orchid...).
-
-Because the color names are hard to remember, and because you probably want very specific colors, color names are not often used.
+Defined by color names, CSS provides 145 colors names, from the most basic (black, white, orange...) to the more specific(lawngreen, orchid...). because the color names are hard to remember, and because you probably want very specific colors, color names are not often used.
 
 ```css
 body {
@@ -298,7 +305,7 @@ body {
 
 ### rgb
 
-Defined by rgb, computer monitors, TVs,mobile phones, all use the RGB color model to display colors, each color is defined by a combination of Red,Green,and Blue. There are 256 possible values for Red, Green and Blue, from 0 to 255, so there are `256 * 256 * 256 = 16,777,216` (通常所说的 1600 万)) possible colors available.
+Defined by rgb, computer monitors, TVs, mobile phones, all use the RGB color model to display colors, each color is defined by a combination of Red, Green, and Blue. There are 256 possible values for Red, Green and Blue, from 0 to 255, so there are `256 * 256 * 256 = 16, 777, 216` (通常所说的 1600 万)) possible colors available.
 
 ```css
 /* the black color */
@@ -329,8 +336,9 @@ body {
 
 ### rgba
 
-The **rgba** color unit is **rgb** to which we add an alpha value(ranging from 0-1,in decimal values),which defines how transparent the color is.  
-RGBA 颜色的定义是在 RGB 的基础上添加了一个额外的透明通道,该值为小数从 0 到 1,定义该颜色的透明度
+The **rgba** color unit is **rgb** to which we add an alpha value(ranging from 0-1, in decimal values), which defines how transparent the color is.
+
+RGBA 颜色的定义是在 RGB 的基础上添加了一个额外的透明通道, 该值为小数从 0 到 1, 定义该颜色的透明度
 
 ```css
 body {
@@ -340,11 +348,12 @@ body {
 
 #### hsl and hsla
 
-HSL is another way to define a color,think of it is a color wheel.  
-HSL 是另外一种颜色的定义方式,把它看做一个颜色的轮子.通过 H,S,L 三个颜色通道的变化以及它们之间的叠加来得到各种各样的颜色.
+HSL is another way to define a color, think of it is a color wheel.
 
-- the **Hue**(色调) a value ranging from 0 to 360,defines which color you want.
-- the **Saturation**(饱和度) percentage,ranging from 0% to 100%, define how much of that color you want.
+HSL 是另外一种颜色的定义方式, 把它看做一个颜色的轮子. 通过 H, S, L 三个颜色通道的变化以及它们之间的叠加来得到各种各样的颜色.
+
+- the **Hue** (色调) a value ranging from 0 to 360, defines which color you want.
+- the **Saturation** (饱和度) percentage, ranging from 0% to 100%, define how much of that color you want.
 - the **Lightness** percentage, rangring from 0% to 100%, defines how bright you want that color to be.
 
 ```css
@@ -352,6 +361,7 @@ HSL 是另外一种颜色的定义方式,把它看做一个颜色的轮子.通�
 a {
   hsl(0, 100%, 50%);
 }
+
 a{
   hsl(360, 100%, 50%);
 }
@@ -369,7 +379,7 @@ a{
 
 someone thinks the **HSL** is to be human-readable, where **RGB** is more computer-readable.
 
-**HSLA** is the same as **HSL** ,with the added value of being able to define an alpha value:
+**HSLA** is the same as **HSL**, with the added value of being able to define an alpha value:
 
 ```css
 body {
@@ -379,7 +389,7 @@ body {
 
 ### hexadecimal 十六进制
 
-Colors in CSS can also be defined with hexadecimal values,like `#ffffff`.
+Colors in CSS can also be defined with hexadecimal values, like `#ffffff`.
 
 In hexadecimal, we have 16 symbols to form numbers 0-9, A-F. just like RGB, a hexadecimal color value is a combination of Red, Green, and Blue, each of them being represent as a hexadecimal value, like `DB` for Red, `4E` for green, and `44` for Blue. hexadecimal values are easier to copy and paste.
 
@@ -423,7 +433,7 @@ body {
 }
 ```
 
-Pixels in CSS are straightforward because they define absolute values:they are not affected by other inherited CSS properties.
+Pixels in CSS are straightforward because they define absolute values: they are not affected by other inherited CSS properties.
 
 They are also widely used for **positioning** and **spacing** purposes.
 
@@ -436,7 +446,7 @@ Percentages are relative units: they rely upon the element's parent and/or ances
 p {
   width: 50%;
 }
-/* set other CSS properties,like text size */
+/* set other CSS properties, like text size */
 strong {
   font-size: 150%;
 }
@@ -446,7 +456,7 @@ strong {
 
 `em` is the relative unit: it depends upon the value of the element's `font-size`.
 
-例如父元素字体大小为 20px, 而子元素的字体大小定义为`font-size:0.5em`, 则子元素的字体大小为 10px, 该单位通常用来定义具有伸缩响应的网页, 当你改变网页`body`的字体大小的时候, 其他的比如`h1`,`h2`...,`p`等元素字体的大小会跟着变化, 这样更能保证你的网页的**视觉平衡**.
+例如父元素字体大小为 20px, 而子元素的字体大小定义为`font-size: 0.5em`, 则子元素的字体大小为 10px, 该单位通常用来定义具有伸缩响应的网页, 当你改变网页`body`的字体大小的时候, 其他的比如`h1`, `h2`. ..,`p`等元素字体的大小会跟着变化, 这样更能保证你的网页的**视觉平衡**.
 
 ### Rem
 
@@ -486,11 +496,11 @@ this CSS file is included in the browser and is called.
 - **every time** a webpage is rendered
 - **before** any of our CSS is applied
 
-尽管每一种浏览器都有自己的用户代理 CSS 默认样式,但是它们都是类似的
+尽管每一种浏览器都有自己的用户代理 CSS 默认样式, 但是它们都是类似的
 
 ### applying a CSS reset
 
-浏览器默认的样式会干扰我们想应用的样式,这就是为什么要设计**CSS 样式重置**为所有浏览器提供一致的表现方式.
+浏览器默认的样式会干扰我们想应用的样式, 这就是为什么要设计**CSS 样式重置**为所有浏览器提供一致的表现方式.
 
 你可以使用最流行的 HTML5 Reset, 将其放置于你的`<head>`之中即可, 这里推荐:
 
@@ -502,7 +512,7 @@ this CSS file is included in the browser and is called.
 ### CSS font-familly
 
 choosing a font  
-CSS provides several font properties,that directly affectly text rendering . the `font-familly` property defines which font to use.
+CSS provides several font properties, that directly affectly text rendering . the `font-familly` property defines which font to use.
 
 #### generic font families
 
@@ -514,7 +524,7 @@ have 5 generic families:
 - cursive
 - fantasy
 
-because the `font-famiily` property is inherited by all HTML children elements,you can apply a font for the whole HTML document by applying it on the ancestor fo all HTML elements:the `<body>` element.
+because the `font-famiily` property is inherited by all HTML children elements, you can apply a font for the whole HTML document by applying it on the ancestor fo all HTML elements: the `<body>` element.
 
 ```css
 body {
@@ -539,7 +549,7 @@ body {
 
 #### applying a list of fonts
 
-尽管使用单一的 web 安全字体是安全的, 但是最佳实践是给 `font-family` 赋予多个字体, 因为当赋予的第一个字体不可用的话, 浏览器会采用第二个...依次类推, 如果你提供的所有字体都不可用的话, 最后才使用浏览器默认的字体, 这样给浏览器更多的选择以至于使你的网页更加强壮.
+尽管使用单一的 web 安全字体是安全的, 但是最佳实践是给 `font-family` 赋予多个字体, 因为当赋予的第一个字体不可用的话, 浏览器会采用第二个. ..依次类推, 如果你提供的所有字体都不可用的话, 最后才使用浏览器默认的字体, 这样给浏览器更多的选择以至于使你的网页更加强壮.
 
 ---
 
@@ -578,7 +588,7 @@ h2 {
 }
 ```
 
-Default value is `font-weight: normal;`, depending on the `font-family` used, there is a range of font weights available, fromt **100** to **900**. very few fonts provide all 9 weights. your will mostly find 400(normal) and 700(bold), and sometimes 300(light) and 500(medium).
+Default value is `font-weight: normal; `, depending on the `font-family` used, there is a range of font weights available, fromt **100** to **900**. very few fonts provide all 9 weights. your will mostly find 400(normal) and 700(bold), and sometimes 300(light) and 500(medium).
 
 ### font-variant
 
@@ -590,7 +600,7 @@ h2 {
 }
 ```
 
-会让你的文本变成小型的大写字母, 默认值是`font-variant:normal;`, 这个属性不常用。
+会让你的文本变成小型的大写字母, 默认值是`font-variant: normal; `, 这个属性不常用.
 
 ---
 
@@ -601,7 +611,7 @@ For readibility concerns, the `line-height` is **the height of each line**. the 
 - `px`
 - `em`
 - `%`
-- unitless-umbers,like `1.5`
+- unitless-umbers, like `1.5`
 
 The unitless values basically act like percentages, so `150%` is equal to `1.5`. the latter is just more compact and readable.
 
@@ -610,7 +620,7 @@ The unitless values basically act like percentages, so `150%` is equal to `1.5`.
 The purpose of the `line-height` is to define a readable line spacing for your text. because readability is dependent upon the size of the text, it is recommended to use a dynamic value that is relative to the size of the text. use `px` is not recommended because it defines a static value.
 the recommended method is unitless numbers.
 
-- for body text,a line height of 1.5 times the size of the text is recommended.
+- for body text, a line height of 1.5 times the size of the text is recommended.
 - for heading, a line height of 1.2 is recommended.
 
 ```css
@@ -734,7 +744,7 @@ h1 {
 
 how rectangles are made 矩形是如何制造的?
 
-在 HTML 中所有元素都是矩形, 矩形的尺寸会根据具体元素的内容动态调整, 你可以认为这些矩形是流体类的东西, 根据内容来调整自己的形状. 块级元素会占尽它所在的行的所有宽度, 例如段落, 它的宽度默认是浏览器的宽度，高度适应它自己内容的高度。
+在 HTML 中所有元素都是矩形, 矩形的尺寸会根据具体元素的内容动态调整, 你可以认为这些矩形是流体类的东西, 根据内容来调整自己的形状. 块级元素会占尽它所在的行的所有宽度, 例如段落, 它的宽度默认是浏览器的宽度, 高度适应它自己内容的高度.
 
 ### CSS background
 
@@ -793,7 +803,7 @@ by default, a background image will repeat itself indefinitely. you can specify 
 
 - pixel values `px`
 - percentages, relative to the HTML element's dimensions
-- keywords like `center`, `left`, `bottom`...
+- keywords like `center`, `left`, `bottom`. ..
 
 ```css
 body {
@@ -811,7 +821,7 @@ body {
 
 ### background-repeat
 
-by default, a background image will repeat itself indefinitely. you can choose to make it repeat only horizontally,only vertically, or not at all.
+by default, a background image will repeat itself indefinitely. you can choose to make it repeat only horizontally, only vertically, or not at all.
 
 ```css
 body {
@@ -842,9 +852,9 @@ because you choose an HTML element for its meaning, not its rendering.
 - `inline` will act as plain text
 - `inline-block` as its name suggests, a compound(复合) of block and inline behavior
 - `list-item` is similar to `block` as it takes up the whole width available, but shows an additional bullet point
-- `table`,`table-row` and `table-cell` all have very specific, albeit(尽管) unexpected, behavior that allow more interesting layouts
+- `table`, `table-row` and `table-cell` all have very specific, albeit(尽管) unexpected, behavior that allow more interesting layouts
 
-### display:block
+### display: block
 
 This will turn any element into a **block** element.
 
@@ -860,7 +870,7 @@ This technique is often used on **links** in order to increase their clickable z
 }
 ```
 
-### display:inline
+### display: inline
 
 This turns any element into **inline** elements, as if they were just simple text.  
 it is often used to create `horizontal navigators`, where list items are semantically but not visually useful.
@@ -879,21 +889,21 @@ it is often used to create `horizontal navigators`, where list items are semanti
 }
 ```
 
-### display:list-item
+### display: list-item
 
 The only HTML elements displayed as `list-item` are the **list-items `<li>`** but also the **definition descriptions `<dd>`** .
 
 A list item is rendered with a bullet point (if an unordered list `<ul>`) or with a incremental number(if within an ordered list `<ol>`).
 
-Because the rendering of these bullet points and numbers varies across browsers, and is also hard to style in CSS, the `display:list-item` rule is never used. Actually, it is common for `<li>`s to be rendered as `display:block` or `display:inline`, as they are more flexible to style.
+Because the rendering of these bullet points and numbers varies across browsers, and is also hard to style in CSS, the `display: list-item` rule is never used. Actually, it is common for `<li>`s to be rendered as `display: block` or `display: inline`, as they are more flexible to style.
 
-### display:none
+### display: none
 
-Applying `display:none;` to an HTML element removes it from your webpages. as if it never existed in your code.
+Applying `display: none; ` to an HTML element removes it from your webpages. as if it never existed in your code.
 
-### visibility:hidden
+### visibility: hidden
 
-The CSS property `visibility` is slightly similar to `display`. Applying `visibility:hidden;` hidden an element from your page, but only turns it invisible: it still takes up the space it was supposed to.
+The CSS property `visibility` is slightly similar to `display`. Applying `visibility: hidden; ` hidden an element from your page, but only turns it invisible: it still takes up the space it was supposed to.
 
 ```css
 .vis {
@@ -917,10 +927,10 @@ blockquote {
 
 The blockquote will not take up the whole width available, but will remain 600px wide in any situation:
 
-- if the browser window is less wide than 600px,it will show a horizontal scrolling bar
-- if the browser window is wider than 600px,the blockquote will stay 600px wide and not take up the whole space
+- if the browser window is less wide than 600px, it will show a horizontal scrolling bar
+- if the browser window is wider than 600px, the blockquote will stay 600px wide and not take up the whole space
 
-because we have only set the width, the blockquote remains fluid in height,the height becomes the variable dimension to fit the blockquote's content.
+because we have only set the width, the blockquote remains fluid in height, the height becomes the variable dimension to fit the blockquote's content.
 
 ### Setting both height and width
 
@@ -930,12 +940,12 @@ By setting the dimensions of an element, it will remain fixed no matter the leng
 
 The `overflow` CSS property allows us to manage the case of content being longer than its container.
 
-The default value is `visible`: the content will be displayed anyway. By applying `overflow: hidden;`, your simply forbid any overflowing content to be seen.
+The default value is `visible`: the content will be displayed anyway. By applying `overflow: hidden; `, your simply forbid any overflowing content to be seen.
 
 ### Beware of fixed dimensions
 
 - make sure your content doesn't overflow
-- if it does, use `overflow:hidden` or `overflow:auto` to prevent your design from breaking
+- if it does, use `overflow: hidden` or `overflow: auto` to prevent your design from breaking
 
 ---
 
@@ -975,7 +985,7 @@ blockquote {
 
 #### Single border
 
-If you want to set a border on only one of the four sides,you need to include the border's position in the CSS property.
+If you want to set a border on only one of the four sides, you need to include the border's position in the CSS property.
 
 ```css
 blockquote {
@@ -983,7 +993,7 @@ blockquote {
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
-/* as for the border property,each side has its shorthand version */
+/* as for the border property, each side has its shorthand version */
 blockquote {
   border-bottom: 1px solid blue;
 }
@@ -999,7 +1009,7 @@ To give space to your inner content, The **padding** is the space between an ele
 blockquote {
   padding: 20px;
 }
-/* as for borders,the padding can be set individually for any of the 4 sides. */
+/* as for borders, the padding can be set individually for any of the 4 sides. */
 blockquote {
   padding-top: 20px;
 }
@@ -1039,7 +1049,7 @@ p {
 
 above example, the margin between the two elements will be `30px`, not `45px`. That is because margins that "touch" each other will **merge** with each other.
 
-记着,相邻两个元素的外边距会重合.
+记着, 相邻两个元素的外边距会重合.
 
 ### choosing between margin and padding
 
@@ -1071,7 +1081,7 @@ blockquote {
 }
 ```
 
-The order is `top`,`right`,`bottom` and `left`.  
+The order is `top`, `right`, `bottom` and `left`.  
 If you enter 3 values(top/right/bottom), your omit setting `left`. As `right` is counterpart(对应), it will use its value.
 
 ### Other properties that can act as "wheel" shorthand
@@ -1080,7 +1090,7 @@ If you enter 3 values(top/right/bottom), your omit setting `left`. As `right` is
 - `padding`
 - `border-width`
 
-Indeed,`border` is(in that order) a shorthand for:
+Indeed, `border` is(in that order) a shorthand for:
 
 - `border-width`
 - `border-style`
@@ -1092,9 +1102,9 @@ Indeed,`border` is(in that order) a shorthand for:
 
 Breaking the flow
 
-Even without applying any CSS,an HTML document is already styled.Its content follows a nature Flow,directly dependent on the HTML Structure.  
+Even without applying any CSS, an HTML document is already styled.Its content follows a nature Flow, directly dependent on the HTML Structure.  
 尽管没有用 CSS 样式文件装饰, 但是 HTML 文档已经是被默认样式装饰过的. 它的内容跟随文档流, 而方向是根据 HTML 结构决定的.  
-But webpages often want elements to be positioned in a certain way to accomodate(容纳) for particular design needs,which requires breaking the Flow.  
+But webpages often want elements to be positioned in a certain way to accomodate(容纳) for particular design needs, which requires breaking the Flow.  
 为了设计的需求网页通常需要将某些元素定位到特定的地方, 这样就不得不打破原有的文档流.
 
 ### The Flow
@@ -1109,11 +1119,11 @@ An HTML document is a **living** document, Even without any CSS applied, an HTML
 
 ### Fluidity 流动性
 
-In HTML,the content is king. all `block` elements are fluid, they will naturally adapt their layout to accommodate their inner content:
+In HTML, the content is king. all `block` elements are fluid, they will naturally adapt their layout to accommodate their inner content:
 
-- **width:100%** a block will take up the whole width available
+- **width: 100%** a block will take up the whole width available
 - **word wrap** if a block's inline content doesn't fit on a single line, it will continue on a new line
-- **height:auto** a block's height varies automatically to match its content's size
+- **height: auto** a block's height varies automatically to match its content's size
 - A **block** is by default in full width
 - Its **height** is the height of its content
 
@@ -1179,12 +1189,12 @@ It's often used alongside the 4 coordinates properties:
 
 ### Static
 
-This is the default `position` value: static elements just follow the natural flow. They aren't affected by any `left`,`right`,`top` or `bottom` value.
+This is the default `position` value: static elements just follow the natural flow. They aren't affected by any `left`, `right`, `top` or `bottom` value.
 
 ### relative
 
 when the `position` is set to `relative`, an element can move according to its current position.  
-当将一个元素设置为`position:relative`, 它会脱离文档流,具体偏移的位置根据其`left`, `right`, `top` and `bottom`的值来决定, 偏移是相对于其原始位置, 其相邻的其他元素并未察觉到该元素已经偏移了.
+当将一个元素设置为`position: relative`, 它会脱离文档流, 具体偏移的位置根据其`left`, `right`, `top` and `bottom`的值来决定, 偏移是相对于其原始位置, 其相邻的其他元素并未察觉到该元素已经偏移了.
 
 ### absolute
 
@@ -1192,11 +1202,11 @@ when the `position` is set to `absolute`, an element can move according to the *
 a **positioned** element is one whose `position` value is either `relative`, `absolute` or `fixed`. so unless the position is not set or static, an element is `positioned`.
 
 The characteristic of a positioned element is that it can act as a **reference point for its child elements**.  
-your can use `left`,`right`,`top` and `bottom` to move it in a position container.
+your can use `left`, `right`, `top` and `bottom` to move it in a position container.
 
-**what happens if we set both left AND right?**
+**what happens if we set both left AND right? **
 
-- if the `width` is not set, applying `left:0` and `right:0` will stretch the element across the whole width. it is the equivalent of setting `left:0` and `width:100%`.
+- if the `width` is not set, applying `left: 0` and `right: 0` will stretch the element across the whole width. it is the equivalent of setting `left: 0` and `width: 100%`.
 - if the `width` is set, then the `right` value is discarded(忽略).
 
 #### fixed
@@ -1205,7 +1215,7 @@ when the `position` is set to `fixed`, it acts like `absolute`: you can set left
 
 The only difference is that the **point of reference is the viewport**. it means that a fixed element won't scroll with the page; it is fixed on the screen.
 
-被设置为`position:fixed`的元素与设置`position:absolute`十分相似,只是它参考的是当前**视口**
+被设置为`position: fixed`的元素与设置`position: absolute`十分相似, 只是它参考的是当前**视口**
 
 ### CSS float
 
@@ -1217,7 +1227,7 @@ Behind the word `float`, an endless sea of possibilities(and misbehaviors).
 
 Probably because, of all positioning properties there are, it is the one that most influences its surroundings.
 
-In other words, applying a float not only modifies the element it's applied upon **but also alter its ancestors,siblings,descendants,and following elements.**
+In other words, applying a float not only modifies the element it's applied upon **but also alter its ancestors, siblings, descendants, and following elements.**
 
 `float` can only have one of these 3 values:
 
@@ -1230,11 +1240,11 @@ The purpose of floating an element is to push it to one side and make the next w
 
 ### float=block
 
-floating elements will have a `display:block` applied to them automatically, and will mostly behave like block:
+floating elements will have a `display: block` applied to them automatically, and will mostly behave like block:
 
 - you can set a specific height and width
 - if no height is set, the element's height is that of the line-height
-- if a `width:100%` is applied, it will look like a block-level element
+- if a `width: 100%` is applied, it will look like a block-level element
 
 ### clearing the float
 
@@ -1247,32 +1257,33 @@ The clear property allows to **push elements** after **the float**. it can only 
 Enhancing the CSS selectors
 
 - **generic** where `p` in CSS targets `<p>`
-- **classes** where `.intro` in CSS targets elements with a `class="intro"` attribute
+- **classes** where `. intro` in CSS targets elements with a `class="intro"` attribute
 - **ids** where `#logo` in CSS targets HTML elements with `id="logo"` attribute
 
 All of these selectors can have pseudo-classes attached to them. A pseudo-class:
 
 - defines a particular state of the element
-- is a keyword that starts with a colon `:`
+- is a keyword that starts with a colon `: `
 
 ### Syntax
 
 A pseudo-class cannot exist on its own. it must be attached to a selector. The pseudo-class will only define a particular state of that selector. The syntax looks like this:
 
 ```css
-.selector:pseudo-class {
+.selector: pseudo-class {
+
 }
 ```
 
 ### :hover
 
-For example, a common pseudo-class used is `:hover`, which will apply a CSS style when the targeted element is **hover**.
+For example, a common pseudo-class used is `: hover`, which will apply a CSS style when the targeted element is **hover**.
 
 ```css
 a {
   color: blue;
 }
-a:hover {
+a: hover {
   color: red;
 }
 ```
@@ -1288,7 +1299,7 @@ This pseudo-class targets links that have been visited. by default, links are bl
 a {
   color: blue;
 }
-a:visited {
+a: visited {
   color: purple;
 }
 ```
@@ -1301,7 +1312,7 @@ This pseudo-class happens when an HTML element is **in focus**. This is particul
 .form-input {
   border: 2px solid grey;
 }
-.form-input:focus {
+.form-input: focus {
   background: lightyellow;
   border-color: blue;
   outline: none;
@@ -1322,45 +1333,45 @@ These pseudo-classes are related to the HTML hierarchy. They target HTML element
 ```
 
 ```css
-li:first-child {
+li: first-child {
   background: red;
 }
-li:last-child {
+li: last-child {
   background: green;
 }
 ```
 
 ### :nth-child
 
-This pseudo-class is a more global version of `:first-child` and `:last-child`. with `:nth:child`, your can calculate which child element you want to target.
+This pseudo-class is a more global version of `: first-child` and `: last-child`. with `: nth: child`, your can calculate which child element you want to target.
 
 ```css
 /* target the second element */
-li:nth-child(2) {
+li: nth-child(2) {
   background: violet;
 }
 
 /* odd and even  */
-li:nth-child(odd) {
+li: nth-child(odd) {
   background: gold;
 }
-li:nth-child(even) {
+li: nth-child(even) {
   background: green;
 }
 ```
 
 The n iterator  
-The most powerful aspect of `:nth-child` is how it can target elements based upon calculations by using the `n` keyword. The `n` value increments from **zero 0** to the **number** of child elements present.
+The most powerful aspect of `: nth-child` is how it can target elements based upon calculations by using the `n` keyword. The `n` value increments from **zero 0** to the **number** of child elements present.
 
 ```css
 /* every third element */
-li:nth-child(3n) {
+li: nth-child(3n) {
   background: red;
 }
 
 /* n+1 */
 /* what if you want to target the 1st item and every third item  */
-li:nth-child(3n + 1) {
+li: nth-child(3n + 1) {
   background: red;
 }
 ```
@@ -1428,9 +1439,9 @@ if you want a more specific angle, you can use a value in degrees:
 
 you can insert as many colors as you want. they will be equally distributed along the axis:
 
-- **2 colors**:0% and 100%
-- **3 colors**:0%,50% and 100%
-- **4 colors**:0%,33%,67% and 100%
+- **2 colors**: 0% and 100%
+- **3 colors**: 0%, 50% and 100%
+- **4 colors**: 0%, 33%, 67% and 100%
 
 ```css
 div {
@@ -1476,7 +1487,7 @@ by default :
 
 #### start position
 
-the **start position** works like `background positions`,you set it with the `at` keyword.
+the **start position** works like `background positions`, you set it with the `at` keyword.
 
 ```css
 div {
@@ -1500,14 +1511,14 @@ div {
   background-image: radial-gradient(closest-corner at 20px 20px, green, blue);
   width: 300px;
 }
-div:hover {
+div: hover {
   background-image: radial-gradient(farthest-side at 20px 20px, green, blue);
 }
 ```
 
 #### fixed size
 
-instead of setting both start and end position,you can just set **specific dimensions**
+instead of setting both start and end position, you can just set **specific dimensions**
 
 ```css
 div {
@@ -1573,7 +1584,7 @@ a {
   color: grey;
 }
 
-a:hover {
+a: hover {
   background: yellow;
   color: red;
 }
@@ -1592,7 +1603,7 @@ a {
   background: lightgrey;
   color: grey;
 }
-a:hover {
+a: hover {
   background: yellow;
   color: red;
 }
@@ -1613,7 +1624,7 @@ a {
   background: lightgrey;
   color: grey;
 }
-a:hover {
+a: hover {
   background: yellow;
   color: red;
 }
@@ -1628,7 +1639,7 @@ a.with-all-transition {
 
 ### transition-timing-function
 
-The timing function determines how each property's value is calculated during the transition. by default, the transition is ease:it accelerates at the start and slows at the end.
+The timing function determines how each property's value is calculated during the transition. by default, the transition is ease: it accelerates at the start and slows at the end.
 
 - `ease` slow start, fast middle, slow end
 - `linear` constant speed
@@ -1645,7 +1656,7 @@ div {
   transition: 1s;
   transition-timing-function: ease;
 }
-div:hover {
+div: hover {
   left: 200px;
 }
 ```
@@ -1668,7 +1679,7 @@ a {
   color: white;
   transition: all 1s;
 }
-div:hover a {
+div: hover a {
   background: red;
 }
 a.with-delay {
@@ -1687,7 +1698,7 @@ We have just seen how CSS transitions are just a way to animate CSS properties b
 - the animation doesn't loop
 - the intermediate states are only controlled by the timing function
 
-**CSS animations are like mini movies where you are the director giving out instructions(CSS rules) to your actors (HTML elements) for different scenes(keyframes).**
+**CSS animations are like mini movies where you are the director giving out instructions(CSS rules) to your actors (HTML elements) for different scenes(keyframes). **
 
 ### Animation properties
 
@@ -1703,7 +1714,7 @@ like the `transition` property, `animation` is a shorthand property for several 
 
 ### quick example
 
-To animate a loading button,you could write a bouncing animation:
+To animate a loading button, you could write a bouncing animation:
 
 ```css
 @keyframes bouncing {
@@ -1828,7 +1839,7 @@ just like `transition delays`, animation delays can be set in seconds `1s` or mi
 
 ### animation-iteration-count
 
-by default,animations are only played once(value of `1`), you can set 3 types of values:
+by default, animations are only played once(value of `1`), you can set 3 types of values:
 
 - integers like `2` or `3`
 - non-integers like `0.5` which will play only half the animation
@@ -1907,7 +1918,7 @@ p {
 }
 ```
 
-Remember:`transform` is the CSS property, `translate()` is the CSS value attached to that property (and also happens to be a function).  
+Remember: `transform` is the CSS property, `translate()` is the CSS value attached to that property (and also happens to be a function).  
 you can use `translateX()` and `translateY()` to only move your element along the `x` and `y` axis respectively.
 
 ### rotate
@@ -2085,7 +2096,7 @@ body {
 }
 ```
 
-here, the default text size is `14px`, but to accommodate for larger viewports,the text size is set to `16px` if the viewport is wider than 1200 pixels.
+here, the default text size is `14px`, but to accommodate for larger viewports, the text size is set to `16px` if the viewport is wider than 1200 pixels.
 
 ### several parameters
 
@@ -2108,7 +2119,7 @@ you can include as many CSS rules as you want in the media query.
 
 ### parameters
 
-Media queries require parameters which act like conditions that need to be filled in order for the media query to be activated. By writing `@media (min-width:1200px)`, we tell the browser to read this block only if the viewport is wider than 1200px;
+Media queries require parameters which act like conditions that need to be filled in order for the media query to be activated. By writing `@media (min-width: 1200px)`, we tell the browser to read this block only if the viewport is wider than 1200px;
 
 #### width
 
@@ -2180,7 +2191,7 @@ A Use case would be to provide a default background image for every device, and 
 
 keep in mind that the **background size must be set**. Otherwise, the `@2x` Retina image would take twice the space.
 
-> The `@2x` suffix is just Apple's notation for Retina images,and has been adopted as the de facto default notation in CSS.
+> The `@2x` suffix is just Apple's notation for Retina images, and has been adopted as the de facto default notation in CSS.
 
 ### mobile-first or desktop-first
 
@@ -2226,8 +2237,8 @@ Preprocessor are, as their name suggest, tools that have their own language and 
 
 ### Sass vs SCSS
 
-- Sass itself(Syntactically Awesome StyleSheets) in `.sass` files
-- SCSS(Sassy on CSS) in `.scss` files, which is something halfway between regular CSS and Sass
+- Sass itself(Syntactically Awesome StyleSheets) in `. sass` files
+- SCSS(Sassy on CSS) in `. scss` files, which is something halfway between regular CSS and Sass
 
 Remember that:
 
@@ -2288,7 +2299,7 @@ to prevent rewriting the same parent selector, use the `&` instead
 
 ```scss
 .title {
-  &:hover {
+  &: hover {
     color: purple;
   }
 }
@@ -2297,7 +2308,7 @@ to prevent rewriting the same parent selector, use the `&` instead
 it will generate:
 
 ```css
-.title:hover {
+.title: hover {
   color: purple;
 }
 ```
@@ -2329,7 +2340,7 @@ you can reference this mixin in any CSS rule by using `@include`
 }
 ```
 
-As usual, this `.scss` will be compiled into `.css`.
+As usual, this `. scss` will be compiled into `. css`.
 
 ```css
 .modal-background {
@@ -2401,9 +2412,9 @@ A Sass `@extend` is more efficient, as it only writes the common properties once
 
 ### Placeholders
 
-Well, you might be thinking “The .small-uppercase isn’t semantic! I could use it in my HTML!”?
+Well, you might be thinking "The .small-uppercase isn't semantic! I could use it in my HTML! "?
 
-You’re right, and that’s why placeholders exist in Sass.
+You're right, and that's why placeholders exist in Sass.
 
 ```scss
 %common-theme {
