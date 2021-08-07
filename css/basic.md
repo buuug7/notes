@@ -4,13 +4,13 @@
 
 Painting with code, while HTML is about defining the content of a webpage, CSS is about styling a webpage. It means setting colors, fonts, dimensions, margins, positions of a webpage's elements. CSS brings a webpage to life, by applying a coat of paint on its static content.
 
-使用代码绘画, HTML 定义了页面内容, CSS 用来装饰页面. 它用来设置页面元素的颜色, 字体, 尺寸, 间距, 位置等. 在静态内容上应用一层油漆, CSS 使网页焕然一新.
+CSS 被称为使用代码绘画的工具, HTML 定义了页面内容, CSS 用来装饰页面. CSS 用来设置页面元素的颜色, 字体, 尺寸, 间距, 位置等. 通过在静态内容上应用一层样式, CSS 使网页焕然一新.
 
 ## why CSS exists
 
 For separating content and styling.
 
-为了使内容跟样式.
+CSS 存在的原因就是为了使内容跟样式分离.
 
 ## why avoid tables
 
@@ -288,11 +288,11 @@ the selector with the highest "score" will win
 - avoid applying multiple classes on a single HTML element
 - avoid use inline-styles
 
-## CSS color units (Different ways to define colors)
+## CSS color units (different ways to define colors)
 
 Colors are widely used in CSS, whether for text color, background color, gradients, shadows, borders..., there are several ways to define colors in CSS.
 
-### color names
+#### color names
 
 Defined by color names, CSS provides 145 colors names, from the most basic (black, white, orange...) to the more specific(lawngreen, orchid...). because the color names are hard to remember, and because you probably want very specific colors, color names are not often used.
 
@@ -303,7 +303,7 @@ body {
 }
 ```
 
-### rgb
+#### rgb
 
 Defined by rgb, computer monitors, TVs, mobile phones, all use the RGB color model to display colors, each color is defined by a combination of Red, Green, and Blue. There are 256 possible values for Red, Green and Blue, from 0 to 255, so there are `256 * 256 * 256 = 16, 777, 216` (通常所说的 1600 万)) possible colors available.
 
@@ -334,7 +334,7 @@ body {
 }
 ```
 
-### rgba
+#### rgba
 
 The **rgba** color unit is **rgb** to which we add an alpha value(ranging from 0-1, in decimal values), which defines how transparent the color is.
 
@@ -387,19 +387,17 @@ body {
 }
 ```
 
-### hexadecimal 十六进制
+#### hexadecimal 十六进制
 
 Colors in CSS can also be defined with hexadecimal values, like `#ffffff`.
 
 In hexadecimal, we have 16 symbols to form numbers 0-9, A-F. just like RGB, a hexadecimal color value is a combination of Red, Green, and Blue, each of them being represent as a hexadecimal value, like `DB` for Red, `4E` for green, and `44` for Blue. hexadecimal values are easier to copy and paste.
 
-### which one to pick?
+#### which one to pick?
 
 - if you don't intend to use any transparent color, stick to hexadecimal values, as they are easier to copy/paste and don't take much space in your code.
 - if you want some transparency, convert your color from hex to rgba, and use the `rgba` color unit.
 - if your want to play around with your color directly in the browser, try `hsl`.
-
----
 
 ## CSS Size units
 
@@ -418,7 +416,7 @@ The most used units are:
 - `%` for percentage
 - `em` for sizing relative to the parent's `font-size` value
 
-### pixels
+#### pixels
 
 because computer screens use pixels to display the content, it is the most common size unit in CSS.
 
@@ -446,42 +444,42 @@ Percentages are relative units: they rely upon the element's parent and/or ances
 p {
   width: 50%;
 }
+
 /* set other CSS properties, like text size */
 strong {
   font-size: 150%;
 }
 ```
 
-### Em
+#### Em
 
 `em` is the relative unit: it depends upon the value of the element's `font-size`.
 
-例如父元素字体大小为 20px, 而子元素的字体大小定义为`font-size: 0.5em`, 则子元素的字体大小为 10px, 该单位通常用来定义具有伸缩响应的网页, 当你改变网页`body`的字体大小的时候, 其他的比如`h1`, `h2`. ..,`p`等元素字体的大小会跟着变化, 这样更能保证你的网页的**视觉平衡**.
+例如父元素字体大小为 24px, 而子元素的字体大小定义为`font-size: 0.5em`, 则子元素的字体大小为 12px, 该单位通常用来定义具有伸缩响应的网页, 当你改变网页`body`的字体大小的时候, 其他的比如`h1`, `h2`. ..,`p`等元素字体的大小会跟着变化, 这样更能保证你的网页的**视觉平衡**.
 
-### Rem
+#### Rem
 
 The `rem` unit is similar to `em`, but instead of depending upon the parent's value, it relies upon the root element's value, which is the `<html>` element.
 
 ```css
 html {
-  font-size: 15px;
+  font-size: 12px;
 }
+
+/* = 12px*/
 body {
   font-size: 1rem;
-} /* = 15px*/
+}
+
+/* = 24px */
 h1 {
   font-size: 2rem;
-} /* = 30px */
-h2 {
-  font-size: 1.5rem;
-} /* = 22.5px */
+}
 ```
 
-### which one to use?
+#### which one to use?
 
 recommend **pixels** to use : as they're absolute values, they aren't affected by the element's context.
-
----
 
 ## CSS Reset
 
@@ -489,7 +487,7 @@ Removing default browser styling
 
 Every webpage use at least one CSS: the **User agent Stylesheet**.
 
-### the user agent stylesheet
+#### the user agent stylesheet
 
 this CSS file is included in the browser and is called.
 
@@ -498,21 +496,18 @@ this CSS file is included in the browser and is called.
 
 尽管每一种浏览器都有自己的用户代理 CSS 默认样式, 但是它们都是类似的
 
-### applying a CSS reset
+#### applying a CSS reset
 
-浏览器默认的样式会干扰我们想应用的样式, 这就是为什么要设计**CSS 样式重置**为所有浏览器提供一致的表现方式.
+浏览器默认的样式会干扰我们想应用的样式, 这就是为什么要设计 **CSS 样式重置** 为所有浏览器提供一致的表现方式.
 
 你可以使用最流行的 HTML5 Reset, 将其放置于你的`<head>`之中即可, 这里推荐:
 
 - [normalize.css](https://github.com/necolas/normalize.css)
 - [HTML5 reset.css](https://github.com/murtaugh/HTML5-Reset)
 
----
+## CSS font-family
 
-### CSS font-family
-
-choosing a font  
-CSS provides several font properties, that directly affectly text rendering . the `font-familly` property defines which font to use.
+CSS provides several font properties, that directly affectly text rendering . the `font-family` property defines which font to use.
 
 #### generic font families
 
@@ -524,18 +519,17 @@ have 5 generic families:
 - cursive
 - fantasy
 
-because the `font-famiily` property is inherited by all HTML children elements, you can apply a font for the whole HTML document by applying it on the ancestor fo all HTML elements: the `<body>` element.
+because the `font-family` property is inherited by all HTML children elements, you can apply a font for the whole HTML document by applying it on the ancestor fo all HTML elements: the `<body>` element.
 
 ```css
 body {
-  font-familly: sans-serif;
+  font-family: sans-serif;
 }
 ```
 
 #### web-safe fonts
 
-通常你设置的字体如果在用户的机子上不可用, 浏览器会使用默认的字体来代替, 所以你应该考虑你所采用的字体应该具有通用性, 以便你的网页的字体在
-任何计算机上都看起来一样, 有 9 种 web 安全字体你可以参考:
+通常你设置的字体如果在用户的机子上不可用, 浏览器会使用默认的字体来代替, 所以你应该考虑你所采用的字体应该具有通用性, 以便你的网页的字体在任何计算机上都看起来一样, 有 9 种 web 安全字体你可以参考:
 
 - Arial
 - Arial Black
@@ -549,15 +543,13 @@ body {
 
 #### applying a list of fonts
 
-尽管使用单一的 web 安全字体是安全的, 但是最佳实践是给 `font-family` 赋予多个字体, 因为当赋予的第一个字体不可用的话, 浏览器会采用第二个. ..依次类推, 如果你提供的所有字体都不可用的话, 最后才使用浏览器默认的字体, 这样给浏览器更多的选择以至于使你的网页更加强壮.
-
----
+尽管使用单一的 web 安全字体是安全的, 但是最佳实践是给 `font-family` 赋予多个字体, 因为当赋予的第一个字体不可用的话, 浏览器会采用第二个. ..依次类推, 如果你提供的所有字体都不可用的话, 最后才使用浏览器默认的字体, 这样给浏览器更多的选择以至于使你的网页更加健壮.
 
 ## CSS font properties
 
 For bold and italic text
 
-### font-size
+#### font-size
 
 used to set the font size among other things.
 
@@ -567,7 +559,7 @@ h2 {
 }
 ```
 
-### font-style
+#### font-style
 
 this property can make your text italic.
 
@@ -578,7 +570,7 @@ h2 {
 }
 ```
 
-### font-weight
+#### font-weight
 
 this property can make your text bold.
 
@@ -588,9 +580,9 @@ h2 {
 }
 ```
 
-Default value is `font-weight: normal; `, depending on the `font-family` used, there is a range of font weights available, fromt **100** to **900**. very few fonts provide all 9 weights. your will mostly find 400(normal) and 700(bold), and sometimes 300(light) and 500(medium).
+Default value is `font-weight: normal;`, depending on the `font-family` used, there is a range of font weights available, from 100 - 900. very few fonts provide all 9 weights. your will mostly find 400(normal) and 700(bold), and sometimes 300(light) and 500(medium).
 
-### font-variant
+#### font-variant
 
 this property turn your text into small caps:
 
@@ -602,11 +594,9 @@ h2 {
 
 会让你的文本变成小型的大写字母, 默认值是`font-variant: normal; `, 这个属性不常用.
 
----
-
 ## CSS line-height
 
-For readibility concerns, the `line-height` is **the height of each line**. the `line-height` property uses the following units:
+For readability concerns, the `line-height` is **the height of each line**. the `line-height` property uses the following units:
 
 - `px`
 - `em`
@@ -615,10 +605,9 @@ For readibility concerns, the `line-height` is **the height of each line**. the 
 
 The unitless values basically act like percentages, so `150%` is equal to `1.5`. the latter is just more compact and readable.
 
-### why line-height is important
+#### why line-height is important
 
-The purpose of the `line-height` is to define a readable line spacing for your text. because readability is dependent upon the size of the text, it is recommended to use a dynamic value that is relative to the size of the text. use `px` is not recommended because it defines a static value.
-the recommended method is unitless numbers.
+The purpose of the `line-height` is to define a readable line spacing for your text. because readability is dependent upon the size of the text, it is recommended to use a dynamic value that is relative to the size of the text. use `px` is not recommended because it defines a static value. the recommended method is unitless numbers.
 
 - for body text, a line height of 1.5 times the size of the text is recommended.
 - for heading, a line height of 1.2 is recommended.
@@ -630,7 +619,7 @@ body {
 }
 ```
 
-above the computed height will thus be **16\*1.5=24px**
+above the computed height will thus be `16 * 1.5 = 24px`
 
 #### line-height inheritance
 
@@ -641,6 +630,7 @@ body {
   font-size: 16px;
   line-height: 1.5;
 }
+
 blockquote {
   font-size: 18px;
 }
@@ -648,9 +638,7 @@ blockquote {
 
 The `blockquote` element will have a line height of `27px`.
 
----
-
-### CSS font shorhand
+## CSS font shorthand
 
 a shortcut for several font properties, it groups with this particular order:
 
@@ -671,15 +659,14 @@ body {
 
 they have to be written in this particular order and there must be a slash `/` between the `font-size` and the `line-height`. the `font-size` and `font-family` are mandatory(强制性的), others is optional. Other shorthand properties exist, like `background`, `border` and `margin`.
 
----
-
 ## CSS text properties
 
 Other text alterations, Alongside(根据) the several `font-*` properties, CSS provides many `text-*` properties.
 
-### text-align
+#### text-align
 
-the `text-align` property must be applied on a block-level element and defines how its text and children inline elements are horizontally aligned.  
+the `text-align` property must be applied on a block-level element and defines how its text and children inline elements are horizontally aligned.
+
 该属性必须应用到块级元素, 它定义了内部的文本和行内元素水平对齐的方式. 最常用的值有:
 
 - left
@@ -694,7 +681,7 @@ the `text-align` default value is `start`, basically, `start` can either be `lef
 - if `ltr` is chosen, `start` equals to `left`
 - if 'rtl' is chosen, `start` equals to `right`
 
-### text-decoration
+#### text-decoration
 
 the `text-decoration` property is used to add a line on your text, default value is `none`.
 
@@ -711,7 +698,7 @@ possible values:
 - underline (下划线)
 - line-through (删除线)
 
-### text-indent
+#### text-indent
 
 the `text-indent` property allows to add space before the first letter of the first line of a block-level element default value is `0`.
 
@@ -721,12 +708,12 @@ blockquote {
 }
 ```
 
-### text-shadow
+#### text-shadow
 
 define:
 
-- `the horizontal offset` 水平偏移
-- `the vertical offset` 垂直偏移
+- the `horizontal offset` 水平偏移
+- the `vertical offset` 垂直偏移
 - the `blur` 模糊的距离
 - the `color` 颜色
 
@@ -737,8 +724,6 @@ h1 {
   text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 ```
-
----
 
 ## CSS box model
 
