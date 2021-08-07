@@ -928,7 +928,7 @@ The blockquote will not take up the whole width available, but will remain 600px
 
 because we have only set the width, the blockquote remains fluid in height, the height becomes the variable dimension to fit the blockquote's content.
 
-### Setting both height and width
+#### Setting both height and width
 
 By setting the dimensions of an element, it will remain fixed no matter the length of its content.
 
@@ -936,16 +936,14 @@ By setting the dimensions of an element, it will remain fixed no matter the leng
 
 The `overflow` CSS property allows us to manage the case of content being longer than its container.
 
-The default value is `visible`: the content will be displayed anyway. By applying `overflow: hidden; `, your simply forbid any overflowing content to be seen.
+The default value is `visible`: the content will be displayed anyway. By applying `overflow: hidden;`, your simply forbid any overflowing content to be seen.
 
-### Beware of fixed dimensions
+#### Beware of fixed dimensions
 
 - make sure your content doesn't overflow
 - if it does, use `overflow: hidden` or `overflow: auto` to prevent your design from breaking
 
----
-
-### CSS border
+## CSS border
 
 The edges of the rectangle
 
@@ -973,7 +971,7 @@ blockquote {
   border-width: 1px;
 }
 
-/* The shorthand property border allows to define all 3 properties at  */
+/* The shorthand property border allows to define all 3 properties at once */
 blockquote {
   border: 1px solid blue;
 }
@@ -989,13 +987,12 @@ blockquote {
   border-bottom-style: solid;
   border-bottom-width: 1px;
 }
+
 /* as for the border property, each side has its shorthand version */
 blockquote {
   border-bottom: 1px solid blue;
 }
 ```
-
----
 
 ## CSS padding
 
@@ -1005,13 +1002,12 @@ To give space to your inner content, The **padding** is the space between an ele
 blockquote {
   padding: 20px;
 }
+
 /* as for borders, the padding can be set individually for any of the 4 sides. */
 blockquote {
   padding-top: 20px;
 }
 ```
-
----
 
 ## CSS margin
 
@@ -1027,7 +1023,7 @@ p {
 }
 ```
 
-### merging vertical margins
+#### merging vertical margins
 
 ```html
 <h1 class="title"> main title</h1>
@@ -1047,11 +1043,9 @@ above example, the margin between the two elements will be `30px`, not `45px`. T
 
 记着, 相邻两个元素的外边距会重合.
 
-### choosing between margin and padding
+#### choosing between margin and padding
 
-depend on your choices.
-
----
+it depend on your choices.
 
 ## CSS size shorthand wheel
 
@@ -1063,24 +1057,26 @@ A circle shorthand method
 blockquote {
   padding: 20px;
 }
+
 /* it equal as below */
 blockquote {
   padding: 20px 20px;
 }
+
 /* it equal as below */
 blockquote {
   padding: 20px 20px 20px 20px;
 }
+
 /* it equal as below */
 blockquote {
   padding: 20px 20px 20px;
 }
 ```
 
-The order is `top`, `right`, `bottom` and `left`.  
-If you enter 3 values(top/right/bottom), your omit setting `left`. As `right` is counterpart(对应), it will use its value.
+The order is `top`, `right`, `bottom` and `left`. If you enter 3 values(top/right/bottom), your omit setting `left`. As `right` is counterpart(对应), it will use its value.
 
-### Other properties that can act as "wheel" shorthand
+#### Other properties that can act as "wheel" shorthand
 
 - `margin`
 - `padding`
@@ -1092,18 +1088,19 @@ Indeed, `border` is(in that order) a shorthand for:
 - `border-style`
 - `border-color`
 
----
-
 ## CSS Positioning
 
 Breaking the flow
 
-Even without applying any CSS, an HTML document is already styled.Its content follows a nature Flow, directly dependent on the HTML Structure.  
-尽管没有用 CSS 样式文件装饰, 但是 HTML 文档已经是被默认样式装饰过的. 它的内容跟随文档流, 而方向是根据 HTML 结构决定的.  
-But webpages often want elements to be positioned in a certain way to accomodate(容纳) for particular design needs, which requires breaking the Flow.  
+Even without applying any CSS, an HTML document is already styled. Its content follows a nature Flow, directly dependent on the HTML Structure.
+
+尽管没有用 CSS 样式文件装饰, 但是 HTML 文档已经是被默认样式装饰过的. 它的内容跟随文档流, 而方向是根据 HTML 结构决定的.
+
+But webpages often want elements to be positioned in a certain way to accomodate(容纳) for particular design needs, which requires breaking the Flow.
+
 为了设计的需求网页通常需要将某些元素定位到特定的地方, 这样就不得不打破原有的文档流.
 
-### The Flow
+## The Flow
 
 The default behavior of a webpage
 
@@ -1113,7 +1110,7 @@ An HTML document is a **living** document, Even without any CSS applied, an HTML
 - **ordering**: in which order elements appear 有序性
 - **stacking**: how elements appear on top of each other 堆叠性
 
-### Fluidity 流动性
+#### Fluidity 流动性
 
 In HTML, the content is king. all `block` elements are fluid, they will naturally adapt their layout to accommodate their inner content:
 
@@ -1123,7 +1120,7 @@ In HTML, the content is king. all `block` elements are fluid, they will naturall
 - A **block** is by default in full width
 - Its **height** is the height of its content
 
-### Ordering 有序性
+#### Ordering 有序性
 
 HTML elements are displayed in the order in which they are written in the code. First in the code -> first in the browser.
 
@@ -1136,7 +1133,7 @@ Each block appears in the order in which they appear in the HTML code, from top 
 <p>Fourth</p>
 ```
 
-### Stacking
+#### Stacking
 
 A browser has 3 dimensions.
 
@@ -1156,7 +1153,7 @@ The stack order depends on how elements are nested: child elements appear on top
 
 `<strong>` tag is on top, after is `<p>`, and the last is `<div>`tag
 
-### Breaking the flow
+#### Breaking the flow
 
 Several CSS properties allow to disrupt the Flow:
 
