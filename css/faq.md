@@ -1,12 +1,10 @@
 # Css FAQ
 
-# CSS position, float
+## positioning with floats
 
 HTML 的标准文档流是: 从上到下, 从左到右, 遇到块级元素换行
 
-浮动层: 元素 float 属性后, 就是脱离文档流, 进行左右浮动, 紧贴着父元素的左右边框, 浮动元素空出的位置, 由后续的非浮动元素填充, 块级元素直接填充上去, 内联元素有空隙就插入
-
-## positioning with floats
+浮动层: 元素 float 属性后, 就是脱离文档流, 进行左右浮动, 紧贴着父元素的左右边框, 浮动元素空出的位置, 由后续的非浮动元素填充, 块级元素直接填充上去, 内联元素有空隙就插入. 设置一个元素浮动不仅影响它自己，而且影响它的祖先，兄弟元素。
 
 float 属性允许我们把一个元素从文档正常流中移除, 把它定位到其父元素左边或者右边, 其他非浮动的元素就会环绕该浮动的元素, 通常 float 属性有两个最常用的值 left, right.
 
@@ -63,11 +61,21 @@ CSS 盒模型负责计算：
 
 经过定位的元素，其 position 属性值必然是 relative、absolute、fixed 或 sticky。
 
-- static 元素的默认定位行为，元素会根据正常文档流来定位，设置 TRBL(top right bottom left)属性不会起任何作用。
-- relative 元素根据文档的正常流来定位，以它原本的位置作为参考点，通过设置 TRBL(top right bottom left)偏移来定位，它的偏移不会影响其他的元素。
-- absolute 元素会从正常文档流中移除，不为元素预留空间，是根据它最近的已定位的祖先元素来定位的, 配合 TRBL(top right bottom left)来定位(如果父元素没有设置 position, 则以浏览器左上角为原点定位)
-- fixed 跟 absolute 定位类似, 只不过其参考点为当前浏览器 视口(viewport)
-- sticky 元素根据正常流定位，然后相对于它最近滚动祖先，通过设置 TRBL 的值来偏移。偏移值不会影响任何其他元素的位置。
+#### relative
+
+元素的默认定位行为，当将一个元素设置为`position: relative`, 它会脱离文档流, 具体偏移的位置根据其`left`, `right`, `top` and `bottom`的值来决定, 偏移是相对于其原始位置, 其相邻的其他元素并未察觉到该元素已经偏移了.。
+
+#### absolute
+
+当元素被设置为`absolute`的时候，元素同样脱离正常文档流，其定位是根绝它最近已经定位的父元素，配合 `top, right, bottom, left`来定位
+
+#### fixed
+
+被设置为`fixed`的元素与设置`absolute`十分相似, 只是它参考的是当前浏览器窗口(视口)
+
+#### sticky
+
+元素根据正常流定位，然后相对于它最近滚动祖先。偏移值不会影响任何其他元素的位置。
 
 ## 永远声明文档类型(always include a doctype)
 

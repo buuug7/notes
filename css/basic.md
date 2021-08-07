@@ -1162,7 +1162,7 @@ Several CSS properties allow to disrupt the Flow:
 - `position` `absolute` and `fixed` remove an element from the Flow
 - `z-index` can alter the order in which elements are stacked
 
-### CSS position
+## CSS position
 
 Going manual 要手动
 
@@ -1180,16 +1180,17 @@ It's often used alongside the 4 coordinates properties:
 - `top`
 - `bottom`
 
-### Static
+#### Static
 
 This is the default `position` value: static elements just follow the natural flow. They aren't affected by any `left`, `right`, `top` or `bottom` value.
 
-### relative
+#### relative
 
-when the `position` is set to `relative`, an element can move according to its current position.  
+when the `position` is set to `relative`, an element can move according to its current position.
+
 当将一个元素设置为`position: relative`, 它会脱离文档流, 具体偏移的位置根据其`left`, `right`, `top` and `bottom`的值来决定, 偏移是相对于其原始位置, 其相邻的其他元素并未察觉到该元素已经偏移了.
 
-### absolute
+#### absolute
 
 when the `position` is set to `absolute`, an element can move according to the **first positioned ancestor**.  
 a **positioned** element is one whose `position` value is either `relative`, `absolute` or `fixed`. so unless the position is not set or static, an element is `positioned`.
@@ -1197,7 +1198,7 @@ a **positioned** element is one whose `position` value is either `relative`, `ab
 The characteristic of a positioned element is that it can act as a **reference point for its child elements**.  
 your can use `left`, `right`, `top` and `bottom` to move it in a position container.
 
-**what happens if we set both left AND right? **
+**what happens if we set both left AND right?**
 
 - if the `width` is not set, applying `left: 0` and `right: 0` will stretch the element across the whole width. it is the equivalent of setting `left: 0` and `width: 100%`.
 - if the `width` is set, then the `right` value is discarded(忽略).
@@ -1210,7 +1211,11 @@ The only difference is that the **point of reference is the viewport**. it means
 
 被设置为`position: fixed`的元素与设置`position: absolute`十分相似, 只是它参考的是当前**视口**
 
-### CSS float
+#### sticky
+
+元素根据正常流定位，然后相对于它最近滚动祖先。偏移值不会影响任何其他元素的位置。
+
+## CSS float
 
 The most unpredictable(无法预知) property
 
@@ -1227,11 +1232,11 @@ In other words, applying a float not only modifies the element it's applied upon
 - `left` and `right` turns an element into a `floating` one
 - `none` removes the floating aspect
 
-### when to use float
+#### when to use float
 
 The purpose of floating an element is to push it to one side and make the next wrap around it.
 
-### float=block
+#### float=block
 
 floating elements will have a `display: block` applied to them automatically, and will mostly behave like block:
 
@@ -1239,11 +1244,9 @@ floating elements will have a `display: block` applied to them automatically, an
 - if no height is set, the element's height is that of the line-height
 - if a `width: 100%` is applied, it will look like a block-level element
 
-### clearing the float
+#### clearing the float
 
 The clear property allows to **push elements** after **the float**. it can only be applied on **block** elements.
-
----
 
 ## CSS pseudo-classes
 
@@ -1258,7 +1261,7 @@ All of these selectors can have pseudo-classes attached to them. A pseudo-class:
 - defines a particular state of the element
 - is a keyword that starts with a colon `: `
 
-### Syntax
+#### Syntax
 
 A pseudo-class cannot exist on its own. it must be attached to a selector. The pseudo-class will only define a particular state of that selector. The syntax looks like this:
 
@@ -1268,23 +1271,23 @@ A pseudo-class cannot exist on its own. it must be attached to a selector. The p
 }
 ```
 
-### :hover
+#### :hover
 
-For example, a common pseudo-class used is `: hover`, which will apply a CSS style when the targeted element is **hover**.
+For example, a common pseudo-class used is `:hover`, which will apply a CSS style when the targeted element is **hover**.
 
 ```css
 a {
   color: blue;
 }
+
 a: hover {
   color: red;
 }
 ```
 
-The first line defines how all `<a>` elements should look like(blue).  
-The second line defines how `<a>` should look like when **hovered**(red).
+The first line defines how all `<a>` elements should look like(blue). The second line defines how `<a>` should look like when **hovered**(red).
 
-### :visited
+#### :visited
 
 This pseudo-class targets links that have been visited. by default, links are blue and turn purple when you are visited them. Google results work like that.
 
@@ -1292,12 +1295,13 @@ This pseudo-class targets links that have been visited. by default, links are bl
 a {
   color: blue;
 }
+
 a: visited {
   color: purple;
 }
 ```
 
-### :focus
+#### :focus
 
 This pseudo-class happens when an HTML element is **in focus**. This is particularly useful for HTML `inputs`.
 
@@ -1305,14 +1309,15 @@ This pseudo-class happens when an HTML element is **in focus**. This is particul
 .form-input {
   border: 2px solid grey;
 }
+
 .form-input: focus {
-  background: lightyellow;
+  background: green;
   border-color: blue;
   outline: none;
 }
 ```
 
-### :first-child and :last-child
+#### :first-child and :last-child
 
 These pseudo-classes are related to the HTML hierarchy. They target HTML elements depending on the order in which they appear in the code.
 
@@ -1329,14 +1334,15 @@ These pseudo-classes are related to the HTML hierarchy. They target HTML element
 li: first-child {
   background: red;
 }
+
 li: last-child {
   background: green;
 }
 ```
 
-### :nth-child
+#### :nth-child
 
-This pseudo-class is a more global version of `: first-child` and `: last-child`. with `: nth: child`, your can calculate which child element you want to target.
+This pseudo-class is a more global version of `:first-child` and `:last-child`. with `:nth-child`, your can calculate which child element you want to target.
 
 ```css
 /* target the second element */
@@ -1348,13 +1354,14 @@ li: nth-child(2) {
 li: nth-child(odd) {
   background: gold;
 }
+
 li: nth-child(even) {
   background: green;
 }
 ```
 
 The n iterator  
-The most powerful aspect of `: nth-child` is how it can target elements based upon calculations by using the `n` keyword. The `n` value increments from **zero 0** to the **number** of child elements present.
+The most powerful aspect of `:nth-child` is how it can target elements based upon calculations by using the `n` keyword. The `n` value increments from **one** to the **number** of child elements present.
 
 ```css
 /* every third element */
@@ -1369,11 +1376,9 @@ li: nth-child(3n + 1) {
 }
 ```
 
-### Other pseudo-classes
+#### Other pseudo-classes
 
 There are dozens of pseudo-classes available, some of them for very specific states. The most used ones are the one's we've covered.
-
----
 
 ## CSS gradients
 
