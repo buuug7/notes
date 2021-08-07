@@ -731,13 +731,13 @@ how rectangles are made 矩形是如何制造的?
 
 在 HTML 中所有元素都是矩形, 矩形的尺寸会根据具体元素的内容动态调整, 你可以认为这些矩形是流体类的东西, 根据内容来调整自己的形状. 块级元素会占尽它所在的行的所有宽度, 例如段落, 它的宽度默认是浏览器的宽度, 高度适应它自己内容的高度.
 
-### CSS background
+## CSS background
 
 how your rectangle is filled 你的矩形是如何填充的
 the background of an HTML element is what appears behind the text.  
 HTML 元素的背景指的是出现在文本后面的内容.
 
-### background-color
+#### background-color
 
 default value: `transparent` inherited by children elements: no.
 
@@ -747,7 +747,7 @@ body {
 }
 ```
 
-### background-image
+#### background-image
 
 applying a background image only requires to specify its URL:
 
@@ -759,7 +759,7 @@ body {
 
 the behavior of the image(how it repeats itself, where it is positioned, how it is sized) is defined by other background properties. the `background-image` only defines which image to use.
 
-### the difference between HTML images `<img>` and CSS background images
+#### the difference between HTML images `<img>` and CSS background images
 
 the HTML `<img>` element is for images that are part of the content, while CSS background images are purely decorative.
 
@@ -767,9 +767,9 @@ the logo of a company, the thumbnail of a gallery, the picture of a product ... 
 
 a beautiful landscape, a cart icon...These can be considered as **decorative**, as they support the content but are not part of it. if they were to disappear, the webpage would still make sense.
 
-因为有多重的的选择, 在内容和样式之间的界限很模糊, 一些视觉技术很容易通过 CSS 的`background`来实现, 所以如果你使用的图片是你页面的主要内容, 那么就用应该使用 `<img>`.
+因为有多重的的选择, 在内容和样式之间的界限很模糊, 一些视觉技术很容易通过 CSS 的`background`来实现, 所以如果你使用的图片是你页面的主要内容, 那么就用应该使用 `<img>` 而不是 CSS 的 `background`.
 
-### gradients
+#### background with gradients
 
 CSS also allow to define **color gradients** as background images, in 2 different shapes:
 
@@ -782,9 +782,9 @@ body {
 }
 ```
 
-### background-position
+#### background-position
 
-by default, a background image will repeat itself indefinitely. you can specify where its **original position**, by choosing a horizontal `x` value, and a vertical `y` value.
+by default, a background image will repeat itself indefinitely. you can specify where its **original position** by choosing a horizontal `x` value, and a vertical `y` value.
 
 - pixel values `px`
 - percentages, relative to the HTML element's dimensions
@@ -804,7 +804,9 @@ body {
 }
 ```
 
-### background-repeat
+更多的用法请参考[MDN-background-position](https://developer.mozilla.org/en-US/docs/Web/CSS/background-position)
+
+#### background-repeat
 
 by default, a background image will repeat itself indefinitely. you can choose to make it repeat only horizontally, only vertically, or not at all.
 
@@ -812,15 +814,24 @@ by default, a background image will repeat itself indefinitely. you can choose t
 body {
   background-repeat: repeat-x;
 }
+
 body {
   background-repeat: repeat-y;
 }
+
 body {
   background-repeat: no-repeat;
 }
 ```
 
----
+#### background-size
+
+The background-size CSS property sets the size of the element's background image. The image can be left to its natural size, stretched, or constrained to fit the available space.
+
+- **contain**, scales the image as large as possible within its container without cropping or stretching the image.
+- **cover**, scales the image as large as possible to fill the container, stretching the image if necessary.
+- **auto**, scales the background image in the corresponding direction such that its intrinsic proportions are maintained.
+- **px or percentage**, stretches the image in the corresponding dimension to the specified length
 
 ## CSS display
 
@@ -828,18 +839,21 @@ Changing the type of an HTML element
 
 we've seen how there are mainly 2 types of HTML elements: block-level elements and inline ones. the `display` property allows to change the type of HTML element.
 
-### why not use an HTML inline element, like `<span>` then?
+#### why not use an HTML inline element, like `<span>` then?
 
-because you choose an HTML element for its meaning, not its rendering.  
-因为你选择 HTML 元素主要是为了语义, 而不是为了渲染样式的目的去选择特定的 HTML 元素, 渲染交给 CSS 来做. Each `display` options have specific rendering behaviors:
+because you choose an HTML element for its meaning, not its rendering.
+
+因为你选择 HTML 元素主要是为了语义, 而不是为了渲染样式的目的去选择特定的 HTML 元素, 渲染交给 CSS 来做.
+
+Each `display` options have specific rendering behaviors:
 
 - `block` will take up the whole width available
 - `inline` will act as plain text
 - `inline-block` as its name suggests, a compound(复合) of block and inline behavior
 - `list-item` is similar to `block` as it takes up the whole width available, but shows an additional bullet point
-- `table`, `table-row` and `table-cell` all have very specific, albeit(尽管) unexpected, behavior that allow more interesting layouts
+- `table`, `table-row` and `table-cell` all have very specific, albeit(尽管) unexpected behavior that allow more interesting layouts
 
-### display: block
+#### display: block
 
 This will turn any element into a **block** element.
 
@@ -857,8 +871,7 @@ This technique is often used on **links** in order to increase their clickable z
 
 ### display: inline
 
-This turns any element into **inline** elements, as if they were just simple text.  
-it is often used to create `horizontal navigators`, where list items are semantically but not visually useful.
+This turns any element into **inline** elements, as if they were just simple text. it is often used to create `horizontal navigators`, where list items are semantically but not visually useful.
 
 ```html
 <ul class="menu">
@@ -874,7 +887,7 @@ it is often used to create `horizontal navigators`, where list items are semanti
 }
 ```
 
-### display: list-item
+#### display: list-item
 
 The only HTML elements displayed as `list-item` are the **list-items `<li>`** but also the **definition descriptions `<dd>`** .
 
@@ -882,11 +895,11 @@ A list item is rendered with a bullet point (if an unordered list `<ul>`) or wit
 
 Because the rendering of these bullet points and numbers varies across browsers, and is also hard to style in CSS, the `display: list-item` rule is never used. Actually, it is common for `<li>`s to be rendered as `display: block` or `display: inline`, as they are more flexible to style.
 
-### display: none
+#### display: none
 
 Applying `display: none; ` to an HTML element removes it from your webpages. as if it never existed in your code.
 
-### visibility: hidden
+#### visibility: hidden
 
 The CSS property `visibility` is slightly similar to `display`. Applying `visibility: hidden; ` hidden an element from your page, but only turns it invisible: it still takes up the space it was supposed to.
 
@@ -895,8 +908,6 @@ The CSS property `visibility` is slightly similar to `display`. Applying `visibi
   visibility: hidden;
 }
 ```
-
----
 
 ## CSS height and width
 
