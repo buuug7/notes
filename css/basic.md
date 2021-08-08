@@ -1384,7 +1384,7 @@ There are dozens of pseudo-classes available, some of them for very specific sta
 
 From one color to another
 
-When we talk about gradients in CSS ,we talk about gradients of colors. There are 2 types of gradients in CSS:
+When we talk about gradients in CSS, we talk about gradients of colors. There are 2 types of gradients in CSS:
 
 - **linear**: colors go from point to another, in a straight line
 - **radials**: colors go from the center of a circle to its edges, in all directions
@@ -1509,6 +1509,7 @@ div {
   background-image: radial-gradient(closest-corner at 20px 20px, green, blue);
   width: 300px;
 }
+
 div: hover {
   background-image: radial-gradient(farthest-side at 20px 20px, green, blue);
 }
@@ -1531,27 +1532,31 @@ CSS gradients are powerful, considering how endless the options are. you can wri
 .button-grey {
   background-image: linear-gradient(#f2f2f2, #f2f2f2);
 }
+
 .button-yellow {
   background-image: linear-gradient(#fce374, #fcdf5b);
 }
+
 .button-orange {
   background-image: linear-gradient(#f58a38, #f57c20);
 }
+
 .button-red {
   background-image: linear-gradient(#ed6d64, #ed574c);
 }
+
 .button-purple {
   background-image: linear-gradient(#847bba, #7568ba);
 }
+
 .button-blue {
   background-image: linear-gradient(#42b0e3, #2ba9e3);
 }
+
 .button-green {
   background-image: linear-gradient(#97cc76, #8bcc62);
 }
 ```
-
----
 
 ## CSS transitions
 
@@ -1568,7 +1573,7 @@ you can define:
 
 you can set each CSS property individually or use the shorthand version `transition`, in that case only the duration is mandatory keep in mind that a transition is a special kind of animation. where there's only a start and an end state.
 
-### quick example
+#### quick example
 
 Transitions are often used on hover states.
 
@@ -1592,7 +1597,7 @@ a.with-transition {
 }
 ```
 
-### transition-duration
+#### transition-duration
 
 A transition's duration is the only CSS property needed to create a transition. it can either be set in seconds `2s` or milliseconds `100ms`
 
@@ -1601,19 +1606,22 @@ a {
   background: lightgrey;
   color: grey;
 }
+
 a: hover {
   background: yellow;
   color: red;
 }
+
 a.with-fast-transition {
   transition: 0.5s;
 }
+
 a.with-slow-transition {
   transition: 2s;
 }
 ```
 
-### transition-property
+#### transition-property
 
 only 1/3 of CSS properties can be animated. Mozillia has a [complete list](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties), by default, the `transition-property` property has a value of `all`, which simply means it will animate all possible properties. you can decide to only animate 1 or several properties.
 
@@ -1622,20 +1630,23 @@ a {
   background: lightgrey;
   color: grey;
 }
+
 a: hover {
   background: yellow;
   color: red;
 }
+
 a.with-background-transition {
   transition-property: background;
   transition: 0.5s;
 }
+
 a.with-all-transition {
   transition: 2s;
 }
 ```
 
-### transition-timing-function
+#### transition-timing-function
 
 The timing function determines how each property's value is calculated during the transition. by default, the transition is ease: it accelerates at the start and slows at the end.
 
@@ -1659,7 +1670,7 @@ div: hover {
 }
 ```
 
-### transition-delay
+#### transition-delay
 
 A delay will define how long the transitions has to wait before actually starting. like `transition-duration` you can either use seconds `s` or milliseconds `ms`.
 
@@ -1677,15 +1688,15 @@ a {
   color: white;
   transition: all 1s;
 }
+
 div: hover a {
   background: red;
 }
+
 a.with-delay {
   transition-delay: 1s;
 }
 ```
-
----
 
 ## CSS animations
 
@@ -1698,7 +1709,7 @@ We have just seen how CSS transitions are just a way to animate CSS properties b
 
 **CSS animations are like mini movies where you are the director giving out instructions(CSS rules) to your actors (HTML elements) for different scenes(keyframes). **
 
-### Animation properties
+#### Animation properties
 
 like the `transition` property, `animation` is a shorthand property for several others:
 
@@ -1710,7 +1721,7 @@ like the `transition` property, `animation` is a shorthand property for several 
 - **direction**: if the animation should be reversed or not
 - **fill-mode**: what styles are applied before the animation starts and after it ends
 
-### quick example
+#### quick example
 
 To animate a loading button, you could write a bouncing animation:
 
@@ -1725,6 +1736,7 @@ To animate a loading button, you could write a bouncing animation:
     box-shadow: 0 50px 50px rgba(0, 0, 0, 0.1);
   }
 }
+
 .loading-button {
   animation: bouncing 0.5s cubic-bezier(0.1, 0.25, 0.1, 1) 0s infinite alternate
     both;
@@ -1739,7 +1751,7 @@ To animate a loading button, you could write a bouncing animation:
 - direction: alternate(goes back and forth)
 - fill-mode: both
 
-### @keyframes
+#### @keyframes
 
 before applying animation to HTML elements, you need to **write animations using keyframes**. basically, keyframes are each **intermediate step** in an animation. They are defined using **percentages**.
 
@@ -1777,7 +1789,7 @@ p {
 }
 ```
 
-### animation-name
+#### animation-name
 
 The animation name is used at least twice
 
@@ -1788,12 +1800,13 @@ The animation name is used at least twice
 @keyframes whatever {
   /* ... */
 }
+
 .selector {
   animation-name: whatever;
 }
 ```
 
-### animation-duration
+#### animation-duration
 
 `animation-duration` can be set in seconds `1s` or milliseconds `200ms`
 
@@ -1805,7 +1818,7 @@ The animation name is used at least twice
 
 it defaults to `0s`, which means no animation at all.
 
-### animation-timing-function
+#### animation-timing-function
 
 just like `transition timing-functions`, animation timing functions can use keywords like `linear`, `ease-out`, or be defined using custom `cubic bezier` functions.
 
@@ -1817,7 +1830,7 @@ just like `transition timing-functions`, animation timing functions can use keyw
 
 it defaults to `ease`.
 
-### animation-delay
+#### animation-delay
 
 just like `transition delays`, animation delays can be set in seconds `1s` or milliseconds `200ms`. it defaults to `0s` which means no delay at all, it's useful when triggering multiple animations in sequence.
 
@@ -1827,15 +1840,17 @@ just like `transition delays`, animation delays can be set in seconds `1s` or mi
 .c {
   animation: bouncing 1s;
 }
+
 .b {
   animation-delay: 0.25s;
 }
+
 .c {
   animation-delay: 0.5s;
 }
 ```
 
-### animation-iteration-count
+#### animation-iteration-count
 
 by default, animations are only played once(value of `1`), you can set 3 types of values:
 
@@ -1848,7 +1863,7 @@ by default, animations are only played once(value of `1`), you can set 3 types o
 }
 ```
 
-### animation-direction
+#### animation-direction
 
 The animation's direction defines in which order the keyframes are read
 
@@ -1857,11 +1872,9 @@ The animation's direction defines in which order the keyframes are read
 - **alternate**: starts at `0%`, goes to `100%`, goes to `0%`
 - **alternate-reverse**: starts at `100%`, goes to `0%`, goes to `100%`
 
-### animation-fill-mode
+#### animation-fill-mode
 
 an animation's fill mode defines what happens before the animation starts and after it ends. the detail you can find [here](http://marksheet.io/css-animations.html#animation-fill-mode)
-
----
 
 ## CSS transform
 
@@ -1874,7 +1887,7 @@ CSS transforms are a collection of functions that allow to shape elements in par
 - **scale**: resize the element
 - **skew**: distorts(扭曲) the element
 
-### transform properties
+## transform properties
 
 There are 3 CSS transform properties available:
 
@@ -1882,11 +1895,11 @@ There are 3 CSS transform properties available:
 - `transform-origin` allows to modify the origin point of a transformation (works like `background positions`)
 - `transform-style` is for 3d settings
 
-### Doesn't break the flow
+## Doesn't break the flow
 
 to prevent unexpected behavior, transformed elements do not affect the flow, whether rotated, scaled or translated, the won't affect other elements.
 
-### translate
+## translate
 
 The `translate()` function allows to move an element across the plane(on the x and y axis). it accepts either:
 
@@ -1898,28 +1911,34 @@ The `translate()` function allows to move an element across the plane(on the x a
   0% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(240px, 0);
   }
+
   50% {
     transform: translate(240px, 140px);
   }
+
   75% {
     transform: translate(0, 140px);
   }
+
   100% {
     transform: translate(0, 0);
   }
 }
+
 p {
   animation: translating 4s linear infinite;
 }
 ```
 
-Remember: `transform` is the CSS property, `translate()` is the CSS value attached to that property (and also happens to be a function).  
+Remember: `transform` is the CSS property, `translate()` is the CSS value attached to that property (and also happens to be a function).
+
 you can use `translateX()` and `translateY()` to only move your element along the `x` and `y` axis respectively.
 
-### rotate
+## rotate
 
 The `rotate()` function allows to make an element revolve around a fixed point. By default, it revolves around the element's center.
 
@@ -1939,7 +1958,7 @@ p {
 }
 ```
 
-### scale
+## scale
 
 The `scale()` function allows to **resize an element**. It can either expand(扩大) or shrink(缩小) it. The function accepts either:
 
@@ -1952,29 +1971,35 @@ The range of possible value is :
 - `2` : the element doubles in size
 - `0.5` : the element is half of its size
 - `0` : the element basically disappears (as its height and width are equal to zero)
-- `-1` : the element is mirrored
+- `-1` : the element is mirrored(镜像)
 
 ```css
 @keyframes scaling {
   0% {
     transform: scale(1);
   }
+
   20% {
     transform: scale(2);
   }
+
   40% {
     transform: scale(0.5);
   }
+
   60% {
     transform: scale(0);
   }
+
   80% {
     transform: scale(-1);
   }
+
   100% {
     transform: scale(1);
   }
 }
+
 p {
   animation: scaling 10s steps(1) 0s infinite;
 }
@@ -1982,7 +2007,7 @@ p {
 
 like `translate()`, the `scale()` function has x and y versions: `scaleX()` and `scaleY()` to resize horizontally and vertically respectively.
 
-### skew
+## skew
 
 The `skew()` function allows to distort(扭曲) an element, by dragging its sides along a line basically.
 
@@ -1991,7 +2016,7 @@ This transform function is rarely used, as its effects are quite unpredictable(�
 Like `scale()`, the `skew()`function accepts either:
 
 - 1 parameter: the element is distorted horizontally
-- 2 parameter: the first value distorts the element horizongtally, the second one _vertically_
+- 2 parameter: the first value distorts the element horizontally, the second one vertically
 
 And like `rotate()`, `skew()` only accepts angle value like degrees `deg`.
 
@@ -2000,18 +2025,23 @@ And like `rotate()`, `skew()` only accepts angle value like degrees `deg`.
   0% {
     transform: skew(0deg);
   }
+
   20% {
     transform: skew(10deg);
   }
+
   40% {
     transform: skew(45deg);
   }
+
   60% {
     transform: skew(90deg);
   }
+
   80% {
     transform: skew(120deg);
   }
+
   100% {
     transform: skew(0deg);
   }
@@ -2022,7 +2052,7 @@ p {
 }
 ```
 
-### 3d functions
+## 3d functions
 
 3d version of `translate()`, which is `translate3d()`, and performs transformation along 3 dimensions, which means it includes the **z axis** as well(and as such, a standalone `translateZ()` function exists as well).
 
@@ -2039,8 +2069,6 @@ The **z** parameter basically make the element move closer and further, whether 
 }
 ```
 
----
-
 ## CSS responsiveness
 
 Designing for every screen.
@@ -2053,19 +2081,19 @@ what options are available to handle mobile devices?
 2. create a second website, like [m.facebook.com](http://m.facebook.com), and direct mobile devices to that website
 3. use responsive web design
 
-### device, browser, viewport
+#### device, browser, viewport
 
 before going further, we need to define some terms:
 
 - **device** the hardware used: smartphone, tablet, pc or laptop
-- **browser** the software running: Firefox, Google Chrome, Safari, Internet Explorer
+- **browser** the software running: Firefox, Google Chrome, Safari
 - **viewport** the region within the browser that actually displays the webpage.
 
 ![device/browser/viewport](device-browser-viewport.png)
 
-### Responsive web design
+#### Responsive web design
 
-The idea behind **responsive web design** is to make your website adapt to fit to any device.it does so by targetting devices with your CSS and applying certain styles on these devices only. Responsiveness relies upon the properties of either the device or the viewport. For example:
+The idea behind **responsive web design** is to make your website adapt to fit to any device. it does so by target devices with your CSS and applying certain styles on these devices only. Responsiveness relies upon the properties of either the device or the viewport. For example:
 
 - how wide is the viewport?
 - how high is the viewport?
@@ -2076,9 +2104,9 @@ depending on the answer to these questions, a responsive CSS will apply differen
 
 Up until now, every part of our CSS was used by every device that accessed out website. Responsive web design allow us to apply certain styles in certain cases.
 
-### media queries
+#### media queries
 
-We need to write blocks in our CSS that will only be used by devices that match that block's criterias(标准). these blocks are called **media queries**.
+We need to write blocks in our CSS that will only be used by devices that match that block's criterial(标准). these blocks are called **media queries**.
 
 ```css
 /* This part is read by every device/viewport */
@@ -2087,16 +2115,16 @@ body {
 }
 
 @media (min-width: 1200px) {
-  /* This part is only read by viewports wider than 1200px */
+  /* This part is only read by viewport wider than 1200px */
   body {
     font-size: 16px;
   }
 }
 ```
 
-here, the default text size is `14px`, but to accommodate for larger viewports, the text size is set to `16px` if the viewport is wider than 1200 pixels.
+here, the default text size is `14px`, but to accommodate for larger viewport, the text size is set to `16px` if the viewport is wider than 1200 pixels.
 
-### several parameters
+#### several parameters
 
 you can require **2 conditions** for a media query to be activated.
 
@@ -2104,6 +2132,7 @@ you can require **2 conditions** for a media query to be activated.
 body {
   font-size: 18px;
 }
+
 @media (min-width: 1000px) and (orientation: landscape) {
   body {
     font-size: 20px;
@@ -2111,7 +2140,7 @@ body {
 }
 ```
 
-### several CSS rules
+#### several CSS rules
 
 you can include as many CSS rules as you want in the media query.
 
@@ -2119,15 +2148,15 @@ you can include as many CSS rules as you want in the media query.
 
 Media queries require parameters which act like conditions that need to be filled in order for the media query to be activated. By writing `@media (min-width: 1200px)`, we tell the browser to read this block only if the viewport is wider than 1200px;
 
-#### width
+##### width
 
 The `width` parameter is the most used one in responsive web design. this comes from the fact that webpages are read vertically.
 
-#### height
+##### height
 
-The `height` parameter works like the width one, expect it performs its checks on the viewports's height. you can use `min-height` and `max-height`. it's rarely used, as websites are mainly scrollable vertically.
+The `height` parameter works like the width one, expect it performs its checks on the viewport height. you can use `min-height` and `max-height`. it's rarely used, as websites are mainly scrollable vertically.
 
-#### orientation
+##### orientation
 
 The orientation parameter can detect if the viewport is in either of the following modes:
 
@@ -2136,16 +2165,17 @@ The orientation parameter can detect if the viewport is in either of the followi
 
 ```css
 @media (orientation: portrait) {
-  /* for vertical viewports */
+  /* for vertical viewport */
 }
+
 @media (orientation: landscape) {
-  /* for horizontal viewports */
+  /* for horizontal viewport */
 }
 ```
 
 Although it's mostly used for tablets and smartphones, be aware that even on a widescreen monitor, the viewport can be in portrait if its width is smaller than its height.
 
-#### resolution
+##### resolution
 
 The `resolution` parameter is relevant to the `device's pixel density`, and can be expressed in either dots per inch `dpi` or dots per centimeter `dpcm`. it depends on:
 
@@ -2179,6 +2209,7 @@ A Use case would be to provide a default background image for every device, and 
   background-image: url(marksheet-logo.png);
   background-size: 40px 40px;
 }
+
 @media (min-resolution: 300dpi) {
   /* 80x80 logo resized to 40x40 */
   .logo {
@@ -2191,17 +2222,17 @@ keep in mind that the **background size must be set**. Otherwise, the `@2x` Reti
 
 > The `@2x` suffix is just Apple's notation for Retina images, and has been adopted as the de facto default notation in CSS.
 
-### mobile-first or desktop-first
+#### mobile-first or desktop-first
 
-A mobile-first CSS would use `min-width` media queries in order to apply special rules for large viewports:
+A mobile-first CSS would use `min-width` media queries in order to apply special rules for large viewport:
 
 ```css
 @media (min-width: 768px) {
-  /* Rules for tablets and bigger viewports */
+  /* Rules for tablets and bigger viewport */
 }
 
 @media (min-width: 992px) {
-  /* Rules for laptops, small desktop screens and bigger viewports */
+  /* Rules for laptops, small desktop screens and bigger viewport */
 }
 
 @media (min-width: 1200px) {
@@ -2209,15 +2240,15 @@ A mobile-first CSS would use `min-width` media queries in order to apply special
 }
 ```
 
-A desktop-first approach starts with styles for large screens and `max-width` media queries in order to apply special rules for large viewports.
+A desktop-first approach starts with styles for large screens and `max-width` media queries in order to apply special rules for large viewport.
 
 ```css
 @media (max-width: 1199px) {
-  /* rules for laptops, small desktop screens, and smaller viewports */
+  /* rules for laptops, small desktop screens, and smaller viewport */
 }
 
 @media (max-width: 991px) {
-  /* rules for tablets and smaller viewports */
+  /* rules for tablets and smaller viewport */
 }
 
 @media (max-width: 767px) {
@@ -2225,18 +2256,16 @@ A desktop-first approach starts with styles for large screens and `max-width` me
 }
 ```
 
----
-
 ## scss
 
 If your have found yourself having to repeat code throughout your CSS, replace several instance of the same value, or lose yourself in a mess of selectors, CSS preprocessor are for you.
 
 Preprocessor are, as their name suggest, tools that have their own language and will generate regular CSS file.
 
-### Sass vs SCSS
+#### Sass vs SCSS
 
-- Sass itself(Syntactically Awesome StyleSheets) in `. sass` files
-- SCSS(Sassy on CSS) in `. scss` files, which is something halfway between regular CSS and Sass
+- Sass itself(Syntactically Awesome StyleSheets) in `.sass` files
+- SCSS(Sassy on CSS) in `.scss` files, which is something halfway between regular CSS and Sass
 
 Remember that:
 
@@ -2246,7 +2275,7 @@ Remember that:
 - all feature are available for both syntaxes
 - everything in SCSS is available in Sass
 
-### why SCSS first
+#### why SCSS first
 
 - readability: the syntax is very similar to CSS
 - learning curve: it only and a few additional features on top of CSS
@@ -2254,7 +2283,7 @@ Remember that:
 - resources: lots of online articles to read and open source libraries to use
 - expandability: it's easy to go from SCSS to Sass
 
-### features
+#### features
 
 - variable
 - nesting
@@ -2262,13 +2291,13 @@ Remember that:
 - extensions: an easy way to inherit the same properties of another selector
 - operators: adding/subtract/multiply/divide values, like `960px / 4` or `$space * 2`
 
-### DRY code
+#### DRY code
 
 - variable prevent repeating values
 - nesting prevent repeating selectors
 - mixins and extensions prevent repeating properties
 
-### variables
+#### variables
 
 you need to prepend a variable with a `$` dollar sign:
 
@@ -2280,7 +2309,7 @@ body {
 }
 ```
 
-### Sass nesting
+#### nesting
 
 In Sass, nesting CSS rules allows to define hierarchy selectors:
 
@@ -2297,7 +2326,7 @@ to prevent rewriting the same parent selector, use the `&` instead
 
 ```scss
 .title {
-  &: hover {
+  &:hover {
     color: purple;
   }
 }
@@ -2306,12 +2335,12 @@ to prevent rewriting the same parent selector, use the `&` instead
 it will generate:
 
 ```css
-.title: hover {
+.title:hover {
   color: purple;
 }
 ```
 
-### mixins
+#### mixins
 
 When you find yourself writing the same code over and over again, it feels like Sass mixins might help your out.
 
@@ -2338,7 +2367,7 @@ you can reference this mixin in any CSS rule by using `@include`
 }
 ```
 
-As usual, this `. scss` will be compiled into `. css`.
+As usual, this `.scss` will be compiled into `.css`.
 
 ```css
 .modal-background {
@@ -2352,7 +2381,7 @@ As usual, this `. scss` will be compiled into `. css`.
 }
 ```
 
-### mixin with parameters
+#### mixin with parameters
 
 Because mixins are functions and because you might want to alter the output, mixins can accept parameters.
 
@@ -2386,7 +2415,7 @@ Optional parameters: if you want a parameter to have a default value while provi
 }
 ```
 
-### Sass extend
+#### Sass extend
 
 A Sass `@extend` allow inheriting CSS properties from another selector:
 
@@ -2408,9 +2437,9 @@ Difference with mixins:
 
 A Sass `@extend` is more efficient, as it only writes the common properties once.
 
-### Placeholders
+#### Placeholders
 
-Well, you might be thinking "The .small-uppercase isn't semantic! I could use it in my HTML! "?
+Well, you might be thinking "The `.small-uppercase` isn't semantic! I could use it in my HTML! "?
 
 You're right, and that's why placeholders exist in Sass.
 

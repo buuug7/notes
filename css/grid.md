@@ -2,11 +2,11 @@
 
 > [complete-guide-grid](https://css-tricks.com/snippets/css/complete-guide-grid/)
 
-CSS 网格布局是 CSS 中功能最强大的布局系统。它是一个二维系统，这意味着它既可以处理列又可以处理行，而 flexbox 很大程度上是一维系统。通过将 CSS 规则应用于父元素（成为 Grid 容器）和该元素的子元素（成为 Grid Items），您可以使用 Grid Layout。
+CSS 网格布局是 CSS 中功能最强大的布局系统. 它是一个二维系统, 这意味着它既可以处理列又可以处理行, 而 flexbox 很大程度上是一维系统. 通过将 CSS 规则应用于父元素(成为 Grid 容器)和该元素的子元素(成为 Grid Items), 您可以使用 Grid Layout.
 
 ## introduction
 
-CSS 网格布局（又称“网格”）是基于二维网格的布局系统，旨在完全改变我们设计基于网格的用户界面的方式。 CSS 一直被用来布置我们的网页，但是它从来没有做得很好。首先，我们使用表格，然后使用浮动，定位和内联块，但是所有这些方法本质上都是 hack，并且遗漏了许多重要功能（例如，垂直居中）。 Flexbox 提供了帮助，但它适用于更简单的一维布局，而不是复杂的二维布局（Flexbox 和 Grid 实际上可以很好地协同工作）。网格是专门为解决布局问题而创建的第一个 CSS 模块，自我们创建网站以来，我们一直在探索自己的方式。
+CSS 网格布局(又称"网格")是基于二维网格的布局系统, 旨在完全改变我们设计基于网格的用户界面的方式. CSS 一直被用来布局我们的网页, 但是它从来没有做得很好. 首先, 我们使用表格, 然后使用浮动, 定位和内联块, 但是所有这些方法本质上都是 hack, 并且遗漏了许多重要功能(例如, 垂直居中). Flexbox 提供了帮助, 但它适用于更简单的一维布局, 而不是复杂的二维布局(Flexbox 和 Grid 实际上可以很好地协同工作). 网格是专门为解决布局问题而创建的第一个 CSS 模块, 自我们创建网站以来, 我们一直在探索自己的方式.
 
 ## properties for the parent (grid container)
 
@@ -23,26 +23,32 @@ CSS 网格布局（又称“网格”）是基于二维网格的布局系统，�
 
 #### grid-template-columns grid-template-rows
 
-用空格分隔的值定义网格的列和行。这些值表示轨道大小，它们之间的间隔表示网格线。
+用空格分隔的值定义了网格的列和行. 这些值表示轨道大小, 它们之间的间隔表示网格线.
 
 - <track-size> can be a length, a percentage, or a fraction of the free space in the grid (using the fr unit)
 - <line-name> an arbitrary name of your choosing
 
 ```css
 .container {
-  grid-template-columns: ... | ...;
-  grid-template-rows: ... | ...;
+  /* e.g. 
+      1fr 1fr
+      minmax(10px, 1fr) 3fr
+      repeat(5, 1fr)
+      50px auto 100px 1fr
+  */
+  grid-template-columns: [line-name] <track-size>;
+  grid-template-rows: [line-name] <track-size>;
 }
 
 .container-1 {
-  grid-template-columns: 20px auto 30px;
+  grid-template-columns: [first-line] 20px [second-line] auto [third-line] 30px;
   grid-template-rows: 100px 200px auto;
 }
 ```
 
 #### grid-template-areas
 
-通过引用使用 grid-area 属性指定的网格区域的名称来定义网格模板。重复网格区域的名称会使内容跨越这些单元格。句点表示一个空单元格。语法本身提供了网格结构的可视化。
+通过引用使用 grid-area 属性指定的网格区域的名称来定义网格模板. 重复网格区域的名称会使内容跨越这些单元格. 句点表示一个空单元格. 语法本身提供了网格结构的可视化.
 
 - <grid-area-name> - the name of a grid area specified with grid-area
 - . - a period signifies an empty grid cell
@@ -52,7 +58,7 @@ CSS 网格布局（又称“网格”）是基于二维网格的布局系统，�
 .container {
   grid-template-areas:
     " | . | none | ..."
-    "...";
+    ". ..";
 }
 
 // eg
@@ -87,7 +93,7 @@ CSS 网格布局（又称“网格”）是基于二维网格的布局系统，�
 
 #### grid-template
 
-A shorthand for setting `grid-template-rows`, `grid-template-columns`, and `grid-template-areas` in a single declaration. it’s recommended to use the grid property instead of grid-template.
+A shorthand for setting `grid-template-rows`, `grid-template-columns`, and `grid-template-areas` in a single declaration. it's recommended to use the grid property instead of grid-template.
 
 ```css
 .container {
@@ -97,7 +103,7 @@ A shorthand for setting `grid-template-rows`, `grid-template-columns`, and `grid
 
 #### column-gap row-gap grid-column-gap grid-row-gap
 
-指定网格线的大小。您可以将其视为设置列/行之间的装订线宽度。
+指定网格线的大小. 您可以将其视为设置列/行之间的装订线宽度.
 
 `grid-column-gap` and `grid-row-gap` will be removed, recommended use `column-gap` and `row-gap`.
 
@@ -166,7 +172,7 @@ values:
 
 Sometimes the total size of your grid might be less than the size of its grid container. This could happen if all of your grid items are sized with non-flexible units like px. In this case you can set the alignment of the grid within the grid container. This property aligns the grid along the inline (row) axis (as opposed to **align-content** which aligns the grid along the block (column) axis).
 
-有时，网格的总大小可能小于其网格容器的大小。如果所有网格项目的大小都以非弹性单位（例如 px）为单位，则可能会发生这种情况。在这种情况下，您可以在网格容器中设置网格的对齐方式。此属性使网格沿内嵌（行）轴对齐（与 align-content 相对，后者使网格沿块（列）轴对齐）。
+有时, 网格的总大小可能小于其网格容器的大小. 如果所有网格项目的大小都以非弹性单位(例如 px)为单位, 则可能会发生这种情况. 在这种情况下, 您可以在网格容器中设置网格的对齐方式. 此属性使网格沿内嵌(行)轴对齐(与 align-content 相对, 后者使网格沿块(列)轴对齐).
 
 Values:
 
@@ -189,7 +195,7 @@ Values:
 
 Sometimes the total size of your grid might be less than the size of its grid container. This could happen if all of your grid items are sized with non-flexible units like px. In this case you can set the alignment of the grid within the grid container. This property aligns the grid along the block (column) axis (as opposed to **justify-content** which aligns the grid along the inline (row) axis).
 
-有时，网格的总大小可能小于其网格容器的大小。如果所有网格项目的大小都以非弹性单位（例如 px）为单位，则可能会发生这种情况。在这种情况下，您可以在网格容器中设置网格的对齐方式。该属性使网格沿块（列）轴对齐（与对齐内容相反，其使网格沿内联（行）轴对齐）。
+有时, 网格的总大小可能小于其网格容器的大小. 如果所有网格项目的大小都以非弹性单位(例如 px)为单位, 则可能会发生这种情况. 在这种情况下, 您可以在网格容器中设置网格的对齐方式. 该属性使网格沿块(列)轴对齐(与对齐内容相反, 其使网格沿内联(行)轴对齐).
 
 Values:
 
@@ -220,7 +226,7 @@ Values:
 
 Specifies the size of any auto-generated grid tracks (aka implicit grid tracks). Implicit tracks get created when there are more grid items than cells in the grid or when a grid item is placed outside of the explicit grid. (see The Difference Between Explicit and Implicit Grids)
 
-指定任何自动生成的网格轨道（也称为隐式网格轨道）的大小。当网格项目多于网格中的单元格或将网格项目放置在显式网格之外时，会创建隐式轨迹。
+指定任何自动生成的网格轨道(也称为隐式网格轨道)的大小. 当网格项目多于网格中的单元格或将网格项目放置在显式网格之外时, 会创建隐式轨迹.
 
 Values:
 
@@ -228,16 +234,16 @@ Values:
 
 ```css
 .container {
-  grid-auto-columns: <track-size>...;
-  grid-auto-rows: <track-size>...;
+  grid-auto-columns: <track-size>. ..;
+  grid-auto-rows: <track-size>. ..;
 }
 ```
 
 #### grid-auto-flow
 
-If you have grid items that you don’t explicitly place on the grid, the auto-placement algorithm kicks in to automatically place the items. This property controls how the auto-placement algorithm works.
+If you have grid items that you don't explicitly place on the grid, the auto-placement algorithm kicks in to automatically place the items. This property controls how the auto-placement algorithm works.
 
-如果您有未明确放置在网格上的网格项目，则自动放置算法会自动插入项目。此属性控制自动放置算法的工作方式。
+如果您有未明确放置在网格上的网格项目, 则自动放置算法会自动插入项目. 此属性控制自动放置算法的工作方式.
 
 Values:
 
@@ -263,7 +269,7 @@ Note:
 
 #### grid-column-start grid-column-end grid-row-start grid-row-end
 
-Determines a grid item’s location within the grid by referring to specific grid lines. grid-column-start/grid-row-start is the line where the item begins, and grid-column-end/grid-row-end is the line where the item ends.
+Determines a grid item's location within the grid by referring to specific grid lines. grid-column-start/grid-row-start is the line where the item begins, and grid-column-end/grid-row-end is the line where the item ends.
 
 Values:
 
@@ -367,7 +373,7 @@ place-self sets both the align-self and justify-self properties in a single decl
 
 Values:
 
-- auto – The “default” alignment for the layout mode.
+- auto – The "default" alignment for the layout mode.
 - <align-self> / <justify-self> – The first value sets align-self, the second value justify-self. If the second value is omitted, the first value is assigned to both properties.
 
 ## Special Functions and Keywords
@@ -378,4 +384,4 @@ Values:
 
 - There is repeat() function, which saves some typing, like making 10 columns: grid-template-columns: repeat(10, 1fr);
 
-- Combining all of these things can be extremely powerful, like grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); See the demo at the top of the page about “The Most Powerful Lines in Grid”.
+- Combining all of these things can be extremely powerful, like grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); See the demo at the top of the page about "The Most Powerful Lines in Grid".
