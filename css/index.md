@@ -6,7 +6,6 @@
 - [flex](./flex.md)
 - [grid](./grid.md)
 - [selector](./selector.md)
-- [pseudo-selector](./pseudo-selector.md)
 - [faq](./faq.md)
 
 ## Others
