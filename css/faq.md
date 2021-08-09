@@ -101,19 +101,6 @@ html {
 }
 ```
 
-## 浮动元素优先(floats first)
-
-浮动元素的文档顺序应该是第一位的, 浮动元素需要被包裹, 否则会引起文档结构颠倒, 请参考下面的例子
-
-```html
-<div class="parent">
-  <div class="float">Float</div>
-  <div class="content">
-    <!-- ... -->
-  </div>
-</div>
-```
-
 ## 浮动和清除(floats and clearing)
 
 任何内容后面跟着的浮动元素会环绕在该内容的周围直到你清除该浮动, 用下面给出的代码来解决你的浮动问题.
