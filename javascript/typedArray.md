@@ -43,7 +43,7 @@ const d2 = Int8Array.of(1, 2, 3);
 
 ## ArrayBuffer
 
-ArrayBuffer 对象用来表示通用的,固定长度的原始二进制缓冲区,它是一个字节数组,不能直接操作 ArrayBuffer 的内容,而是通过类型数组(TypedArray)或者 DataView 来操作.
+ArrayBuffer 对象用来表示通用的, 固定长度的原始二进制缓冲区, 它是一个字节数组, 不能直接操作 ArrayBuffer 的内容, 而是通过类型数组(TypedArray)或者 DataView 来操作.
 
 ```javascript
 const buffer = new ArrayBuffer(3);

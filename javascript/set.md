@@ -4,7 +4,7 @@ Set 对象是值的集合, 你可以按照插入的顺序迭代它的元素. Set
 
 ## 值的相等
 
-因为 Set 中的值总是唯一的, 所以需要判断两个值是否相等. +0 和-0 是相等的. 另外, NaN 和 undefined 都可以被存储在 Set 中, NaN 之间被视为相同的值(NaN 被认为是相同的, 尽管 NaN !== NaN).
+因为 Set 中的值总是唯一的, 所以需要判断两个值是否相等. `+0` 和 `-0` 是相等的. 另外, NaN 和 undefined 都可以被存储在 Set 中, NaN 之间被视为相同的值(NaN 被认为是相同的, 尽管 NaN !== NaN).
 
 ```javascript
 const mySet = new Set();
@@ -28,6 +28,7 @@ mySet.has(2);
 
 // 与 keys()方法相同, 返回一个新的迭代器对象, 该对象包含Set对象中的按插入顺序排列的所有元素的值.
 mySet.keys();
+
 // 与 values()方法相同
 mySet.values();
 
@@ -53,6 +54,7 @@ mySet.forEach((value, value2) => {
 
 ```javascript
 const arr = ["v1", "v2", "v3"];
+
 // Array 转换为 Set
 const mySet = new Set(arr);
 
@@ -64,6 +66,7 @@ console.log([...mySet]);
 
 ```javascript
 const arr = [1, 1, 2, 3, 3, 5];
+
 // [ 1, 2, 3, 5 ]
 const arrNoRepeat = [...new Set(arr)];
 ```
@@ -71,7 +74,8 @@ const arrNoRepeat = [...new Set(arr)];
 ## 与 String 相关
 
 ```javascript
-const str = "USA";
-// Set(3) { 'U', 'S', 'A' }
+const str = "abc";
+
+// Set(3) { 'a', 'b', 'c' }
 const setFromStr = new Set(str);
 ```

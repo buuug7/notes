@@ -2,18 +2,18 @@
 
 其中 String 的属性有两个, 一个是 length, 另一个是 prototype
 
-## String.fromCharCode(num1[,...[,numN]])
+## String.fromCharCode(num1[, ...[, numN]])
 
-静态方法,使用 unicode 编码来创建字符, 只作用于低位编码, 高位编码请使用 ES6 的`String.fromCodePoint()`.
+静态方法, 使用 unicode 编码来创建字符, 只作用于低位编码, 高位编码请使用 ES6 的`String.fromCodePoint()`.
 
 ```javascript
 // result: ABC
 String.fromCharCode(65, 66, 67);
 ```
 
-## String.fromCodePoint(num1[,...[,numN]])
+## String.fromCodePoint(num1[, ...[, numN]])
 
-静态方法,使用指定的 unicode 编码来创建字符串.
+静态方法, 使用指定的 unicode 编码来创建字符串.
 
 ```javascript
 // result: ABC
@@ -22,7 +22,7 @@ String.fromCodePoint(65, 66, 67);
 
 ## str.charAt(index)
 
-从一个字符串中返回指定索引的字符,index 的值介于 0 跟字符串长度减一之间的整数.
+从一个字符串中返回指定字符的索引, index 的值介于 0 跟字符串长度减 1 之间的整数.
 
 ```javascript
 "abc".charAt(1); // b
@@ -30,7 +30,7 @@ String.fromCodePoint(65, 66, 67);
 
 ## str.charCodeAt(index)
 
-返回 0-65535 之前的整数, 表示给定索引处的 UTF-16 代码单元,如果编码单元大于 0x10000, 则不能被一个 UTF-16 编码单元单独表示, 只能匹配第一个编码单元. 可以使用 ES6`coePointAt()`来替代.
+返回 0-65535 之前的整数, 表示给定索引处的 UTF-16 代码单元, 如果编码单元大于 0x10000, 则不能被一个 UTF-16 编码单元单独表示, 只能匹配第一个编码单元. 可以使用 ES6`coePointAt()`来替代.
 
 ```javascript
 // result: 97
@@ -46,7 +46,7 @@ String.fromCodePoint(65, 66, 67);
 "abc".codePointAt(1);
 ```
 
-## str.concat(string2 [,...[,StringN]])
+## str.concat(string2 [, ...[, StringN]])
 
 将一个或者多个字符串与原字符串连接合并, 返回一个新的字符串.
 
@@ -109,7 +109,7 @@ String.fromCodePoint(65, 66, 67);
 
 返回 searchValue 在 str 中最后出现的位置, 如果未找到则返回-1. 第二个可选参数默认值为 str.length, 如果负数则被当做 0 处理, 如果大于 str.length 则被当做 str.length.
 
-> 注意它是从后往前查找的,但是返回的 index 是从前往后的
+> 注意它是从后往前查找的, 但是返回的 index 是从前往后的
 
 ```javascript
 // result: 3
@@ -160,7 +160,7 @@ String.fromCodePoint(65, 66, 67);
 
 ## str.repeat(count)
 
-构造并返回新的字符串,新字符串是 str 的 count 次连接,其中 count>=0
+构造并返回新的字符串, 新字符串是 str 的 count 次连接, 其中 count>=0
 
 ```javascript
 // result: abcabcabc
@@ -184,7 +184,7 @@ String.fromCodePoint(65, 66, 67);
 
 ## str.search(regexp)
 
-使用 regexp 正则表达式来匹配,如果匹配成功返回索引, 否则返回-1
+使用 regexp 正则表达式来匹配, 如果匹配成功返回索引, 否则返回-1
 
 ```javascript
 // result: 0
@@ -218,7 +218,7 @@ String.fromCodePoint(65, 66, 67);
 
 ```javascript
 // result: ["a", "b", "c"]
-"a,b,c".split(",");
+"a, b, c".split(", ");
 ```
 
 ## str.substr(start[, length])
@@ -244,7 +244,7 @@ String.fromCodePoint(65, 66, 67);
 
 ## str.substring(indexStart[, indexEnd])
 
-返回 str 字符串从 indexStart 索引开始到 indexEnd 索引之间的子字符串,不包括 indexEnd. 如果省略 indexEnd 则一直提取到字符串的末尾.
+返回 str 字符串从 indexStart 索引开始到 indexEnd 索引之间的子字符串, 不包括 indexEnd. 如果省略 indexEnd 则一直提取到字符串的末尾.
 
 ```javascript
 // result: "b"
@@ -285,7 +285,7 @@ new String("hello world").valueOf();
 
 ## str.trim()
 
-删除 str 字符串两端的空白字符,空白字符包括(space,tab, ..)
+删除 str 字符串两端的空白字符, 空白字符包括(space, tab, ..)
 
 ```javascript
 // result: hello world
@@ -332,15 +332,13 @@ for (let v of "abc") {
 返回给定模板字符串的原始字面量值
 
 ```javascript
-// result: "Hi\n!"
-String.raw`Hi\n!`;
+// result: "Hi\n! "
+String.raw`Hi\n! `;
 
 const name = "bob";
 // result: "hello, bob"
 String.raw`hello, ${name}`;
 ```
-
----
 
 ## str.toLocaleLowerCase()
 

@@ -9,6 +9,37 @@ screen.orientation.onchange = function () {
 };
 ```
 
+## fetch 下载的例子
+
+```javascript
+fetch(url, myInit).then((res) => {
+  res.blob().then((blob) => {
+    const link = document.createElement("a");
+    const url = window.URL.createObjectURL(blob);
+    const fileName = "fileName.txt";
+    link.href = url;
+    link.download = fileName;
+    link.click();
+    window.URL.revokeObjectURL(url);
+  });
+});
+```
+
+## fetch 上传文件
+
+```javascript
+const api = "http://localhost: 3000/api/upload;
+const formData = new FormData();
+formData.append("img", file);
+
+fetch(api, {
+  method: "post",
+  body: formData,
+}). then((res) => {
+  //
+});
+```
+
 ## 保存 base64 文件
 
 ```javascript
@@ -20,7 +51,7 @@ screen.orientation.onchange = function () {
  * @return {void}
  */
 function downloadPDF(pdf) {
-  const linkSource = `data:application/pdf;base64,${pdf}`;
+  const linkSource = `data: application/pdf; base64, ${pdf}`;
   const downloadLink = document.createElement("a");
   const fileName = "vct_illustration.pdf";
 
@@ -32,19 +63,15 @@ function downloadPDF(pdf) {
 
 ## React and Vue are MVVM architecture ?
 
-首先他们都不是 MVVM, 仅仅是 MVVM 的一部分, (V or VM), 具体是 V 还是 VM 有争论, 没有统一的答案..
+MVVM 是一种架构思想, 不是指具体技术, 首先他们都不是 MVVM, 仅仅是 MVVM 的一部分.
 
 对于 React
 
-It's more like MVVM and the mostly feature equivalent Vue officially declares itself as MVVM. React is the VVM of MVVM. The Model part is left to you to implement and usually depends on what kind of state management you decide to use.
+MVVM 最重要的一个特征就是数据双向绑定, 而 React 是单向数据流, 状态驱动视图, 它没有纯粹意义上的 VM, 它有的只是用属性和状态去映射视图, 很明显不是 MVVM. 顶多也就是 MVVM 中的 V 层.
 
 对于 Vue
 
-Technically, Vue.js is focused on the ViewModel layer of the MVVM pattern. It connects the View and the Model via two way data bindings. Actual DOM manipulations and output formatting are abstracted away into Directives and Filters.
-
-References:
-
-- https://stackoverflow.com/questions/51506440/mvvm-architectural-pattern-for-a-reactjs-application
+从技术上讲, Vue.js 主要关注 MVVM 模式的 ViewModel 层, 它通过双向数据绑定连接视图和模型, 它更像是 MVVM 但并未完全按照 MVVM 去实现, 只是借鉴了 MVVM 中的一些思想.
 
 ## javascript 监听动画完成
 
@@ -54,7 +81,7 @@ dom.addEventListener("transitionend", (e) => {
 });
 ```
 
-## `$(document).ready` equivalent without jQuery
+## `$(document). ready` equivalent without jQuery
 
 ```javascript
 document.addEventListener("DOMContentLoaded", function (event) {
@@ -62,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 });
 ```
 
-## 原型,构造函数和实例的关系
+## 原型, 构造函数和实例的关系
 
 每个构造函数都有一个原型对象, 原型对象包含了一个指向构造函数的指针, 而实例中包含了指向原型对象的内部指针.
 
@@ -121,22 +148,7 @@ encodeURIComponent 转义除了如下字符串外的所有字符串
 A-Z a-z 0-9 - _ . ! ~ * ' ( )
 ```
 
-也就是 encodeURIComponent 会转义更多的字符串，建议使用 encodeURIComponent 编码你的 URI
-
-## fetch 上传文件
-
-```javascript
-const api = "http://localhost:3000/api/upload;
-const formData = new FormData();
-formData.append("img", file);
-
-fetch(api, {
-  method: "post",
-  body: formData,
-}).then((res) => {
-  //
-});
-```
+也就是 encodeURIComponent 会转义更多的字符串, 建议使用 encodeURIComponent 编码你的 URI
 
 ## 宏任务 微任务
 
@@ -154,7 +166,7 @@ fetch(api, {
 浏览器为了能够使得 JS 引擎跟 UI 引擎有序配合执行, 会在每一个 macro task 执行结束后, 在下一个 macro task 执行前, 对页面进行重新渲染. 执行流程为:
 
 ```
-macro task(JS 引擎) -> render(UI引擎) ->macro task(JS 引擎)...
+macro task(JS 引擎) -> render(UI引擎) ->macro task(JS 引擎). ..
 ```
 
 微任务(micro task), 包括:
@@ -178,7 +190,7 @@ micro task -> micro task -> ...
 - 微任务实际是宏任务的一个步骤, 所有微任务会在下一个宏任务之前会全部执行完毕.
 - 在微任务执行过程中产生的微任务会直接添加到微任务队列末端, 并在下一个宏任务执行之前全部执行掉.
 - 如果在微任务执行过程中产生的宏任务, 则会进入到宏任务队列末尾, 按照宏任务顺序在后面的事件循环中执行.
-- process.nextTick 会在当前执行栈的末尾, 下一次 Event loop 之前触发回调函数,也就是说, 它指定的任务总是发生在所有异步任务之前.
+- process.nextTick 会在当前执行栈的末尾, 下一次 Event loop 之前触发回调函数, 也就是说, 它指定的任务总是发生在所有异步任务之前.
 
 ## process.nextTick 跟 setImmediate 区别
 
@@ -221,19 +233,19 @@ C();
 
 ## setTimeout()
 
-单线程运行机制，同一时间只能做一件事。无论怎样，都是要等主线线程的流程执行完毕后才会进行，且按照 setTimeout 设置的顺序进行排队执行。该函数指定的任务为宏任务, 优先界别低于 process.nextTick().
+单线程运行机制, 同一时间只能做一件事. 无论怎样, 都是要等主线线程的流程执行完毕后才会进行, 且按照 setTimeout 设置的顺序进行排队执行. 该函数指定的任务为宏任务, 优先级别低于 `process.nextTick()`.
 
 ## process.nextTick()
 
-nodeJs 的一个异步执行函数，效率比 setTimeout(fn, 0)更高，执行顺序要早于 setTimeout，在主逻辑的末尾任务队列调用之前执行。
+nodeJs 的一个异步执行函数, 优先级别比 `setTimeout` 更高, 执行顺序要早于 setTimeout, 在主逻辑的末尾任务队列调用之前执行.
 
 ## setInterval()
 
-setInterval()定时器函数，按照指定的周期不断调用函数。等待主线程执行完毕后调用。timeout 时间一致时，按照 setInterval 设置的顺序来执行。
+setInterval() 定时器函数, 按照指定的周期不断调用函数. 等待主线程执行完毕后调用. timeout 时间一致时, 按照 setInterval 设置的顺序来执行.
 
 ## package.json 中版本依赖通配符
 
-NPM 仓库中的包都是遵守语义化版本格式, 也就是: `主版本号.次版本号.修订号`, 详情参考[语义化版本 2.0.0](https://semver.org/lang/zh-CN/). 在 package.json 中指定版本号的方式有下面三种:
+NPM 仓库中的包都是遵守语义化版本格式, 也就是: `主版本号. 次版本号. 修订号`, 详情参考[语义化版本 2.0.0](https://semver.org/lang/zh-CN/). 在 package.json 中指定版本号的方式有下面三种:
 
 - 指定具体版本号`3.1.2`.
 - 使用 `~` 通配符, 该通配符只改变修订号, 也就是最后一位, `~3.1.2`表示版本号大于等于`3.1.2`, 小于`3.2.0`
@@ -245,41 +257,15 @@ NPM 仓库中的包都是遵守语义化版本格式, 也就是: `主版本号.�
 window.open(
   url,
   "Share",
-  "width=550,height=400,toolbar=0,scrollbars=1,location=0,statusbar=0,menubar=0,resizable=0"
+  "width=550, height=400, toolbar=0, scrollbars=1, location=0, statusbar=0, menubar=0, resizable=0"
 );
 ```
 
-## 为什么有些函数前面有个`+function(){}`或者`!function(){}`
+## 为什么有些函数前面有个`+function(){}()`或者`! function(){}()`
+
+他们都是 IIFE( 立即调用函数表达式)的简写形式, 使用一元操作符来简化, 现在不建议在你的代码中这样书写. `+function(){}()`或者`! function(){}()` 等同于 `(function(){})()`.
 
 参考[stackoverflow](https://stackoverflow.com/questions/5827290/javascript-function-leading-bang-syntax)
-
-## fetch 下载的例子
-
-```javascript
-fetch(url, myInit).then((res) => {
-  const contentType = res.headers.get("Content-Type");
-  // 根据返回contentType, 处理是json, 还是下载文件
-  if (contentType.toLowerCase() == "application/json;charset=utf-8") {
-    res.json().then((data) => {
-      alert(data.success);
-    });
-  } else if (
-    contentType.toLowerCase() ==
-    "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-  ) {
-    res.blob().then((blob) => {
-      // 创建一个a标签, 用于下载
-      var a = document.createElement("a");
-      var url = window.URL.createObjectURL(blob);
-      var fileName = "被下载的文件.txt";
-      a.href = url;
-      a.download = fileName;
-      a.click();
-      window.URL.revokeObjectURL(url);
-    });
-  }
-});
-```
 
 ## Javascript 获取时间
 
@@ -304,7 +290,7 @@ const minutes = now
 
 0.1+0.2 === 0.30000000000000004(17 位小数), 返回为 false, 所以不相等.
 
-在不知道浮点数位数时应该怎样判断两个浮点数之和与第三数是否相等?可以使用 toFixed()对计算结果进行精度缩小来处理.
+在不知道浮点数位数时应该怎样判断两个浮点数之和与第三数是否相等? 可以使用 toFixed()对计算结果进行精度缩小来处理.
 
 ```javascript
 const a = 0.1;
@@ -317,14 +303,14 @@ console.log(sum === c.toString()); // true
 
 ## 如何解决不同浏览器的样式兼容性问题?
 
-- 在确定问题原因和有问题的浏览器后, 使用单独的样式表, 仅供出现问题的浏览器加载. 这种方法需要使用服务器端渲染.
+- 在确定问题原因和有问题的浏览器后, 使用单独的样式表, 仅供出现问题的浏览器加载.
 - 使用已经处理好此类问题的库, 比如 Bootstrap.
 - 使用 autoprefixer 自动生成 CSS 属性前缀.
 - 使用 Reset CSS 或 Normalize.css.
 
 ## 如何为功能受限的浏览器提供页面? 使用什么样的技术和流程?
 
-- 优雅的降级: 为现代浏览器构建应用, 同时确保它在旧版浏览器中正常运行.
+- 优雅的降级: 优先为现代浏览器构建应用, 同时确保它在旧版浏览器中正常运行.
 - 渐进式增强: 构建基于用户体验的应用, 但在浏览器支持时添加新增功能.
 - 利用 caniuse.com 检查特性支持.
 - 使用 autoprefixer 自动生成 CSS 属性前缀.
@@ -332,20 +318,20 @@ console.log(sum === c.toString()); // true
 
 ## 响应式设计与自适应设计有何不同?
 
-响应式设计和自适应设计都以提高不同设备间的用户体验为目标, 根据视窗大小, 分辨率, 使用环境和控制方式等参数进行优化调整.
+响应式设计和自适应设计都以提高不同设备间的用户体验为目标, 根据视窗大小, 分辨率, 使用环境等参数进行优化调整.
 
 响应式设计的适应性原则: 网站应该凭借一份代码, 在各种设备上都有良好的显示和使用效果. 响应式网站通过使用媒体查询, 自适应栅格和响应式图片, 基于多种因素进行变化, 创造出优良的用户体验. 就像一个球通过膨胀和收缩, 来适应不同大小的篮圈.
 
-自适应设计更像是渐进式增强的现代解释. 与响应式设计单一地去适配不同, 自适应设计通过检测设备和其他特征, 从早已定义好的一系列视窗大小和其他特性中, 选出最恰当的功能和布局. 与使用一个球去穿过各种的篮筐不同, 自适应设计允许使用多个球, 然后根据不同的篮筐大小, 去选择最合适的一个.
+自适应设计更像是渐进式增强的现代解释. 与响应式设计单一地去适配不同, 自适应设计通过检测设备和其他特征, 从早已定义好的一系列样式中, 选出最恰当的一份样式代码. 与使用一个球去穿过各种的篮筐不同, 自适应设计允许使用多个球, 然后根据不同的篮筐大小, 去选择最合适的一个.
 
 ## 请简述 JavaScript 中的 this.
 
-JS 中的 this 是一个相对复杂的概念, 不是简单几句能解释清楚的. 粗略地讲, 函数的调用方式决定了 this 的值. this 取值符合以下规则:
+JavaScript 中的 this 是一个相对复杂的概念, 不是简单几句能解释清楚的. 粗略地讲, 函数的调用方式决定了 this 的值. this 取值符合以下规则:
 
 - 在调用函数时使用 new 关键字, 函数内的 this 是一个全新的对象.
-- 如果 apply, call 或 bind 方法用于调用, 创建一个函数, 函数内的 this 就是作为参数传入这些方法的对象.
+- 如果 apply, call 或 bind 方法用于调用, 会创建一个新函数, 函数内的 this 就是当前调用方法传入的 this.
 - 当函数作为对象里的方法被调用时, 函数内的 this 是调用该函数的对象. 比如当 obj.method()被调用时, 函数内的 this 将绑定到 obj 对象.
-- 如果调用函数不符合上述规则, 那么 this 的值指向全局对象(global object). 浏览器环境下 this 的值指向 window 对象, 但是在严格模式下('use strict'), this 的值为 undefined.
+- 如果调用函数不符合上述规则, 那么 this 的值指向全局对象(global). 浏览器环境下 this 的值指向 window 对象, 但是在严格模式下('use strict'), this 的值为 undefined.
 - 如果符合上述多个规则, 则较高的规则(1 号最高, 4 号最低)将决定 this 的值.
 - 如果该函数是 ES2015 中的箭头函数, 将忽略上面的所有规则, this 被设置为它被创建时的上下文.
 
@@ -353,9 +339,9 @@ JS 中的 this 是一个相对复杂的概念, 不是简单几句能解释清楚
 
 这是一个非常常见的 JavaScript 问题. 所有 JS 对象都有一个`__proto__`属性, 指向它的原型对象. 当试图访问一个对象的属性时, 如果没有在该对象上找到, 它还会搜寻该对象的原型, 以及该对象的原型的原型, 依次层层向上搜索, 直到找到一个名字匹配的属性或到达原型链的末尾. 这种行为是在模拟经典的继承.
 
-## null, undefined 和未声明变量之间有什么区别?如何检查判断这些状态值?
+## null, undefined 和未声明变量之间有什么区别? 如何检查判断这些状态值?
 
-当没有提前使用 var, let 或 const 声明变量, 就为一个变量赋值时, 成为全局作用域下定义的变量. 在严格模式下, 给未声明的变量赋值, 会抛出 ReferenceError 错误.
+当没有提前使用 var, let 或 const 声明变量, 就为一个变量赋值时, 则会成为全局作用域下定义的变量. 在严格模式下, 给未声明的变量赋值, 会抛出 ReferenceError 错误.
 
 当一个变量已经声明, 但没有赋值时, 该变量的值是 undefined. 如果一个函数的执行结果被赋值给一个变量, 但是这个函数却没有返回任何值, 那么该变量的值是 undefined. 可以使用 `typeof` 或者 `===` 去检测一个值是否是 undefined.
 
@@ -377,7 +363,7 @@ null 只能被显式赋值给变量. 它表示空值, 与被显式赋值 undefin
 - 有些网络爬虫不执行 JavaScript, 也不会看到 JavaScript 加载的内容.
 - 基本上包括大部分 SPA 的缺点
 
-## 什么是"use strict";?使用它有什么优缺点?
+## 什么是"use strict"; ? 使用它有什么优缺点?
 
 `use strict`是用于对整个脚本或单个函数启用严格模式的语句. 严格模式是可选择的一个限制 JavaScript 的变体一种方式 .
 
@@ -416,11 +402,11 @@ null 只能被显式赋值给变量. 它表示空值, 与被显式赋值 undefin
 
 ## Pure Functions 纯函数
 
-一个函数的返回结果只依赖于它的参数, 并且在执行过程里面没有副作用(side effects), 我们就把这个函数叫做纯函数.优点有:
+一个函数的返回结果只依赖于它的参数, 并且在执行过程里面没有副作用(side effects), 我们就把这个函数叫做纯函数. 优点有:
 
 - 容易可测试(testable)
 - 因为相同的输入必定是相同的输出, 因此结果可以缓存(cacheable)
-- 因为不用担心有副作用(side-effects),因此可以更好地工作
+- 因为不用担心有副作用(side-effects), 因此可以更好地工作
 
 ## DOCTYPE 有什么用?
 
@@ -449,7 +435,7 @@ const ty = rs.substring(0, rs.length - 1).toLowerCase(); // date
 
 ## restful
 
-REST 是英文 representational state transfer(表象性状态转变)或者表述性状态转移. Rest 是 web 服务的一种架构风格, 使用 HTTP, URI, XML, JSON, HTML 等广泛流行的标准和协议. 轻量级, 跨平台, 跨语言的架构设计. 它是一种设计风格, 不是一种标准, 是一种思想.
+REST 是英文 representational state transfer(表象性状态转变)或者表述性状态转移. Rest 是 web 服务的一种架构风格, 使用 HTTP, URI, XML, JSON, HTML 等广泛流行的标准和协议. 轻量级, 跨平台, 跨语言的架构设计. 它是一种设计风格, 一种思想, 而不是一种标准.
 
 restful 对应的中文是 rest 式的. Restful web service 是一种常见的 rest 的应用, 是遵守了 rest 风格的 web 服务. rest 式的 web 服务是一种 ROA(The Resource-Oriented Architecture)(面向资源的架构).
 
@@ -457,7 +443,7 @@ restful 对应的中文是 rest 式的. Restful web service 是一种常见的 r
 
 - 网络上的所有事物都被抽象为资源
 - 每个资源都有一个唯一的资源标识符
-- 同一个资源具有多种表现形式(xml,json 等)
+- 同一个资源具有多种表现形式(xml, json 等)
 - 对资源的各种操作不会改变资源标识符
 - 所有的操作都是无状态的
 - 符合 REST 原则的架构方式即可称为 RESTful
@@ -481,7 +467,7 @@ RESTful 用法:
 | PUT/PATCH | /photos/{photo} | 更新特定 photo  |
 | DELETE    | /photos/{photo} | 删除特定 photo  |
 
-之前的操作是没有问题的, 大神认为是有问题的, 有什么问题呢?你每次请求的接口或者地址, 都在做描述. 例如查询的时候用了 query, 新增的时候用了 create, 其实完全没有这个必要, 我使用了 get 请求, 就是查询. 使用 post 请求, 就是新增的请求, 我的意图很明显, 完全没有必要做描述, 这就是为什么有了 restful.
+之前的操作是没有问题的, 大神认为是有问题的, 有什么问题呢? 你每次请求的接口或者地址, 都在做描述. 例如查询的时候用了 query, 新增的时候用了 create, 其实完全没有这个必要, 我使用了 get 请求, 就是查询. 使用 post 请求, 就是新增的请求, 我的意图很明显, 完全没有必要做描述, 这就是为什么有了 restful.
 
 ### 如何使用
 
@@ -496,14 +482,31 @@ RESTful 用法:
 
 ## OSI
 
-OSI(Open System Interconnect), 即开放式系统互联. 一般都叫 OSI 参考模型, OSI 定义了网络互连的七层框架(物理层, 数据链路层, 网络层, 传输层, 会话层, 表示层, 应用层).
-![OSI](.//resource/osi.png)
+OSI(Open System Interconnect), 即开放式系统互联. 一般都叫 OSI 参考模型, OSI 定义了网络互连的七层框架:
+
+- 应用层
+- 表示层
+- 会话层
+- 传输层
+- 网络层
+- 数据链路层
+- 物理层
+
+虽然 OSI 定义了七层,但是现在我们常用的是基于 TCP/IP 的五层协议:
+
+- 应用层
+- 传输层
+- 网络层
+- 数据链路层
+- 物理层
+
+![OSI](./resource/osi.png)
 
 ## HTTP
 
 超文本传输协议(英文: HyperText Transfer Protocol, 缩写: HTTP)是一种用于分布式, 协作式和超媒体信息系统的应用层协议. HTTP 是万维网的数据通信的基础. 设计 HTTP 最初的目的是为了提供一种发布和接收 HTML 页面的方法. 通过 HTTP 或者 HTTPS 协议请求的资源由统一资源标识符(Uniform Resource Identifiers, URI)来标识.
 
-HTTP(HyperText Transport Protocol)是超文本传输协议的缩写, 它是一个**应用层**协议, 它用于传送 WWW 方式的数据. HTTP 协议采用了请求/响应模型. 客户端向服务器发送一个请求, 请求头包含请求的方法, URL, 协议版本, 以及包含请求修饰符, 客户信息和内容的类似于 MIME 的消息结构. 服务器以一个状态行作为响应, 响应的内容包括消息协议的版本, 成功或者错误编码加上包含服务器信息, 实体元信息以及可能的实体内容.
+HTTP(HyperText Transport Protocol)是超文本传输协议的缩写, 它是一个**应用层**协议, 它用于传送 WWW 方式的数据. HTTP 协议采用了请求/响应模型. 客户端向服务器发送一个请求, 请求头包含请求的方法, URL, 协议版本, 以及包含请求修饰符, 客户信息和内容的类似于 MIME 的消息结构. 服务器以一个状态行作为响应, 响应的内容包括消息协议的版本, 成功或者错误编码加上包含服务器相关信息, 实体元信息以及可能的实体内容.
 
 ## TCP
 
@@ -533,17 +536,17 @@ IP 是在 TCP/IP 协议族中**网络层**的主要协议, 任务是仅仅根据
 
 ## options 请求
 
-在有很多情况下,当我们在 js 里面调用一次 ajax 请求时,在浏览器那边却会查询到两次请求,第一次的 Request Method 参数是 OPTIONS,还有一次就是我们真正的请求,比如 get 或是 post 请求方式
+在有很多情况下, 当我们在 js 里面调用一次 ajax 请求时, 在浏览器那边却会查询到两次请求, 第一次的 Request Method 参数是 OPTIONS, 还有一次就是我们真正的请求, 比如 get 或是 post 请求方式
 
-查阅相关的资料之后发现,这是浏览器对复杂跨域请求的一种处理方式,在真正发送请求之前,会先进行一次预请求,就是我们刚刚说到的参数为 OPTIONS 的第一次请求,他的作用是用于试探性的服务器响应是否正确,即是否能接受真正的请求,如果在 options 请求之后获取到的响应是拒绝性质的,例如 500 等 http 状态,那么它就会停止第二次的真正请求的访问
+这是浏览器对复杂跨域请求的一种处理方式, 在真正发送请求之前, 会先进行一次预请求, 就是我们刚刚说到的参数为 OPTIONS 的第一次请求, 他的作用是用于试探性的服务器响应是否正确, 即是否能接受真正的请求, 如果在 options 请求之后获取到的响应是拒绝性质的, 例如 500 等 http 状态, 那么它就会停止第二次的真正请求的访问
 
-大致说明一下,有三种方式会导致这种现象:
+大致说明一下, 有三种方式会导致这种现象:
 
 1. 请求的方法不是 GET/HEAD/POST
 2. POST 请求的 Content-Type 并非 application/x-www-form-urlencoded, multipart/form-data, 或 text/plain
 3. 请求设置了自定义的 header 字段
 
-比如我的 Content-Type 设置为"application/json;charset=utf-8"并且自定义了 header 选项导致了这种情况.
+比如我的 Content-Type 设置为"application/json; charset=utf-8"并且自定义了 header 选项导致了这种情况.
 
 ## 原型链继承
 
@@ -553,6 +556,7 @@ IP 是在 TCP/IP 协议族中**网络层**的主要协议, 任务是仅仅根据
 function Animal() {
   this.color = "red";
 }
+
 Animal.prototype.say = function () {
   return "I am a animal";
 };
@@ -570,15 +574,15 @@ dog1.say(); // I am a animal
 // 设置cookie
 const now = new Date();
 now.setTime(now.getTime() + 24 * 60 * 60 * 1000);
-document.cookie = `key=value;expires=${now.toUTCString()};path=/;domain=localhost`;
+document.cookie = `key=value; expires=${now.toUTCString()}; path=/; domain=localhost`;
 
 // 读取cookie
-const cookies = document.cooke;
+const cookies = document.cookie;
 ```
 
 ## 你对 MVVM 的理解
 
-它是将"数据模型数据双向绑定"的思想作为核心, 因此在 View 和 Model 之间没有联系, 通过 ViewModel 进行交互, 而且 Model 和 ViewModel 之间的交互是双向的, 因此视图的数据的变化会同时修改数据源, 而数据源数据的变化也会立即反应在 view 层.
+它是将**数据双向绑定**的思想作为核心, View 和 Model 之间没有联系, 而是通过 ViewModel 把 View 跟 Model 进行连接, 因此视图的数据的变化会同时修改数据源, 而数据源数据的变化也会立即反应在 view 层.
 
 优点是在表单交互较多的场景下, 会简化大量与业务无关的代码. 缺点就是无法追踪局部状态的变化, 增加了出错时 debug 的难度
 
@@ -596,13 +600,16 @@ const cookies = document.cooke;
 
 ## 经常使用的 ES6 中的特性有哪些
 
-- let ,const
+- let, const
+- Map, Set
+- 默认参数
+- 剩余参数
+- 展开操作符, 主要用在给函数传参, 多个数组合并, 多个对象合并
+- 解析赋值, 把一个对象或者数组中的元素一次性赋值给多个变量
 - 箭头函数
-- 数组对象的结构析构
 - 字符串模板
-- set,map
 - class
-- promise
+- 模块导入导出
 
 ## 解释原型继承 prototypal inheritance 的工作原理
 
@@ -610,9 +617,9 @@ const cookies = document.cooke;
 
 ## 作用域链 Scope Chain
 
-javascript 有两种作用域类型, 局部作用域跟全局作用域, 作用域决定了变量的可见性. 函数内部申明的变量为局部变量, 函数之外申明的变量为全局变量. 内部函数可以访问外部函数变量以及全局变量的这种机制, 用链式查找决定哪些数据能被内部函数访问.
+javascript 有两种作用域类型, 全局作用域, 局部作用域, 作用域决定了变量的可见性. 函数内部申明的变量为局部变量, ES6 中花括号中申明的变量也为局部变量, 函数之外申明的变量为全局变量. 内部函数可以访问外部函数变量以及全局变量的这种机制, 用链式查找决定哪些数据能被访问.
 
-每一个函数运行的时候会拥有一个自己的执行环境, 每个执行环境都拥有一个位置来存储这个环境里面定义的变量和函数, 当这个执行环境的所有代码执行完了之后, 该环境被销毁, 保存在其中的所有变量和函数定义也被销毁掉了, 我们可以把这一个执行环境称为一个作用域.
+每一个函数运行的时候会拥有一个自己的执行环境, 每个执行环境都存储这个环境里面定义的变量和函数, 当这个执行环境的所有代码执行完了之后, 该环境会被销毁, 保存在其中的所有变量和函数定义也被销毁掉了, 我们把这样一个执行环境称为一个作用域.
 
 全局 window/global 是最大的作用域, 全局里声明的函数是次一级的作用域, 在次一级函数里面可以访问到全局申明的变量和函数, 但在全局中访问不到次一级函数里面申明的函数和变量. 同样在次一级函数里面申明的函数可以访问外面函数申明的变量和函数, 这样一层一层的递进, 就成了一个链条, 也就是作用域链.
 
@@ -621,7 +628,7 @@ javascript 有两种作用域类型, 局部作用域跟全局作用域, 作用�
 浏览器的同源策略会导致跨域, 这里同源策略又分为以下两种:
 
 - DOM 同源策略: 禁止对不同源页面 DOM 进行操作. 这里主要场景是 iframe 跨域的情况, 不同域名的 iframe 是限制互相访问的.
-- XmlHttpRequest 同源策略: 禁止使用 XHR 对象向不同源的服务器地址发起 HTTP 请求.
+- XHR 同源策略: 禁止使用 XHR 对象向不同源的服务器地址发起 HTTP 请求.
 
 只要**协议, 域名, 端口**有任何一个不同, 都被当作是不同的域, 之间的请求就是跨域操作. 为什么要有跨域的限制, 跨域限制主要是为了安全考虑.
 
@@ -629,28 +636,28 @@ javascript 有两种作用域类型, 局部作用域跟全局作用域, 作用�
 
 1. 跨域资源共享
 
-CORS 是一个 W3C 标准, 全称是"跨域资源共享"(Cross-origin resource sharing), 同源安全策略默认阻止获取跨域资源访问. 但 CORS 给 web 服务器提供了允许跨域资源访问资源的能力. ,对于服务器端, 需要在 response header 中设置如下两个字段:
+CORS 是一个 W3C 标准, 全称是"跨域资源共享"(Cross-origin resource sharing), 同源安全策略默认阻止获取跨域资源访问. 但 CORS 给 web 服务器提供了允许跨域资源访问资源的能力. 对于服务器端, 需要在 response header 中设置如下两个字段:
 
 ```
-Access-Control-Allow-Origin:*
-Access-Control-Allow-Methods:*
-Access-Control-Allow-Headers:*
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: *
+Access-Control-Allow-Headers: *
 Access-Control-Allow-Credentials: 'true'
 ```
 
 2. jsonp 实现跨域
 
-基本原理就是通过动态创建 script 标签,然后利用 src 属性进行跨域.
+基本原理就是通过动态创建 script 标签, 然后利用 src 属性进行跨域.
 
 3. 服务端代理
 
-基本原理时使用 nginx 做一层中专来负责代理原来的接口, 然后在响应头中增加跨资源共享标识.
+基本原理是使用类似于 nginx 做一层中专来负责代理原来的接口, 然后在响应头中增加跨资源共享标识.
 
 ## 内存释放
 
 内存释放有两种情况:
 
-- 引用类型是在没有引用之后, 通过 v8 的 GC 自动回收
+- 引用类型是在没有引用之后, 通过 JavaScript 引擎垃圾回收器自动回收
 - 值类型如果是处于闭包的情况下, 要等闭包没有引用才会被 GC 回收, 非闭包的情况下等待 v8 的新生代 (new space) 切换的时候回收.
 
 ## 引用传递
@@ -721,7 +728,7 @@ dom 事件以流的形式传递, 先从最外层元素向最内层元素流过, 
 - 事件冒泡(event bubbling)
 - 事件捕获(event capturing)
 
-DOM2 级事件规定事件流包括三个阶段,事件捕获阶段,处于目标阶段和事件冒泡阶段.首先发生的是事件捕获,为截获事件提供了机会,然后是实际目标接收到事件,最后一个阶段是冒泡阶段,可以在这个阶段对事件作出响应.
+DOM2 级事件规定事件流包括三个阶段, 事件捕获阶段, 处于目标阶段和事件冒泡阶段. 首先发生的是事件捕获, 为截获事件提供了机会, 然后是实际目标接收到事件, 最后一个阶段是冒泡阶段, 可以在这个阶段对事件作出响应.
 
 ## === 跟 == 区别
 
@@ -732,8 +739,8 @@ DOM2 级事件规定事件流包括三个阶段,事件捕获阶段,处于目标�
 JS 执行是单线程的, 它是基于事件循环的. 事件循环大致分为以下几个步骤:
 
 1. 所有同步任务都在主线程上执行, 形成一个执行栈(execution context stack).
-2. 主线程之外, 还存在一个"任务队列"(task queue). 只要异步任务有了运行结果, 就在"任务队列"之中放置一个事件.
-3. 一旦"执行栈"中的所有同步任务执行完毕, 系统就会读取"任务队列", 看看里面有哪些事件. 那些对应的异步任务, 于是结束等待状态, 进入执行栈, 开始执行.
+2. 主线程之外, 还存在一个"任务队列"(task queue). 只要异步任务有了运行结果, 就在"任务队列"之中添加一个任务.
+3. 一旦主线程"执行栈"中的所有同步任务执行完毕, 执行栈为空的时候, JS 引擎就会读取"任务队列"里面的任务, 将其推入栈中执行.
 4. 主线程不断重复上面的第三步.
 
 ## 活动对象
@@ -837,10 +844,6 @@ int a = 13; // int declaration
 string b = "thirteen"; // String declaration
 ```
 
-## 什么叫纯函数
-
-一个函数的返回结果只依赖于它的参数, 并且在执行过程里面没有副作用, 我们就把这个函数叫做纯函数.
-
 ## 什么叫 shim
 
 shim 垫片的意思, 指把一个库引入另一个旧的浏览器, 然后用旧的 API 来实现一些新的 API 功能.
@@ -850,7 +853,7 @@ shim 垫片的意思, 指把一个库引入另一个旧的浏览器, 然后用�
 ```javascript
 // DOM查找
 let ul = document.querySelector("ul");
-let firstChild = document.querySelector("ul li:first-child");
+let firstChild = document.querySelector("ul li: first-child");
 
 // DOM创建 Element
 // element = document.createElement(tagName[, options]);
@@ -888,13 +891,13 @@ document.body.appendChild(cloneUl);
 
 ## 执行环境
 
-每个函数都有自己的执行环境, 这些环境彼此独立, 每发生一次函数调用, 脚本引擎就需要预先为函数创建一个执行环境. 比如函数的调用过程中:FnA -> FnB -> FnC 当 FnA 开始调用 FnB 时候, 引擎就需要先把 FnA 的执行环境保存起来(进栈操作), 在等到 FnB 返回之后再恢复(出栈操作) FnA 的执行环境.
+每个函数都有自己的执行环境, 这些环境彼此独立, 每发生一次函数调用, 脚本引擎就需要预先为函数创建一个执行环境. 比如函数的调用过程中: FnA -> FnB -> FnC 当 FnA 开始调用 FnB 时候, 引擎就需要先把 FnA 的执行环境保存起来(进栈操作), 在等到 FnB 返回之后再恢复(出栈操作) FnA 的执行环境.
 
 引擎为函数建立执行环境的步骤:
 
 1. 创建活动对象 创建活动对象也就是申明, 但是没有赋值, 真正执行的时候才赋值
 2. 分配作用域链 比如创建 FnA 函数时, 作用域链里 push (顶级作用域 window), 当调用的 FnA 的时候, 在往其作用域链里推入(第一步创建的活动对象), 此时其作用域链就变成了(ActiveObj, window)
-3. 绑定 this 函数内部的 this 默认指向全局对象 window / global, 可用 with call apply 修改 this 绑定的作用域
+3. 绑定 this, 函数内部的 this 默认指向全局对象 window / global, 可用 with call apply 修改 this 绑定的作用域
 
 标识符解析:
 
@@ -947,13 +950,13 @@ var makeCounter = function(){
     privateCounter+=v;
   }
   return {
-    increment:function(){
+    increment: function(){
       changeBy(1);
     },
-    decrement:function(){
+    decrement: function(){
       changeBy(-1);
     },
-    value:function(){
+    value: function(){
       return privateCounter;
    }
   };
@@ -980,4 +983,4 @@ js 垃圾回收机制:
 - 标记法
 - 引用计数法
 
-一个局部的变量在函数执行结束之后才被释放, 所以在遍历的时候用匿名函数加上小括号运行可以解决变量立即释放的问题,以致不在其执行结束后仍旧可以访问的问题
+一个局部的变量在函数执行结束之后才被释放, 所以在遍历的时候用匿名函数加上小括号运行可以解决变量立即释放的问题, 以致不在其执行结束后仍旧可以访问的问题

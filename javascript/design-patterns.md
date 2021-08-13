@@ -1,6 +1,7 @@
 # Design Patterns
 
-Design patterns are reusable solutions to commonly occuring problems in software design.  
+Design patterns are reusable solutions to commonly occuring problems in software design.
+
 设计模式指的是对那些经常出现的问题的一种通用的解决方法, 设计模式的好处是为了代码的复用, 可维护性.
 
 ## 面向对象五大原则
@@ -90,7 +91,6 @@ Object.defineProperty(newObject, "someKey", {
 
 // use Object.defineProperties Set properties
 Object.defineProperties(newObject, {
-
   "someKey": {
     value: "Hello World",
     writable: true
@@ -100,7 +100,6 @@ Object.defineProperties(newObject, {
     value: "Foo bar",
     writable: false
   }
-
 });
 ```
 
@@ -108,7 +107,6 @@ Object.defineProperties(newObject, {
 
 ```JavaScript
 function Person (name, age) {
-
   this.name = name;
   this.age = age;
 
@@ -150,7 +148,7 @@ console.log(mondeo.toString());
 
 #### The Module Pattern (模块模式)
 
-在 JavaScript 中有好几种实现模块模式的方法,包括:
+在 JavaScript 中有好几种实现模块模式的方法, 包括:
 
 - The Module pattern
 - Object literal notation
@@ -160,7 +158,7 @@ console.log(mondeo.toString());
 
 #### Object Literals(对象字面量)
 
-在对象字面量中,一个对象被描述为包裹在一对大括号中的键值对,注意最后的一个键值对后面没有逗号
+在对象字面量中, 一个对象被描述为包裹在一对大括号中的键值对
 
 ```JavaScript
 var myObjectLiteral = {
@@ -185,7 +183,7 @@ var myModule = {
 
   // a very basic method
   saySomething: function () {
-    console.log("Where in the world is Paul Irish today?");
+    console.log("Where in the world is Paul Irish today? ");
   },
 
   // output a value based on the current configuration
@@ -228,7 +226,6 @@ myModule.reportMyConfig();
 
 ```JavaScript
 var myNamespace = (function () {
-
   var myPrivateVar, myPrivateMethod;
 
   // A private counter variable

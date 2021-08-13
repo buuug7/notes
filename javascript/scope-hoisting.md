@@ -30,7 +30,7 @@ foo(); // 2
 console.log(x); // 1
 ```
 
-## 变量,函数申明提升的例子
+## 变量, 函数申明提升的例子
 
 ```JavaScript
 function foo(){
@@ -38,7 +38,7 @@ function foo(){
   var x=1;
 }
 
-// 上面的函数会被JavaScript解析器解析为下面的,变量的申明会被提前到函数开头地方
+// 上面的函数会被JavaScript解析器解析为下面的, 变量的申明会被提前到函数开头地方
 function foo(){
   var x;
   bar();
@@ -64,15 +64,15 @@ function foo() {
 }
 
 
-// 试看下面的两个函数,第二个是被JavaScript解析器解析之后的
+// 试看下面的两个函数, 第二个是被JavaScript解析器解析之后的
 function test() {
 	foo(); // TypeError "foo is not a function"
-	bar(); // "this will run!"
+	bar(); // "this will run! "
 	var foo = function () { // function expression assigned to local variable 'foo'
-		alert("this won't run!");
+		alert("this won't run! ");
 	}
 	function bar() { // function declaration, given the name 'bar'
-		alert("this will run!");
+		alert("this will run! ");
 	}
 }
 
@@ -80,13 +80,13 @@ function test() {
 function test() {
   var foo;
   function bar() { // function declaration, given the name 'bar'
-		alert("this will run!");
+		alert("this will run! ");
 	}
 
 	foo(); // TypeError "foo is not a function"
-	bar(); // "this will run!"
+	bar(); // "this will run! "
 	foo = function () { // function expression assigned to local variable 'foo'
-		alert("this won't run!");
+		alert("this won't run! ");
 	}
 }
 test();

@@ -6,3 +6,4 @@ console.log(noEmpty);
 
 // 或者使用 String.prototype.trim()
 console.log(str.trim());
+

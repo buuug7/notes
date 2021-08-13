@@ -30,7 +30,7 @@ import "regenerator-runtime/runtime";
 
 ## target 优先顺序
 
-babel 会优先使用自己配置文件中的 targets, 如果配置文件中没有设定 targets, 然后才回去查找 package.json 文件跟`.browserslistrc`文件中的浏览器配置, 使用的时候请开启 debug 方式来查看当前 babel 所使用的配置信息,在构架的时候会打印相关的数据到控制台上.
+babel 会优先使用自己配置文件中的 targets, 如果配置文件中没有设定 targets, 然后才去查找 package.json 文件跟`.browserslistrc`文件中的浏览器配置, 使用的时候请开启 debug 方式来查看当前 babel 所使用的配置信息, 在编译的时候会打印相关的数据到控制台上.
 
 ```javascript
 // babel.config.json

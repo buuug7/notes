@@ -10,12 +10,12 @@
 
 ## 术语
 
-- Namespace 命名空间 允许开发人员在一个独特,应用相关的名字下捆绑所有的功能的容器
-- Class 类 定义对象的特征,它是对象属性和方法的模板定义
+- Namespace 命名空间 允许开发人员在一个独特, 应用相关的名字下捆绑所有的功能的容器
+- Class 类 定义对象的特征, 它是对象属性和方法的模板定义
 - Object 对象 类的一个实例
-- Property 属性 对象的特征,比如颜色
-- Method 方法 对象的能力,比如行走
-- Constructor 构造函数 对象初始化被调用的方法,通常它的名字与包含它的类名字一样
+- Property 属性 对象的特征, 比如颜色
+- Method 方法 对象的能力, 比如行走
+- Constructor 构造函数 对象初始化被调用的方法, 通常它的名字与包含它的类名字一样
 - Inheritance 继承 一个类可以继承另一个类的特征
 - Encapsulation 封装 一种把数据和相关方法捆绑在一起使用的方法
 - Abstraction 抽象 使用对象模拟现实的模型
@@ -36,7 +36,7 @@ let myNamespace = myNamespace || {};
 
 在上面的代码示例中, 我们首先检查 myNamespace 是否已经被定义(是否在同一文件中或在另一文件). 如果是的话, 那么使用现有的 myNamespace 全局对象, 否则, 创建一个名为 myNamespace 的空对象用来封装方法, 函数, 变量和对象.
 
-下面是用于创建命名空间和添加变量,函数和方法的代码写法:
+下面是用于创建命名空间和添加变量, 函数和方法的代码写法:
 
 ```javascript
 // 给普通方法和属性创建一个叫做myNamespace.commonMethod的容器
@@ -50,13 +50,13 @@ myNamespace.commonMethod = {
 // 对象和方法一起申明
 myNamespace.event = {
   addListener: function (el, type, fn) {
-    //...
+    //. ..
   },
   removeListener: function (el, type, fn) {
-    //...
+    //. ..
   },
   getEvent: function (e) {
-    //...
+    //. ..
   },
 };
 
@@ -146,14 +146,14 @@ function Person(firstName) {
 }
 
 Person.prototype.sayHello = function () {
-  alert("Hello,I'm " + this.firstName);
+  alert("Hello, I'm " + this.firstName);
 };
 const person1 = new Person("Alice");
 const person2 = new Person("Bob");
 
 // call the Person sayHello method
-person1.sayHello(); // Hello,I'm Alice
-person2.sayHello(); // Hello,I'm Bob
+person1.sayHello(); // Hello, I'm Alice
+person2.sayHello(); // Hello, I'm Bob
 ```
 
 在 javascript 中方法通常是一个绑定到对象中的普通函数, 这意味着方法可以在其所在 context 之外被调用. 思考下面示例中的代码:
@@ -199,15 +199,15 @@ function Person(firstName) {
 
 // 在Person.prototype中加入方法
 Person.prototype.walk = function () {
-  alert("I am walking!");
+  alert("I am walking! ");
 };
 Person.prototype.sayHello = function () {
-  alert("Hello,I'am " + this.firstName);
+  alert("Hello, I'am " + this.firstName);
 };
 
 // 定义Student构造器
 function Student(firstName, subject) {
-  // 调用父类构造器,确保(使用Function#call)"this"在调用过程中设置正确
+  // 调用父类构造器, 确保(使用Function#call)"this"在调用过程中设置正确
   Person.call(this, firstName);
   // 初始化Student类特有属性
   this.subject = subject;
@@ -225,7 +225,7 @@ Student.prototype.constructor = Student;
 // 更换"sayHello"方法
 Student.prototype.sayHello = function () {
   console.log(
-    "Hello,I'am " + this.firstName + ".I'am studying " + this.subject + "."
+    "Hello, I'am " + this.firstName + ". I'am studying " + this.subject + ". "
   );
 };
 
@@ -254,7 +254,7 @@ console.log(student1 instanceof Student); // true
 
 抽象是允许模拟工作问题中通用部分的一种机制. 这可以通过继承(具体化)或组合来实现. javascript 通过继承实现具体化, 通过让类的实例是其他对象的属性值来实现组合.
 
-javascript Function 类继承自 Object 类(这是典型的具体化) . Function.prototype 的属性是一个 Object 实例(这是典型的组合).
+javascript Function 类继承自 Object 类(这是典型的具体化). Function.prototype 的属性是一个 Object 实例(这是典型的组合).
 
 ```javascript
 const foo = function () {};
