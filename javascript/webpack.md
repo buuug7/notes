@@ -28,7 +28,7 @@ webpack 会根据入口文件的依赖将文件打包成几个单独的文件
 
 #### 使用 SplitChunksPlugin 来抽出公用的代码
 
-使用 SplitChunksPlugin 抽出公用代码到一个单独的文件，来减小生成的各个文件中重复的代码
+使用 SplitChunksPlugin 抽出公用代码到一个单独的文件，以此来减小生成的各个文件中重复的代码
 
 ```javascript
 {
@@ -64,7 +64,7 @@ async function getSomeComponent() {
 
 #### 使用 prefetch preload
 
-使用 prefetch 来预先获取在将来可能需要一些导航资源
+使用 prefetch 来预先获取在将来可能需要一些资源
 
 ```javascript
 import(/* webpackPrefetch: true */ "./path/to/LoginModal.js");

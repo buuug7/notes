@@ -14,6 +14,12 @@
 - [parent-node](./parent-node.md)
 - [typedArray](./typedArray.md)
 - [Blob & File](./blob-file.md)
+- [FAQ](./FAQ.md)
+
+## tools
+
+- [webpack](./webpack.md)
+- [babel](./babel.md)
 
 ## framework
 
