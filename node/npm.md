@@ -4,7 +4,7 @@ Node package management
 
 ## package.json
 
-package.json 包含了你项目的清单,以及一些有关包的元信息, 如果你的包想通过 npm 分发,那么 package.json 中必须要具备几个必选的属性, 比如 name, version, description 等.
+package.json 包含了你项目的清单, 以及一些有关包的元信息, 如果你的包想通过 npm 分发, 那么 package.json 中必须要具备几个必选的属性, 比如 name, version, description 等.
 
 ```json
 {
@@ -30,7 +30,7 @@ package.json 包含了你项目的清单,以及一些有关包的元信息, 如�
     "npm": ">= 3.0.0"
   },
   "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"],
-  "repository": "github:whatever/testing",
+  "repository": "github: whatever/testing",
   "homepage": "https://whatever.com/package",
   "bugs": "https://github.com/whatever/package/issues",
   "contributors": []
@@ -45,7 +45,7 @@ package.json 包含了你项目的清单,以及一些有关包的元信息, 如�
 - `scripts` 定义一系列 node 可运行脚本
 - `keywords` 关键字
 - `author` 作者
-- `license` 许可证。
+- `license` 许可证.
 - `dependencies` 包的依赖
 - `devDependencies` 包的开发依赖
 - `engines` 包所支持的 node 版本
@@ -57,7 +57,7 @@ package.json 包含了你项目的清单,以及一些有关包的元信息, 如�
 
 ## package-lock.json
 
-package-lock.json 文件的目标是跟踪依赖包的确切版本，确保每个人安装的依赖都会保持一致的版本, 而不会因为语义化版本指定的版本范围导致两个人安装不同的包.
+package-lock.json 文件的目标是跟踪依赖包的确切版本, 确保每个人安装的依赖都会保持一致的版本, 而不会因为语义化版本指定的版本范围导致两个人安装不同的包.
 
 ## 查看一个包的各个版本
 
@@ -69,8 +69,8 @@ npm view packageName versions
 
 `x.x.x`
 
-- `^` 当升级的时候,第一位不变,后面的两位可变
-- `~` 中间一位不变,第三位可变
+- `^` 当升级的时候, 第一位不变, 后面的两位可变
+- `~` 中间一位不变, 第三位可变
 - `>` 接受比指定版本大的版本号
 - `>=` 接受大于等于指定版本的版本
 - `<` 接受比指定版本号小的版本
@@ -102,7 +102,7 @@ The commit-ish can be any tag, sha, or branch that can be supplied as an argumen
 
 ```
 git://github.com/user/project.git#commit-ish
-git+ssh://user@hostname:project.git#commit-ish
+git+ssh://user@hostname: project.git#commit-ish
 git+http://user@hostname/project/blah.git#commit-ish
 git+https://user@hostname/project/blah.git#commit-ish
 ```
@@ -114,9 +114,9 @@ A module is any file or directory in the node_modules directory that can be load
 A folder with a package.json file containing a "main" field.
 A JavaScript file.
 
-一个模块就是任意一个在 node_modules 目录下的文件或者目录, 并且这个文件或者目录可以被 Node.js 的 require()函数加载. 为了能让 Node.js 的 require()函数加载, 模块必须具备下面列出选项的任何一个:
+一个模块就是任意一个在 node_modules 目录下的文件或者目录, 并且这个文件或者目录可以被 Node.js 的 require()函数加载. 为了能让 Node.js 的 require() 函数加载, 模块必须具备下面列出选项的任何一个:
 
-- 如果是文件夹, 那么文件夹下属的 package.js 文件中有一个"main"字段
+- 如果是文件夹, 那么文件夹下属的 package.json 文件中有一个"main"字段
 - 或者一个 JavaScript 文件
 
 一个具有 package.json 的模块也被成为一个包.
@@ -163,11 +163,12 @@ npm config set registry https://registry.npmjs.org/
 
 ## npm 如何下架已经发布得包
 
-打开<https://www.npmjs.com/support/>, 填写申请单即可.下面是样例
+打开<https://www.npmjs.com/support/>, 填写申请单即可. 下面是样例
 
 Subject: please help me unpublish the old **@buuug7/simplify** package
 
 How can we help?
+
 the old **@buuug7/simplify** package is outdate, i published new package to replace it and the **@buuug7/simplify** is not used any more, please help me delete it [@buuug7/simplify](https://www.npmjs.com/package/@buuug7/simplify). thanks.
 
 ## npm 发部带 scope 的包
@@ -207,7 +208,7 @@ n lts
 # 淘宝地址
 npm config set registry https://registry.npm.taobao.org
 
-# 当你想发布自己的包时，需要将地址修改回来
+# 当你想发布自己的包时, 需要将地址修改回来
 npm config set registry https://registry.npmjs.org/
 ```
 

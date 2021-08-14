@@ -1,6 +1,6 @@
 # readline module
 
-readline 模块提供了一个接口，可以一次一行地从可读流（如从 process.stdin）中读取数据.
+readline 模块提供了一个接口, 可以一次一行地从可读流(如从 process.stdin)中读取数据.
 
 ```javascript
 const readline = require("readline");
@@ -10,7 +10,7 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-rl.question(`What's your name?`, (text) => {
+rl.question(`What's your name? `, (text) => {
   console.log(`Hi, ${text}`);
   rl.close();
 });
@@ -31,7 +31,7 @@ const readline = require("readline");
 const fs = require("fs");
 
 const rl = readline.createInterface({
-  input: fs.createReadStream("./package-lock.json"),
+  input: fs.createReadStream(". /package-lock.json"),
 });
 
 rl.on("line", (line) => {
