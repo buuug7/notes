@@ -28,23 +28,37 @@ promise 方式:
 ```javascript
 const fs = require("fs/promises");
 
-async function createMyFile(path) {
-  await fs.writeFile(path, "hello world1");
-}
-
-createMyFile("./my.txt").then(() => {});
+fs.writeFile("./my.txt", "hello world")
+  .then((rs) => {
+    console.log(rs);
+  })
+  .catch((err) => {
+    console.log("err", err);
+  });
 ```
 
 ## file system flags 文件系统标记
 
-- 'a': Open file for appending. The file is created if it does not exist.
-- 'ax': Like 'a' but fails if the path exists.
-- 'a+': Open file for reading and appending. The file is created if it does not exist.
-- 'r': Open file for reading. An exception occurs if the file does not exist.
-- 'r+': Open file for reading and writing. An exception occurs if the file does not exist.
-- 'w': Open file for writing. The file is created (if it does not exist) or truncated (if it exists).
-- 'wx': Like 'w' but fails if the path exists.
-- 'w+': Open file for reading and writing. The file is created (if it does not exist) or truncated (if it exists).
+- `a`: 打开文件用来在追加信息, 如果不存在就创建.
+- `ax`: 跟'a'类似, 但是路径如果存在就会报错.
+- `a+`: 打开文件读取或者追加, 如果文件不存在就创建.
+- `r`: 打开文件并读取, 如果文件不存在就会抛出异常.
+- `r+`: 打开文件用来读取和写入, 如果文件不存在就会抛出异常.
+- `w`: 打开文件并写入, 文件不存在就创建, 如果文件存在就会覆盖源文件.
+- `wx`: 类似于 'w' 但是如果路径存在就会失败
+- `w+`: 打开文件用来读和写. 如果文件不存在就会创建, 文件存在就会覆盖原文件.
+
+```javascript
+const fs = require("fs");
+const fd = fs.openSync("./my.txt", "w");
+fs.writeFileSync(fd, "hello world");
+
+// or
+
+fs.writeFileSync("./my.txt", "Hello world", {
+  flag: "w",
+});
+```
 
 ## file path
 
@@ -52,6 +66,7 @@ createMyFile("./my.txt").then(() => {});
 
 ```javascript
 // use URL linux based
+// file://
 fs.readFileSync(new URL("file:///home/buuug7/code/test-node/my.txt"));
 
 // windows

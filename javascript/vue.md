@@ -75,3 +75,7 @@ diff 算法是进行虚拟节点元素的对比, 并返回一个 patchs 对象, 
 let patchs = diff(oldTree, newTree); //获取两棵Virtual Dom Tree 差异
 patch(ulDom, patchs); //找到对应的真实dom, 进行部分渲染
 ```
+
+## vue 优化
+
+- 多用计算属性, 避免过度使用 watch

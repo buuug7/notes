@@ -1,5 +1,19 @@
 # git related
 
+## git 取消已追踪的文件或者文件夹
+
+To stop tracking a file you need to remove it from the index. This can be achieved with this command.
+
+```
+git rm --cached <file>
+```
+
+If you want to remove a whole folder, you need to remove all files in it recursively.
+
+```
+git rm -r --cached <folder>
+```
+
 ## git 设置 origin upstream
 
 ```bash
