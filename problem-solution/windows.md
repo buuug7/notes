@@ -1,5 +1,9 @@
 # windows related
 
+## windows 安装 openssh
+
+https://winscp.net/eng/docs/guide_windows_openssh_server
+
 ## 查找指定应用进程是否运行
 
 ```bash

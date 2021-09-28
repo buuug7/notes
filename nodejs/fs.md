@@ -192,9 +192,13 @@ fs.appendFile("./myFile.txt", "some text", (err) => {
 ## 设置文件权限 mode
 
 ```javascript
-// 权限使用十位八进制格式表示
-// r = 4 w = 2 x = 1 rw = 6 rx = 5 rwx = 7
-// 三位，第一位为所有者，第二位为所属用户组，第三位为其他用户组
+// r = 4
+// w = 2
+// x = 1
+// rw = 6
+// rx = 5
+// rwx = 7
+// 三位八进制形式，第一位为所有者，第二位为所属用户组，第三位为其他用户组
 fs.chmod("./myFile.txt", 0o666, (err) => {
   if (err) {
     console.log(err);

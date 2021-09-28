@@ -63,6 +63,9 @@ package-lock.json 文件的目标是跟踪依赖包的确切版本, 确保每个
 
 ```
 npm view packageName versions
+
+# 查看最新的包信息, 无需指定版本号, 比如
+npm view react
 ```
 
 # npm version use those symbols
@@ -111,8 +114,8 @@ git+https://user@hostname/project/blah.git#commit-ish
 
 A module is any file or directory in the node_modules directory that can be loaded by the Node.js require() function. To be loaded by the Node.js require() function, a module must be one of the following:
 
-A folder with a package.json file containing a "main" field.
-A JavaScript file.
+- A folder with a package.json file containing a "main" field.
+- A JavaScript file.
 
 一个模块就是任意一个在 node_modules 目录下的文件或者目录, 并且这个文件或者目录可以被 Node.js 的 require()函数加载. 为了能让 Node.js 的 require() 函数加载, 模块必须具备下面列出选项的任何一个:
 

@@ -12,7 +12,7 @@ Buffer 对象用于表示固定长度的字节序列, Buffer 类是 JavaScript �
 
 ```javascript
 // 使用字符串创建
-const buf = Buffer.from("Hello world! ");
+const buf = Buffer.from("Hello world!");
 
 // 基于一个buf创建一个新的buf
 const buf2 = Buffer.from(buf);

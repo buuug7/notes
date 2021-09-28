@@ -36,8 +36,7 @@ server.listen(3000);
 
 当调用 stream.push(chunk) 时, 数据会缓冲在可读流中. 如果流的消费者没有调用 stream.read(), 则数据会保留在内部队列中直到被消费. 一旦内部的可读缓冲的总大小达到 highWaterMark 指定的阈值时, 流会暂时停止从底层资源读取数据, 直到当前缓冲的数据被消费 (也就是说, 流会停止调用内部的用于填充可读缓冲的 `readable._read()`).
 
-当调用 writable.write(chunk) 时, 数据会被缓冲在可写流中. 当内部的可写缓冲的总大小小于 highWaterMark 设置的阈值时, 调用 writable.write() 会返回 true.
-一旦内部缓冲的大小达到或超过 highWaterMark 时, 则会返回 false.
+当调用 writable.write(chunk) 时, 数据会被缓冲在可写流中. 当内部的可写缓冲的总大小小于 highWaterMark 设置的阈值时, 调用 writable.write() 会返回 true. 一旦内部缓冲的大小达到或超过 highWaterMark 时, 则会返回 false.
 
 ## 创建一个可读流
 
