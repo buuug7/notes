@@ -31,7 +31,7 @@ console.log(set1); // Set(3) { 1, 2, 3 }
 
 // Set 转换为 Array
 const set2 = new Set([1, 2, 3]);
-console.log([. ..set2]); // [ 1, 2, 3 ]
+console.log([...set2]); // [ 1, 2, 3 ]
 ```
 
 ## Map 集合
@@ -142,7 +142,7 @@ f(5, 2); // 10
 
 ## 剩余参数(rest parameter)
 
-允许长度不确定的实参表示为一个数组, 如果一个函数的最后一个形参是以 `. ..` 为前缀的, 则在函数被调用时, 该形参会成为一个数组, 数组中的元素都是传递给该函数的多出来的实参的值.
+允许长度不确定的实参表示为一个数组, 如果一个函数的最后一个形参是以 `...` 为前缀的, 则在函数被调用时, 该形参会成为一个数组, 数组中的元素都是传递给该函数的多出来的实参的值.
 
 ```javascript
 function f(a, b, ...args) {
@@ -161,10 +161,10 @@ f(1, 2, 3, 4, 5); // [3, 4, 5]
 
 ```javascript
 // 用于函数
-myFunction(. ..iterableOjb);
+myFunction(...iterableOjb);
 
 // 用于数组字面量
-[. ..iterableObj, 4, 5, 6];
+[...iterableObj, 4, 5, 6];
 
 // 例子
 function myFunction(x, y, z) {}
@@ -231,8 +231,8 @@ yield 关键字用来暂停和继续一个生成器函数(`function*`), yield �
 箭头函数就是简写形式的函数表达式, 并且它拥有词法作用域的 this 值(即不会产生自己作用域下的 this, arguments, super...), 箭头函数总是匿名的.
 
 ```javascript
-(param1, param2, ...,paramN) => { statements }
-(param1, param2, ...,paramN) => expression
+(param1, param2, ..., paramN) => { statements }
+(param1, param2, ..., paramN) => expression
 
 // 如果只有一个参数, 圆括号是可选的
 (singleParam) => { statements }
@@ -391,13 +391,16 @@ var obj = {
       // ...
     },
   },
+
   // Shorthand for 'handler: handler'
   handler,
+
   // Methods
   toString() {
     // Super calls
     return "d " + super.toString();
   },
+
   // Computed (dynamic) property names
   ["prop_" + (() => 42)()]: 42,
 };
@@ -408,13 +411,12 @@ var obj = {
 模板字面量(Template literals)是允许嵌入表达式的字符串字面量. 并且支持多行字符串和字符串插补特性. 在 ES2015 / ES6 规范中, 其被称之为模板字符串(template strings). 模板字符串使用反引号 ``` 来代替普通字符串中的用双引号和单引号. 模板字符串可以包含特定语法`${expression}`的占位符.
 
 ```javascript
-`string text``string text line 1
- string text line 2``string text ${expression} string text`;
+`string text ${expression} string text`;
 ```
 
 ## for...of 语句
 
-for...of 语句在可迭代对象(包括 Array, Map, Set, String, TypedArray, arguments 对象等等)上创建一个迭代循环, 对每个不同属性值, 调用一个自定义的有执行语句的迭代挂钩.
+for...of 语句在可迭代对象(包括 Array, Map, Set, String, TypedArray, arguments 对象等等)上创建一个迭代循环, 对每个不同属性值, 调用一个自定义执行语句进行遍历操作.
 
 ```javascript
 for (variable of object) {
@@ -461,7 +463,7 @@ for (let n of fibonacci()) {
 }
 ```
 
-- 遍历另外的可遍历对象, 您也可以遍历一个已经明确的可遍历(可迭代)协议
+- 遍历另外的可遍历对象, 也可以遍历一个已经明确的可遍历(可迭代)协议
 
 ```javascript
 var iterable = {
@@ -510,7 +512,7 @@ for (let i of iterable) {
 
 ## import
 
-import 语句用于导入从外部模块, 另一个脚本等导出的函数, 对象或变量.
+import 语句用于导入外部模块的对象或变量.
 
 ```javascript
 import defaultMember from "module-name";
@@ -524,7 +526,6 @@ import defaultMember, * as name from "module-name";
 import "module-name";
 
 
-//name 参数是将引用导出成员的名称. member参数指定独立成员, 而name参数导入所有成员. 如果模块导出单个默认参数, 而不是一系列成员, name也可以是函数.
 //下面提供一些示例说明语法.
 
 //导入整个模块的内容. 以下代码将myModule添加到当前作用域, 其中包括所有导出绑定.
@@ -578,8 +579,7 @@ export const foo = Math.sqrt(2); // 导出一个常量
 export default myFunctionOrClass // 或者 'export default class {}'
 // 这里没有分号
 // 对于只导出一部分值来说, 命名导出的方式很有用. 在导入时候, 可以使用相同的名称来引用对应导出的值.
-//关于默认导出方式, 每个模块只有一个默认导出. 一个默认导出可以是一个函数, 一个类, 一个对象等.
-//当最简单导入的时候, 这个值是将被认为是"入口"导出值.
+// 关于默认导出方式, 每个模块只有一个默认导出. 一个默认导出可以是一个函数, 一个类, 一个对象等.
 
 
 // 示例
@@ -614,7 +614,7 @@ console.log(cube(3)); // 27​​​​​
 
 一个 TypedArray 对象描述一个表示底层的二进制数据缓存区的类似数组(array-like)视图. 没有名为 TypedArray 的全局属性, 也没有直接可见的 TypedArray 构造函数.
 
-它的每一项都储存的时数字, 数字的大小根据具体的 TypedArray 来决定
+它的每一项都储存的是数字, 数字的大小根据具体的 TypedArray 来决定
 
 ```javascript
 // 构造器
@@ -638,8 +638,8 @@ Float64Array();
 
 参数:
 
-- length: 当传入 length 参数时, 一个内部数组缓冲区被创建, 该缓存区的大小是传入的 length 乘以数组中每个元素的字节数, 每个元素的值都为 0.(译者注: 每个元素的字节数是由具体的构造函数决定的, 比如 Int16Array 的每个元素的字节数为 2, Int32Array 的每个元素的字节数为 4)
-- typedArray: 当传入一个包含任意类型元素的任意类型化数组对象(typedArray) (比如 Int32Array)作为参数时, typeArray 被复制到一个新的类型数组. typeArray 中的每个值会在复制到新的数组之前根据构造器进行转化. 新生成的类型化数组对象将会有跟传入的数组相同的 length(译者注: 比如原来的 typeArray.length == 2, 那么新生成的数组的 length 也是 2, 只是数组中的每一项进行了转化)
+- length: 当传入 length 参数时, 一个内部数组缓冲区被创建, 该缓存区的大小是传入的 length 乘以数组中每个元素的字节数, 每个元素的值都为 0.(每个元素的字节数是由具体的构造函数决定的, 比如 Int16Array 的每个元素的字节数为 2, Int32Array 的每个元素的字节数为 4)
+- typedArray: 当传入一个包含任意类型元素的任意类型化数组对象(typedArray) (比如 Int32Array)作为参数时, typeArray 被复制到一个新的类型数组. typeArray 中的每个值会在复制到新的数组之前根据构造器进行转化. 新生成的类型化数组对象将会有跟传入的数组相同的 length(比如原来的 typeArray.length == 2, 那么新生成的数组的 length 也是 2, 只是数组中的每一项进行了转化)
 - object: 当传入一个 object 作为参数时, 如同通过 TypedArray.from() 方法一样创建一个新的类型数组.
 - buffer, byteOffset, length: 当传入 arrayBuffer 和可选参数 byteOffset, 可选参数 length 时, 一个新的类型化数组视图将会被创建, 该类型化数组视图用于呈现传入的 ArrayBuffer 实例. byteOffset 和 length 指定类型化数组视图暴露的内存范围, 如果两者都未传入, 那么整个 buffer 都会被呈现, 如果仅仅忽略 length, 那么 buffer 中偏移(byteOffset)后剩下的 buffer 将会被呈现.
 

@@ -51,9 +51,9 @@ fetch(api, {
  * @return {void}
  */
 function downloadPDF(pdf) {
-  const linkSource = `data: application/pdf; base64, ${pdf}`;
+  const linkSource = `data:application/pdf;base64,${pdf}`;
   const downloadLink = document.createElement("a");
-  const fileName = "vct_illustration.pdf";
+  const fileName = "my-pdf.pdf";
 
   downloadLink.href = linkSource;
   downloadLink.download = fileName;
