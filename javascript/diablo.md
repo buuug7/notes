@@ -1,0 +1,91 @@
+# BaseMod Plugin
+
+支持: 暗黑 2，1.13c, 1.13d, 1.14d & D2SE
+
+- UberQuests & World Event
+- 6 Boss 任务（无召唤模式）
+- Minions for UberQuest & World Event
+- 6 Boss 任务（召唤模式）
+- Custom Red Portals from Cube
+- 自定义合成开启红门
+- AutoPickup Gold with Sound and In Town options
+- 自动捡取金币
+- AutoPickup Options for Runes, Gems, Jewels, Rings, Amulets, Scrolls, Keys, and Quivers.
+- 自动捡取符文，宝石，珠宝，戒指，护身符，卷轴，钥匙和箭袋
+- AutoPickup Options for Belt Potions
+- 自动捡取腰带药水
+- Perfect Drops, a Drop Mod feature for item collectors
+- 完美掉落，物品收集玩家的福音
+- Gamble Refresh
+- 赌博刷新
+- Trade Refresh
+- 贸易刷新
+- Merc Mod - Hireling can equip boots, gloves, belt, amulet and 2 rings
+- 雇佣兵 - 可以穿戴鞋子，手套，腰带，护身符和戒指
+- Merc Mod - Options for Act 1 Hireling to equip cross bows and Amazon Bows
+- 雇佣兵 - Act 1 雇佣兵可以拿十字弓和亚马逊弓
+- Tyrael can sell Axe Wielding Barbarians in Act 4
+- 泰瑞尔出售斧头的野蛮人在第 4 幕
+- Ctrl Left Click Item extended to Inventory, Stash, Cube & Ground Drop
+- 按住 Ctrl 点击左键可以将物品放回仓库，背包，赫迪拉可方块
+- Shift Left Click Beltable Item extended to Stash & Cube
+- 按住 Shift 点击左键可以将 Beltable 类的东西放到储物箱，赫迪拉可方块中
+- Bypass 25 FPS limit for single player
+- 解除 25 FPS 帧率限制
+- D2 CPU Fix - with option to disable
+- D2 CPU 使用率过高修复
+- Infinite: Imbue, Socket, Respec, and Personalize Item with Charge Gold
+- 无限制: 灌注, 镶嵌, 洗点, 物品个人化
+- Animated Life/Mana Orbs Support
+- 支持附带动画的 生命/法力球
+- Animated Inventory Items support
+- 支持附带动画的包裹栏物品
+- Allow user to load 3 extra Dlls
+- 允许玩家加载 3 个额外 DLLs
+- Load a Custom mpq file if present
+- 加载自定义的 mpq 文件
+- MPQINI allows for setting Ini options inside a Custom mpq
+- MPQINI 允许给自定义 mpq 设置配置信息
+- Option for Linear Magic Find Drop Rates
+- 可选的线性 MF 掉落率选项
+- CharmZone
+- CharmZone
+- Extended Objects - starts at ID#586
+- 扩展对象 - starts at ID#586
+- Extended Levels support [255 levels]
+- 扩展等级 [255 levels]
+- Extended Sounds & Music support
+- 扩展声音&音乐
+- Display Item Level and Item Max Sockets
+- 显示物品等级跟最大插槽
+- CustomStringTable for storage and use of UTF8 strings in the game.
+- 自定义物品字符串条目
+- Spawn All Missing SuperUniques - not map based
+- Fix for Shadow Master - disappears much less for most maps
+- Fix for NecroMancer revives so they don't wander off
+- Dynamic Health Bar
+- 动态健康条
+- Patch for the Treasure Goblin plugin
+- 宝藏地精插件补丁
+- HyperJoin - fast loading for multiplayer
+- 多人游戏的快速加载
+- MultiCopy Enabled
+- 启用多拷贝
+- Enable Ladder Only RuneWords in SP games
+- 单人模式开启天梯符文之语
+- Start game with nopickup console option
+- 使用 nopickup 控制台选项开始游戏
+- Players X can be specified before startup
+- 启动前可以指定玩家数量
+- Players 127 patch
+- 玩家数量 127 补丁
+- Secret Cow level can be entered even if Cow King has been killed
+- 杀死母牛可以进入牛场
+- Nilathek Portal Fix
+- 尼拉塞克红门修复
+- Ethereal Armor Socket Bug Fix
+- ETH 无形防具打孔 bug 可以开启或者关闭
+- Anya Bug Fix
+- 修复安雅 bug
+- NERF D2 Fire Enchant bug to have the same fractional damage for all difficulties.
+- NERF D2 Fire Enchant bug to have the same fractional damage for all difficulties.
