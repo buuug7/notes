@@ -1,0 +1,4 @@
+- https://github.com/pvpgn/pvpgn-server
+- http://www.pvpgn.pl/d2gs/
+- https://pvpgn.fandom.com/wiki/D2GS_Server
+- https://www.cnblogs.com/shalves/p/5147596.html

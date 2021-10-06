@@ -421,13 +421,17 @@ AJAX 的全称是 Asynchronous JavaScript and XML, 是一种利用 Javascript �
 typeof 可以正确识别: Undefined, Boolean, Number, String, Symbol, Function 等类型的数据, 但是对于其他的都会认为是 object. 但是可以使用`Object.prototype.toString`去做详细判定.
 
 ```javascript
-const rs = Object.prototype.toString.call(new Date()).split(" ")[1];
-const ty = rs.substring(0, rs.length - 1).toLowerCase(); // date
+const rs = Object.prototype.toString.call(new Date()); // [object Date]
+const ty = rs
+  .split(" ")[1]
+  .substring(0, rs.length - 1)
+  .toLowerCase(); // date
 ```
 
 ## document 中的 load 事件和 DOMContentLoaded 事件之间的区别
 
-当初始的 HTML 文档被完全加载和解析完成之后, DOMContentLoaded 事件被触发, 而无需等待样式表, 图像和子框架的完成加载. window 的 load 事件仅在 DOM 和所有相关资源全部完成加载后才会触发.
+当初始的 HTML 文档被完全加载和解析完成之后, DOMContentLoaded 事件被触发, 而无需等待样式表, 图像和子框架的完成加载.
+window 的 load 事件仅在 DOM 和所有相关资源全部完成加载后才会触发.
 
 ## const 定义的 Array 中间元素能否被修改? 如果可以, 那 const 修饰对象的意义是?
 
