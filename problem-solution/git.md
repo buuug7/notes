@@ -364,7 +364,8 @@ git push -u origin master
 
 ## git 简易指南地址
 
-<http://www.bootcss.com/p/git-guide/>
+- https://rogerdudler.github.io/git-guide/index.zh.html
+- http://www.bootcss.com/p/git-guide/
 
 ## windows 使用 git 时出现：warning: LF will be replaced by CRLF
 
