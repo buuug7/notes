@@ -421,13 +421,17 @@ AJAX 的全称是 Asynchronous JavaScript and XML, 是一种利用 Javascript �
 typeof 可以正确识别: Undefined, Boolean, Number, String, Symbol, Function 等类型的数据, 但是对于其他的都会认为是 object. 但是可以使用`Object.prototype.toString`去做详细判定.
 
 ```javascript
-const rs = Object.prototype.toString.call(new Date()).split(" ")[1];
-const ty = rs.substring(0, rs.length - 1).toLowerCase(); // date
+const rs = Object.prototype.toString.call(new Date()); // [object Date]
+const ty = rs
+  .split(" ")[1]
+  .substring(0, rs.length - 1)
+  .toLowerCase(); // date
 ```
 
 ## document 中的 load 事件和 DOMContentLoaded 事件之间的区别
 
-当初始的 HTML 文档被完全加载和解析完成之后, DOMContentLoaded 事件被触发, 而无需等待样式表, 图像和子框架的完成加载. window 的 load 事件仅在 DOM 和所有相关资源全部完成加载后才会触发.
+当初始的 HTML 文档被完全加载和解析完成之后, DOMContentLoaded 事件被触发, 而无需等待样式表, 图像和子框架的完成加载.
+window 的 load 事件仅在 DOM 和所有相关资源全部完成加载后才会触发.
 
 ## const 定义的 Array 中间元素能否被修改? 如果可以, 那 const 修饰对象的意义是?
 
@@ -754,13 +758,13 @@ JS 执行是单线程的, 它是基于事件循环的. 事件循环大致分为�
 - 函数可以作为参数被传递
 - 函数可以作为返回值输出
 
-## `__proto__`, prototype, constructor
+## `__proto__`, `prototype`, `constructor`
 
-- `__proto__`和 constructor 属性是对象所独有的;
-- prototype 属性是函数所独有的, 因为函数也是一种对象, 所以函数也拥有`__proto__`和 constructor 属性.
+- `__proto__`和 `constructor` 属性是对象所独有的;
+- `prototype` 属性是函数所独有的, 因为函数也是一种对象, 所以函数也拥有`__proto__`和 `constructor` 属性.
 - `__proto__`属性的作用就是当访问一个对象的属性时, 如果该对象内部不存在这个属性, 那么就会去它的`__proto__`属性所指向的那个对象(父对象)里找, 一直找, 直到`__proto__`属性的终点 null, 再往上找就相当于在 null 上取值, 会报错. 通过`__proto__`属性将对象连接起来的这条链路即我们所谓的原型链.
-- prototype 属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法, 即 f1.`__proto__` === Foo.prototype.
-- constructor 属性的含义就是指向该对象的构造函数, 所有函数(此时看成对象了)最终的构造函数都指向 Function.
+- `prototype` 属性的作用就是让该函数所实例化的对象们都可以找到公用的属性和方法, 即 `f1.__proto__ === Foo.prototype`.
+- `constructor` 属性的含义就是指向该对象的构造函数, 所有函数(此时看成对象了)最终的构造函数都指向 `Function`.
 
 ## 自定义事件
 
