@@ -416,6 +416,19 @@ null 只能被显式赋值给变量. 它表示空值, 与被显式赋值 undefin
 
 AJAX 的全称是 Asynchronous JavaScript and XML, 是一种利用 Javascript 请求服务器数据的技术, 在不需要重新加载整个网页的情况下, 实现从服务端获取数据, 动态更新网页部分内容.
 
+## javascript 的数据类型
+
+- `number`
+- `string`
+- `boolean`
+- `undefined`
+- `null`
+- `object`
+  - `object` 狭义的对象
+  - `array`
+  - `function`
+- `symbol` ES6 新增的
+
 ## javascript 数据类型判断
 
 typeof 可以正确识别: Undefined, Boolean, Number, String, Symbol, Function 等类型的数据, 但是对于其他的都会认为是 object. 但是可以使用`Object.prototype.toString`去做详细判定.
