@@ -21,9 +21,9 @@ React 是一个声明式, 高效且灵活的用于构建用户界面的 JavaScri
 
 ## React features
 
-- 声明式(declarative), React 使构建用户界面变得简单. 为你应用的每一个状态设计精简的视图, 当数据变动时 React 能高效更新和渲染合适的组件. 编写声明式的视图能让你的代码更加有预测性且调试方便.
-- 组件化 (component based), 构建管理其自身状态的封装组件, 然后对其组合以构成更复杂的 UI. 由于组件逻辑使用 JavaScript 编写而非模板, 因此你可以轻松地在应用中传递数据, 并保持状态与 DOM 分离.
-- 跨平台 (learn once, write anywhere), 无论你现在使用什么技术栈, 在无需重写现有代码的前提下, 通过引入 React 来开发新功能. React 还可以使用 Node 进行服务器渲染, 或使用 react-native 开发原生移动应用.
+- 声明式(declarative), 让开发者只关心数据, 当数据变动时 React 能高效更新和渲染视图.
+- 组件化(component based), 构建管理其自身状态的独立组件, 然后对其组合以构成更复杂的 UI.
+- 跨平台(learn once, write anywhere)，编写的代码在各个平台都可以运行
 
 ## 什么是组件(what's React component) ?
 

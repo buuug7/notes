@@ -49,7 +49,7 @@ this.$nextTick().then(() => {
 
 ## 什么是虚拟 DOM
 
-虚拟 DOM (Virtual DOM)是真实 DOM 在内存中的表示, 一般指的是用 JavaScript 对 真实 DOM 的一种抽象, 将 DOM 变化的对比放在 JS 层来做. 更宽泛的来说, VDOM 就是 Javascript 对象, 然后根据这个对象构建出真实 DOM 树.
+虚拟 DOM (Virtual DOM)是真实 DOM 在内存中的表示, 一般指的是用 JavaScript 对 真实 DOM 的一种抽象 更宽泛的来说, VDOM 就是 Javascript 对象, 然后根据这个对象构建出真实 DOM 树.
 
 虚拟 DOM 的优点:
 
@@ -58,7 +58,7 @@ this.$nextTick().then(() => {
 
 DOM diff:
 
-DOM diff 是两个虚拟 DOM 树对比的算法: diff 算法仅在两个树的同级的虚拟节点之间做比较, 递归地进行比较, 最终实现整个 DOM 树的更新. diff 算法的三个步骤:
+DOM diff 是两个虚拟 DOM 树对比的算法，d iff 算法仅在两个树的同级的虚拟节点之间做比较, 递归地进行比较, 最终实现整个 DOM 树的更新. diff 算法的三个步骤:
 
 - 用 JavaScript 对象来表示 DOM 树的结构, 然后根据这个对象构建出真实的 DOM 树并插入到文档
 - 当状态变化的时候, 重新构造一棵新的对象树, 然后用新的树跟旧的树进行比较, 记录两棵树的差异
