@@ -1,5 +1,9 @@
 # mysql related
 
+## download mysql
+
+- https://downloads.mysql.com/archives/community/
+
 ## mysql cast
 
 ```sql

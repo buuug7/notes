@@ -47,7 +47,7 @@ fetch(api, {
  * Creates an anchor element `<a></a>` with
  * the base64 pdf source and a filename with the
  * HTML5 `download` attribute then clicks on it.
- * @param  {string} pdf
+ * @param  {string} pdf base64
  * @return {void}
  */
 function downloadPDF(pdf) {
