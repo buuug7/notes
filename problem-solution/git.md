@@ -1,5 +1,12 @@
 # git related
 
+## git rebase
+
+```
+# git pull rebase
+git rebase origin/dev
+```
+
 ## git 取消已追踪的文件或者文件夹
 
 To stop tracking a file you need to remove it from the index. This can be achieved with this command.

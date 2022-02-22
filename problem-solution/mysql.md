@@ -4,6 +4,11 @@
 
 - https://downloads.mysql.com/archives/community/
 
+## 安装 mysql 绿色版
+
+- https://dev.mysql.com/doc/refman/5.7/en/windows-install-archive.html
+- https://www.cnblogs.com/jyiqing/p/6924062.html
+
 ## mysql cast
 
 ```sql

@@ -537,7 +537,7 @@ function debounce(fn, wait) {
     const arg = arguments;
     time = setTimeout(() => {
       fn.apply(this, arg);
-    });
+    }, wait);
   };
 }
 ```
