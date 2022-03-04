@@ -103,7 +103,7 @@ ul li:first-child {
 
 #### last-child
 
-与`:fist-child`类似，选择的是元素的最后一个子元素
+与`:first-child`类似，选择的是元素的最后一个子元素
 
 #### nth-child(n)
 
@@ -279,7 +279,7 @@ div p:only-of-type {
 在 Web 的表单中，有些表单元素有可用 `:enabled` 和不可用 `:disabled` 状态，比如输入框，密码框，复选框等。在默认情况之下，这些表单元素都处在可用状态。那么我们可以通过伪选择器`:enabled` 对这些表单元素设置样式。
 
 ```css
-input:enabled {
+input:disabled {
   border: 1px solid red;
 }
 ```

@@ -384,6 +384,7 @@ const tag = cipher.getAuthTag();
 
 console.log("encryped", encrypted);
 
+// 解密
 const decipher = crypto.createDecipheriv(algorithm, key, iv);
 decipher.setAuthTag(tag);
 let decrypted = decipher.update(encrypted, "hex", "utf8");
