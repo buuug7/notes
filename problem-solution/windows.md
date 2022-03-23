@@ -1,5 +1,11 @@
 # windows related
 
+## sqlserver 2008
+
+https://www.microsoft.com/zh-cn/download/details.aspx?id=30438
+
+选择 SQLEXPRADV_x64_CHS.exe
+
 ## windows 安装 openssh
 
 https://winscp.net/eng/docs/guide_windows_openssh_server

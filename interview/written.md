@@ -682,3 +682,21 @@ function binarySearch(arr, v) {
   return -1;
 }
 ```
+
+## 比较第一个数组跟第二个数组(或者更多数据)的差异元素并返回
+
+Create an array with values that are present in the first input array but not additional ones
+
+```javascript
+function arrDiff(arr, ...rest) {
+  // 合并除了第一个数组之外的其他数组
+  const concatRest = [].concat.apply([], rest);
+  // 返回存在第一个数组中,但是不存在其他数组中的元素
+  return arr.filter((item) => concatRest.indexOf(item) === -1);
+}
+
+const a1 = [1, 2, 3];
+const a2 = [2, 3, 4];
+
+arrDiff(a1, a2); // 1
+```

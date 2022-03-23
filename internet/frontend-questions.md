@@ -100,7 +100,7 @@ javascript 有两种作用域类型, 全局作用域, 局部作用域, 作用域
 
 ## sessionStorage 跟 localStorage 区别
 
-localStorage 生命周期是永久，sessionstorage 生命周期为当前窗口或标签页
+localStorage 生命周期是永久，sessionStorage 生命周期为当前窗口或标签页
 
 ## 常见的 web 页面优化的手段有哪些
 
@@ -156,3 +156,48 @@ DOM diff 是两个虚拟 DOM 树对比的算法，diff 算法仅在两个树的�
 - 用 JavaScript 对象来表示 DOM 树的结构, 然后根据这个对象构建出真实的 DOM 树并插入到文档
 - 当状态变化的时候, 重新构造一棵新的对象树, 然后用新的树跟旧的树进行比较, 记录两棵树的差异
 - 最后把所记录的差异应用到所构建的真正 DOM 树上, 这样就完成了一次视图更新
+
+## vue 的修饰符有哪些？
+
+.stop
+.prevent
+.capture
+.self
+.once
+.passive
+.right
+.center
+.middle
+.alt
+
+## keep-alive 平时在哪里使用？原理是什么？
+
+使用 keep-alive 包裹动态组件时，会对组件进行缓存，避免组件重新创建
+使用有两个场景，一个是动态组件，一个是 router-view
+
+## vuerouter 的两种模式的区别
+
+vue-router 中有三种模式，分别是 hash、history、abstract
+abstract 在不支持浏览器的 API 换景使用
+hash 模式兼容性好，但是不美观，不利于 SEO
+history 美观，historyAPI+popState，但是刷新会出现 404
+
+## 谈谈 Vue 的性能优化有哪些？
+
+数据层级不要过深，合理的设置响应式数据
+使用数据时，缓存值的结果，不频繁取值
+合理设置 key
+v-show(频繁切换性能高)和 v-if 的合理使用
+控制组件的粒度 -> Vue 采用组件级别更新
+采用函数式组件 -> 函数式组价开销低
+采用异步组件 -> 借助 webpack 的分包策略
+使用 keep-alive 来缓存组件
+虚拟滚动、时间分片等策略
+打包优化
+
+## 谈谈你对 Vuex 的理解？
+
+Vuex 是专门为 vue 提供的全局状态管理系统，用于多个组件中的数据共享、数据缓存。
+问题：无法持久化。
+
+## 父子组件传值
