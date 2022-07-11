@@ -403,11 +403,41 @@ console.log(flat([1, [2, [3]]])); // [ 1, 2, 3 ]
 ## 数组去重
 
 ```javascript
+// first
 function unique(arr) {
   return arr.filter((item, index, array) => {
     return array.indexOf(item) === index;
   });
 }
+
+// another
+const arr = [1, 1, 2, 3, 3, 5];
+
+// [ 1, 2, 3, 5 ]
+const arrNoRepeat = [...new Set(arr)];
+```
+
+## 对象数组去重
+
+```javascript
+let arr = [
+  { id: 1, name: "tom1" },
+  { id: 1, name: "tom1" },
+  { id: 2, name: "tom2" },
+];
+
+arr = arr.filter(
+  (value, index, self) => index === self.findIndex((it) => it.id === value.id)
+);
+
+// or
+
+arr.reduce((_arr, item) => {
+  if (!_arr.some((it) => it.id === item.id)) {
+    _arr.push(item);
+  }
+  return _arr;
+}, []);
 ```
 
 ## 检查数据类型
