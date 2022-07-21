@@ -1,3 +1,10 @@
+## 好用的工具以及资源
+
+- https://github.com/NickeManarin/ScreenToGif
+- https://github.com/oldj/SwitchHosts
+- https://github.com/521xueweihan/GitHub520
+- https://github.com/Fndroid/clash_for_windows_pkg
+
 ## 五种我认为值得掌握的现代编程语言
 
 - C(竞品：Zig): Unix/Linux/基础库 等一大波老牌开源基础库和平台开发

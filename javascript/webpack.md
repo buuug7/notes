@@ -1,5 +1,15 @@
 # webpack
 
+At its core, webpack is a static module bundler for modern JavaScript applications. When webpack processes your application, it internally builds a dependency graph from one or more entry points and then combines every module your project needs into one or more bundles
+
+从本质上讲，webpack 是现代 JavaScript 应用程序的静态模块打包器。当 webpack 处理你的应用程序时，它会在内部从一个或多个入口点构建依赖关系图，然后将项目所需的每个模块组合成一个或多个包。
+
+- Entry, 入口点指示 webpack 应该使用哪个模块来开始构建其内部依赖图, 默认为 `./src/index.js`
+- Output, output 属性告诉 webpack 在哪里生成打包的文件以及如何命名这些文件, 默认为 ./dist/main.js
+- Loaders, webpack 只理解 JavaScript 和 JSON 文件。Loader 允许 webpack 处理其他类型的文件并将它们转换为可以被您的应用程序使用的有效模块, 并将其添加到关系依赖图中
+- Plugins, loader 是用来转换某些类型的模块，然而 Plugins 来执行更广泛的任务，如 bundle 优化、资源的管理和环境变量的注入等
+- Mode, 通过将 mode 参数设置为 development、production 或 none，您可以启用 webpack 与每个环境对应的内置优化, 默认值为生产
+
 ## webpack 常见的优化
 
 #### 压缩 JS 代码

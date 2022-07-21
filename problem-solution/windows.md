@@ -1,5 +1,9 @@
 # windows related
 
+## office 激活教程
+
+- https://www.coolhub.top/archives/14
+
 ## sqlserver 2008
 
 https://www.microsoft.com/zh-cn/download/details.aspx?id=30438
