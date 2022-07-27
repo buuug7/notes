@@ -1,5 +1,9 @@
 # windows related
 
+## windows openSSH
+
++ https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+
 ## office 激活教程
 
 - https://www.coolhub.top/archives/14
