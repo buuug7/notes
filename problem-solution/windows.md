@@ -1,8 +1,18 @@
 # windows related
 
+## 命令行设置代理
+
+```bash
+# cmd
+set http_proxy=http://127.0.0.1:7890 & set https_proxy=http://127.0.0.1:7890
+
+# powershell
+$Env:http_proxy="http://127.0.0.1:7890";$Env:https_proxy="http://127.0.0.1:7890"
+```
+
 ## windows openSSH
 
-+ https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
+- https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
 
 ## office 激活教程
 

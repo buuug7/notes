@@ -2,6 +2,24 @@
 
 Node package management
 
+## 设置代理
+
+Setup npm proxy
+
+```
+For HTTP:
+
+npm config set proxy http://proxy_host:port
+For HTTPS:
+
+use the https proxy address if there is one
+
+npm config set https-proxy https://proxy.company.com:8080
+else reuse the http proxy address
+
+npm config set https-proxy http://proxy.company.com:8080
+```
+
 ## package.json
 
 package.json 包含了你项目的清单, 以及一些有关包的元信息, 如果你的包想通过 npm 分发, 那么 package.json 中必须要具备几个必选的属性, 比如 name, version, description 等.

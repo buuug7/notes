@@ -730,3 +730,14 @@ const a2 = [2, 3, 4];
 
 arrDiff(a1, a2); // 1
 ```
+
+## 生成概率
+
+```javascript
+function probability(n) {
+  return !!n && Math.random() <= n / 100;
+}
+
+const a1 = probability(25); // 25% 概率
+const a2 = probability(50); // 25% 概率
+```
