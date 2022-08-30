@@ -1,5 +1,13 @@
 # windows related
 
+# 计算屏幕 DPI
+
+```javascript
+// 1920 x 1080 分辨率 15.6 英寸
+// 大约 141.21199808219862
+const dpi = Math.sqrt(Math.pow(1920, 2) + Math.pow(1080, 2)) / 15.6;
+```
+
 ## 命令行设置代理
 
 ```bash

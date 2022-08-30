@@ -741,3 +741,24 @@ function probability(n) {
 const a1 = probability(25); // 25% 概率
 const a2 = probability(50); // 25% 概率
 ```
+
+## 设置表格列的宽度
+
+```html
+<table style="width: 100%">
+  <colgroup>
+    <col span="1" style="width: 15%;" />
+    <col span="1" style="width: 70%;" />
+    <col span="1" style="width: 15%;" />
+  </colgroup>
+
+  <!-- Put <thead>, <tbody>, and <tr>'s here! -->
+  <tbody>
+    <tr>
+      <td style="background-color: #777">15%</td>
+      <td style="background-color: #aaa">70%</td>
+      <td style="background-color: #777">15%</td>
+    </tr>
+  </tbody>
+</table>
+```

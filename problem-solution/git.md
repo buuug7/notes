@@ -1,5 +1,16 @@
 # git related
 
+## git stash
+
+把当前工作区的缓存文件存入 stashes 中
+
+```bash
+git stash
+
+#git stash with name
+git stash save "my stash1"
+```
+
 ## git cherry-pick
 
 ```bash
