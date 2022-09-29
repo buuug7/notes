@@ -128,8 +128,8 @@ process.env.PATH = ":/some/path";
 const fs = require("fs");
 const mime = "image/png";
 const encoding = "base64";
-const imageData = fs.readSync("/path/to/example.png").toString("base64");
-const uri = `data: ${mime}; ${encoding}, ${imageData}`;
+const imageData = fs.readFileSync("/path/to/example.png").toString("base64");
+const uri = `data:${mime};${encoding},${imageData}`;
 ```
 
 base64 生成文件

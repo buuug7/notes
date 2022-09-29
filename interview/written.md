@@ -762,3 +762,35 @@ const a2 = probability(50); // 25% 概率
   </tbody>
 </table>
 ```
+
+## delay by 1 second
+
+```javascript
+function delay(time) {
+  return new Promise((resolve) => setTimeout(resolve, time));
+}
+
+delay(1000).then(() => console.log("ran after 1 second1 passed"));
+
+async function test() {
+  console.log("start timer");
+  await delay(1000);
+  console.log("after 1 second");
+}
+```
+
+## exclude array from another array
+
+```javascript
+let myArr = [1, 2, 3, 4, 5];
+const removeArr = [4, 5];
+myArr = myArr.filter((it) => {
+  return removeArr.indexOf(it) === -1;
+});
+
+// 或者
+
+myArr = myArr.filter(function (el) {
+  return !removeArr.includes(el);
+});
+```

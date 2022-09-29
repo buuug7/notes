@@ -119,3 +119,7 @@
 - https://hub.fastgit.org/
 - https://mirrors.cloud.tencent.com/
 - http://mirrors.ustc.edu.cn/help/index.html
+
+## 图片 placeholder
+
+- https://placeholder.com/
