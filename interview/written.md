@@ -491,7 +491,7 @@ Dog.prototype = new Animal();
 ## 订阅发布模式
 
 ```javascript
-class EventEmitter {
+class MyEvent {
   constructor() {
     this.cache = {};
   }
@@ -508,32 +508,112 @@ class EventEmitter {
   }
 
   emit(name, ...arg) {
-    if (this.cache[name]) {
-      let tasks = this.cache[name];
-      for (let fn of tasks) {
-        fn(...arg);
-      }
+    const tasks = this.cache[name];
+    if (tasks) {
+      tasks.forEach((fn) => fn(...arg));
     }
+  }
+
+  emitWithWaitUntil(name, ...args) {
+    const event = {
+      name,
+      preventDefaultEvent: false,
+      preventDefault() {
+        event.defaultPrevented = true;
+      },
+      waitUntil(p) {
+        this.wait = p.then((data) => {
+          event.resolvedData = data;
+
+          return event;
+        });
+      },
+    };
+
+    event.wait = Promise.resolve(event);
+
+    if (this.cache[name]) {
+      const tasks = this.cache[name];
+      tasks.forEach((fn) => {
+        fn(event, ...args);
+      });
+    }
+
+    return event.wait;
   }
 }
 
-const event = new EventEmitter();
+const myEvent = new MyEvent();
 
 const f1 = (e) => console.log("f1:", e);
 const f2 = (e) => console.log("f2:", e);
 
-event.on("a", f1);
-event.on("a", f2);
+myEvent.on("a", f1);
+myEvent.on("b", f2);
 
-// 取消f1监听a
-event.off("a", f1);
+myEvent.emit("a", "a data");
+myEvent.emit("b", "b data");
 
-event.emit("a", "a1");
-event.emit("a", "a2");
+myEvent.on("c", (e, data) => {
+  e.waitUntil(
+    new Promise((resolve, reject) => {
+      setInterval(() => {
+        // do some
+        resolve("some data");
+      }, 2000);
+    })
+  );
+});
 
-// result
-// f2: a1
-// f2: a2
+myEvent.emitWithWaitUntil("c", "hello world").then((r) => {
+  console.log(r.resolvedData);
+});
+```
+
+## 订阅发布模式
+
+```javascript
+function myEventBus() {
+  const message = {};
+
+  function on(name, fn) {
+    if (message[name]) {
+      message[name].push(fn);
+      return;
+    }
+
+    message[name] = [fn];
+  }
+
+  function off(name, fn) {
+    const tasks = message[name];
+
+    if (tasks) {
+      message[name] = tasks.filter((it) => it !== fn);
+    }
+  }
+
+  function emit(name, ...args) {
+    const tasks = message[name];
+    if (tasks) {
+      tasks.forEach((it) => it(...args));
+    }
+  }
+
+  return {
+    on,
+    off,
+    emit,
+  };
+}
+
+const E = myEventBus();
+
+E.on("a", (e) => {
+  console.log(`a`, e);
+});
+
+E.emit("a", "some message1");
 ```
 
 ## 图片懒加载
