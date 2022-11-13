@@ -2,6 +2,28 @@
 
 some useful notes about nodejs
 
+## exports, module.exports
+
+> https://stackoverflow.com/questions/7137397/module-exports-vs-exports-in-node-js
+
+exports 是 module.exports 的简写， 你可以理解为， 在文件的开始处是这么定义
+
+```javascript
+var module = new Module(...);
+var exports = module.exports;
+```
+当你从其他地方 `require` 该模块（文件）的时候，只有 `module.exports` 会被返回，而不是 `exports`
+
+如果给 `exports` 赋值一个新的变量，那么 export 将不会指向 `module.exports`
+
+```javascript
+// 导出 hello
+module.exports.hello = true; 
+
+// 不会导出 hello，因为 exports 被赋予一个新的对象，它不会在指向 module.exports
+exports = { hello: true }; 
+```
+
 ## node process gracefully terminate node 进程优雅退出
 
 `process.exit(0)`会直接退出, 参数 0 代表成功退出. 如果指代这次退出是非正常退出, 可以传递 1.
