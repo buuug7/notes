@@ -6,7 +6,8 @@
 - https://github.com/Wavez/react-hooks-lifecycle
 - https://github.com/wojtekmaj/react-lifecycle-methods-diagram
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
-- [quick started with jsx](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)
+- [quick started with jsx
+- ](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)
 
 ## React 两个工作阶段
 
@@ -31,7 +32,7 @@ React 是一个声明式, 高效且灵活的用于构建用户界面的 JavaScri
 
 ## 什么是 JSX(what's JSX) ?
 
-JSX 是一种类似于 XML 的模板语言, 在构建的时候被转换成 `React.createElement`. react 官方对此的定义是 JSX 是 `React.createElement`语法糖.
+JSX 是 javascript 的语法扩展, 它可以让你在 javascript 文件中书写类似于 HTML 风格的标记语法. 在构建的时候被转换成 `React.createElement`, 可以理解为 JSX 是 `React.createElement`语法糖.
 
 ```javascript
 React.createElement(type, [props], [. ..children]);

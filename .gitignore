@@ -10,6 +10,7 @@ gen
 
 .DS_Store
 .vscode
+.fleet
 
 
 /tmp

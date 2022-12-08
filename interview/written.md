@@ -874,3 +874,14 @@ myArr = myArr.filter(function (el) {
   return !removeArr.includes(el);
 });
 ```
+
+## 根据 html 标签查找父节点
+
+find parent node with a specific tag?
+
+```javascript
+function getParentByTag(elem, lookingFor) {
+  lookingFor = lookingFor.toUpperCase();
+  while ((elem = elem.parentNode)) if (elem.tagName === lookingFor) return elem;
+}
+```
