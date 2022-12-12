@@ -29,7 +29,7 @@ const buf2 = Buffer.from([97, 98, 99]);
 
 ```javascript
 var buffer = Buffer.alloc(16);
-buffer.write("Hello", "utf-8");
+buffer.write("Hello", "utf8");
 
 // or
 
@@ -39,8 +39,14 @@ buffer[0] = "i".charCodeAt(0);
 ## reading from buffer
 
 ```javascript
-buffer.toString("utf-8");
-buffer.toString("utf-8", 0, 3);
+// for utf8
+buffer.toString("utf8");
+
+// base64
+buffer.toString("base64");
+
+// hex
+buffer.toString("hex");
 ```
 
 ## 其他操作
@@ -73,4 +79,40 @@ copiedBuf.set(buf);
 
 // buffer slice
 buf.slice(0, 3);
+```
+
+## Buffers and TypedArrays
+
+Buffer 实例就是 Uint8Array 和 TypedArray 实例. 不过在有些 API 中有细微的不同之处.
+
+```javascript
+// Buffer 转换为 TypedArray
+const buf = Buffer.from([1, 2, 3]);
+const uint8Array = new Uint8Array(buf);
+
+// TypedArray 转换为 Buffer
+const arr = new Uint8Array(3);
+arr[1] = 1;
+arr[2] = 2;
+arr[3] = 3;
+
+// 复制 arr 内容
+const buf1 = Buffer.from(arr);
+
+// 与 arr 共享内容
+const buf2 = Buffer.from(arr.buffer);
+```
+
+## Blob
+
+Blob 封装了不可变的,原生的数据, Blob 封装的数据可以安全的在多个线程中共享
+
+```javascript
+const blob = new Blob(["hello"]);
+
+// 读取
+await blob.text();
+
+// blob.size
+// blob.type
 ```
