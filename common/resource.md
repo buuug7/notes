@@ -1,3 +1,9 @@
+## CDN
+
+- https://www.jsdelivr.com/
+- https://unpkg.com/
+- https://cdnjs.com/
+
 ## 好用的工具以及资源
 
 - https://github.com/NickeManarin/ScreenToGif
