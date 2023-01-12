@@ -1,3 +1,7 @@
+## amazing web page
+
+- https://www.jetbrains.com/lp/annualreport-2022/
+
 ## CDN
 
 - https://www.jsdelivr.com/

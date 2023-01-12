@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>clearfix</title>
+    <style>
+      html {
+        box-sizing: border-box;
+      }
+      *,
+      *:before,
+      *:after {
+        box-sizing: inherit;
+      }
+      body {
+        margin: 3rem;
+      }
+
+      .box {
+        width: 300px;
+        height: 200px;
+        background: linear-gradient(135deg, transparent 15px, lightblue 0) top left,
+          linear-gradient(-135deg, transparent 15px, lightblue 0) top right,
+          linear-gradient(-45deg, transparent 15px, lightblue 0) bottom right,
+          linear-gradient(45deg, transparent 15px, lightblue 0) bottom left;
+        background-size: 50% 50%;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+    </div>
+  </body>
+</html>
