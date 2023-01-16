@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>float it</title>
+  </head>
+  <body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+    <p>Voluptates aut nesciunt suscipit fugiat impedit illum?</p>
+    <p>Ullam eius tempore non facilis voluptatem omnis?</p>
+    <p>Dignissimos facere minus qui, nisi ea dolorem?</p>
+    <p>Iste illum, fuga deleniti voluptates rerum ut.</p>
+    <div
+      id="container"
+      style="position:absolute;z-index:99;cursor:pointer;"
+      onmouseover="instance.pauseResume()"
+      onmouseout="instance.pauseResume()"
+      onclick="instance.hide(event)"
+    >
+      <img src="./rabbit.png" alt="my images" width="200px" />
+    </div>
+
+    <script>
+      function FloatIt({ el = null }) {
+        let xPos = document.body.clientWidth - 20;
+        let yPos = document.body.clientHeight / 2;
+        const step = 1;
+        const delay = 20;
+        let height = 0;
+        let hOffset = 0;
+        let wOffset = 0;
+        let yon = 0;
+        let xon = 0;
+        let pause = true;
+        let interval;
+        el.style.top = yPos;
+
+        const changePos = () => {
+          if (!el) return;
+          const width = document.body.clientWidth;
+          height = document.body.clientHeight;
+          hOffset = el.offsetHeight;
+          wOffset = el.offsetWidth;
+          el.style.left = xPos + document.body.scrollLeft + "px";
+          el.style.top = yPos + document.body.scrollTop + "px";
+
+          yPos = yon ? yPos + step : yPos - step;
+
+          if (yPos < 0) {
+            yon = 1;
+            yPos = 0;
+          }
+
+          if (yPos >= height - hOffset) {
+            yon = 0;
+            yPos = height - hOffset;
+          }
+
+          xPos = xon ? xPos + step : xPos - step;
+
+          if (xPos < 0) {
+            xon = 1;
+            xPos = 0;
+          }
+
+          if (xPos >= width - wOffset) {
+            xon = 0;
+            xPos = width - wOffset;
+          }
+        };
+
+        const start = () => {
+          if (!el) return;
+          el.style.visibility = "visible";
+          interval = setInterval(changePos, delay);
+        };
+
+        const pauseResume = () => {
+          if (pause) {
+            clearInterval(interval);
+            pause = false;
+          } else {
+            interval = setInterval(changePos, delay);
+            pause = true;
+          }
+        };
+
+        const hide = (event) => {
+          if (!el) return;
+          event.preventDefault();
+          const x = Math.abs(event.offsetX - 178);
+          const y = Math.abs(event.offsetY - 15);
+          if (x < 5 && y < 5) {
+            el.style.display = "none";
+            clearInterval(interval);
+          }
+        };
+
+        return {
+          pause,
+          interval,
+          delay,
+          changePos,
+          pauseResume,
+          start,
+          hide,
+        };
+      }
+
+      const instance = FloatIt({
+        el: document.querySelector("#container"),
+      });
+
+      instance.start();
+    </script>
+  </body>
+</html>
