@@ -1,5 +1,30 @@
 # javascript 杂项
 
+## 使用代理来检测对象的变动
+
+您可以使用称为代理的 JavaScript 功能来定义如何读取和设置对象的属性。 代理接受一个目标（代理正在包装的对象）和一个处理程序（定义代理应如何操作）。
+
+```javascript
+const sourceObject = {};
+
+const handler = {
+  get: (target, key) => {
+    if (typeof target[key] === "object" && target[key] !== null) {
+      return new Proxy(target[key], handler);
+    }
+    console.log("property is read!");
+    return target[key];
+  },
+  set: (target, prop, value) => {
+    target[prop] = value;
+    console.log("A change was made!");
+    return true;
+  },
+};
+
+const object = new Proxy(sourceObject, handler);
+```
+
 ## javascript 判断屏幕方向
 
 ```javascript
@@ -254,11 +279,7 @@ NPM 仓库中的包都是遵守语义化版本格式, 也就是: `主版本号.�
 ## javascript 弹出一个窗口
 
 ```javascript
-window.open(
-  url,
-  "Share",
-  "width=550, height=400, toolbar=0, scrollbars=1, location=0, statusbar=0, menubar=0, resizable=0"
-);
+window.open(url, "Share", "width=550, height=400, toolbar=0, scrollbars=1, location=0, statusbar=0, menubar=0, resizable=0");
 ```
 
 ## 为什么有些函数前面有个`+function(){}()`或者`!function(){}()`
@@ -1369,13 +1390,7 @@ window.document.documentElement.clientHeight;
 // Document height
 const body = document.body;
 const html = document.documentElement;
-const height = Math.max(
-  body.offsetHeight,
-  body.scrollHeight,
-  html.clientHeight,
-  html.offsetHeight,
-  html.scrollHeight
-);
+const height = Math.max(body.offsetHeight, body.scrollHeight, html.clientHeight, html.offsetHeight, html.scrollHeight);
 
 // Element height
 // 精确到整数(border-box 时为 height - border 值, content-box 时为 height + padding 值)
