@@ -1,5 +1,36 @@
 # Nginx 基本操作
 
+## window nginx 操作启动关闭 bat
+
+启动
+
+```
+@echo off
+E:
+cd D:\nginx-1.22.1
+ECHO Starting Nginx...
+start nginx
+exit
+```
+
+关闭
+
+```
+@ECHO OFF
+taskkill /f /IM nginx.exe
+EXIT
+```
+
+## window nginx 操作
+
+```
+#启动
+start nginx
+
+#关闭
+taskkill /f /IM nginx.exe
+```
+
 ## nginx 教程
 
 - https://github.com/openresty/nginx-tutorials
