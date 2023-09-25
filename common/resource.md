@@ -1,3 +1,7 @@
+## css
+
+- [CSS 绘制最常见的 40 种形状和图形](https://www.webhek.com/post/40-css-shapes/)
+
 ## dev, online develop, editor
 
 - https://github.dev/

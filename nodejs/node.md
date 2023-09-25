@@ -2,6 +2,10 @@
 
 some useful notes about nodejs
 
+## node addon
+
+- https://blog.atulr.com/node-addon-guide/
+
 ## exports, module.exports
 
 > https://stackoverflow.com/questions/7137397/module-exports-vs-exports-in-node-js
@@ -12,16 +16,17 @@ exports 是 module.exports 的简写， 你可以理解为， 在文件的开始
 var module = new Module(...);
 var exports = module.exports;
 ```
+
 当你从其他地方 `require` 该模块（文件）的时候，只有 `module.exports` 会被返回，而不是 `exports`
 
 如果给 `exports` 赋值一个新的变量，那么 export 将不会指向 `module.exports`
 
 ```javascript
 // 导出 hello
-module.exports.hello = true; 
+module.exports.hello = true;
 
 // 不会导出 hello，因为 exports 被赋予一个新的对象，它不会在指向 module.exports
-exports = { hello: true }; 
+exports = { hello: true };
 ```
 
 ## node process gracefully terminate node 进程优雅退出
@@ -382,10 +387,7 @@ HMAC 算法是一种基于密钥的报文完整性的验证方法, 其安全性�
 
 ```javascript
 const crypto = require("crypto");
-const hash = crypto
-  .createHmac("sha256", "some key")
-  .update("data")
-  .digest("hex");
+const hash = crypto.createHmac("sha256", "some key").update("data").digest("hex");
 ```
 
 加密(Cipher)和解密(Decipher)算法:
