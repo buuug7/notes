@@ -173,8 +173,7 @@ function deepCopy(obj) {
   let newObj = obj instanceof Array ? [] : {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      newObj[key] =
-        typeof obj[key] === "object" ? deepCopy(obj[key]) : obj[key];
+      newObj[key] = typeof obj[key] === "object" ? deepCopy(obj[key]) : obj[key];
     }
   }
 
@@ -353,8 +352,7 @@ function deepClone(obj) {
   let newObj = obj instanceof Array ? [] : {};
   for (let key in obj) {
     if (obj.hasOwnProperty(key)) {
-      newObj["key"] =
-        typeof obj[key] === "object" ? deepClone(obj["key"]) : obj[key];
+      newObj["key"] = typeof obj[key] === "object" ? deepClone(obj["key"]) : obj[key];
     }
   }
   return newObj;
@@ -426,9 +424,11 @@ let arr = [
   { id: 2, name: "tom2" },
 ];
 
-arr = arr.filter(
-  (value, index, self) => index === self.findIndex((it) => it.id === value.id)
-);
+// 重复的数据
+const duplicate = arr.filter((value, index, self) => self.findIndex((it) => it.id === value.id) !== index);
+
+// 去除重复后的
+arr = arr.filter((value, index, self) => index === self.findIndex((it) => it.id === value.id));
 
 // or
 
@@ -677,9 +677,7 @@ function getJson(url) {
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = () => {
     if (xhr.readyState === 4) {
-      xhr.status === 200
-        ? console.log(xhr.responseText)
-        : console.error("error");
+      xhr.status === 200 ? console.log(xhr.responseText) : console.error("error");
     }
   };
   xhr.open("GET", url);

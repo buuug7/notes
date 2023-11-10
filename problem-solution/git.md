@@ -30,20 +30,37 @@ git cherry-pick e76dcf1a5f76640395787996ffa235bc30e339a0
 ```
 # git pull rebase
 git rebase origin/dev
+
 ```
+
+## git rebase 取消
+
+It seems that there is already a rebase-merge directory, and I wonder if you are in the middle of another rebase. If that is the case, please try
+
+```
+git rebase (--continue | --abort | --skip)
+rm -fr ".git/rebase-merge"
+```
+
+and run me again. I am stopping in case you still have something
+valuable there.
 
 ## git 取消已追踪的文件或者文件夹
 
 To stop tracking a file you need to remove it from the index. This can be achieved with this command.
 
 ```
+
 git rm --cached <file>
+
 ```
 
 If you want to remove a whole folder, you need to remove all files in it recursively.
 
 ```
+
 git rm -r --cached <folder>
+
 ```
 
 ## git 设置 origin upstream
@@ -124,8 +141,8 @@ git checkout -b dev origin/dev
 	remote = origin
 	merge = refs/heads/master
 [user]
-	name = 蒲国红
-	email = puguohong@togeek.cn
+	name = youpp
+	email = youpp@126.com
 ```
 
 ## 一个电脑使用多个 git 账号
