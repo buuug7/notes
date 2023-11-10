@@ -1,5 +1,18 @@
 # mac
 
+## brew 安装 node 后日志
+
+node@18 is keg-only, which means it was not symlinked into /usr/local,
+because this is an alternate version of another formula.
+
+If you need to have node@18 first in your PATH, run:
+echo 'export PATH="/usr/local/opt/node@18/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find node@18 you may need to set:
+export LDFLAGS="-L/usr/local/opt/node@18/lib"
+export CPPFLAGS="-I/usr/local/opt/node@18/include"
+puguohong@192 ~/code> echo 'export PATH="/usr/local/opt/node@18/bin:$PATH"' >> ~/.zshrc
+
 ## mac brew 安装软件的位置
 
 一般位置都会在 `/usr/local/Cellar`下面
