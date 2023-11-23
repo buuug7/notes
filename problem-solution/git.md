@@ -1,5 +1,13 @@
 # git related
 
+## git 合并冲突后撤回操作
+
+Since your pull was unsuccessful then HEAD (not HEAD^) is the last "valid" commit on your branch:
+
+```
+git reset --hard HEAD
+```
+
 ## git stash
 
 把当前工作区的缓存文件存入 stashes 中
