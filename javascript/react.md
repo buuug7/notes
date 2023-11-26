@@ -50,12 +50,7 @@ React.createElement(type, [props], [. ..children]);
 // equivalent to
 
 ```javascript
-React.createElement(
-  "div",
-  { className: "app" },
-  React.createElement("h1", {}, "Hello world"),
-  React.createElement("p", {}, "lorem ipsum dolor site")
-);
+React.createElement("div", { className: "app" }, React.createElement("h1", {}, "Hello world"), React.createElement("p", {}, "lorem ipsum dolor site"));
 ```
 
 注意:
@@ -966,12 +961,8 @@ function Counter() {
     <div className="Counter">
       Count: {state.count}
       <p>
-        <button onClick={() => dispatch({ type: "increment" })}>
-          increment
-        </button>
-        <button onClick={() => dispatch({ type: "decrement" })}>
-          decrement
-        </button>
+        <button onClick={() => dispatch({ type: "increment" })}>increment</button>
+        <button onClick={() => dispatch({ type: "decrement" })}>decrement</button>
       </p>
     </div>
   );
@@ -1042,7 +1033,11 @@ function App() {
 
 ## useLayoutEffect
 
-useLayoutEffect 跟 useEffect 功能类似, 但它会在 DOM 变更之后同步调用 effect. 在浏览器重绘之前, 在 useLayoutEffect 内部的代码会被同步的执行. 通常使用它来读取 DOM 的布局等. 通常推荐开发者使用 useEffect, 避免使用 useLayoutEffect.
+useLayoutEffect 跟 useEffect 功能类似，可以理解为 useEffect 的特殊版本，通常使用它在屏幕绘制之前测量 DOM 布局相关信息。 它会在浏览器重绘屏幕之前触发, 同步调用 useLayoutEffect 内部的代码，由于是同步调用，所以它会阻塞浏览器渲染，会影响组建性能，尽可能少使用 useLayoutEffect。
+
+## useInsertionEffect
+
+useInsertionEffect 在 React 对 DOM 进行更改之前触发，一些库可以在此处插入动态 CSS，它允许在任何布局效果触发之前将元素插入到 DOM 中。通常用来从 CSS-in-JS 库注入动态样式。useInsertionEffect 可以在更新 DOM 之前或之后运行，你不应该依赖 DOM 在何时更新的。
 
 ## hooks 中如何使用之前的 state 跟 props
 
