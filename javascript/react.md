@@ -971,6 +971,8 @@ function Counter() {
 
 ## useCallback
 
+useCallback is a React Hook that lets you cache a function definition between re-renders.
+
 返回一个带记忆的函数, callback 只有在它的依赖发生变化的时候才会再次调用, 如果没有指定依赖, 会在每次渲染的时候都执行该函数. 也就是说, 它在依赖项不变的情况下, 多次渲染会保持同一个引用, 而不是每一次运行的时候都生成新的回调引用.
 
 ```javascript
@@ -982,6 +984,8 @@ const memoizedCallback = useCallback(() => {
 `useCallback(fn, deps)` 跟 `useMemo(() => fn, deps)`等价
 
 ## useMemo
+
+useMemo is a React Hook that lets you cache the result of a calculation between re-renders.
 
 返回一个有记忆的值, 该值只有在它的依赖发生变化的时候才会更新. 如果没有依赖提供, 会在每次渲染的时候都重新计算该值.
 
@@ -1038,6 +1042,26 @@ useLayoutEffect 跟 useEffect 功能类似，可以理解为 useEffect 的特殊
 ## useInsertionEffect
 
 useInsertionEffect 在 React 对 DOM 进行更改之前触发，一些库可以在此处插入动态 CSS，它允许在任何布局效果触发之前将元素插入到 DOM 中。通常用来从 CSS-in-JS 库注入动态样式。useInsertionEffect 可以在更新 DOM 之前或之后运行，你不应该依赖 DOM 在何时更新的。
+
+## useTransition
+
+useTransition is a React Hook that lets you update the state without blocking the UI.
+useTransition 顾名思义过渡，可以理解为过渡更新，能够让你把状态更新标记为非阻塞的方式（降低任务优先级）。一般状态更新的任务有两种，一种是紧急任务，比如文本框输入，点击等，另一种是过渡性任务，比如列表更新等，这种任务的优先级低。
+
+主要用途是把一个状态更新标记为非阻塞式更新，降低任务级别以致不阻塞其他优先级高的任务。
+
+```javascript
+function TabContainer() {
+  const [isPending, startTransition] = useTransition();
+  const [tab, setTab] = useState();
+
+  function selectTab(nextTab) {
+    startTransition(() => {
+      setTab(nextTab);
+    });
+  }
+}
+```
 
 ## hooks 中如何使用之前的 state 跟 props
 
