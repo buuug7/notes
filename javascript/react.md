@@ -1063,6 +1063,17 @@ function TabContainer() {
 }
 ```
 
+## useDeferredValue
+
+useDeferredValue is a React Hook that lets you defer updating a part of the UI.
+
+useDeferredValue 是一个 React Hook，可以让你延迟更新 UI 的某些部分。
+
+用法:
+
+- 在新内容加载期间显示旧内容
+- 延迟渲染 UI 的某些部分
+
 ## hooks 中如何使用之前的 state 跟 props
 
 ```javascript
