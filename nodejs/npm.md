@@ -226,8 +226,8 @@ n lts
 ## npm 配置仓库地址
 
 ```bash
-# 淘宝地址
-npm config set registry https://registry.npm.taobao.org
+# https://npmmirror.com/
+npm config set registry https://registry.npmmirror.com
 
 # 当你想发布自己的包时, 需要将地址修改回来
 npm config set registry https://registry.npmjs.org/
