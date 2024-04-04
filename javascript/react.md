@@ -6,8 +6,7 @@
 - https://github.com/Wavez/react-hooks-lifecycle
 - https://github.com/wojtekmaj/react-lifecycle-methods-diagram
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
-- [quick started with jsx
-- ](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)
+- [quick started with jsx](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)
 
 ## React 两个工作阶段
 
