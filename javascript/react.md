@@ -6,7 +6,48 @@
 - https://github.com/Wavez/react-hooks-lifecycle
 - https://github.com/wojtekmaj/react-lifecycle-methods-diagram
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
-- [quick started with jsx](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html)
+- [react single file example](https://gist.github.com/buuug7/d8a812ea0f2b8c909caceec8227f1759)
+
+## react single file example
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>React single file example</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const App = function () {
+        return <h1>Hello, world</h1>;
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+  </body>
+</html>
+```
 
 ## React 两个工作阶段
 
@@ -157,7 +198,7 @@ function MyInput() {
 
 context 提供了一种在组件树中无需显式层层传递数据而共享数据的方式. 但是请谨慎使用它, 因为它让组件复用变得更加困难, 何时使用 context 取决于你, 但有一点需要说明的是, 如果你仅仅只是想避免在多个组件层级中传递数据, 那么**组合组件**的方式通常是比 context 更加简单高效的一个选择.
 
-context 中默认值只有在组件它所处的上层组件树中的 **provider** 没有匹配的时候才会使用. 如果想从子组件中更新 context, 可以在 context 中声明一个函数然后在子组件中调用该函数更新 context.
+context 中默认值只有在组件它所处的上层组件树中的 **provider** 所提供的 value 没有匹配的时候才会使用. 如果想从子组件中更新 context, 可以在 context 中声明一个函数然后在子组件中调用该函数更新 context.
 
 ```javascript
 import React from "react";
