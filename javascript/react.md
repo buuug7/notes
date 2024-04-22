@@ -1183,3 +1183,60 @@ function Table(props) {
 #### 避免层层向下传递回调
 
 使用 context 往下层层传递回调, 避免不必要的传递开销.
+
+## 应该何时使用 useMemo 和 memo, cache
+
+#### useMemo
+
+一般来说，useMemo 用于在客户端组件跨渲染时缓存昂贵的计算。例如，可以用它来记忆化组件内部数据的转换。useMemo 只应用于计算.
+
+```javascript
+function WeatherReport({record}) {
+  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  // ...
+}
+
+function App() {
+  const record = getRecord();
+  return (
+    <>
+      <WeatherReport record={record} />
+      <WeatherReport record={record} />
+    </>
+  );
+}
+```
+
+#### memo
+
+memo 允许你的组件在 props 没有改变的情况下跳过重新渲染, 使用 memo 将组件包装起来，以获得该组件的一个记忆化版本。
+
+```javascript
+const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
+
+```
+
+```javascript
+function WeatherReport({ record }) {
+  const avgTemp = calculateAvg(record);
+  // ...
+}
+
+const MemoWeatherReport = memo(WeatherReport);
+
+function App() {
+  const record = getRecord();
+  return (
+    <>
+      <MemoWeatherReport record={record} />
+      <MemoWeatherReport record={record} />
+    </>
+  );
+}
+```
+
+与 useMemo 相比，memo 根据 props 而不是特定计算来记忆化组件渲染。与 useMemo 类似，记忆化的组件只缓存了具有最后一组 prop 值的最后一次渲染。一旦 props 更改，缓存将失效，组件将重新渲染。
+
+#### cache
+
+一般来说，cache 应用于服务器组件以记忆化可以跨组件共享的工作。

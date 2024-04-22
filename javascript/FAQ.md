@@ -1,5 +1,19 @@
 # javascript 杂项
 
+## Object.is()
+
+Object.is() 和 === 之间的唯一区别在于它们处理带符号的 0 和 NaN 值的时候。
+
+```javascript
++0 === -0; // true
+NaN === NaN; // false
+
+Object.is(+0, -0); // false
+Object.is(NaN, NaN); // true
+```
+
+=== 运算符（和 == 运算符）将数值 -0 和 +0 视为相等，但是会将 NaN 视为彼此不相等。
+
 ## 使用代理来检测对象的变动
 
 您可以使用称为代理的 JavaScript 功能来定义如何读取和设置对象的属性。 代理接受一个目标（代理正在包装的对象）和一个处理程序（定义代理应如何操作）。
