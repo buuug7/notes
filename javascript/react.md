@@ -361,11 +361,11 @@ function App() {
 
 ## Forwarding refs 转发 refs
 
-Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用`React.forwardRef`对组件进行 ref 转发. React.forwardRef 会基于一个组件创建一个新组件, 这个新组件能够将其接收到的 ref 属性转发到其组件树下的另一个组件中.
+Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用`React.forwardRef`对组件进行 ref 转发. forwardRef 会基于一个组件创建一个新组件, 这个新组件能够将其接收到的 ref 属性转发到其组件树下的另一个组件中.
 
-使用场景:
+用法：
 
-转发 ref 到一个 DOM 组件:
+将 DOM 节点暴露给父组件
 
 ```jsx
 function App() {
@@ -389,7 +389,7 @@ function App() {
 }
 ```
 
-在高阶组件中转发 ref:
+在多个组件中层层转发 ref，在高阶组件中转发 ref:
 
 ```javascript
 function MyButton(props) {
@@ -413,6 +413,69 @@ function App() {
     <div>
       <MyButtonForward ref={ref} />
     </div>
+  );
+}
+```
+
+暴露命令式句柄而非 DOM 节点 ：可以使用 useImperativeHandle 的自定义对象暴露一个更加受限制的方法集，而非整个 DOM 节点，为了实现这个目的需要定义一个单独的 ref 存储 DOM 节点
+
+```javascript
+const MyInput = forwardRef(function MyInput(props, ref) {
+  const inputRef = useRef(null);
+  // ...
+  return <input {...props} ref={inputRef} />;
+});
+```
+
+将收到的 ref 传递给 useImperativeHandle 并指定你想要暴露给 ref 的值：
+
+```javascript
+import { forwardRef, useRef, useImperativeHandle } from "react";
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  const inputRef = useRef(null);
+
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        focus() {
+          inputRef.current.focus();
+        },
+        scrollIntoView() {
+          inputRef.current.scrollIntoView();
+        },
+      };
+    },
+    []
+  );
+
+  return <input {...props} ref={inputRef} />;
+});
+```
+
+如果某个组件得到了 MyInput 的 ref，则只会接收到 { focus, scrollIntoView } 对象，而非整个 DOM 节点。这可以让 DOM 节点暴露的信息限制到最小。
+
+```javascript
+import { useRef } from "react";
+import MyInput from "./MyInput.js";
+
+export default function Form() {
+  const ref = useRef(null);
+
+  function handleClick() {
+    ref.current.focus();
+    // 这行代码不起作用，因为 DOM 节点没有被暴露出来：
+    // ref.current.style.opacity = 0.5;
+  }
+
+  return (
+    <form>
+      <MyInput placeholder="Enter your name" ref={ref} />
+      <button type="button" onClick={handleClick}>
+        Edit
+      </button>
+    </form>
   );
 }
 ```
