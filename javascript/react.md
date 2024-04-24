@@ -361,145 +361,148 @@ function App() {
 
 ## Forwarding refs 转发 refs
 
-Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用`React.forwardRef`对组件进行 ref 转发. forwardRef 会基于一个组件创建一个新组件, 这个新组件能够将其接收到的 ref 属性转发到其组件树下的另一个组件中.
+Forwarding refs 是一个让组件接受一个 ref(引用), 然后将其向下传递给子组件的技术. 通过调用 `React.forwardRef` 对组件进行 ref 转发. forwardRef 会基于一个组件创建一个新组件, 这个新组件能够将其接收到的 ref 属性转发到其组件树下的另一个组件中.
 
-用法：
+https://codesandbox.io/p/sandbox/test-react-forward-ref-jstr3t
 
-将 DOM 节点暴露给父组件
+#### 将 DOM 节点暴露给父组件
 
 ```jsx
-function App() {
-  const ref = React.useRef();
+import { forwardRef, useRef } from "react";
 
-  const MyButton = React.forwardRef((props, ref) => {
-    return <button ref={ref}>my button</button>;
-  });
-
-  React.useEffect(() => {
-    ref.current.onclick = (e) => {
-      alert(e.target.textContent);
-    };
-  }, []);
-
-  return (
-    <div>
-      <MyButton ref={ref} />
-    </div>
-  );
-}
-```
-
-在多个组件中层层转发 ref，在高阶组件中转发 ref:
-
-```javascript
-function MyButton(props) {
-  return <button ref={props.forwardRef}>my button</button>;
-}
-
-function App() {
-  const ref = React.useRef();
-
-  const MyButtonForward = React.forwardRef((props, ref) => {
-    return <MyButton {. ..props} forwardRef={ref} />;
-  });
-
-  React.useEffect(() => {
-    ref.current.onclick = (e) => {
-      alert(e.target.textContent);
-    };
-  });
-
-  return (
-    <div>
-      <MyButtonForward ref={ref} />
-    </div>
-  );
-}
-```
-
-暴露命令式句柄而非 DOM 节点 ：可以使用 useImperativeHandle 的自定义对象暴露一个更加受限制的方法集，而非整个 DOM 节点，为了实现这个目的需要定义一个单独的 ref 存储 DOM 节点
-
-```javascript
 const MyInput = forwardRef(function MyInput(props, ref) {
-  const inputRef = useRef(null);
-  // ...
-  return <input {...props} ref={inputRef} />;
+  return <input {...props} ref={ref} />;
 });
+
+export default function App() {
+  const ref = useRef(null);
+  return (
+    <div>
+      <MyInput ref={ref} />
+      <button
+        onClick={() => {
+          ref.current.focus();
+        }}
+      >
+        Focus
+      </button>
+    </div>
+  );
+}
 ```
 
-将收到的 ref 传递给 useImperativeHandle 并指定你想要暴露给 ref 的值：
+#### 在多个组件中层层转发 ref，比如在高阶组件中转发 ref 到最终的 DOM 节点
+
+```javascript
+import { forwardRef, useRef } from "react";
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return <input {...props} ref={ref} />;
+});
+
+const MyField = forwardRef(function MyField(props, ref) {
+  return <MyInput {...props} ref={ref} />;
+});
+
+// 1. Form 组件中通过 useRef 定义了一个 ref
+// 2. MyField 组件将 Form 组件中定义的 ref 转发给子组件 MyInput
+// 3. MyInput 组件将接收到的 ref 转发给内部的 input 输入框
+export default function Form() {
+  const ref = useRef(null);
+  return (
+    <div>
+      <MyField ref={ref} />
+      <button
+        onClick={() => {
+          ref.current.focus();
+        }}
+      >
+        Focus
+      </button>
+    </div>
+  );
+}
+```
+
+#### 暴露命令式句柄而非 DOM 节点
+
+可以使用 useImperativeHandle 自定义对象暴露一个更加受限制的方法集，而非整个 DOM 节点
 
 ```javascript
 import { forwardRef, useRef, useImperativeHandle } from "react";
 
 const MyInput = forwardRef(function MyInput(props, ref) {
   const inputRef = useRef(null);
-
-  useImperativeHandle(
-    ref,
-    () => {
-      return {
-        focus() {
-          inputRef.current.focus();
-        },
-        scrollIntoView() {
-          inputRef.current.scrollIntoView();
-        },
-      };
-    },
-    []
-  );
-
+  // 将收到的 ref 传递给 useImperativeHandle 并指定你想要暴露给 ref 的值：
+  useImperativeHandle(ref, () => {
+    return {
+      focus() {
+        inputRef.current.focus();
+      },
+      scrollIntoView() {
+        inputRef.current.scrollIntoView();
+      },
+    };
+  });
   return <input {...props} ref={inputRef} />;
 });
-```
 
-如果某个组件得到了 MyInput 的 ref，则只会接收到 { focus, scrollIntoView } 对象，而非整个 DOM 节点。这可以让 DOM 节点暴露的信息限制到最小。
-
-```javascript
-import { useRef } from "react";
-import MyInput from "./MyInput.js";
-
-export default function Form() {
-  const ref = useRef(null);
-
-  function handleClick() {
-    ref.current.focus();
-    // 这行代码不起作用，因为 DOM 节点没有被暴露出来：
-    // ref.current.style.opacity = 0.5;
-  }
-
+export default function App() {
+  const ref = useRef();
   return (
-    <form>
-      <MyInput placeholder="Enter your name" ref={ref} />
-      <button type="button" onClick={handleClick}>
-        Edit
+    <div>
+      <MyInput ref={ref} />
+      <button
+        onClick={() => {
+          ref.current.focus();
+
+          // 这行代码不起作用，因为 DOM 节点没有被暴露出来：
+          // ref.current.style.opacity = 0.5;
+
+          // 如果某个组件得到了 MyInput 的 ref，则只会接收到 { focus, scrollIntoView } 对象
+          // 而非整个 DOM 节点, 这可以让 DOM 节点暴露的信息限制到最小
+        }}
+      >
+        Focus
       </button>
-    </form>
+    </div>
   );
 }
 ```
 
 ## React.Fragment 片段
 
-React.Fragment 组件能够在不额外创建 DOM 元素的情况下, 让 render() 方法中返回多个元素.
+Fragment 允许你在不添加额外节点的情况下将子元素组合.
 
-当使用`React.Fragment`组件包裹多个子元素, 在渲染的时候不会向 DOM 增加额外的节点. 由于 react 组件只能有一个根节点, 在有`React.Fragment`存在的情况下, 就可以变相的实现一个组件返回多个根节点了, 因为`React.Fragment`这一层在渲染到真实 DOM 的时候会被擦除. `<React.Fragment></React.Fragment>`的简写形式为`<></>`
+当使用`Fragment`组件包裹多个子元素, 在渲染的时候不会向 DOM 增加额外的节点. 由于 React 组件只能有一个根节点, 在有`Fragment`存在的情况下, 就可以变相的实现一个组件返回多个根节点了, 因为`Fragment`这一层在渲染到真实 DOM 的时候会被擦除, 简写形式为`<></>`
 
 使用场景:
 
+- 希望返回多个节点的组件
+- 分配多个元素给一个变量
 - 那些对父子元素有语义限制的场合, 比如`tr`下面只允许`td`
-- 希望返回多个根节点的组件
 
 ```jsx
+// 希望返回多个节点的组件
 function MyComponent() {
   return (
-    <React.Fragment>
+    <>
       <td>A</td>
       <td>B</td>
-      <td>C</td>
-    </React.Fragment>
+    </>
   );
+}
+
+function CloseDialog() {
+  // 分配多个元素给一个变量
+  // 和其他元素一样，你可以将 Fragment 元素分配给变量，作为 props 传递等
+  const buttons = (
+    <>
+      <OKButton />
+      <CancelButton />
+    </>
+  );
+  return <AlertDialog buttons={buttons}>Are you sure?</AlertDialog>;
 }
 ```
 
@@ -658,32 +661,70 @@ export default function App() {
 
 ## React.PureComponent
 
-类似于 React.Component, 区别在于 React.Component 默认没有实现`shouldComponentUpdate()`, 而 React.PureComponent 使用 props 和 state 浅比较(shallow compare)默认实现了`shouldComponentUpdate()`.
+类似于 React.Component, 区别在于 React.Component 默认没有实现 `shouldComponentUpdate()`, 而 React.PureComponent 使用 props 和 state 浅比较(shallow compare)默认实现了 `shouldComponentUpdate()`.
 
 ## React.memo
 
-React.memo 是一个高阶组件, 它会记忆上次的渲染结果, 如果 props 没有发生变化, 那么它仅仅返回上次渲染结果而不是重新在渲染. 在对比 props 变化的时候使用的是对象浅比较, 你也可以使用自定义的比较函数来判定是否需要重新渲染.
+memo 允许你的组件在 props 没有改变的情况下跳过重新渲染, 使用 memo 将组件包装起来，以获得该组件的一个记忆化版本。memo 返回一个新的 React 组件, 它的行为与提供给 memo 的组件相同，只是当它的父组件重新渲染时 React 不会总是重新渲染它，除非它的 props 发生了变化。
+
+memo 是一个高阶组件, 它会记忆上次的渲染结果, 如果 props 没有发生变化, 那么它仅仅返回上次渲染结果而不是重新在渲染. 在对比 props 变化的时候使用的是对象浅比较 跟 `Object.is`, 你也可以使用自定义的比较函数来判定是否需要重新渲染.
 
 ```javascript
-function MyComponent(props) {
-  // render using props
-}
+const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
-const MyComponent = React.memo(MyComponent);
-
-function areEqual(preProps, nextProps) {
+function arePropsEqual(preProps, nextProps) {
   // return true or false
 }
-
-// use custom compare function as second parameter
-const MyComponent2 = React.memo(MyComponent, areEqual);
 ```
+
+```javascript
+function WeatherReport({ record }) {
+  const avgTemp = calculateAvg(record);
+  // ...
+}
+
+const MemoWeatherReport = memo(WeatherReport);
+
+function App() {
+  const record = getRecord();
+  return (
+    <>
+      <MemoWeatherReport record={record} />
+      <MemoWeatherReport record={record} />
+    </>
+  );
+}
+```
+
+与 useMemo 相比，memo 根据 props 而不是特定计算来记忆化组件渲染。与 useMemo 类似，记忆化的组件只缓存了具有最后一组 prop 值的最后一次渲染。一旦 props 更改，缓存将失效，组件将重新渲染。
+
+## Suspense
+
+Suspense 允许在子组件完成加载前展示后备方案.
+
+```javascript
+<Suspense fallback={<Loading />}>
+  <SomeComponent />
+</Suspense>
+```
+
+只有启用了 Suspense 的数据源才会激活 Suspense 组件，它们包括：
+
+- 支持 Suspense 的框架如 Relay 和 Next.js
+- 使用 lazy 懒加载组件代码
+- 使用 use 读取 Promise 的值
+
+Suspense 无法检测在 Effect 或事件处理程序中获取数据的情况
 
 ## React.lazy 跟 Suspense
 
-`React.lazy`会定义一个动态加载组件, 这项技术会帮助你减少打包体积并延迟加载那些当前视图不需要的组件. 在使用 webpack 打包的时候, 使用`import`导入的组件会进行代码分割以减少单个包的体积.
+`React.lazy` 定义一个动态加载组件, 这项技术会帮助你减少打包体积并延迟加载那些当前视图不需要的组件. 在使用 webpack 打包的时候, 使用 `import` 导入的组件会进行代码分割以减少单个包的体积.
 
-`React.Suspense`当其下属的组件树中有些组件未准备就绪的时候, 允许你指定 fallback UI. Suspense 跟 React.lazy 定义的组件配合使用的场景是 Suspense 目前唯一的使用场景.
+`React.Suspense`当其下属的组件树中有些组件未准备就绪的时候, 允许你指定备用 UI(Fallback UI). Suspense 跟 React.lazy 定义的组件配合使用的场景是 Suspense 目前唯一的使用场景.
+
+注意项:
+
+- 不要在其他组件 内部 声明 lazy 组件, 总是在模块的顶层声明它们
 
 ```javascript
 const HelloComponent = React.lazy(() => import(". /Hello.js"));
@@ -1092,11 +1133,32 @@ useMemo is a React Hook that lets you cache the result of a calculation between 
 
 返回一个有记忆的值, 该值只有在它的依赖发生变化的时候才会更新. 如果没有依赖提供, 会在每次渲染的时候都重新计算该值.
 
-它可以作为性能优化的一个手段, 请记住 useMemo 是在渲染期间运行的, 在该函数内部避免做一些有副作用的操作.
+useMemo 一般用在客户端渲染时缓存昂贵的计算, 主要针对一些计算. 它可以作为性能优化的一个手段, 请记住 useMemo 是在渲染期间运行的, 在该函数内部避免做一些有副作用的操作.
 
 ```javascript
 const memoizedValue = useMemo(() => expensiveComputeValue(a, b), [a, b]);
 ```
+
+```javascript
+function WeatherReport({record}) {
+  const avgTemp = useMemo(() => calculateAvg(record)), record);
+  // ...
+}
+
+function App() {
+  const record = getRecord();
+  return (
+    <>
+      <WeatherReport record={record} />
+      <WeatherReport record={record} />
+    </>
+  );
+}
+```
+
+## cache
+
+cache 应用于服务器组件以记忆化可以跨组件共享的工作。
 
 ## useImperativeHandle
 
@@ -1172,10 +1234,36 @@ useDeferredValue is a React Hook that lets you defer updating a part of the UI.
 
 useDeferredValue 是一个 React Hook，可以让你延迟更新 UI 的某些部分。
 
+```javascript
+import { useState, useDeferredValue } from "react";
+
+function SearchPage() {
+  const [query, setQuery] = useState("");
+  const deferredQuery = useDeferredValue(query);
+  // ...
+}
+```
+
+1. 在初始渲染期间，返回的延迟值与你提供的值相同
+2. 在更新期间，延迟值会**滞后于**最新值。具体地说，React 首先会在不更新延迟值的情况下进行重新渲染，然后在后台尝试使用新接收到的值进行重新渲染,一旦后台重新渲染完毕会立即提交到屏幕.
+
 用法:
 
 - 在新内容加载期间显示旧内容
 - 延迟渲染 UI 的某些部分
+
+## useDeferredValue 与防抖跟节流的区别
+
+- 防抖, 在事件被触发 n 秒后再执行回调，如果在这 n 秒内又被触发，则重新计时。
+- 节流, 规定在一个单位时间内，只能触发一次函数。如果这个单位时间内触发多次函数，只有一次生效。
+
+虽然这些技术在某些情况下是有用的，但 useDeferredValue 更适合优化渲染，因为它与 React 自身深度集成，并且能够适应用户的设备。
+
+与防抖或节流不同，useDeferredValue 不需要选择任何固定延迟时间。如果用户的设备很快（比如性能强劲的笔记本电脑），延迟的重渲染几乎会立即发生并且不会被察觉。如果用户的设备较慢，那么列表会相应地“滞后”于输入，滞后的程度与设备的速度有关。
+
+此外，与防抖或节流不同，useDeferredValue 执行的延迟重新渲染默认是可中断的。这意味着，如果 React 正在重新渲染一个大型列表，但用户进行了另一次键盘输入，React 会放弃该重新渲染，先处理键盘输入，然后再次开始在后台渲染。相比之下，防抖和节流仍会产生不顺畅的体验，因为它们是阻塞的：它们仅仅是将渲染阻塞键盘输入的时刻推迟了。
+
+如果你要优化的工作不是在渲染期间发生的，那么防抖和节流仍然非常有用。例如，它们可以让你减少网络请求的次数。你也可以同时使用这些技术。
 
 ## hooks 中如何使用之前的 state 跟 props
 
@@ -1287,59 +1375,33 @@ function Table(props) {
 
 使用 context 往下层层传递回调, 避免不必要的传递开销.
 
-## 应该何时使用 useMemo 和 memo, cache
+## startTransition
 
-#### useMemo
-
-一般来说，useMemo 用于在客户端组件跨渲染时缓存昂贵的计算。例如，可以用它来记忆化组件内部数据的转换。useMemo 只应用于计算.
+startTransition 可以让你在不阻塞 UI 的情况下更新 state。
 
 ```javascript
-function WeatherReport({record}) {
-  const avgTemp = useMemo(() => calculateAvg(record)), record);
+import { startTransition } from "react";
+
+function TabContainer() {
+  const [tab, setTab] = useState("about");
+
+  function selectTab(nextTab) {
+    startTransition(() => {
+      setTab(nextTab);
+    });
+  }
   // ...
 }
-
-function App() {
-  const record = getRecord();
-  return (
-    <>
-      <WeatherReport record={record} />
-      <WeatherReport record={record} />
-    </>
-  );
-}
 ```
 
-#### memo
+## StrictMode
 
-memo 允许你的组件在 props 没有改变的情况下跳过重新渲染, 使用 memo 将组件包装起来，以获得该组件的一个记忆化版本。
+StrictMode 帮助你在开发过程中尽早地发现组件中的常见错误, 严格模式启用了以下仅在开发环境下有效的行为：
 
-```javascript
-const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
+- 组件将重新渲染一次，以查找由于非纯渲染而引起的错误。
+- 组件将重新运行 Effect 一次，以查找由于缺少 Effect 清理而引起的错误。
+- 组件将被检查是否使用了已弃用的 API。
 
-```
+## Profiler
 
-```javascript
-function WeatherReport({ record }) {
-  const avgTemp = calculateAvg(record);
-  // ...
-}
-
-const MemoWeatherReport = memo(WeatherReport);
-
-function App() {
-  const record = getRecord();
-  return (
-    <>
-      <MemoWeatherReport record={record} />
-      <MemoWeatherReport record={record} />
-    </>
-  );
-}
-```
-
-与 useMemo 相比，memo 根据 props 而不是特定计算来记忆化组件渲染。与 useMemo 类似，记忆化的组件只缓存了具有最后一组 prop 值的最后一次渲染。一旦 props 更改，缓存将失效，组件将重新渲染。
-
-#### cache
-
-一般来说，cache 应用于服务器组件以记忆化可以跨组件共享的工作。
+Profiler 允许你编程式测量 React 树的渲染性能
