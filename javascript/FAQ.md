@@ -1,5 +1,9 @@
 # javascript 杂项
 
+## 服务端渲染（SSR） 和 静态站点生成（SSG）
+
+// TODO:
+
 ## Object.is()
 
 Object.is() 和 === 之间的唯一区别在于它们处理带符号的 0 和 NaN 值的时候。

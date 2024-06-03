@@ -6,7 +6,9 @@
 - https://github.com/Wavez/react-hooks-lifecycle
 - https://github.com/wojtekmaj/react-lifecycle-methods-diagram
 - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
-- [react single file example](https://gist.github.com/buuug7/d8a812ea0f2b8c909caceec8227f1759)
+- react single file example
+  - https://gist.github.com/buuug7/38d1e46107eede464a9abd627a95b49e
+  - https://gist.github.com/gaearon/0275b1e1518599bbeafcde4722e79ed1
 
 ## react single file example
 
@@ -626,13 +628,14 @@ const App = () => (
 
 ## portals
 
-通常, 当你从组件的 render 方法返回一个元素的时候, 该元素将被挂载到 DOM 节点中离其最近的父节点下面. 而 Portal 允许你将子节点挂载到父组件 DOM 节点以外的其他 DOM 节点.
+通常, 当你从组件的 render 方法返回一个元素的时候, 该元素将被挂载到 DOM 节点中离其最近的父节点下面. 而 Portal 允许你将子节点挂载到父组件 DOM 节点以外的其他 DOM 节点. 从 portal 内部触发的事件会冒泡到包含 React 组件的父组件树中, 即使这些元素不是他的祖先元素.
 
-从 portal 内部触发的事件会冒泡到包含 React 组件的父组件树中, 即使这些元素不是他的祖先元素.
+- 渲染到 DOM 的不同部分
+- 渲染到非 React 管理的 DOM 节点
 
 ```html
 <div id="root"></div>
-<div id="modal-root"></div>
+<div id="rootModal"></div>
 ```
 
 ```javascript
@@ -640,11 +643,14 @@ import ReactDOM from "react-dom";
 import React from "react";
 
 function Modal(props) {
-  const modalRoot = document.querySelector("#modal-root");
+  const modalRoot = document.querySelector("#rootModal");
   const el = document.createElement("div");
 
   React.useEffect(() => {
     modalRoot.appendChild(el);
+    return () => {
+      modalRoot.removeChild(el);
+    };
   }, []);
 
   return ReactDOM.createPortal(props.children, el);
@@ -724,7 +730,7 @@ Suspense 无法检测在 Effect 或事件处理程序中获取数据的情况
 
 注意项:
 
-- 不要在其他组件 内部 声明 lazy 组件, 总是在模块的顶层声明它们
+- 不要在其他组件内部声明 lazy 组件, 总是在模块的顶层声明它们
 
 ```javascript
 const HelloComponent = React.lazy(() => import(". /Hello.js"));

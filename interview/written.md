@@ -644,9 +644,8 @@ function debounce(fn, wait) {
       clearInterval(time);
     }
 
-    const arg = arguments;
     time = setTimeout(() => {
-      fn.apply(this, arg);
+      fn.apply(this, arguments);
     }, wait);
   };
 }
@@ -660,10 +659,10 @@ function debounce(fn, wait) {
 function throttle(fn, wait) {
   let time = null;
   return function () {
-    const arg = arguments;
     if (!time) {
       time = setTimeout(() => {
-        fn.apply(this, arg);
+        fn.apply(this, arguments);
+        time = null;
       }, wait);
     }
   };
