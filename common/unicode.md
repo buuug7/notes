@@ -1,5 +1,11 @@
 # Unicode
 
+In this topic, we've covered Unicode — a standard for encoding different kinds of symbols. Unicode itself is not an encoding, it doesn't define how characters are converted into bytes for computers to understand. What it does, is it defines a Universal character set — a mapping between symbols and hexadecimal numbers, code points. Code points are divided into planes, among which the most important is the Basic Multilingual Plane (BMP).
+
+Unicode also provides several encodings within the Universal transformation format (UTF). UTF-8, an encoding that supports the entire Unicode, is the predominant encoding of the Internet.
+
+Unicode is everywhere. The page you're reading right now uses the Unicode Standard to display this text. Since you'll have to work with texts in some way or another, it's important to know what Unicode is (and what it isn't). Understanding the standard and its relation to the most common encodings can help you solve or altogether avoid encoding/decoding
+
 - http://www.ruanyifeng.com/blog/2014/12/unicode.html
 
 Unicode 是将全世界所有的字符包含在一个集合里,计算机只要支持这个字符集,就能显示所有的字符,再也不会有乱码了.它从 0 开始,为每个符号指定一个编号,这叫做"码点"(code point).
